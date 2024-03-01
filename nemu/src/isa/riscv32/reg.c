@@ -24,6 +24,11 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+  for (int i = 0; i < GPR_NUM; i++) {
+    printf("%s: %08x ", regs[i], gpr(i));
+    if (i % 8 == 7)
+      putchar('\n');
+  }
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {

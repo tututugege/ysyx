@@ -42,6 +42,14 @@ static char* rl_gets() {
   return line_read;
 }
 
+static int cmd_si(char *args);
+static int cmd_info(char *args);
+// static int cmd_x(char *args);
+// static int cmd_p(char *args);
+// static int cmd_w(char *args);
+// static int cmd_d(char *args);
+
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -64,6 +72,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
+  { "si", "execute N steps", cmd_si },
+  { "info", "Exit NEMU", cmd_info },
 
 };
 
@@ -89,6 +99,37 @@ static int cmd_help(char *args) {
     }
     printf("Unknown command '%s'\n", arg);
   }
+  return 0;
+}
+
+static int cmd_si(char *args) {
+  char* arg = strtok(NULL, "");
+  int step;
+
+  if (arg == NULL) {
+    step = 1;
+  } else {
+    step = atoi(arg);
+
+    if (step == 0) {
+      printf("Error steps: %s", arg);
+      return 0;
+    }
+  }
+
+  cpu_exec(step);
+  return 0;
+}
+
+static int cmd_info(char *args) {
+  char* arg = strtok(NULL, "");
+
+  if (arg == NULL) {
+    printf("pass \"r\" to print register info or \"w\" to print watchpoints info\n");
+  } else if (strcmp(arg, "r") == 0) {
+    isa_reg_display();
+  }
+
   return 0;
 }
 
