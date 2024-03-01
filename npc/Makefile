@@ -1,8 +1,8 @@
 BUILD_DIR = ./build
 OBJ_DIR   = ./obj_dir
-MODULE    = ps2_keyboard
+MODULE    = TOP
 TESEBENCH = tb_$(MODULE).cpp
-VSRC      = ./build/$(MODULE).v
+# VSRC      = ./build/$(MODULE).v
 SSRCS     = ./playground/src/*.scala
 
 TOPNAME   = $(MODULE)
@@ -79,11 +79,12 @@ CSRCS += $(SRC_AUTO_BIND)
 $(SRC_AUTO_BIND): $(NXDC_FILES)
 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
 
-$(VSRC): verilog
+# $(VSRC): verilog
+VSRC = ./build/*.v
 
 board: $(VSRC) $(CSRCS) $(NVBOARD_ARCHIVE)
 	@rm -rf $(OBJ_DIR)
-	$(VERILATOR) $(VERILATOR_CFLAGS) \
+	$(VERILATOR) --trace $(VERILATOR_CFLAGS) \
 		--top-module $(MODULE) $^ \
 		$(addprefix -CFLAGS , $(CXXFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
