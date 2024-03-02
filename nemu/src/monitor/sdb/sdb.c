@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include <isa.h>
+#include <memory/vaddr.h>
 #include <cpu/cpu.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -44,7 +45,7 @@ static char* rl_gets() {
 
 static int cmd_si(char *args);
 static int cmd_info(char *args);
-// static int cmd_x(char *args);
+static int cmd_x(char *args);
 // static int cmd_p(char *args);
 // static int cmd_w(char *args);
 // static int cmd_d(char *args);
@@ -73,7 +74,8 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "execute N steps", cmd_si },
-  { "info", "Exit NEMU", cmd_info },
+  { "info", "display infomation NEMU", cmd_info },
+  { "x", "scan memory", cmd_x },
 
 };
 
@@ -103,7 +105,7 @@ static int cmd_help(char *args) {
 }
 
 static int cmd_si(char *args) {
-  char* arg = strtok(NULL, "");
+  char* arg = strtok(NULL, " ");
   int step;
 
   if (arg == NULL) {
@@ -122,15 +124,54 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-  char* arg = strtok(NULL, "");
+  char* arg = strtok(NULL, " ");
 
   if (arg == NULL) {
     printf("pass \"r\" to print register info or \"w\" to print watchpoints info\n");
   } else if (strcmp(arg, "r") == 0) {
     isa_reg_display();
+  } else if (strcmp(arg, "w") == 0) {
+
+  } else {
+    printf("Unknown command: %s\n", arg);
   }
 
   return 0;
+}
+
+static int cmd_x(char *args) {
+  char* arg = strtok(NULL, " ");
+  int size;
+  int addr;
+
+  if (arg == NULL) {
+    printf("Argument required\n");
+    return 0;
+  } else if ((size = atoi(arg)) == 0) {
+    printf("Unknown command: %s\n", arg);
+    return 0;
+  }
+
+  arg = strtok(NULL, " ");
+
+  if (arg == NULL) {
+    printf("Argument required\n");
+    return 0;
+  } else if ((addr = strtol(arg, NULL, 16)) == 0 && strcmp(arg, "0x0") != 0 && strcmp(arg, "0X0") != 0) {
+    printf("Unknown command: %s\n", arg);
+    return 0;
+  }
+
+  for (int i = 0; i < size; i += 4) {
+    printf("%08x: ", addr + i*4);
+    for (int j = 0; j < 4; j++) {
+      printf("0x%08x ", vaddr_read(addr + (i + j)*4, 4));
+    }
+    printf("\n");
+  }
+
+  return 0;
+
 }
 
 void sdb_set_batch_mode() {
