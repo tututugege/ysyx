@@ -22,8 +22,9 @@
 
 enum {
   TK_NOTYPE = 256, TK_EQ,
-
+  
   /* TODO: Add more token types */
+  TK_DEC, TK_HEX, TK_NEG
 
 };
 
@@ -36,9 +37,15 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
-  {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
-  {"==", TK_EQ},        // equal
+  {" +", TK_NOTYPE},          // spaces
+  {"\\+", '+'},               // plus
+  {"\\-", '-'},               // sub
+  {"\\*", '*'},               // mul
+  {"/", '/'},                 // div
+  {"[0-9]+", TK_DEC},           // decimal
+  {"0[xX][0-9a-fA-F]+", TK_HEX},// hex
+  {"\\(", '('},                // parenthese 
+  {"\\)", ')'},               // parenthese
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -73,9 +80,10 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
   int position = 0;
   int i;
-  regmatch_t pmatch;
 
+  regmatch_t pmatch;
   nr_token = 0;
+  int last_type = TK_NOTYPE;
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
@@ -95,9 +103,27 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          case TK_NOTYPE:
+            break;
+          case '+':
+          case '*':
+          case '/':
+          case '(' :
+          case ')':
+            tokens[nr_token++].type = rules[i].token_type;
+            last_type = rules[i].token_type;
+            break;
+          case '-':
+            if (last_type != TK_DEC && last_type != TK_HEX && last_type != ')')
+              tokens[nr_token++].type = TK_NEG;
+            else
+              tokens[nr_token++].type = '-';
+            break;
+          default: 
+            tokens[nr_token].type = rules[i].token_type;
+            strncpy(tokens[nr_token++].str, substr_start, substr_len);
+            last_type = rules[i].token_type;
         }
-
         break;
       }
     }
@@ -111,6 +137,7 @@ static bool make_token(char *e) {
   return true;
 }
 
+int eval(int p, int q, bool* success);
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -119,7 +146,143 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
+  int res = eval(0, nr_token - 1, success);
+
+  return res;
+}
+
+/* returning 1 means the outermost parenthese
+ * returning 0 means no outermost parenthese
+ * returning -1 means error
+ */ 
+int check_parenthese(int p, int q) {
+  int left_num = 0;
+
+  if (tokens[p].type == '(') {
+    left_num++;
+    p++;
+  } else {
+    return 0;
+  }
+
+  if (tokens[q].type != ')') {
+    return 0;
+  }
+
+  while (p < q) {
+    if (tokens[p].type == '(')
+      left_num++;
+    else if (tokens[p].type == ')')
+      left_num--;
+
+    if (left_num == 0) {
+      return 0;
+    } else if (left_num < 0) {
+      return -1;
+    }
+    p++;
+  }
+
+  if (left_num == 1)
+    return 1;
+  else
+    return -1;
+}
+
+int get_main_op(int p, int q) {
+  int last_mul_div = -1;
+  int last_add_sub = -1;
+  int last_neg = -1;
+  int left = 0;
+
+  while (p <= q) {
+    switch (tokens[p].type) {
+      case '(':
+        left++;
+        for (p++; p <= q; p++) {
+          if (tokens[p].type == '(')
+            left++;
+          else if (tokens[p].type == ')')
+            left--;
+          
+          if (left == 0)
+            break;
+        }
+        // assert( p != q );
+        break;
+      case '+':
+      case '-':
+        last_add_sub = p;
+      case '/':
+      case '*':
+        last_mul_div = p;
+      case TK_NEG:
+        if (last_neg == -1)
+          last_neg = p;
+        break;
+      default:
+        assert(tokens[p].type != ')');
+        break;
+    }
+    p++;
+  }
+  if (last_add_sub != -1)
+    return last_add_sub;
+  else if (last_mul_div != -1)
+    return last_mul_div;
+  else if (last_neg != -1)
+    return last_neg;
+  
+  return -1;
+
+}
+
+int eval(int p, int q, bool* success) {
+
+  if (p > q) {
+    *success = false;
+    return 0;
+  } else if (check_parenthese(p, q) == true) {
+    return eval(p + 1, q - 1, success);
+  } else if (p == q) {
+      assert(tokens[p].type == TK_HEX || tokens[p].type == TK_DEC);
+      if (tokens[p].type == TK_HEX)
+        return strtol(tokens[p].str, NULL, 16);
+      else
+        return strtol(tokens[p].str, NULL, 10);
+  } else {
+    int op = get_main_op(p, q);
+    if (op == -1) {
+      *success = false;
+      return 0;
+    }
+
+    int val1 = 0;
+    int val2;
+    if (tokens[op].type != TK_NEG) {
+      val1 = eval(p, op - 1, success);
+    }
+    val2 = eval(op + 1, q, success);
+
+    if (*success == false)
+      return 0;
+
+    switch (tokens[op].type) {
+      case '+':
+        return val1 + val2;
+      case '-':
+        return val1 - val2;
+      case '*':
+        return val1 * val2;
+      case '/':
+        return val1 / val2;
+      case TK_NEG:
+        return -val2;
+      
+      default:
+        return 0;
+    }
+  }
 
   return 0;
 }

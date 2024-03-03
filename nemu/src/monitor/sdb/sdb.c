@@ -46,7 +46,7 @@ static char* rl_gets() {
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
-// static int cmd_p(char *args);
+static int cmd_p(char *args);
 // static int cmd_w(char *args);
 // static int cmd_d(char *args);
 
@@ -76,6 +76,7 @@ static struct {
   { "si", "execute N steps", cmd_si },
   { "info", "display infomation NEMU", cmd_info },
   { "x", "scan memory", cmd_x },
+  { "p", "expression evaluation", cmd_p },
 
 };
 
@@ -171,7 +172,24 @@ static int cmd_x(char *args) {
   }
 
   return 0;
+}
 
+static int cmd_p(char* args) {
+  if (args[0] == '\0') {
+    printf("Argument required\n");
+    return 0;
+  }
+
+  bool success = true;
+  int res;
+  res = expr(args, &success);
+  if (success == false) {
+    printf("Expression format error\n");
+  } else {
+    printf("%d\n", res);
+  }
+
+  return 0;
 }
 
 void sdb_set_batch_mode() {
