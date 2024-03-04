@@ -2,7 +2,7 @@
 
 typedef struct token {
   int type;
-  int num;
+  char str[32];
 } Token;
 
 typedef struct watchpoint {
@@ -12,7 +12,7 @@ typedef struct watchpoint {
   /* TODO: Add more members if necessary */
   word_t old_val;
   Token tokens[32];
-
+  int nr_tokens;
 } WP;
 
 #define NR_WP 32
@@ -20,3 +20,5 @@ typedef struct watchpoint {
 void init_wp_pool();
 WP *new_wp();
 void free_wp(WP *wp);
+void de_wp(int no);
+void display_wp();

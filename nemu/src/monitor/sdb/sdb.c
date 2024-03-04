@@ -26,6 +26,12 @@
 
 static int is_batch_mode = false;
 
+bool make_token(char *e);
+
+extern Token *tokens;
+extern int nr_token;
+extern Token tokens_p[32];
+
 int div_zero = 0;
 
 void init_regex();
@@ -55,7 +61,7 @@ static int cmd_info(char *args);
 static int cmd_x(char *args);
 static int cmd_p(char *args);
 static int cmd_w(char *args);
-// static int cmd_d(char *args);
+static int cmd_d(char *args);
 
 static int cmd_c(char *args) {
   cpu_exec(-1);
@@ -80,7 +86,8 @@ static struct {
     {"info", "display infomation NEMU", cmd_info},
     {"x", "scan memory", cmd_x},
     {"p", "expression evaluation", cmd_p},
-    {"w", "watchpoint", cmd_w},
+    {"w", "create watchpoint", cmd_w},
+    {"d", "delete watchpoint", cmd_d},
 
 };
 
@@ -136,7 +143,7 @@ static int cmd_info(char *args) {
   } else if (strcmp(arg, "r") == 0) {
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
-
+    display_wp();
   } else {
     printf("Unknown command: %s\n", arg);
   }
@@ -187,6 +194,7 @@ static int cmd_p(char *args) {
 
   bool success = true;
   int res;
+  tokens = tokens_p;
   res = expr(args, &success);
   if (success == true) {
     printf("%d\n", res);
@@ -202,17 +210,38 @@ static int cmd_w(char *args) {
   }
 
   bool success = true;
-  int res;
-  res = expr(args, &success);
 
-  if (success == true) {
-    WP *wp = new_wp();
-    if (wp == NULL) {
-      printf("No more watchpoint\n");
-      return 0;
-    }
-    wp->old_val = res;
+  WP *wp = new_wp();
+  if (wp == NULL) {
+    printf("No more watchpoint\n");
+    return 0;
   }
+  tokens = wp->tokens;
+  wp->old_val = expr(args, &success);
+  wp->nr_tokens = nr_token;
+
+  if (success == false) {
+    free_wp(wp);
+  } else {
+    printf("watchpoint %d: %s\n", wp->NO, args);
+  }
+  return 0;
+}
+
+static int cmd_d(char *args) {
+
+  char *arg = strtok(NULL, " ");
+  int wp_no;
+
+  if (arg == NULL) {
+    printf("Argument required\n");
+    return 0;
+  } else if ((wp_no = atoi(arg)) == 0 && strcmp(arg, "0") != 0) {
+    printf("Unknown command: %s\n", arg);
+    return 0;
+  }
+
+  de_wp(wp_no);
 
   return 0;
 }

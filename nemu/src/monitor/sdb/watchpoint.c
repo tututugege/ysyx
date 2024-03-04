@@ -14,8 +14,15 @@
  ***************************************************************************************/
 
 #include "watchpoint.h"
+#include "common.h"
 #include "sdb.h"
+#include <assert.h>
+#include <stdbool.h>
 #include <stdlib.h>
+#include <sys/select.h>
+
+extern Token *tokens;
+int eval(int p, int q, bool *success);
 
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
@@ -24,7 +31,7 @@ static int WP_NO;
 void init_wp_pool() {
   int i;
   for (i = 0; i < NR_WP; i++) {
-    wp_pool[i].NO = i;
+    wp_pool[i].NO = -1;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
   }
 
@@ -58,6 +65,70 @@ WP *new_wp() {
 void free_wp(WP *wp) {
   assert(wp);
 
+  WP *p, *q;
+  q = NULL;
+
+  for (p = head; p && p != wp; q = p, p = p->next)
+    ;
+
+  Assert(p, "p is not in head list\n");
+
+  // if p is head
+  if (q == NULL) {
+    head = wp->next;
+  } else {
+    q->next = p->next;
+  }
   wp->next = free_;
   free_ = wp;
+}
+
+bool check_wp() {
+  WP *p;
+  int res;
+  bool change = false;
+  bool success = true;
+  for (p = head; p; p = p->next) {
+    tokens = p->tokens;
+    res = eval(0, p->nr_tokens - 1, &success);
+
+    // it must be a correct expression
+    assert(success);
+    if (p->old_val != res) {
+      change = true;
+      printf("Old value: %d\n", p->old_val);
+      printf("New value: %d\n", res);
+      p->old_val = res;
+    }
+  }
+  return change;
+}
+
+void de_wp(int no) {
+  WP *wp;
+  for (wp = head; wp; wp = wp->next) {
+    if (wp->NO == no)
+      break;
+  }
+
+  if (wp == NULL) {
+    printf("No watchpoint number %d\n", no);
+    return;
+  }
+
+  free_wp(wp);
+  printf("delete watchpoint %d\n", no);
+}
+
+void display_wp() {
+
+  if (head == NULL) {
+    printf("No watchpoint\n");
+    return;
+  }
+  WP *wp;
+  printf("num\t\tvalue\n");
+  for (wp = head; wp; wp = wp->next) {
+    printf("%02d\t\t%8d\n", wp->NO, wp->old_val);
+  }
 }
