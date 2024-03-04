@@ -38,6 +38,8 @@ config ENGINE_INTERPRETER
   bool "Interpreter"
   help
     Interpreter guest instructions one by one.
+
+
 endchoice
 
 config ENGINE
@@ -211,5 +213,11 @@ endchoice
 config RT_CHECK
   bool "Enable runtime checking"
   default y
+
+config WATCHPOINT
+  bool "Watchpoints"
+  default y
+  help
+    Watchpoints in SDB.
 
 endmenu

@@ -21,6 +21,7 @@
  */
 #include <regex.h>
 
+int eval(int p, int q, bool *success);
 word_t vaddr_read(vaddr_t addr, int len);
 
 enum {
@@ -87,20 +88,17 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  // char str[32];
-  int num;
+  char str[32];
+  // int num;
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
-static int nr_token __attribute__((used)) = 0;
+Token tokens_p[32] __attribute__((used)) = {};
+Token *tokens = tokens_p;
+int nr_token __attribute__((used)) = 0;
 
-static bool make_token(char *e) {
+bool make_token(char *e) {
   int position = 0;
   int i;
-
-  // for register
-  bool success = true;
-  char buf[32];
 
   regmatch_t pmatch;
   nr_token = 0;
@@ -145,36 +143,26 @@ static bool make_token(char *e) {
           else
             tokens[nr_token++].type = rules[i].token_type;
           break;
-        case TK_REG:
-          if (substr_len < 32) {
-            memcpy(buf, substr_start, substr_len);
-            buf[substr_len] = '\0';
-            tokens[nr_token].type = TK_REG;
-            tokens[nr_token++].num = isa_reg_str2val(buf, &success);
-            if (success == false) {
-              printf("Error register name %s\n", buf);
-              return false;
-            }
-          } else {
-            printf("Error register name\n");
-            return false;
-          }
-          break;
+          // case TK_REG:
+          //   if (substr_len < 32) {
+          //     tokens[nr_token].type = TK_REG;
+          //     memcpy(tokens[nr_token].str, substr_start, substr_len);
+          //     tokens[nr_token++].str[substr_len] = '\0';
+          //     last_type = rules[i].token_type;
+          //   } else {
+          //     printf("Error register name\n");
+          //     return false;
+          //   }
+          //   break;
 
         default:
           if (substr_len < 32) {
             tokens[nr_token].type = rules[i].token_type;
-            memcpy(buf, substr_start, substr_len);
-            buf[substr_len] = '\0';
+            memcpy(tokens[nr_token].str, substr_start, substr_len);
+            tokens[nr_token++].str[substr_len] = '\0';
             last_type = rules[i].token_type;
-            if (rules[i].token_type == TK_DEC) {
-              tokens[nr_token++].num = strtol(buf, NULL, 10);
-            } else {
-              tokens[nr_token++].num = strtol(buf, NULL, 16);
-            }
-
           } else {
-            printf("Number is too long\n");
+            printf("Too long\n");
             return false;
           }
         }
@@ -190,8 +178,6 @@ static bool make_token(char *e) {
 
   return true;
 }
-
-int eval(int p, int q, bool *success);
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -308,6 +294,7 @@ int get_main_op(int p, int q) {
 }
 
 int eval(int p, int q, bool *success) {
+  int res = 0;
 
   if (p > q) {
     *success = false;
@@ -321,13 +308,19 @@ int eval(int p, int q, bool *success) {
            tokens[p].type == TK_REG);
 
     // number
-    return tokens[p].num;
-
+    if (tokens[p].type == TK_HEX)
+      res = strtol(tokens[p].str, NULL, 16);
+    else if (tokens[p].type == TK_DEC)
+      res = strtol(tokens[p].str, NULL, 10);
     // register
+    else if (tokens[p].type == TK_REG) {
+      res = isa_reg_str2val(tokens[p].str, success);
+      if (*success == false)
+        printf("Error register name %s\n", tokens[p].str);
+    }
 
   } else {
     int op = get_main_op(p, q);
-    int res;
 
     if (op == -1) {
       printf("Expression format error\n");
@@ -375,6 +368,6 @@ int eval(int p, int q, bool *success) {
       res = 0;
       assert(1);
     }
-    return res;
   }
+  return res;
 }
