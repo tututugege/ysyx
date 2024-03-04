@@ -14,6 +14,7 @@
  ***************************************************************************************/
 
 #include "sdb.h"
+#include "watchpoint.h"
 #include <cpu/cpu.h>
 #include <isa.h>
 #include <memory/vaddr.h>
@@ -53,7 +54,7 @@ static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
 static int cmd_p(char *args);
-// static int cmd_w(char *args);
+static int cmd_w(char *args);
 // static int cmd_d(char *args);
 
 static int cmd_c(char *args) {
@@ -79,6 +80,7 @@ static struct {
     {"info", "display infomation NEMU", cmd_info},
     {"x", "scan memory", cmd_x},
     {"p", "expression evaluation", cmd_p},
+    {"w", "watchpoint", cmd_w},
 
 };
 
@@ -193,11 +195,33 @@ static int cmd_p(char *args) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  if (args[0] == '\0') {
+    printf("Argument required\n");
+    return 0;
+  }
+
+  bool success = true;
+  int res;
+  res = expr(args, &success);
+
+  if (success == true) {
+    WP *wp = new_wp();
+    if (wp == NULL) {
+      printf("No more watchpoint\n");
+      return 0;
+    }
+    wp->old_val = res;
+  }
+
+  return 0;
+}
+
 void sdb_set_batch_mode() { is_batch_mode = true; }
 
 #define LOOP 100
 void sdb_mainloop() {
-  sdb_set_batch_mode();
+  // sdb_set_batch_mode();
   if (is_batch_mode) {
     // cmd_c(NULL);
 
