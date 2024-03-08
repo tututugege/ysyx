@@ -10,6 +10,6 @@
 !README.md
 !.gitignore
 !init.sh
-!/learn-C-The-Hard-Way
-!/ps2kbd
-!/the-missing-semester
+!/learn-C-The-Hard-Way/*
+!/ps2kbd/*
+!/the-missing-semester/*
