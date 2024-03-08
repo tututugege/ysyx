@@ -169,11 +169,14 @@ static int cmd_x(char *args) {
   if (arg == NULL) {
     printf("Argument required\n");
     return 0;
-  } else if ((addr = strtol(arg, NULL, 16)) == 0 && strcmp(arg, "0x0") != 0 &&
-             strcmp(arg, "0X0") != 0) {
-    printf("Unknown command: %s\n", arg);
-    return 0;
   }
+
+  bool success = true;
+  tokens = tokens_p;
+  addr = expr(arg, &success);
+
+  if (success == false)
+    return 0;
 
   for (int i = 0; i < size; i += 4) {
     printf("%08x: ", addr + i * 4);
