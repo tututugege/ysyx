@@ -12,6 +12,7 @@ BUILD_DIR = $(WORK_DIR)/build
 
 INC_PATH := $(WORK_DIR)/include $(INC_PATH)
 OBJ_DIR  = $(BUILD_DIR)/obj-$(NAME)$(SO)
+INT_DIR = $(BUILD_DIR)/int-$(NAME)$(SO)
 BINARY   = $(BUILD_DIR)/$(NAME)$(SO)
 
 # Compilation flags
@@ -26,8 +27,17 @@ CFLAGS  := -O2 -MMD -Wall -Werror $(INCLUDES) $(CFLAGS)
 LDFLAGS := -O2 $(LDFLAGS)
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
+INT = $(SRCS:%.c=$(INT_DIR)/%.i)
 
 # Compilation patterns
+
+
+# $(INT_DIR)/%.i: %.c
+# 	@echo + CC $<
+# 	@mkdir -p $(dir $@)
+# 	@$(CC) $(CFLAGS) -E -o $@ $<
+# 	$(call call_fixdep, $(@:.i=.d), $@)
+
 $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
@@ -45,7 +55,9 @@ $(OBJ_DIR)/%.o: %.cc
 
 # Some convenient rules
 
-.PHONY: app clean
+.PHONY: app clean in
+
+int: $(INT)
 
 app: $(BINARY)
 
