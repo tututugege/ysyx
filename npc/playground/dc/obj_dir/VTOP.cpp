@@ -12,19 +12,13 @@ VTOP::VTOP(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VTOP__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
-    , clr{vlSymsp->TOP.clr}
-    , ps2_clk{vlSymsp->TOP.ps2_clk}
-    , ps2_data{vlSymsp->TOP.ps2_data}
-    , seg0n{vlSymsp->TOP.seg0n}
-    , seg1n{vlSymsp->TOP.seg1n}
-    , seg2n{vlSymsp->TOP.seg2n}
-    , seg3n{vlSymsp->TOP.seg3n}
-    , seg4n{vlSymsp->TOP.seg4n}
-    , seg5n{vlSymsp->TOP.seg5n}
-    , seg6n{vlSymsp->TOP.seg6n}
-    , seg7n{vlSymsp->TOP.seg7n}
-    , ready{vlSymsp->TOP.ready}
-    , overflow{vlSymsp->TOP.overflow}
+    , io_A{vlSymsp->TOP.io_A}
+    , io_B{vlSymsp->TOP.io_B}
+    , io_aluOp{vlSymsp->TOP.io_aluOp}
+    , io_segRes{vlSymsp->TOP.io_segRes}
+    , io_segZero{vlSymsp->TOP.io_segZero}
+    , io_segCout{vlSymsp->TOP.io_segCout}
+    , io_segOF{vlSymsp->TOP.io_segOF}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

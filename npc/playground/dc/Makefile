@@ -1,7 +1,7 @@
 TASK      = ALU
 BUILD_DIR = ./build
 OBJ_DIR   = ./obj_dir
-MODULE    = ALU
+MODULE    = TOP
 TESEBENCH = ./$(TASK)/tb_$(MODULE).cpp
 VSRC      = ./build/$(MODULE).v
 SSRCS     = ./$(TASK)/src/*.scala

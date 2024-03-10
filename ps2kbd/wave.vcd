@@ -12,8 +12,9 @@ $timescale 1ps $end
   $var wire 8 B! seg5n [7:0] $end
   $var wire 8 C! seg6n [7:0] $end
   $var wire 8 D! seg7n [7:0] $end
-  $var wire 1 E! ready $end
-  $var wire 1 F! overflow $end
+  $var wire 1 E! shift_pressing $end
+  $var wire 1 F! ready $end
+  $var wire 1 G! overflow $end
   $scope module TOP $end
    $var wire 1 :! clock $end
    $var wire 1 ;! reset $end
@@ -26,12 +27,13 @@ $timescale 1ps $end
    $var wire 8 B! seg5n [7:0] $end
    $var wire 8 C! seg6n [7:0] $end
    $var wire 8 D! seg7n [7:0] $end
-   $var wire 1 E! ready $end
-   $var wire 1 F! overflow $end
+   $var wire 1 E! shift_pressing $end
+   $var wire 1 F! ready $end
+   $var wire 1 G! overflow $end
    $var wire 8 ) data [7:0] $end
-   $var wire 3 H! IDLE [2:0] $end
-   $var wire 3 I! PRESS [2:0] $end
-   $var wire 3 J! UP [2:0] $end
+   $var wire 3 I! IDLE [2:0] $end
+   $var wire 3 J! PRESS [2:0] $end
+   $var wire 3 K! UP [2:0] $end
    $var wire 3 * shift_state [2:0] $end
    $var wire 3 + shift_next_state [2:0] $end
    $var wire 8 , counter [7:0] $end
@@ -50,23 +52,23 @@ $timescale 1ps $end
    $var wire 7 9 seg_numHi [6:0] $end
    $var wire 7 : seg_numLo [6:0] $end
    $scope module ShiftstateMux $end
-    $var wire 32 K! NR_KEY [31:0] $end
-    $var wire 32 K! KEY_LEN [31:0] $end
-    $var wire 32 K! DATA_LEN [31:0] $end
+    $var wire 32 L! NR_KEY [31:0] $end
+    $var wire 32 L! KEY_LEN [31:0] $end
+    $var wire 32 L! DATA_LEN [31:0] $end
     $var wire 3 + out [2:0] $end
     $var wire 3 * key [2:0] $end
-    $var wire 3 H! default_out [2:0] $end
+    $var wire 3 I! default_out [2:0] $end
     $var wire 18 ; lut [17:0] $end
     $scope module i0 $end
-     $var wire 32 K! NR_KEY [31:0] $end
-     $var wire 32 K! KEY_LEN [31:0] $end
-     $var wire 32 K! DATA_LEN [31:0] $end
-     $var wire 32 L! HAS_DEFAULT [31:0] $end
+     $var wire 32 L! NR_KEY [31:0] $end
+     $var wire 32 L! KEY_LEN [31:0] $end
+     $var wire 32 L! DATA_LEN [31:0] $end
+     $var wire 32 M! HAS_DEFAULT [31:0] $end
      $var wire 3 + out [2:0] $end
      $var wire 3 * key [2:0] $end
-     $var wire 3 H! default_out [2:0] $end
+     $var wire 3 I! default_out [2:0] $end
      $var wire 18 ; lut [17:0] $end
-     $var wire 32 M! PAIR_LEN [31:0] $end
+     $var wire 32 N! PAIR_LEN [31:0] $end
      $var wire 6 < pair_list[0] [5:0] $end
      $var wire 6 = pair_list[1] [5:0] $end
      $var wire 6 > pair_list[2] [5:0] $end
@@ -78,7 +80,7 @@ $timescale 1ps $end
      $var wire 3 A data_list[2] [2:0] $end
      $var wire 3 B lut_out [2:0] $end
      $var wire 1 C hit $end
-     $var wire 32 N! i [31:0] $end
+     $var wire 32 O! i [31:0] $end
     $upscope $end
    $upscope $end
    $scope module ascii_segHi $end
@@ -173,13 +175,13 @@ $timescale 1ps $end
    $upscope $end
    $scope module ps2 $end
     $var wire 1 :! clk $end
-    $var wire 1 G! clrn $end
+    $var wire 1 H! clrn $end
     $var wire 1 =! ps2_clk $end
     $var wire 1 >! ps2_data $end
-    $var wire 1 O! nextdata_n $end
+    $var wire 1 P! nextdata_n $end
     $var wire 8 ) data [7:0] $end
-    $var wire 1 E! ready $end
-    $var wire 1 F! overflow $end
+    $var wire 1 F! ready $end
+    $var wire 1 G! overflow $end
     $var wire 10 "! buffer [9:0] $end
     $var wire 8 #! fifo[0] [7:0] $end
     $var wire 8 $! fifo[1] [7:0] $end
@@ -196,23 +198,23 @@ $timescale 1ps $end
     $var wire 1 /! sampling $end
    $upscope $end
    $scope module stateMux $end
-    $var wire 32 K! NR_KEY [31:0] $end
-    $var wire 32 K! KEY_LEN [31:0] $end
-    $var wire 32 K! DATA_LEN [31:0] $end
+    $var wire 32 L! NR_KEY [31:0] $end
+    $var wire 32 L! KEY_LEN [31:0] $end
+    $var wire 32 L! DATA_LEN [31:0] $end
     $var wire 3 0 out [2:0] $end
     $var wire 3 / key [2:0] $end
-    $var wire 3 H! default_out [2:0] $end
+    $var wire 3 I! default_out [2:0] $end
     $var wire 18 0! lut [17:0] $end
     $scope module i0 $end
-     $var wire 32 K! NR_KEY [31:0] $end
-     $var wire 32 K! KEY_LEN [31:0] $end
-     $var wire 32 K! DATA_LEN [31:0] $end
-     $var wire 32 L! HAS_DEFAULT [31:0] $end
+     $var wire 32 L! NR_KEY [31:0] $end
+     $var wire 32 L! KEY_LEN [31:0] $end
+     $var wire 32 L! DATA_LEN [31:0] $end
+     $var wire 32 M! HAS_DEFAULT [31:0] $end
      $var wire 3 0 out [2:0] $end
      $var wire 3 / key [2:0] $end
-     $var wire 3 H! default_out [2:0] $end
+     $var wire 3 I! default_out [2:0] $end
      $var wire 18 0! lut [17:0] $end
-     $var wire 32 M! PAIR_LEN [31:0] $end
+     $var wire 32 N! PAIR_LEN [31:0] $end
      $var wire 6 1! pair_list[0] [5:0] $end
      $var wire 6 2! pair_list[1] [5:0] $end
      $var wire 6 3! pair_list[2] [5:0] $end
@@ -224,7 +226,7 @@ $timescale 1ps $end
      $var wire 3 6! data_list[2] [2:0] $end
      $var wire 3 7! lut_out [2:0] $end
      $var wire 1 8! hit $end
-     $var wire 32 N! i [31:0] $end
+     $var wire 32 O! i [31:0] $end
     $upscope $end
    $upscope $end
    $scope module trans $end
