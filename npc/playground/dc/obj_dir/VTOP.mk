@@ -2,9 +2,9 @@
 # DESCRIPTION: Verilator output: Makefile for building Verilated archive or executable
 #
 # Execute this makefile from the object directory:
-#    make -f VALU.mk
+#    make -f VTOP.mk
 
-default: VALU
+default: /home/tututu/hry/ysyx/ysyx-workbench/npc/playground/dc/build/TOP
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -30,38 +30,52 @@ VM_SC_TARGET_ARCH = linux
 
 ### Vars...
 # Design prefix (from --prefix)
-VM_PREFIX = VALU
+VM_PREFIX = VTOP
 # Module prefix (from --prefix)
-VM_MODPREFIX = VALU
+VM_MODPREFIX = VTOP
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-MMD \
+	-O3 \
+	-I/usr/include/SDL2 \
+	-D_REENTRANT \
+	-I/home/tututu/hry/ysyx/ysyx-workbench/nvboard/usr/include \
+	-DTOP_NAME="VTOP" \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
+	/home/tututu/hry/ysyx/ysyx-workbench/nvboard/build/nvboard.a \
+	-lSDL2 \
+	-lSDL2_image \
+	-lSDL2_ttf \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	tb_ALU \
+	auto_bind \
+	tb_nvboard \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	./ALU \
+	. \
+	/home/tututu/hry/ysyx/ysyx-workbench/npc/playground/dc/build \
 
 
 ### Default rules...
 # Include list of all generated classes
-include VALU_classes.mk
+include VTOP_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
 
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-tb_ALU.o: ./ALU/tb_ALU.cpp
+auto_bind.o: /home/tututu/hry/ysyx/ysyx-workbench/npc/playground/dc/build/auto_bind.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+tb_nvboard.o: tb_nvboard.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
-VALU: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+/home/tututu/hry/ysyx/ysyx-workbench/npc/playground/dc/build/TOP: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
 	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
 
 

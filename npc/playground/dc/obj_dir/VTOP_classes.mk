@@ -2,7 +2,7 @@
 # DESCRIPTION: Verilator output: Make include file with class lists
 #
 # This file lists generated Verilated files, for including in higher level makefiles.
-# See VALU.mk for the caller.
+# See VTOP.mk for the caller.
 
 ### Switches...
 # C11 constructs required?  0/1 (always on now)
@@ -23,25 +23,26 @@ VM_TRACE_FST = 0
 ### Object file lists...
 # Generated module classes, fast-path, compile with highest optimization
 VM_CLASSES_FAST += \
-	VALU \
-	VALU___024root__DepSet_h47ecd69a__0 \
-	VALU___024root__DepSet_hb750f242__0 \
+	VTOP \
+	VTOP___024root__DepSet_hf053e249__0 \
+	VTOP___024root__DepSet_hbaffbf48__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
 VM_CLASSES_SLOW += \
-	VALU___024root__Slow \
-	VALU___024root__DepSet_h47ecd69a__0__Slow \
-	VALU___024root__DepSet_hb750f242__0__Slow \
+	VTOP__ConstPool_0 \
+	VTOP___024root__Slow \
+	VTOP___024root__DepSet_hf053e249__0__Slow \
+	VTOP___024root__DepSet_hbaffbf48__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \
-	VALU__Trace__0 \
+	VTOP__Trace__0 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
-	VALU__Syms \
-	VALU__Trace__0__Slow \
-	VALU__TraceDecls__0__Slow \
+	VTOP__Syms \
+	VTOP__Trace__0__Slow \
+	VTOP__TraceDecls__0__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
