@@ -1,13 +1,13 @@
 BUILD_DIR = ./build
 OBJ_DIR   = ./obj_dir
-MODULE    = TOP
+MODULE    = SimpleCpu
 TESEBENCH = tb_$(MODULE).cpp
-# VSRC      = ./build/$(MODULE).v
+VSRC      = ./build/$(MODULE).v
 SSRCS     = ./playground/src/*.scala
 
 TOPNAME   = $(MODULE)
-
 VERILATOR = verilator
+
 
 
 export PATH := $(PATH):$(abspath ./utils)
