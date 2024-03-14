@@ -13,6 +13,7 @@
  * See the Mulan PSL v2 for more details.
  ***************************************************************************************/
 
+#include "utils.h"
 #include <cpu/cpu.h>
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
@@ -25,8 +26,10 @@
  */
 #define MAX_INST_TO_PRINT 10
 
-int check_wp();
+#define MAX_IRINGBUF_INST 32
 
+int check_wp();
+void ftrace_commit(vaddr_t pc, vaddr_t npc);
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
@@ -34,16 +37,40 @@ static bool g_print_step = false;
 
 void device_update();
 
+static char iringbuf[MAX_IRINGBUF_INST][128];
+static int iringbuf_idx = 0;
+static void write_iringbuf(char *logbuf) {
+
+  strcpy(iringbuf[iringbuf_idx], logbuf);
+  iringbuf_idx = (iringbuf_idx + 1) % MAX_IRINGBUF_INST;
+}
+
+void display_iringbuf() {
+  int idx = iringbuf_idx;
+  int current_idx = (iringbuf_idx + MAX_IRINGBUF_INST - 1) % MAX_IRINGBUF_INST;
+  for (; idx != current_idx; idx = (idx + 1) % MAX_IRINGBUF_INST) {
+    if (iringbuf[idx][0] != '\0')
+      printf("\t%s\n", iringbuf[idx]);
+  }
+  printf(" -->\t%s\n", iringbuf[idx]);
+}
+
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) {
     log_write("%s\n", _this->logbuf);
   }
 #endif
+  write_iringbuf(_this->logbuf);
   if (g_print_step) {
     IFDEF(CONFIG_ITRACE, puts(_this->logbuf));
   }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+
+#ifdef CONFIG_FTRACE
+  if (_this->dnpc != _this->snpc)
+    ftrace_commit(_this->pc, _this->dnpc);
+#endif
 
 #ifdef CONFIG_WATCHPOINT
   if (check_wp()) {
@@ -149,6 +176,8 @@ void cpu_exec(uint64_t n) {
                     ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN)
                     : ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
         nemu_state.halt_pc);
+    if (nemu_state.halt_ret != 0)
+      display_iringbuf();
     // fall through
   case NEMU_QUIT:
     statistic();

@@ -12,6 +12,7 @@ class RegFile extends Module {
 
     val rdata1 = Output(UInt(32.W))
     val rdata2 = Output(UInt(32.W))
+    val a0     = Output(UInt(32.W))
   })
 
   val GPR = Wire(Vec(32, UInt(32.W)))
@@ -26,4 +27,5 @@ class RegFile extends Module {
 
   io.rdata1 := Mux(io.rs1 === 0.U, 0.U(32.W), GPR(io.rs1))
   io.rdata2 := Mux(io.rs2 === 0.U, 0.U(32.W), GPR(io.rs2))
+  io.a0     := GPR(10)
 }
