@@ -33,10 +33,12 @@ class alignas(VL_CACHE_LINE_BYTES) VSimpleCpu VL_NOT_FINAL : public VerilatedMod
     VL_OUT8(&Memory_MemRead,0,0);
     VL_OUT8(&Memory_MemAddr,1,0);
     VL_OUT8(&Memory_MemWriteStrb,3,0);
+    VL_OUT8(&Halt,0,0);
     VL_IN(&Memory_MemReadData,31,0);
     VL_OUT(&Memory_MemWriteData,31,0);
     VL_OUT(&Fetch_PC,31,0);
     VL_IN(&Fetch_Inst,31,0);
+    VL_OUT(&Ret,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

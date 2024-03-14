@@ -181,6 +181,9 @@ void VSimpleCpu___024root___eval_triggers__act(VSimpleCpu___024root* vlSelf) {
 }
 
 void VSimpleCpu___024root___nba_sequent__TOP__0(VSimpleCpu___024root* vlSelf);
+void VSimpleCpu_SelectorBundle___nba_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0__0(VSimpleCpu_SelectorBundle* vlSelf);
+void VSimpleCpu___024root___nba_sequent__TOP__1(VSimpleCpu___024root* vlSelf);
+void VSimpleCpu_SelectorBundle___nba_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0__1(VSimpleCpu_SelectorBundle* vlSelf);
 
 void VSimpleCpu___024root___eval_nba(VSimpleCpu___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
@@ -194,7 +197,9 @@ void VSimpleCpu___024root___eval_nba(VSimpleCpu___024root* vlSelf) {
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3));
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2));
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1));
-        VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0));
+        VSimpleCpu_SelectorBundle___nba_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0));
+        VSimpleCpu___024root___nba_sequent__TOP__1(vlSelf);
+        VSimpleCpu_SelectorBundle___nba_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0__1((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0));
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1__1((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1));
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2__1((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2));
         VSimpleCpu_SelectorBundle___ico_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3__1((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3));

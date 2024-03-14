@@ -1,6 +1,7 @@
 import chisel3._
 import chisel3.util._
 import chisel3.util.experimental.decode._
+import Decoder._
 
 class MemoryBundle extends Bundle {
   val MemWrite     = Output(Bool())
@@ -20,6 +21,8 @@ class SimpleCpu extends Module {
 
   val Memory = IO(new MemoryBundle)
   val Fetch  = IO(new FetchBundle)
+  val Halt   = IO(Output(Bool()))
+  val Ret    = IO(Output(UInt(32.W)))
 
   val START_PC      = "h80000000"
   val PcReg         = RegInit(START_PC.U)
@@ -37,9 +40,13 @@ class SimpleCpu extends Module {
   val PcBr   = Wire(UInt(32.W))
   val PcInc  = Wire(UInt(32.W))
 
-  PcInc    := PcReg + 4.U
-  PcBr     := PcReg + DecoderBundle.Imm
-  PcNext   := Mux(DecoderBundle.PcSrc, PcInc, PcBr)
+  PcInc := PcReg + 4.U
+  PcBr  := PcReg + DecoderBundle.Imm
+  PcNext := MuxLookup(
+    DecoderBundle.PcSrc,
+    PcInc,
+    Seq(("b" + PcSrcInc).asUInt -> PcInc, ("b" + PcSrcImm).asUInt -> PcBr, ("b" + PcSrcReg).asUInt -> RF.io.rdata1)
+  )
   PcReg    := PcNext
   Fetch.PC := PcReg
 
@@ -99,5 +106,9 @@ class SimpleCpu extends Module {
   // write back
   RF.io.wen   := DecoderBundle.RegWrite
   RF.io.wdata := Mux(Memory.MemRead, Memory.MemReadData, AluOut)
+
+  // Halt
+  Halt := DecoderBundle.Halt
+  Ret  := RF.io.a0
 
 }

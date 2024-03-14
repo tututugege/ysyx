@@ -16,10 +16,12 @@ VSimpleCpu::VSimpleCpu(VerilatedContext* _vcontextp__, const char* _vcname__)
     , Memory_MemRead{vlSymsp->TOP.Memory_MemRead}
     , Memory_MemAddr{vlSymsp->TOP.Memory_MemAddr}
     , Memory_MemWriteStrb{vlSymsp->TOP.Memory_MemWriteStrb}
+    , Halt{vlSymsp->TOP.Halt}
     , Memory_MemReadData{vlSymsp->TOP.Memory_MemReadData}
     , Memory_MemWriteData{vlSymsp->TOP.Memory_MemWriteData}
     , Fetch_PC{vlSymsp->TOP.Fetch_PC}
     , Fetch_Inst{vlSymsp->TOP.Fetch_Inst}
+    , Ret{vlSymsp->TOP.Ret}
     , __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0{vlSymsp->TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0}
     , __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1{vlSymsp->TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1}
     , __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2{vlSymsp->TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2}

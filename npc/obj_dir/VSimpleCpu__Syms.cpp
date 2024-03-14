@@ -24,7 +24,7 @@ VSimpleCpu__Syms::VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep
     , TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4{this, Verilated::catName(namep, "SimpleCpu.Alu.Shifter.SelectorNet_4")}
 {
         // Check resources
-        Verilated::stackCheck(185);
+        Verilated::stackCheck(209);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);

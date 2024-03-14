@@ -253,43 +253,43 @@ static int cmd_d(char *args) {
 void sdb_set_batch_mode() { is_batch_mode = true; }
 
 #define LOOP 100
+int last_cmd = -1;
 void sdb_mainloop() {
-  // sdb_set_batch_mode();
   if (is_batch_mode) {
-    // cmd_c(NULL);
+    cmd_c(NULL);
 
     // check expr
-    FILE *fp = fopen("tools/gen-expr/test.txt", "r");
-    assert(fp != NULL);
-    char buf[1000];
-    int buf_idx;
-    int ret, fret;
-    int reference, result;
-    bool success;
-    int ch;
-
-    for (int i = 0; i < LOOP; i++) {
-      success = true;
-      buf_idx = 0;
-      fret = fscanf(fp, "%d %d", &ret, &reference);
-      assert(fret == 2);
-      fgetc(fp);
-      while ((ch = fgetc(fp)) != '\n') {
-        buf[buf_idx++] = ch;
-      }
-      buf[buf_idx] = '\0';
-
-      result = expr(buf, &success);
-      if (ret == -1) {
-        assert(div_zero == 1 && success == false);
-        div_zero = 0;
-      } else {
-        printf("%d. %s ref: %d res: %d\n", i, buf, reference, result);
-        assert(result == reference && success == true);
-      }
-    }
-
-    printf("success!\n");
+    //   FILE *fp = fopen("tools/gen-expr/test.txt", "r");
+    //   assert(fp != NULL);
+    //   char buf[1000];
+    //   int buf_idx;
+    //   int ret, fret;
+    //   int reference, result;
+    //   bool success;
+    //   int ch;
+    //
+    //   for (int i = 0; i < LOOP; i++) {
+    //     success = true;
+    //     buf_idx = 0;
+    //     fret = fscanf(fp, "%d %d", &ret, &reference);
+    //     assert(fret == 2);
+    //     fgetc(fp);
+    //     while ((ch = fgetc(fp)) != '\n') {
+    //       buf[buf_idx++] = ch;
+    //     }
+    //     buf[buf_idx] = '\0';
+    //
+    //     result = expr(buf, &success);
+    //     if (ret == -1) {
+    //       assert(div_zero == 1 && success == false);
+    //       div_zero = 0;
+    //     } else {
+    //       printf("%d. %s ref: %d res: %d\n", i, buf, reference, result);
+    //       assert(result == reference && success == true);
+    //     }
+    //   }
+    //
+    //   printf("success!\n");
     return;
   }
 
@@ -298,7 +298,8 @@ void sdb_mainloop() {
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
-    if (cmd == NULL) {
+    if (cmd == NULL && last_cmd != -1) {
+      cmd_table[last_cmd].handler(NULL);
       continue;
     }
 
@@ -318,6 +319,7 @@ void sdb_mainloop() {
     int i;
     for (i = 0; i < NR_CMD; i++) {
       if (strcmp(cmd, cmd_table[i].name) == 0) {
+        last_cmd = i;
         if (cmd_table[i].handler(args) < 0) {
           nemu_state.state = NEMU_QUIT;
           return;
