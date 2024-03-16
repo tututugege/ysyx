@@ -1,5 +1,6 @@
 #include <common.h>
 #include <cpu-info.h>
+#include <cstdint>
 #include <difftest.h>
 #include <elf.h>
 #include <getopt.h>
@@ -9,6 +10,8 @@ static char *img_file;
 static char *elf_file;
 static char *log_file;
 static char *diff_so_file;
+
+bool batch_mode = false;
 
 void sdb_mainloop();
 void reset(int n);
@@ -43,6 +46,8 @@ int init_img() {
   }
   /* printf("%d\n", i); */
   fclose(fp);
+  extern uint32_t last_inst;
+  last_inst = inst_ram[0];
 
   return i * 4;
 }
@@ -179,6 +184,9 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
     case 'l':
       log_file = optarg;
+      break;
+    case 'b':
+      batch_mode = true;
       break;
     case 'e':
       elf_file = optarg;

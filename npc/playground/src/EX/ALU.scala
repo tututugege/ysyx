@@ -55,10 +55,9 @@ class ALU(width: Int) extends Module {
   val Cin            = Wire(UInt(1.W))
   val AdderOutBundle = Wire(new AluOutBundle)
 
-  Cin    := ~AddOp
-  AdderA := io.A
-  AdderB := io.B ^ Fill(width, Cin)
-  // AdderOut              := AdderA +& AdderB +& Cin
+  Cin                   := ~AddOp
+  AdderA                := io.A
+  AdderB                := io.B ^ Fill(width, Cin)
   AdderOut              := AdderA +& AdderB +& Cin
   AdderOutBundle.Result := AdderOut(width - 1, 0)
   AdderOutBundle.Cout   := AdderOut(width)
@@ -95,6 +94,7 @@ class ALU(width: Int) extends Module {
       OrOp -> OrRes,
       XorOp -> XorRes,
       SltOp -> SltRes,
+      SltuOp -> SltuRes,
       SllOp -> ShifterOut,
       SrlOp -> ShifterOut,
       SraOp -> ShifterOut

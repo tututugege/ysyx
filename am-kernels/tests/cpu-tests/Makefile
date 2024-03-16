@@ -29,6 +29,8 @@ run: all
 
 gdb: all
 
+wave: all
+
 clean:
 	rm -rf Makefile.* build/
 

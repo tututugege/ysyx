@@ -34,6 +34,8 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
     VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__PcReg, vlSelf->__Vfunc_pmem_read__1__Vfuncout);
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
         = vlSelf->__Vfunc_pmem_read__1__Vfuncout;
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h257e9805__0 
+        = (IData)((0U == (0x3000U & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hc8e17380__0 
         = ((0x20U & ((~ (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                          >> 0x19U)) << 5U)) | ((0x10U 
@@ -348,11 +350,23 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                                   (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                                    >> 0xeU)))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48 
+        = ((8U & ((~ (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                      >> 2U)) << 3U)) | ((4U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                >> 4U)) 
+                                         | ((2U & (
+                                                   (~ 
+                                                    (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                     >> 0xdU)) 
+                                                   << 1U)) 
+                                            | (1U & 
+                                               (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                >> 0xeU)))));
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42 
         = ((4U & ((~ (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                       >> 2U)) << 2U)) | ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                                 >> 5U)) 
                                          | (1U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                  >> 0xeU))));
+                                                  >> 0xdU))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26 
         = ((4U & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg) 
            | ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
@@ -581,10 +595,15 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                                                  >> 0xfU)))
                                                              ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_14
                                                              : vlSelf->SimpleCpu__DOT__RF__DOT___GEN_45)))))))))))));
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27 
+        = ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                  >> 2U)) | (0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48)));
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29 
+        = ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                  >> 2U)) | (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42)));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13 
         = (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_28))) 
-            << 5U) | (((IData)((0x3000U == (0x3014U 
-                                            & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg))) 
+            << 5U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42))) 
                        << 4U) | (((IData)(((0x1000U 
                                             == (0x1004U 
                                                 & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
@@ -608,18 +627,19 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                                           == 
                                                           (0x40001034U 
                                                            & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg))))))));
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hdc0fb08b__0 
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hf6c6e245__0 
         = (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_28))) 
-            << 1U) | (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48)));
+            << 2U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42))) 
+                       << 1U) | (0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48))));
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_35 
+        = (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_9))) 
+            << 2U) | ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                             >> 2U)) | (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_20 
         = (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T))) 
             << 3U) | (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_9))) 
                        << 2U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_20))) 
                                   << 1U) | (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26)))));
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31 
-        = (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_9))) 
-            << 2U) | ((2U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                             >> 2U)) | (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_22 
         = (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
             << 1U) | (1U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
@@ -629,6 +649,44 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
             << 2U) | (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_9))) 
                        << 1U) | (1U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                        >> 3U))));
+    vlSelf->SimpleCpu__DOT__RF_io_rdata2 = ((0U == 
+                                             (0x1fU 
+                                              & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                 >> 0x14U)))
+                                             ? 0U : 
+                                            ((0x1fU 
+                                              == (0x1fU 
+                                                  & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                     >> 0x14U)))
+                                              ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_31
+                                              : ((0x1eU 
+                                                  == 
+                                                  (0x1fU 
+                                                   & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                      >> 0x14U)))
+                                                  ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_30
+                                                  : 
+                                                 ((0x1dU 
+                                                   == 
+                                                   (0x1fU 
+                                                    & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                       >> 0x14U)))
+                                                   ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_29
+                                                   : 
+                                                  ((0x1cU 
+                                                    == 
+                                                    (0x1fU 
+                                                     & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                        >> 0x14U)))
+                                                    ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_28
+                                                    : 
+                                                   ((0x1bU 
+                                                     == 
+                                                     (0x1fU 
+                                                      & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                         >> 0x14U)))
+                                                     ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_27
+                                                     : vlSelf->SimpleCpu__DOT__RF__DOT___GEN_90))))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_8 
         = (((IData)((0xffU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_3))) 
             << 9U) | (((IData)((0x1ffU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_5))) 
@@ -693,13 +751,17 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15 
         = (((IData)(((0x10U == (0x14U & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
                      & (3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h5ba46ba8__0)))) 
-            << 3U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48))) 
-                       << 2U) | (((IData)((0x1fU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_56))) 
-                                  << 1U) | (IData)(
-                                                   (0x40001010U 
-                                                    == 
-                                                    (0x40001014U 
-                                                     & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg))))));
+            << 4U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42))) 
+                       << 3U) | (((IData)((0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48))) 
+                                  << 2U) | (((IData)(
+                                                     (0x1fU 
+                                                      == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_56))) 
+                                             << 1U) 
+                                            | (IData)(
+                                                      (0x40001010U 
+                                                       == 
+                                                       (0x40001014U 
+                                                        & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)))))));
     vlSelf->SimpleCpu__DOT__RF_io_rdata1 = ((0U == 
                                              (0x1fU 
                                               & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
@@ -738,15 +800,18 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                                          >> 0xfU)))
                                                      ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_27
                                                      : vlSelf->SimpleCpu__DOT__RF__DOT___GEN_58))))));
+    vlSelf->SimpleCpu__DOT__DecoderModule_io_BrCond 
+        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29))) 
+            << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27)));
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_16 
         = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
             << 1U) | (0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35)));
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29 
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_33 
         = (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_20))) 
-            << 2U) | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hdc0fb08b__0));
+            << 3U) | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hf6c6e245__0));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10 
-        = ((4U & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                  >> 1U)) | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hdc0fb08b__0));
+        = ((8U & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg) 
+           | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hf6c6e245__0));
     vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc2 
         = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_22))) 
             << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_20)));
@@ -761,6 +826,9 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_10 
         = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
             << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17)));
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_6 
+        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
+            << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15)));
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_12 
         = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
             << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17)));
@@ -770,88 +838,91 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
     vlSelf->SimpleCpu__DOT__DecoderModule_io_PcSrc 
         = (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
             << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10)));
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27 
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0 
+        = (((((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_24))) 
+              << 4U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_22))) 
+                         << 3U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_20))) 
+                                    << 2U) | (((IData)(
+                                                       (0xfU 
+                                                        == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35))) 
+                                               << 1U) 
+                                              | (0U 
+                                                 != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17)))))) 
+            << 0xbU) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
+                         << 0xaU) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
+                                      << 9U) | (((IData)(
+                                                         (7U 
+                                                          == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
+                                                 << 8U) 
+                                                | (((IData)(
+                                                            (0U 
+                                                             != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10))) 
+                                                    << 7U) 
+                                                   | (((IData)(
+                                                               (0U 
+                                                                != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_8))) 
+                                                       << 6U) 
+                                                      | (((IData)(
+                                                                  (0U 
+                                                                   != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6))) 
+                                                          << 5U) 
+                                                         | ((0x10U 
+                                                             & ((~ 
+                                                                 (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                                  >> 0xeU)) 
+                                                                << 4U)) 
+                                                            | ((((IData)(
+                                                                         ((0x23U 
+                                                                           == 
+                                                                           (0x3fU 
+                                                                            & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                                                          & (7U 
+                                                                             == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0)))) 
+                                                                 | (IData)(
+                                                                           ((0x23U 
+                                                                             == 
+                                                                             (0x7fU 
+                                                                              & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                                                            & (3U 
+                                                                               == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0))))) 
+                                                                << 3U) 
+                                                               | ((6U 
+                                                                   & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+                                                                      >> 0xbU)) 
+                                                                  | (IData)(vlSelf->Halt)))))))))));
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31 
         = (((IData)((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T))) 
-            << 4U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
-                       << 3U) | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10)));
+            << 5U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
+                       << 4U) | (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10)));
     vlSelf->SimpleCpu__DOT___Alu_io_A_T_3 = ((1U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc1))
                                               ? vlSelf->SimpleCpu__DOT__PcReg
                                               : ((0U 
                                                   == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc1))
                                                   ? vlSelf->SimpleCpu__DOT__RF_io_rdata1
                                                   : 0U));
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-        = (((((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31))) 
-              << 9U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29))) 
-                         << 8U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27))) 
-                                    << 7U) | (((IData)(
-                                                       (7U 
-                                                        == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26))) 
-                                               << 6U) 
-                                              | (((IData)(
-                                                          (0U 
-                                                           != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_24))) 
-                                                  << 5U) 
-                                                 | (((IData)(
-                                                             (0U 
-                                                              != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_22))) 
-                                                     << 4U) 
-                                                    | (((IData)(
-                                                                (0U 
-                                                                 != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_20))) 
-                                                        << 3U) 
-                                                       | (((IData)(
-                                                                   (0xfU 
-                                                                    == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35))) 
-                                                           << 2U) 
-                                                          | (((IData)(
-                                                                      (0U 
-                                                                       != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17))) 
-                                                              << 1U) 
-                                                             | (0U 
-                                                                != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))))))))))) 
-            << 0xaU) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
-                         << 9U) | (((IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_7))) 
-                                    << 8U) | (((IData)(
-                                                       (0U 
-                                                        != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10))) 
-                                               << 7U) 
-                                              | (((IData)(
-                                                          (0U 
-                                                           != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_8))) 
-                                                  << 6U) 
-                                                 | (((IData)(
-                                                             (0U 
-                                                              != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6))) 
-                                                     << 5U) 
-                                                    | ((0x10U 
-                                                        & ((~ 
-                                                            (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                             >> 0xeU)) 
-                                                           << 4U)) 
-                                                       | ((((IData)(
-                                                                    ((0x23U 
-                                                                      == 
-                                                                      (0x3fU 
-                                                                       & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
-                                                                     & (7U 
-                                                                        == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0)))) 
-                                                            | (IData)(
-                                                                      ((0x23U 
-                                                                        == 
-                                                                        (0x7fU 
-                                                                         & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
-                                                                       & (3U 
-                                                                          == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0))))) 
-                                                           << 3U) 
-                                                          | ((6U 
-                                                              & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                                 >> 0xbU)) 
-                                                             | (IData)(vlSelf->Halt))))))))));
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_8 
+        = ((4U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 9U)) << 2U)) | ((2U & ((~ 
+                                                 ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                                                  >> 0xaU)) 
+                                                << 1U)) 
+                                         | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17))));
+    vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0 
+        = ((2U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 0xbU)) << 1U)) | (1U & (~ 
+                                                 ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                                                  >> 0xcU))));
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_14 
+        = ((4U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 9U)) << 2U)) | ((2U & ((~ 
+                                                 ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                                                  >> 0xaU)) 
+                                                << 1U)) 
+                                         | (0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35))));
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT__Type 
-        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31))) 
-            << 2U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29))) 
-                       << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27))));
+        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_35))) 
+            << 2U) | (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_33))) 
+                       << 1U) | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31))));
     vlSelf->SimpleCpu__DOT__Alu__DOT__Shifter_io_din 
         = ((2U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc1))
             ? 0U : vlSelf->SimpleCpu__DOT___Alu_io_A_T_3);
@@ -982,25 +1053,14 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
         = ((2U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc1)) 
            & (vlSelf->SimpleCpu__DOT___Alu_io_A_T_3 
               >> 0x1fU));
-    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_8 
-        = ((4U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 9U)) << 2U)) | ((2U & ((~ 
-                                                 (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                                                  >> 0xaU)) 
-                                                << 1U)) 
-                                         | (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17))));
-    vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0 
-        = ((2U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 0xbU)) << 1U)) | (1U & (~ 
-                                                 (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                                                  >> 0xcU))));
-    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_14 
-        = ((4U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 9U)) << 2U)) | ((2U & ((~ 
-                                                 (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                                                  >> 0xaU)) 
-                                                << 1U)) 
-                                         | (0xfU == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35))));
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_4 
+        = ((8U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 9U)) << 3U)) | (((IData)((0U 
+                                                   != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
+                                          << 2U) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0)));
+    vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0 
+        = ((4U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 0xaU)) << 2U)) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0));
     vlSelf->SimpleCpu__DOT__DecoderModule_io_Imm = 
         ((4U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT__Type))
           ? (0xfffff000U & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)
@@ -1034,20 +1094,18 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                 : 0U) << 0xcU) | (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                                   >> 0x14U))
                           : 0U)))));
-    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_4 
-        = ((8U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 9U)) << 3U)) | (((IData)((0U 
-                                                   != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
-                                          << 2U) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0)));
-    vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0 
-        = ((4U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 0xaU)) << 2U)) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_h61253848__0));
     vlSelf->SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0_io_din_31_1 
         = ((3U == (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_18)) 
            & ((~ (IData)((7U == (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_14)))) 
               & (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0_io_din_30_1)));
-    vlSelf->SimpleCpu__DOT__PcBr = (vlSelf->SimpleCpu__DOT__DecoderModule_io_Imm 
-                                    + vlSelf->SimpleCpu__DOT__PcReg);
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_2 
+        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
+            << 3U) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0));
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T 
+        = ((8U & ((~ ((IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0) 
+                      >> 9U)) << 3U)) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0));
+    vlSelf->SimpleCpu__DOT__PcImm = (vlSelf->SimpleCpu__DOT__DecoderModule_io_Imm 
+                                     + vlSelf->SimpleCpu__DOT__PcReg);
     vlSelf->SimpleCpu__DOT__Alu_io_B = ((3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc2))
                                          ? (0x1fU & 
                                             (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
@@ -1056,54 +1114,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
                                              ? 4U : 
                                             ((1U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc2))
                                               ? vlSelf->SimpleCpu__DOT__DecoderModule_io_Imm
-                                              : ((0U 
-                                                  == 
-                                                  (0x1fU 
-                                                   & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                      >> 0x14U)))
-                                                  ? 0U
-                                                  : 
-                                                 ((0x1fU 
-                                                   == 
-                                                   (0x1fU 
-                                                    & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                       >> 0x14U)))
-                                                   ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_31
-                                                   : 
-                                                  ((0x1eU 
-                                                    == 
-                                                    (0x1fU 
-                                                     & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                        >> 0x14U)))
-                                                    ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_30
-                                                    : 
-                                                   ((0x1dU 
-                                                     == 
-                                                     (0x1fU 
-                                                      & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                         >> 0x14U)))
-                                                     ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_29
-                                                     : 
-                                                    ((0x1cU 
-                                                      == 
-                                                      (0x1fU 
-                                                       & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                          >> 0x14U)))
-                                                      ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_28
-                                                      : 
-                                                     ((0x1bU 
-                                                       == 
-                                                       (0x1fU 
-                                                        & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
-                                                           >> 0x14U)))
-                                                       ? vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_27
-                                                       : vlSelf->SimpleCpu__DOT__RF__DOT___GEN_90)))))))));
-    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_2 
-        = (((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 
-            << 3U) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0));
-    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T 
-        = ((8U & ((~ (vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs 
-                      >> 9U)) << 3U)) | (IData)(vlSelf->SimpleCpu__DOT__Alu__DOT____VdfgTmp_hf12cf007__0));
+                                              : vlSelf->SimpleCpu__DOT__RF_io_rdata2)));
     vlSelf->SimpleCpu__DOT__Alu__DOT__AdderB = (vlSelf->SimpleCpu__DOT__Alu_io_B 
                                                 ^ (
                                                    (0xfU 
@@ -1137,6 +1148,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___eval_stl(VSimpleCpu___024root* vlSelf) 
     // Body
     if ((1ULL & vlSelf->__VstlTriggered.word(0U))) {
         VSimpleCpu___024root___stl_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[2U] = 1U;
         vlSelf->__Vm_traceActivity[1U] = 1U;
         vlSelf->__Vm_traceActivity[0U] = 1U;
         VSimpleCpu_SelectorBundle___nba_sequent__TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4__0((&vlSymsp->TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4));

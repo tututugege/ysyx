@@ -3,15 +3,6 @@ import chisel3.util._
 import chisel3.util.experimental.decode._
 import Decoder._
 
-class MemoryBundle extends Bundle {
-  val MemWrite     = Output(Bool())
-  val MemRead      = Output(Bool())
-  val MemAddr      = Output(UInt(2.W))
-  val MemReadData  = Input(UInt(32.W))
-  val MemWriteData = Output(UInt(32.W))
-  val MemWriteStrb = Output(UInt(4.W))
-}
-
 class FetchBundle extends Bundle {
   val PC   = Output(UInt(32.W))
   val Inst = Input(UInt(32.W))
@@ -35,19 +26,34 @@ class SimpleCpu extends Module {
   DecoderModule.io <> DecoderBundle
 
   // PC Module
-  val PcNext = Wire(UInt(32.W))
-  val PcBr   = Wire(UInt(32.W))
-  val PcInc  = Wire(UInt(32.W))
+  val PcNext  = Wire(UInt(32.W))
+  val PcBr    = Wire(UInt(32.W))
+  val PcImm   = Wire(UInt(32.W))
+  val PcInc   = Wire(UInt(32.W))
+  val BrTaken = Wire(Bool())
+  val BrCond  = Wire(Bool())
+  val BrReg   = Wire(Bool())
+  val BrImm   = Wire(Bool())
 
-  PcInc := PcReg + 4.U
-  PcBr  := PcReg + DecoderBundle.Imm
-  PcNext := MuxLookup(
-    DecoderBundle.PcSrc,
-    PcInc,
-    Seq(("b" + PcSrcInc).asUInt -> PcInc, ("b" + PcSrcImm).asUInt -> PcBr, ("b" + PcSrcReg).asUInt -> RF.io.rdata1)
-  )
+  BrReg    := (DecoderBundle.PcSrc === ("b" + PcSrcReg).asUInt)
+  BrImm    := (DecoderBundle.PcSrc === ("b" + PcSrcImm).asUInt)
+  PcInc    := PcReg + 4.U
+  PcImm    := PcReg + DecoderBundle.Imm
+  PcBr     := Mux(BrReg, RF.io.rdata1, PcImm)
+  PcNext   := Mux(BrTaken, PcBr, PcInc)
   PcReg    := PcNext
   Fetch.PC := PcReg
+  BrCond := MuxLookup(
+    DecoderBundle.BrCond,
+    false.B,
+    Seq(
+      ("b" + BrCondEq).U -> (Alu.io.Zero ^ Fetch.Inst(12)),
+      ("b" + BrCondGl).U -> (Alu.io.Result(0) ^ Fetch.Inst(12)),
+      ("b" + BrCondGlu).U -> (Alu.io.Result(0) ^ Fetch.Inst(12)),
+      ("b" + BrCondJ).U -> true.B
+    )
+  )
+  BrTaken := BrCond && BrImm || BrReg
 
   // RegFile
   RF.io.rs1   := DecoderBundle.rs1
@@ -82,13 +88,6 @@ class SimpleCpu extends Module {
 
   // Memory Access
 
-  val Memory = Wire(new MemoryBundle)
-
-  Memory.MemRead      := DecoderBundle.MemRead
-  Memory.MemWrite     := DecoderBundle.MemWrite
-  Memory.MemAddr      := AluOut
-  Memory.MemWriteData := RF.io.rdata2
-
   val StrbTable = TruthTable(
     Map(
       BitPat("b00" + Decoder.MemSizeB) -> BitPat("b0001"),
@@ -96,32 +95,30 @@ class SimpleCpu extends Module {
       BitPat("b10" + Decoder.MemSizeB) -> BitPat("b0100"),
       BitPat("b11" + Decoder.MemSizeB) -> BitPat("b1000"),
       BitPat("b00" + Decoder.MemSizeH) -> BitPat("b0011"),
-      BitPat("b01" + Decoder.MemSizeB) -> BitPat("b0110"),
-      BitPat("b10" + Decoder.MemSizeB) -> BitPat("b1100"),
+      BitPat("b01" + Decoder.MemSizeH) -> BitPat("b0110"),
+      BitPat("b10" + Decoder.MemSizeH) -> BitPat("b1100"),
       BitPat("b00" + Decoder.MemSizeW) -> BitPat("b1111")
     ),
     BitPat("b????")
   )
 
-  Memory.MemWriteStrb := decoder(AluOut(1, 0) ## DecoderBundle.MemSize, StrbTable)
-
   MemoryAccess.io.clock := clock
   MemoryAccess.io.reset := reset
-  MemoryAccess.io.PC    := Fetch.PC
   Fetch.Inst            := MemoryAccess.io.Inst
 
-  MemoryAccess.io.Address  := Memory.MemAddr
-  MemoryAccess.io.MemRead  := Memory.MemRead
-  MemoryAccess.io.MemWrite := Memory.MemWrite
+  MemoryAccess.io.PC            := Fetch.PC
+  MemoryAccess.io.Address       := AluOut
+  MemoryAccess.io.MemRead       := DecoderBundle.MemRead
+  MemoryAccess.io.MemReadSigned := DecoderBundle.MemReadSigned
+  MemoryAccess.io.MemWrite      := DecoderBundle.MemWrite
+  MemoryAccess.io.MemSize       := DecoderBundle.MemSize
 
-  MemoryAccess.io.Wdata := Memory.MemWriteData
-  MemoryAccess.io.Wstrb := Memory.MemWriteStrb
-
-  Memory.MemReadData := MemoryAccess.io.ReadData
+  MemoryAccess.io.Wdata := RF.io.rdata2
+  MemoryAccess.io.Wstrb := decoder(AluOut(1, 0) ## DecoderBundle.MemSize, StrbTable)
 
   // write back
   RF.io.wen   := DecoderBundle.RegWrite
-  RF.io.wdata := Mux(Memory.MemRead, Memory.MemReadData, AluOut)
+  RF.io.wdata := Mux(DecoderBundle.MemRead, MemoryAccess.io.ReadData, AluOut)
 
   // Halt
   Halt := DecoderBundle.Halt

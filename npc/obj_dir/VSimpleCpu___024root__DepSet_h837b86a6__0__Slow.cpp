@@ -46,7 +46,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___eval_settle(VSimpleCpu___024root* vlSel
 #ifdef VL_DEBUG
             VSimpleCpu___024root___dump_triggers__stl(vlSelf);
 #endif
-            VL_FATAL_MT("build/SimpleCpu.v", 2999, "", "Settle region did not converge.");
+            VL_FATAL_MT("build/SimpleCpu.v", 3019, "", "Settle region did not converge.");
         }
         __VstlIterCount = ((IData)(1U) + __VstlIterCount);
         __VstlContinue = 0U;
@@ -147,16 +147,18 @@ VL_ATTR_COLD void VSimpleCpu___024root___ctor_var_reset(VSimpleCpu___024root* vl
     vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc1 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule_io_AluSrc2 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule_io_PcSrc = VL_RAND_RESET_I(2);
+    vlSelf->SimpleCpu__DOT__DecoderModule_io_BrCond = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__RF_io_wdata = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__RF_io_rdata1 = VL_RAND_RESET_I(32);
+    vlSelf->SimpleCpu__DOT__RF_io_rdata2 = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__Alu_io_B = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__Alu_io_Result = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__PcReg = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__PcInc = VL_RAND_RESET_I(32);
-    vlSelf->SimpleCpu__DOT__PcBr = VL_RAND_RESET_I(32);
+    vlSelf->SimpleCpu__DOT__PcImm = VL_RAND_RESET_I(32);
+    vlSelf->SimpleCpu__DOT___BrCond_T_7 = VL_RAND_RESET_I(1);
     vlSelf->SimpleCpu__DOT___Alu_io_A_T_3 = VL_RAND_RESET_I(32);
-    vlSelf->SimpleCpu__DOT__Memory_MemWriteStrb_plaInput = VL_RAND_RESET_I(4);
-    vlSelf->SimpleCpu__DOT___Memory_MemWriteStrb_T_6 = VL_RAND_RESET_I(2);
+    vlSelf->SimpleCpu__DOT__MemoryAccess_io_Wstrb_plaInput = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_3 = VL_RAND_RESET_I(8);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_5 = VL_RAND_RESET_I(9);
@@ -166,29 +168,32 @@ VL_ATTR_COLD void VSimpleCpu___024root___ctor_var_reset(VSimpleCpu___024root* vl
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_26 = VL_RAND_RESET_I(3);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_28 = VL_RAND_RESET_I(3);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_35 = VL_RAND_RESET_I(4);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48 = VL_RAND_RESET_I(3);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_42 = VL_RAND_RESET_I(3);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_48 = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_T_56 = VL_RAND_RESET_I(5);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_8 = VL_RAND_RESET_I(10);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10 = VL_RAND_RESET_I(3);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_10 = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13 = VL_RAND_RESET_I(6);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15 = VL_RAND_RESET_I(4);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15 = VL_RAND_RESET_I(5);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_17 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_20 = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_22 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_24 = VL_RAND_RESET_I(3);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27 = VL_RAND_RESET_I(5);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29 = VL_RAND_RESET_I(3);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31 = VL_RAND_RESET_I(3);
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT__DecoderOut_orMatrixOutputs = VL_RAND_RESET_I(20);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_27 = VL_RAND_RESET_I(2);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_29 = VL_RAND_RESET_I(2);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_31 = VL_RAND_RESET_I(6);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_33 = VL_RAND_RESET_I(4);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_35 = VL_RAND_RESET_I(3);
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT__Type = VL_RAND_RESET_I(3);
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hce535874__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hc8e17380__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h48959834__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h5ba46ba8__0 = 0;
     vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h5eee8f44__0 = 0;
-    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hdc0fb08b__0 = 0;
+    vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_hf6c6e245__0 = 0;
     vlSelf->SimpleCpu__DOT__RF__DOT__Wen = VL_RAND_RESET_I(1);
     vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_0 = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__RF__DOT__gprSeq_1 = VL_RAND_RESET_I(32);
@@ -230,6 +235,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___ctor_var_reset(VSimpleCpu___024root* vl
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_2 = VL_RAND_RESET_I(4);
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_4 = VL_RAND_RESET_I(4);
+    vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_6 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_8 = VL_RAND_RESET_I(3);
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_10 = VL_RAND_RESET_I(2);
     vlSelf->SimpleCpu__DOT__Alu__DOT___Operation_T_12 = VL_RAND_RESET_I(2);
@@ -275,10 +281,17 @@ VL_ATTR_COLD void VSimpleCpu___024root___ctor_var_reset(VSimpleCpu___024root* vl
     vlSelf->SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0_io_din_31_1 = VL_RAND_RESET_I(1);
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg = VL_RAND_RESET_I(32);
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg = VL_RAND_RESET_I(32);
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataRaw = VL_RAND_RESET_I(32);
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadSign = VL_RAND_RESET_I(1);
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h257e9805__0 = 0;
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h7e8a5b94__0 = 0;
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h9506ca72__0 = 0;
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_he1e97e09__0 = 0;
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h195eb17c__0 = 0;
     vlSelf->__Vfunc_pmem_read__0__Vfuncout = 0;
     vlSelf->__Vfunc_pmem_read__1__Vfuncout = 0;
     vlSelf->__Vtrigprevexpr___TOP__clock__0 = VL_RAND_RESET_I(1);
-    for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 3; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
 }

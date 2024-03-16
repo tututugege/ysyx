@@ -14,6 +14,7 @@ void VSimpleCpu___024root___eval_ico(VSimpleCpu___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VicoTriggered.word(0U))) {
         VSimpleCpu___024root___ico_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -105,7 +106,7 @@ void VSimpleCpu___024root___eval(VSimpleCpu___024root* vlSelf) {
 #ifdef VL_DEBUG
             VSimpleCpu___024root___dump_triggers__ico(vlSelf);
 #endif
-            VL_FATAL_MT("build/SimpleCpu.v", 2999, "", "Input combinational region did not converge.");
+            VL_FATAL_MT("build/SimpleCpu.v", 3019, "", "Input combinational region did not converge.");
         }
         __VicoIterCount = ((IData)(1U) + __VicoIterCount);
         __VicoContinue = 0U;
@@ -121,7 +122,7 @@ void VSimpleCpu___024root___eval(VSimpleCpu___024root* vlSelf) {
 #ifdef VL_DEBUG
             VSimpleCpu___024root___dump_triggers__nba(vlSelf);
 #endif
-            VL_FATAL_MT("build/SimpleCpu.v", 2999, "", "NBA region did not converge.");
+            VL_FATAL_MT("build/SimpleCpu.v", 3019, "", "NBA region did not converge.");
         }
         __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
         __VnbaContinue = 0U;
@@ -132,7 +133,7 @@ void VSimpleCpu___024root___eval(VSimpleCpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VSimpleCpu___024root___dump_triggers__act(vlSelf);
 #endif
-                VL_FATAL_MT("build/SimpleCpu.v", 2999, "", "Active region did not converge.");
+                VL_FATAL_MT("build/SimpleCpu.v", 3019, "", "Active region did not converge.");
             }
             vlSelf->__VactIterCount = ((IData)(1U) 
                                        + vlSelf->__VactIterCount);
