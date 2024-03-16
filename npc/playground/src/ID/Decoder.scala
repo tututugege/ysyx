@@ -19,6 +19,7 @@ class DecoderBundle extends Bundle {
   val AluSrc1 = Output(UInt(2.W))
   val AluSrc2 = Output(UInt(2.W))
   val PcSrc   = Output(UInt(2.W))
+  val BrCond  = Output(UInt(2.W))
   val Halt    = Output(Bool())
 }
 
@@ -56,6 +57,11 @@ object Decoder {
   val PcSrcReg = "10"
   val PcSrcX   = "??"
 
+  val BrCondEq  = "00"
+  val BrCondGl  = "01"
+  val BrCondGlu = "10"
+  val BrCondJ   = "11"
+  val BrCondX   = "??"
 }
 
 class Decoder extends Module {
@@ -130,131 +136,132 @@ class Decoder extends Module {
   val table = TruthTable(
     Map(
       LUI -> BitPat(
-        TypeU + Decoder.AluSrc1x0 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeU + Decoder.BrCondX + Decoder.AluSrc1x0 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       AUIPC -> BitPat(
-        TypeU + Decoder.AluSrc1PC + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeU + Decoder.BrCondX + Decoder.AluSrc1PC + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       JAL -> BitPat(
-        TypeJ + Decoder.AluSrc1PC + Decoder.AluSrc24 + Decoder.AluOpAdd + Decoder.PcSrcImm + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeJ + Decoder.BrCondJ + Decoder.AluSrc1PC + Decoder.AluSrc24 + Decoder.AluOpAdd + Decoder.PcSrcImm + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       JALR -> BitPat(
-        TypeI + Decoder.AluSrc1PC + Decoder.AluSrc24 + Decoder.AluOpAdd + Decoder.PcSrcReg + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1PC + Decoder.AluSrc24 + Decoder.AluOpAdd + Decoder.PcSrcReg + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BEQ -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondEq + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BNE -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondEq + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BLT -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondGl + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BGE -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondGl + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BLTU -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondGlu + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       BGEU -> BitPat(
-        TypeB + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeB + Decoder.BrCondGlu + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcImm + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       LB -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeB + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeB + HaltN
       ),
       LH -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeH + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeH + HaltN
       ),
       LW -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeW + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedY + MemWriteN + Decoder.MemSizeW + HaltN
       ),
       LBU -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedN + MemWriteN + Decoder.MemSizeB + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedN + MemWriteN + Decoder.MemSizeB + HaltN
       ),
       LHU -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedN + MemWriteN + Decoder.MemSizeH + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadY + MemReadSignedN + MemWriteN + Decoder.MemSizeH + HaltN
       ),
       SB -> BitPat(
-        TypeS + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeB + HaltN
+        TypeS + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeB + HaltN
       ),
       SH -> BitPat(
-        TypeS + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeH + HaltN
+        TypeS + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeH + HaltN
       ),
       SW -> BitPat(
-        TypeS + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeW + HaltN
+        TypeS + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteN + MemReadN + MemReadSignedX + MemWriteY + Decoder.MemSizeW + HaltN
       ),
       ADDI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLTI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSlt + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSlt + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLTIU -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSltu + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSltu + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       XORI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpXor + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpXor + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       ORI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpOr + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpOr + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       ANDI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAnd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpAnd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLLI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSll + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSll + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SRLI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSrl + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSrl + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SRAI -> BitPat(
-        TypeI + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSra + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeI + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2Imm + Decoder.AluOpSra + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       ADD -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpAdd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SUB -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSub + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLL -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSll + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSll + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLT -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSlt + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SLTU -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSltu + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       XOR -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpXor + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpXor + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SRL -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSrl + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSrl + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       SRA -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSra + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpSra + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       OR -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpOr + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpOr + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       AND -> BitPat(
-        TypeR + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpAnd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+        TypeR + Decoder.BrCondX + Decoder.AluSrc1R1 + Decoder.AluSrc2R2 + Decoder.AluOpAnd + Decoder.PcSrcInc + RegWriteY + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
       ),
       EBREAK -> BitPat(
-        TypeX + Decoder.AluSrc1X + Decoder.AluSrc2X + Decoder.AluOpX + Decoder.PcSrcX + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltY
+        TypeX + Decoder.BrCondX + Decoder.AluSrc1X + Decoder.AluSrc2X + Decoder.AluOpX + Decoder.PcSrcX + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltY
       )
     ),
     BitPat(
-      TypeX + Decoder.AluSrc1X + Decoder.AluSrc2X + Decoder.AluOpX + Decoder.PcSrcX + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
+      TypeX + Decoder.BrCondX + Decoder.AluSrc1X + Decoder.AluSrc2X + Decoder.AluOpX + Decoder.PcSrcX + RegWriteN + MemReadN + MemReadSignedX + MemWriteN + Decoder.MemSizeX + HaltN
     )
   )
 
   val Type       = Wire(UInt(3.W))
-  val DecoderOut = Wire(UInt(20.W))
+  val DecoderOut = Wire(UInt(22.W))
 
   DecoderOut := decoder(io.Inst, table).asUInt
 
-  Type        := DecoderOut(19, 17)
+  Type        := DecoderOut(21, 19)
+  io.BrCond   := DecoderOut(18, 17)
   io.AluSrc1  := DecoderOut(16, 15)
   io.AluSrc2  := DecoderOut(14, 13)
   io.AluOp    := DecoderOut(12, 9)

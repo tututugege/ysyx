@@ -7,6 +7,7 @@
 void cycle(int n);
 
 extern "C" int pmem_read(int addr);
+extern bool batch_mode;
 
 const char *regs[] = {"zero", "ra", "sp",  "gp",  "tp", "t0", "t1", "t2",
                       "s0",   "s1", "a0",  "a1",  "a2", "a3", "a4", "a5",
@@ -64,6 +65,12 @@ void isa_reg_display() {
 }
 
 void sdb_mainloop() {
+
+  if (batch_mode) {
+    cmd_c(NULL);
+    return;
+  }
+
   static int last_cmd = -1;
   for (char *str; (str = rl_gets()) != NULL;) {
     char *str_end = str + strlen(str);

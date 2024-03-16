@@ -24,7 +24,7 @@ extern NPCState npc_state;
 extern uint8_t inst_ram[0x100000];
 extern const char *regs[];
 
-#define MAX_SIM_TIME 10000
+#define MAX_SIM_TIME 1000000
 #define TIME_OUT (sim_time >= MAX_SIM_TIME)
 
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };

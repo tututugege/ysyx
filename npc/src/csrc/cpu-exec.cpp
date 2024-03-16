@@ -32,6 +32,7 @@ void reset(int n) {
 }
 
 uint32_t last_pc = 0x80000000;
+uint32_t last_inst = 0;
 
 void cycle(int n) {
   char *p;
@@ -42,7 +43,7 @@ void cycle(int n) {
     single_cycle();
 
     p = inst_buf;
-    inst = INST;
+    inst = last_inst;
     inst_str = (uint8_t *)&inst;
 
     p += snprintf(p, sizeof(inst_buf), "0x%08x: ", last_pc);
@@ -59,6 +60,7 @@ void cycle(int n) {
       ftrace_commit(last_pc, PC);
     }
     last_pc = PC;
+    last_inst = INST;
 
     difftest_step();
 
