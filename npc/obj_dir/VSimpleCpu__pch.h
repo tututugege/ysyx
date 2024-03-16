@@ -19,6 +19,7 @@
 
 
 #include "verilated.h"
+#include "verilated_dpi.h"
 
 #include "VSimpleCpu__Syms.h"
 #include "VSimpleCpu.h"

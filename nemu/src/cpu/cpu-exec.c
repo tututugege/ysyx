@@ -37,6 +37,8 @@ static bool g_print_step = false;
 
 void device_update();
 
+#ifdef CONFIG_ITRACE
+
 static char iringbuf[MAX_IRINGBUF_INST][128];
 static int iringbuf_idx = 0;
 static void write_iringbuf(char *logbuf) {
@@ -55,13 +57,15 @@ void display_iringbuf() {
   printf(" -->\t%s\n", iringbuf[idx]);
 }
 
+#endif
+
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) {
     log_write("%s\n", _this->logbuf);
   }
-#endif
   write_iringbuf(_this->logbuf);
+#endif
   if (g_print_step) {
     IFDEF(CONFIG_ITRACE, puts(_this->logbuf));
   }
@@ -177,7 +181,10 @@ void cpu_exec(uint64_t n) {
                     : ANSI_FMT("HIT BAD TRAP", ANSI_FG_RED))),
         nemu_state.halt_pc);
     if (nemu_state.halt_ret != 0)
+
+#ifdef CONFIG_ITRACE
       display_iringbuf();
+#endif
     // fall through
   case NEMU_QUIT:
     statistic();

@@ -9,11 +9,13 @@
 #define VERILATED_VSIMPLECPU_H_  // guard
 
 #include "verilated.h"
+#include "svdpi.h"
 
 class VSimpleCpu__Syms;
 class VSimpleCpu___024root;
 class VerilatedVcdC;
 class VSimpleCpu_SelectorBundle;
+class VSimpleCpu___024unit;
 
 
 // This class is the main interface to the Verilated model
@@ -29,20 +31,12 @@ class alignas(VL_CACHE_LINE_BYTES) VSimpleCpu VL_NOT_FINAL : public VerilatedMod
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clock,0,0);
     VL_IN8(&reset,0,0);
-    VL_OUT8(&Memory_MemWrite,0,0);
-    VL_OUT8(&Memory_MemRead,0,0);
-    VL_OUT8(&Memory_MemAddr,1,0);
-    VL_OUT8(&Memory_MemWriteStrb,3,0);
     VL_OUT8(&Halt,0,0);
-    VL_IN(&Memory_MemReadData,31,0);
-    VL_OUT(&Memory_MemWriteData,31,0);
-    VL_OUT(&Fetch_PC,31,0);
-    VL_IN(&Fetch_Inst,31,0);
-    VL_OUT(&Ret,31,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
+    VSimpleCpu___024unit* const __PVT____024unit;
     VSimpleCpu_SelectorBundle* const __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0;
     VSimpleCpu_SelectorBundle* const __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_1;
     VSimpleCpu_SelectorBundle* const __PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2;

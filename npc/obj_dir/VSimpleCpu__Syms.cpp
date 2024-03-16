@@ -4,6 +4,7 @@
 #include "VSimpleCpu__pch.h"
 #include "VSimpleCpu.h"
 #include "VSimpleCpu___024root.h"
+#include "VSimpleCpu___024unit.h"
 #include "VSimpleCpu_SelectorBundle.h"
 
 // FUNCTIONS
@@ -22,9 +23,10 @@ VSimpleCpu__Syms::VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep
     , TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2{this, Verilated::catName(namep, "SimpleCpu.Alu.Shifter.SelectorNet_2")}
     , TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3{this, Verilated::catName(namep, "SimpleCpu.Alu.Shifter.SelectorNet_3")}
     , TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4{this, Verilated::catName(namep, "SimpleCpu.Alu.Shifter.SelectorNet_4")}
+    , TOP____024unit{this, Verilated::catName(namep, "$unit")}
 {
         // Check resources
-        Verilated::stackCheck(209);
+        Verilated::stackCheck(181);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);
@@ -34,6 +36,7 @@ VSimpleCpu__Syms::VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep
     TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2 = &TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2;
     TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3 = &TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3;
     TOP.__PVT__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4 = &TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4;
+    TOP.__PVT____024unit = &TOP____024unit;
     // Setup each module's pointer back to symbol table (for public functions)
     TOP.__Vconfigure(true);
     TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_0.__Vconfigure(true);
@@ -41,4 +44,8 @@ VSimpleCpu__Syms::VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep
     TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2.__Vconfigure(false);
     TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3.__Vconfigure(false);
     TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4.__Vconfigure(false);
+    TOP____024unit.__Vconfigure(true);
+    // Setup export functions
+    for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
+    }
 }

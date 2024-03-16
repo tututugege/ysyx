@@ -15,7 +15,10 @@
 
 // INCLUDE MODULE CLASSES
 #include "VSimpleCpu___024root.h"
+#include "VSimpleCpu___024unit.h"
 #include "VSimpleCpu_SelectorBundle.h"
+
+// DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
 class alignas(VL_CACHE_LINE_BYTES)VSimpleCpu__Syms final : public VerilatedSyms {
@@ -34,6 +37,7 @@ class alignas(VL_CACHE_LINE_BYTES)VSimpleCpu__Syms final : public VerilatedSyms 
     VSimpleCpu_SelectorBundle      TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_2;
     VSimpleCpu_SelectorBundle      TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_3;
     VSimpleCpu_SelectorBundle      TOP__SimpleCpu__DOT__Alu__DOT__Shifter__DOT__SelectorNet_4;
+    VSimpleCpu___024unit           TOP____024unit;
 
     // CONSTRUCTORS
     VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep, VSimpleCpu* modelp);
