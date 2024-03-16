@@ -28,6 +28,7 @@ void isa_reg_display() {
     if (i % 8 == 7)
       putchar('\n');
   }
+  printf("PC: %08x\n", cpu.pc);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {

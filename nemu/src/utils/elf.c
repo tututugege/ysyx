@@ -75,9 +75,6 @@ void init_elf(const char *elf_file) {
 }
 
 void ftrace_commit(vaddr_t pc, vaddr_t npc) {
-
-  // if ()
-
   static int depth = 0;
   int now_func = -1;
   int next_func = -1;

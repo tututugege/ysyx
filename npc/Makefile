@@ -1,10 +1,9 @@
 BUILD_DIR = ./build
 OBJ_DIR   = ./obj_dir
 MODULE    = SimpleCpu
-TESEBENCH = tb_$(MODULE).cpp
-VSRC      = ./build/$(MODULE).v
+CSRC 			= ./src/csrc/*.cpp
+VSRC      = ./build/$(MODULE).v ./src/vsrc/*.v
 SSRCS     = ./playground/src/*.scala
-
 
 export PATH := $(PATH):$(abspath ./utils)
 
@@ -36,21 +35,36 @@ clean:
 	rm -rf $(OBJ_DIR)
 	rm *.vcd	
 
-.PHONY: test verilog help compile bsp reformat checkformat clean sim run
+.PHONY: test verilog help compile bsp reformat checkformat clean sim wave run
+
+override ARGS ?= --log=$(BUILD_DIR)/npc-log.txt
+override ARGS += --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
 IMG ?=
 
 $(VSRC): verilog
+VERILATOR_CINCLUDE = /home/tututu/hry/ysyx/ysyx-workbench/npc/src/csrc/include
 VERILATOR = verilator
 VERILATOR_FLAGS = --trace --cc --build --exe
+VERILATOR_CFLAGS = $(addprefix -CFLAGS , -I$(VERILATOR_CINCLUDE))
+VERILATOR_CFLAGS += $(addprefix -CFLAGS , -I/usr/lib/llvm-14/include -std=c++14)
+VERILATOR_CFLAGS += $(addprefix -CFLAGS , -fPIE)
+VERILATOR_CFLAGS += $(addprefix -LDFLAGS , -lreadline)
+VERILATOR_CFLAGS += $(addprefix -LDFLAGS , $(shell llvm-config --libs))
 
-sim: $(VSRC) $(TESTBENCH)
+
+# DIFFTEST_CFLAGS  = $(addprefix -LDFLAGS , -L$(NEMU_HOME)/build)
+# DIFFTEST_CFLAGS = $(addprefix -LDFLAGS , -lriscv32-nemu-interpreter-so)
+
+sim: $(VSRC) $(CSRC)
 	# @echo "Write this Makefile by yourself."
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	$(VERILATOR) $(VERILATOR_FLAGS) $< $(TESEBENCH)
-	./obj_dir/V$(MODULE) $(IMG)
-	gtkwave wave.vcd
+	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRC) $(VERILATOR_CFLAGS) $(DIFFTEST_CFLAGS) $(CSRC)
+	./obj_dir/V$(MODULE) $(ARGS) $(IMG)
 
 run:
-	./obj_dir/V$(MODULE) $(IMG)
-	gtkwave wave.vcd
+	make -C $(OBJ_DIR) -f V$(MODULE).mk V$(MODULE)
+	./obj_dir/V$(MODULE) $(ARGS) $(IMG)
+
+wave:
+	gtkwave ./wave.vcd

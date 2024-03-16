@@ -19,17 +19,16 @@ class FetchBundle extends Bundle {
 
 class SimpleCpu extends Module {
 
-  val Memory = IO(new MemoryBundle)
-  val Fetch  = IO(new FetchBundle)
-  val Halt   = IO(Output(Bool()))
-  val Ret    = IO(Output(UInt(32.W)))
+  val Halt = IO(Output(Bool()))
 
   val START_PC      = "h80000000"
   val PcReg         = RegInit(START_PC.U)
   val DecoderModule = Module(new Decoder())
   val RF            = Module(new RegFile)
   val Alu           = Module(new ALU(32))
+  val MemoryAccess  = Module(new MemorySim)
 
+  val Fetch = Wire(new FetchBundle)
   // Decoder
   val DecoderBundle = Wire(Flipped(new DecoderBundle))
   DecoderBundle.Inst := Fetch.Inst
@@ -82,6 +81,9 @@ class SimpleCpu extends Module {
   AluOut       := Alu.io.Result
 
   // Memory Access
+
+  val Memory = Wire(new MemoryBundle)
+
   Memory.MemRead      := DecoderBundle.MemRead
   Memory.MemWrite     := DecoderBundle.MemWrite
   Memory.MemAddr      := AluOut
@@ -103,12 +105,24 @@ class SimpleCpu extends Module {
 
   Memory.MemWriteStrb := decoder(AluOut(1, 0) ## DecoderBundle.MemSize, StrbTable)
 
+  MemoryAccess.io.clock := clock
+  MemoryAccess.io.reset := reset
+  MemoryAccess.io.PC    := Fetch.PC
+  Fetch.Inst            := MemoryAccess.io.Inst
+
+  MemoryAccess.io.Address  := Memory.MemAddr
+  MemoryAccess.io.MemRead  := Memory.MemRead
+  MemoryAccess.io.MemWrite := Memory.MemWrite
+
+  MemoryAccess.io.Wdata := Memory.MemWriteData
+  MemoryAccess.io.Wstrb := Memory.MemWriteStrb
+
+  Memory.MemReadData := MemoryAccess.io.ReadData
+
   // write back
   RF.io.wen   := DecoderBundle.RegWrite
   RF.io.wdata := Mux(Memory.MemRead, Memory.MemReadData, AluOut)
 
   // Halt
   Halt := DecoderBundle.Halt
-  Ret  := RF.io.a0
-
 }
