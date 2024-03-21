@@ -9,7 +9,8 @@ typedef struct {
   size_t func_end;
 } ftrace_node;
 
-ftrace_node ftrace[32];
+#define FTRACE_NODE_NUM 128
+ftrace_node ftrace[128];
 int nr_ftrace;
 
 void init_elf(const char *elf_file) {
@@ -63,6 +64,7 @@ void init_elf(const char *elf_file) {
       }
       ftrace[nr_ftrace].name[name_idx] = '\0';
       nr_ftrace++;
+      assert(nr_ftrace < FTRACE_NODE_NUM);
     }
   }
 

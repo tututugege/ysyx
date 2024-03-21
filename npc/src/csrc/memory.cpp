@@ -1,6 +1,7 @@
 #include <common.h>
 #include <cpu-info.h>
-#include <strings.h>
+#include <cstdint>
+#include <log.h>
 
 /* word_t paddr_read(paddr_t addr, int len) { */
 /*   switch (len) { */
@@ -30,11 +31,17 @@
 /* } */
 
 extern "C" int pmem_read(int addr) {
+
+  log_write("%08x: read memory address %08x\n", PC, addr);
   return *(uint32_t *)(inst_ram + (addr & ~0x3u & 0xFFFFF));
 }
 
 extern "C" void pmem_write(int waddr, int wdata, char wmask) {
+
   int mask = 0;
+  extern uint32_t last_pc;
+  log_write("%08x: write memory address %08x\n, wstrb %x\n", last_pc, waddr,
+            wmask);
 
   if (wmask & 0x1)
     mask |= 0xFF;
