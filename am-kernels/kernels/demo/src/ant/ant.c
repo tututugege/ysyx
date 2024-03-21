@@ -1,8 +1,8 @@
 /* from http://rosettacode.org/wiki/Langton%27s_ant#C */
 
+#include <io.h>
 #include <stdlib.h>
 #include <string.h>
-#include <io.h>
 
 static int w = 40, h = 25;
 
@@ -18,19 +18,21 @@ static void refresh(int x, int y) {
 
 void ant() {
   w = screen_tile_width();
+  // printf("malloc: %d\n", w);
   h = screen_tile_height();
 
   int dx = 0, dy = 1, i, k;
   int x = w / 2, y = h / 2;
-
   pix = malloc(w * h);
   memset(pix, 0, w * h);
   screen_clear();
 
   while (1) {
     i = (y * w + x);
-    if (pix[i]) k = dx, dx = -dy, dy = k;
-    else	      k = dy, dy = -dx, dx = k;
+    if (pix[i])
+      k = dx, dx = -dy, dy = k;
+    else
+      k = dy, dy = -dx, dx = k;
 
     pix[i] = !pix[i];
     print_char(pix[i] ? 'o' : ' ', y + 1, x + 1);
@@ -40,12 +42,13 @@ void ant() {
     k = 0;
     if (x < 0) {
       memmove(pix + 1, pix, w * h - 1);
-      for (i = 0; i < w * h; i += w) pix[i] = 0;
+      for (i = 0; i < w * h; i += w)
+        pix[i] = 0;
       x++, k = 1;
-    }
-    else if (x >= w) {
+    } else if (x >= w) {
       memmove(pix, pix + 1, w * h - 1);
-      for (i = w-1; i < w * h; i += w) pix[i] = 0;
+      for (i = w - 1; i < w * h; i += w)
+        pix[i] = 0;
       x--, k = 1;
     }
 
@@ -53,13 +56,13 @@ void ant() {
       memmove(pix, pix + w, w * (h - 1));
       memset(pix + w * (h - 1), 0, w);
       y--, k = 1;
-    }
-    else if (y < 0) {
+    } else if (y < 0) {
       memmove(pix + w, pix, w * (h - 1));
       memset(pix, 0, w);
       y++, k = 1;
     }
-    if (k) refresh(x, y);
+    if (k)
+      refresh(x, y);
     set_color(ANSI_COLOR_RED);
     print_char('+', y + 1, x + 1);
     set_color(ANSI_COLOR_RESET);

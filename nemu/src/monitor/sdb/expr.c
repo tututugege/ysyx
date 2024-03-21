@@ -364,9 +364,15 @@ int eval(int p, int q, bool *success) {
     case TK_PTR:
       res = vaddr_read(val2, 4);
       break;
+    case TK_EQ:
+      res = (val1 == val2);
+      break;
+    case TK_NEQ:
+      res = (val1 != val2);
+      break;
     default:
       res = 0;
-      assert(1);
+      assert(0);
     }
   }
   return res;

@@ -1,4 +1,4 @@
-#include "check.h"
+#include <check.h>
 
 void test_memset() {
   int l, r;
