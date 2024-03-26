@@ -1,6 +1,6 @@
-import "DPI-C" function int pmem_read(input int raddr);
+import "DPI-C" function int pmem_read(input int raddr, input int MemRead);
 import "DPI-C" function void pmem_write(
-  input int waddr, input int wdata, input byte wmask);
+  input int waddr, input int wdata, input byte Wstrb);
 
 module MemorySim (
   input         clock,
@@ -22,18 +22,14 @@ module MemorySim (
 
   reg [31:0] InstReg, ReadDataReg;
   always @(*) begin
-    if (MemRead && !reset)
-      ReadDataReg = pmem_read(Address);
-    else
-      ReadDataReg = 0;
+    ReadDataReg = pmem_read(Address, {31'b0, MemRead});
   end 
 
   always @(*) begin
-    InstReg = pmem_read(PC);
+    InstReg = pmem_read(PC, 32'b1);
   end
 
   assign Inst = InstReg;
-
 
   wire [ 3:0] Offset;
   assign Offset[0] = ~Address[0] && ~Address[1];

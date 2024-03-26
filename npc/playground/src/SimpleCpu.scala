@@ -108,9 +108,9 @@ class SimpleCpu extends Module {
 
   MemoryAccess.io.PC            := Fetch.PC
   MemoryAccess.io.Address       := AluOut
-  MemoryAccess.io.MemRead       := DecoderBundle.MemRead
+  MemoryAccess.io.MemRead       := DecoderBundle.MemRead && !reset.asBool
   MemoryAccess.io.MemReadSigned := DecoderBundle.MemReadSigned
-  MemoryAccess.io.MemWrite      := DecoderBundle.MemWrite
+  MemoryAccess.io.MemWrite      := DecoderBundle.MemWrite && !reset.asBool
   MemoryAccess.io.MemSize       := DecoderBundle.MemSize
 
   MemoryAccess.io.Wdata := RF.io.rdata2

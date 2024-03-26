@@ -1,6 +1,5 @@
 #include <common.h>
 #include <cpu-info.h>
-#include <cstdint>
 #include <difftest.h>
 #include <elf.h>
 #include <getopt.h>
@@ -14,6 +13,7 @@ static char *diff_so_file;
 bool batch_mode = false;
 
 void sdb_mainloop();
+void init_device();
 void reset(int n);
 void single_cycle();
 extern "C" void init_disasm(const char *triple);
@@ -21,9 +21,9 @@ extern "C" void init_disasm(const char *triple);
 VSimpleCpu *dut;
 VerilatedVcdC *m_trace;
 
-uint8_t inst_ram[0x100000];
+uint8_t inst_ram[CONFIG_MSIZE];
 
-int sim_time = 0;
+uint64_t sim_time = 0;
 
 NPCState npc_state = {.state = NPC_STOP};
 
@@ -39,17 +39,18 @@ int init_img() {
 
   assert(fp != NULL);
 
-  printf("\n%s\n", img_file);
-  int i = 0, ch;
-  while (fread(inst_ram + 4 * i, 4, 1, fp)) {
-    i++;
-  }
-  /* printf("%d\n", i); */
+  /* printf("\n%s\n", img_file); */
+  int i = 0;
+  fseek(fp, 0, SEEK_END);
+  int file_size = ftell(fp);
+  rewind(fp);
+  assert(fread(inst_ram, sizeof(uint8_t), file_size, fp));
   fclose(fp);
+
   extern uint32_t last_inst;
   last_inst = inst_ram[0];
 
-  return i * 4;
+  return file_size;
 }
 
 FILE *log_fp = NULL;
@@ -64,14 +65,52 @@ void init_log() {
   Log("Log is written to %s", log_file ? log_file : "stdout");
 }
 
+#ifdef CONFIG_FTRACE
+
 typedef struct {
   char name[32];
   size_t func_start;
   size_t func_end;
 } ftrace_node;
 
-ftrace_node ftrace[32];
+#define MAX_FTRACE_NUM 64
+ftrace_node ftrace[MAX_FTRACE_NUM];
 int nr_ftrace;
+
+void ftrace_commit(vaddr_t pc, vaddr_t npc) {
+  static int depth = 0;
+  int now_func = -1;
+  int next_func = -1;
+  for (int i = 0; i < nr_ftrace; i++) {
+    if (npc == ftrace[i].func_start) {
+      log_write("0x%x: ", pc);
+      for (int j = 0; j < depth; j++)
+        log_write(" ");
+      log_write("call %s@0x%x\n", ftrace[i].name, npc);
+      depth++;
+      return;
+    }
+
+    if (now_func == -1 && pc >= ftrace[i].func_start &&
+        pc <= ftrace[i].func_end)
+      now_func = i;
+    if (next_func == -1 && npc >= ftrace[i].func_start &&
+        npc <= ftrace[i].func_end)
+      next_func = i;
+
+    if (next_func != -1 && now_func != -1)
+      break;
+  }
+
+  if (now_func != next_func) {
+    depth--;
+    log_write("0x%x: ", pc);
+    for (int j = 0; j < depth; j++)
+      log_write(" ");
+
+    log_write("return %s@0x%x\n", ftrace[now_func].name, pc);
+  }
+}
 
 void init_elf() {
   FILE *fp = fopen(elf_file, "r");
@@ -125,50 +164,19 @@ void init_elf() {
       ftrace[nr_ftrace].name[name_idx] = '\0';
       nr_ftrace++;
     }
+
+    assert(nr_ftrace <= MAX_FTRACE_NUM);
   }
 
   fclose(fp);
 
-  for (int i = 0; i < nr_ftrace; i++) {
-    printf("%d %s %lx %lx\n", i, ftrace[i].name, ftrace[i].func_start,
-           ftrace[i].func_end);
-  }
+  /* for (int i = 0; i < nr_ftrace; i++) { */
+  /*   printf("%d %s %lx %lx\n", i, ftrace[i].name, ftrace[i].func_start, */
+  /*          ftrace[i].func_end); */
+  /* } */
 }
 
-void ftrace_commit(vaddr_t pc, vaddr_t npc) {
-  static int depth = 0;
-  int now_func = -1;
-  int next_func = -1;
-  for (int i = 0; i < nr_ftrace; i++) {
-    if (npc == ftrace[i].func_start) {
-      log_write("0x%x: ", pc);
-      for (int j = 0; j < depth; j++)
-        log_write(" ");
-      log_write("call %s@0x%x\n", ftrace[i].name, npc);
-      depth++;
-      return;
-    }
-
-    if (now_func == -1 && pc >= ftrace[i].func_start &&
-        pc <= ftrace[i].func_end)
-      now_func = i;
-    if (next_func == -1 && npc >= ftrace[i].func_start &&
-        npc <= ftrace[i].func_end)
-      next_func = i;
-
-    if (next_func != -1 && now_func != -1)
-      break;
-  }
-
-  if (now_func != next_func) {
-    depth--;
-    log_write("0x%x: ", pc);
-    for (int j = 0; j < depth; j++)
-      log_write(" ");
-
-    log_write("return %s@0x%x\n", ftrace[now_func].name, pc);
-  }
-}
+#endif
 
 static int parse_args(int argc, char *argv[]) {
   const struct option table[] = {
@@ -219,27 +227,40 @@ int init_monitor(int argc, char *argv[]) {
 
   // load image to inst_ram
   int img_size = init_img();
+  printf("img size 0x%x\n", img_size);
 
+#ifdef CONFIG_FTRACE
   // init elf file fo ftrace
   init_elf();
+#endif
 
+#ifdef CONFIG_ITRACE
   // init disasm
   init_disasm("riscv32");
+#endif
 
   // init dut and wave
   dut = new VSimpleCpu;
-  m_trace = new VerilatedVcdC;
 
+  // init device
+#ifdef CONFIG_DEVICE
+  init_device();
+#endif
+
+#ifdef CONFIG_WAVE
+  m_trace = new VerilatedVcdC;
   Verilated::traceEverOn(true);
   dut->trace(m_trace, 5);
   m_trace->open("wave.vcd");
+#endif
 
   printf("Reset NPC...\n");
   reset(10);
-  single_cycle();
 
   // init difftest ref nemu
+#ifdef CONFIG_DIFFTEST
   init_difftest(diff_so_file, img_size);
+#endif
 
   welcome();
 
@@ -254,10 +275,11 @@ int init_monitor(int argc, char *argv[]) {
     if (npc_state.halt_pc != 0) {
       if (npc_state.halt_ret == 0) {
 
-        printf(ANSI_FG_GREEN "Hit Good Trap at pc = 0x%08x\n" ANSI_NONE, PC);
+        printf(ANSI_FG_GREEN "Hit Good Trap ^-^ at pc = 0x%08x\n" ANSI_NONE,
+               PC);
         ret = 0;
       } else {
-        printf(ANSI_FG_RED "Hit Good Trap!\n" ANSI_NONE);
+        printf(ANSI_FG_RED "Hit Bad Trap QAQ\n" ANSI_NONE);
       }
     } else if (npc_state.state == NPC_QUIT) {
       printf("Quit\n");
@@ -268,7 +290,10 @@ int init_monitor(int argc, char *argv[]) {
   }
   printf("****************************************************\n");
 
+#ifdef CONFIG_WAVE
   m_trace->close();
+  delete m_trace;
+#endif
   delete dut;
 
   return ret;
