@@ -2293,7 +2293,16 @@ void VSimpleCpu___024root__trace_chg_0_sub_0(VSimpleCpu___024root* vlSelf, Veril
     bufp->chgBit(oldp+532,(vlSelf->clock));
     bufp->chgBit(oldp+533,(vlSelf->reset));
     bufp->chgBit(oldp+534,(vlSelf->Halt));
-    bufp->chgCData(oldp+535,(((0x10U & ((~ (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
+    bufp->chgBit(oldp+535,(((~ (IData)(vlSelf->reset)) 
+                            & (0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6)))));
+    bufp->chgBit(oldp+536,(((~ (IData)(vlSelf->reset)) 
+                            & ((IData)(((0x23U == (0x3fU 
+                                                   & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                        & (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0)))) 
+                               | (IData)(((0x23U == 
+                                           (0x7fU & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                          & (3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0))))))));
+    bufp->chgCData(oldp+537,(((0x10U & ((~ (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                             >> 0xeU)) 
                                         << 4U)) | (
                                                    (((IData)(
@@ -2315,7 +2324,7 @@ void VSimpleCpu___024root__trace_chg_0_sub_0(VSimpleCpu___024root* vlSelf, Veril
                                                        & (vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
                                                           >> 0xbU)) 
                                                       | (IData)(vlSelf->Halt))))),5);
-    bufp->chgSData(oldp+536,((((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
+    bufp->chgSData(oldp+538,((((IData)((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_15))) 
                                << 0xaU) | (((IData)(
                                                     (0U 
                                                      != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_13))) 

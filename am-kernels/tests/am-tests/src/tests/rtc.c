@@ -5,7 +5,7 @@ void rtc_test() {
   AM_TIMER_RTC_T rtc;
   int sec = 1;
   // uint64_t time = 0;
-  // time = io_read(AM_TIMER_UPTIME).us;
+  // // time = io_read(AM_TIMER_UPTIME).us;
   // printf("%x\n", (uint32_t)time);
   //
   // volatile int i;
@@ -18,8 +18,7 @@ void rtc_test() {
   while (1) {
 
     // while ((time = io_read(AM_TIMER_UPTIME).us) / 1000000 < sec)
-    //   ;
-    // printf("%x\n", (uint32_t)time);
+    //   printf("%x\n", (uint32_t)time);
     while (io_read(AM_TIMER_UPTIME).us / 1000000 < sec)
       ;
 

@@ -1,9 +1,9 @@
-#include <assert.h>
 #include <common.h>
 #include <cpu-info.h>
 #include <cstdint>
 #include <dlfcn.h>
 #include <log.h>
+#include <readline/history.h>
 
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 
@@ -12,6 +12,9 @@ typedef struct CPU_state {
   uint32_t pc;
 } CPU_state;
 CPU_state cpu;
+
+bool is_skip_ref = false;
+bool next_is_skip_ref = false;
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n,
                             bool direction) = NULL;
@@ -50,7 +53,7 @@ void init_difftest(char *ref_so_file, long img_size) {
       ref_so_file);
 
   ref_difftest_init(0);
-  ref_difftest_memcpy(RESET_VECTOR, inst_ram, img_size, DIFFTEST_TO_REF);
+  ref_difftest_memcpy(RESET_VECTOR, inst_ram, CONFIG_MSIZE, DIFFTEST_TO_REF);
   for (int i = 0; i < GPR_NUM; i++) {
     cpu.gpr[i] = gpr(i);
     cpu.pc = PC;
@@ -78,19 +81,41 @@ fault:
   npc_state.halt_ret = 1;
 
   printf("Difftest: error\n");
-  printf("Reference: \n");
+  printf("\tReference\tDut\n");
   for (int i = 0; i < GPR_NUM; i++) {
-    printf("%s: %08x ", regs[i], cpu.gpr[i]);
-    if (i % 8 == 7)
-      putchar('\n');
+    printf("%s:\t%08x\t%08x", regs[i], cpu.gpr[i], gpr(i));
+    if (cpu.gpr[i] != gpr(i))
+      printf("\t Error");
+    putchar('\n');
   }
-  printf("PC: %08x\n", cpu.pc);
-
-  isa_reg_display();
+  printf("PC:\t%08x\t%08x\n", cpu.pc, PC);
 }
 
+void next_difftest_skip_ref() { next_is_skip_ref = true; }
+void difftest_skip_ref() { is_skip_ref = true; }
+
 void difftest_step() {
-  ref_difftest_exec(1);
-  ref_difftest_regcpy(&cpu, DIFFTEST_TO_DUT);
-  checkregs(&cpu);
+  if (is_skip_ref) {
+    // to skip the checking of an instruction, just copy the reg state to
+    // reference design
+
+    for (int i = 0; i < GPR_NUM; i++) {
+      cpu.gpr[i] = gpr(i);
+    }
+    cpu.pc = PC;
+
+    ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+    is_skip_ref = false;
+
+  } else {
+
+    ref_difftest_exec(1);
+    ref_difftest_regcpy(&cpu, DIFFTEST_TO_DUT);
+    checkregs(&cpu);
+  }
+
+  if (next_is_skip_ref) {
+    is_skip_ref = true;
+    next_is_skip_ref = false;
+  }
 }

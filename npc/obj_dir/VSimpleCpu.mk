@@ -35,19 +35,28 @@ VM_PREFIX = VSimpleCpu
 VM_MODPREFIX = VSimpleCpu
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
+	-ggdb \
 	-I/home/tututu/hry/ysyx/ysyx-workbench/npc/src/csrc/include \
+	-O2 \
+	-I/home/tututu/hry/ysyx/ysyx-workbench/npc/include \
 	-I/usr/lib/llvm-14/include \
 	-std=c++14 \
 	-fPIE \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline \
+	-ggdb \
 	-lLLVM-14 \
+	-lreadline \
+	-lSDL2 \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	cpu-exec \
+	device \
+	serial \
+	timer \
+	vga \
 	disasm \
 	dut \
 	main \
@@ -58,6 +67,7 @@ VM_USER_CLASSES = \
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	./src/csrc \
+	./src/csrc/device \
 
 
 ### Default rules...
@@ -70,6 +80,14 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 VPATH += $(VM_USER_DIR)
 
 cpu-exec.o: ./src/csrc/cpu-exec.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+device.o: ./src/csrc/device/device.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+serial.o: ./src/csrc/device/serial.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer.o: ./src/csrc/device/timer.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vga.o: ./src/csrc/device/vga.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: ./src/csrc/disasm.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

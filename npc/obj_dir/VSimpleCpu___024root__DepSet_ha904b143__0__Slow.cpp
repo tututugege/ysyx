@@ -23,7 +23,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___eval_triggers__stl(VSimpleCpu___024root
 #endif
 }
 
-void VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, IData/*31:0*/ &pmem_read__Vfuncrtn);
+void VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, IData/*31:0*/ MemRead, IData/*31:0*/ &pmem_read__Vfuncrtn);
 
 VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
@@ -31,7 +31,7 @@ VL_ATTR_COLD void VSimpleCpu___024root___stl_sequent__TOP__0(VSimpleCpu___024roo
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimpleCpu___024root___stl_sequent__TOP__0\n"); );
     // Body
     vlSelf->SimpleCpu__DOT__PcInc = ((IData)(4U) + vlSelf->SimpleCpu__DOT__PcReg);
-    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__PcReg, vlSelf->__Vfunc_pmem_read__1__Vfuncout);
+    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__PcReg, 1U, vlSelf->__Vfunc_pmem_read__1__Vfuncout);
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
         = vlSelf->__Vfunc_pmem_read__1__Vfuncout;
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h257e9805__0 

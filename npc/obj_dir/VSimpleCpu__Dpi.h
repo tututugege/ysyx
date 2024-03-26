@@ -17,9 +17,9 @@ extern "C" {
 
     // DPI IMPORTS
     // DPI import at src/vsrc/MemorySim.v:1:29
-    extern int pmem_read(int raddr);
+    extern int pmem_read(int raddr, int MemRead);
     // DPI import at src/vsrc/MemorySim.v:2:30
-    extern void pmem_write(int waddr, int wdata, char wmask);
+    extern void pmem_write(int waddr, int wdata, char Wstrb);
 
 #ifdef __cplusplus
 }

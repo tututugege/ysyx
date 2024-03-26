@@ -23,21 +23,19 @@ void VSimpleCpu___024root___eval_triggers__ico(VSimpleCpu___024root* vlSelf) {
 #endif
 }
 
-void VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, IData/*31:0*/ &pmem_read__Vfuncrtn);
+void VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*31:0*/ raddr, IData/*31:0*/ MemRead, IData/*31:0*/ &pmem_read__Vfuncrtn);
 
 VL_INLINE_OPT void VSimpleCpu___024root___ico_sequent__TOP__0(VSimpleCpu___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     VSimpleCpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimpleCpu___024root___ico_sequent__TOP__0\n"); );
     // Body
-    if (((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6)) 
-         & (~ (IData)(vlSelf->reset)))) {
-        VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__Alu_io_Result, vlSelf->__Vfunc_pmem_read__0__Vfuncout);
-        vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg 
-            = vlSelf->__Vfunc_pmem_read__0__Vfuncout;
-    } else {
-        vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg = 0U;
-    }
+    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__Alu_io_Result, 
+                                                                ((~ (IData)(vlSelf->reset)) 
+                                                                 & (0U 
+                                                                    != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6))), vlSelf->__Vfunc_pmem_read__0__Vfuncout);
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg 
+        = vlSelf->__Vfunc_pmem_read__0__Vfuncout;
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataRaw 
         = ((((- (IData)((IData)(vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h195eb17c__0))) 
              & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg) 
@@ -114,18 +112,27 @@ void VSimpleCpu___024root___eval_triggers__act(VSimpleCpu___024root* vlSelf) {
 #endif
 }
 
-void VSimpleCpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, IData/*31:0*/ wdata, CData/*7:0*/ wmask);
+void VSimpleCpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, IData/*31:0*/ wdata, CData/*7:0*/ Wstrb);
 
 VL_INLINE_OPT void VSimpleCpu___024root___nba_sequent__TOP__0(VSimpleCpu___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     VSimpleCpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VSimpleCpu___024root___nba_sequent__TOP__0\n"); );
     // Body
-    if ((((IData)(((0x23U == (0x3fU & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
-                   & (7U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0)))) 
-          | (IData)(((0x23U == (0x7fU & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
-                     & (3U == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0))))) 
-         & (~ (IData)(vlSelf->reset)))) {
+    if ((1U & ((~ (IData)(vlSelf->reset)) & ((IData)(
+                                                     ((0x23U 
+                                                       == 
+                                                       (0x3fU 
+                                                        & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                                      & (7U 
+                                                         == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h9d8c627f__0)))) 
+                                             | (IData)(
+                                                       ((0x23U 
+                                                         == 
+                                                         (0x7fU 
+                                                          & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg)) 
+                                                        & (3U 
+                                                           == (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT____VdfgTmp_h47bee7ff__0)))))))) {
         VSimpleCpu___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->SimpleCpu__DOT__Alu_io_Result, 
                                                                      (((- (IData)((IData)(vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h195eb17c__0))) 
                                                                        & vlSelf->SimpleCpu__DOT__RF_io_rdata2) 
@@ -361,7 +368,7 @@ VL_INLINE_OPT void VSimpleCpu___024root___nba_sequent__TOP__0(VSimpleCpu___024ro
                                               : vlSelf->SimpleCpu__DOT__PcImm)
                                           : vlSelf->SimpleCpu__DOT__PcInc));
     vlSelf->SimpleCpu__DOT__PcInc = ((IData)(4U) + vlSelf->SimpleCpu__DOT__PcReg);
-    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__PcReg, vlSelf->__Vfunc_pmem_read__1__Vfuncout);
+    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__PcReg, 1U, vlSelf->__Vfunc_pmem_read__1__Vfuncout);
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__InstReg 
         = vlSelf->__Vfunc_pmem_read__1__Vfuncout;
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h257e9805__0 
@@ -1546,14 +1553,12 @@ VL_INLINE_OPT void VSimpleCpu___024root___nba_sequent__TOP__1(VSimpleCpu___024ro
         = (IData)((1U == (3U & vlSelf->SimpleCpu__DOT__Alu_io_Result)));
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h195eb17c__0 
         = (IData)((0U == (3U & vlSelf->SimpleCpu__DOT__Alu_io_Result)));
-    if (((0U != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6)) 
-         & (~ (IData)(vlSelf->reset)))) {
-        VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__Alu_io_Result, vlSelf->__Vfunc_pmem_read__0__Vfuncout);
-        vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg 
-            = vlSelf->__Vfunc_pmem_read__0__Vfuncout;
-    } else {
-        vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg = 0U;
-    }
+    VSimpleCpu___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->SimpleCpu__DOT__Alu_io_Result, 
+                                                                ((~ (IData)(vlSelf->reset)) 
+                                                                 & (0U 
+                                                                    != (IData)(vlSelf->SimpleCpu__DOT__DecoderModule__DOT___DecoderOut_orMatrixOutputs_T_6))), vlSelf->__Vfunc_pmem_read__0__Vfuncout);
+    vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg 
+        = vlSelf->__Vfunc_pmem_read__0__Vfuncout;
     vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataRaw 
         = ((((- (IData)((IData)(vlSelf->SimpleCpu__DOT__MemoryAccess__DOT____VdfgTmp_h195eb17c__0))) 
              & vlSelf->SimpleCpu__DOT__MemoryAccess__DOT__ReadDataReg) 
