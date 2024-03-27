@@ -21,8 +21,11 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
 
   cpu.csr_mepc = epc;
+  cpu.csr_mcause = NO;
 
-  cpu.pc = cpu.csr_mtvec;
+#ifdef CONFIG_ETRACE
+  log_write("PC: 0x%08x exception. mcause: %d\n", cpu.pc, cpu.csr_mcause);
+#endif
 
   return cpu.csr_mtvec;
 }
