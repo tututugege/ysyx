@@ -1,15 +1,19 @@
 #include <amtest.h>
 
 Context *simple_trap(Event ev, Context *ctx) {
-  switch(ev.event) {
-    case EVENT_IRQ_TIMER:
-      putch('t'); break;
-    case EVENT_IRQ_IODEV:
-      putch('d'); break;
-    case EVENT_YIELD:
-      putch('y'); break;
-    default:
-      panic("Unhandled event"); break;
+  switch (ev.event) {
+  case EVENT_IRQ_TIMER:
+    putch('t');
+    break;
+  case EVENT_IRQ_IODEV:
+    putch('d');
+    break;
+  case EVENT_YIELD:
+    putch('y');
+    break;
+  default:
+    panic("Unhandled event");
+    break;
   }
   return ctx;
 }
@@ -20,7 +24,8 @@ void hello_intr() {
   io_read(AM_INPUT_CONFIG);
   iset(1);
   while (1) {
-    for (volatile int i = 0; i < 10000000; i++) ;
+    for (volatile int i = 0; i < 1000; i++)
+      ;
     yield();
   }
 }

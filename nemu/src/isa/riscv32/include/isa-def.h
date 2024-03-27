@@ -23,6 +23,8 @@
 #define CSR_MEPC 0x341
 #define CSR_MCAUSE 0x342
 
+#define ECALL_U 11
+
 typedef struct {
   word_t gpr[32];
   vaddr_t pc;
