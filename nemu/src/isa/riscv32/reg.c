@@ -22,6 +22,8 @@ const char *regs[] = {"zero", "ra", "sp",  "gp",  "tp", "t0", "t1", "t2",
                       "a6",   "a7", "s2",  "s3",  "s4", "s5", "s6", "s7",
                       "s8",   "s9", "s10", "s11", "t3", "t4", "t5", "t6"};
 
+const char *csrs[] = {"mtvec", "mepc", "mcause", "mstatus"};
+
 void isa_reg_display() {
   for (int i = 0; i < GPR_NUM; i++) {
     printf("%s: %08x ", regs[i], gpr(i));

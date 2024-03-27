@@ -101,14 +101,30 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
 
     printf("Difftest: error\n");
     printf("\tReference\tDut\n");
+
+    printf("PC        %08x\t%08x", ref->pc, cpu.pc);
+    if (cpu.pc != ref->pc)
+      printf("\t Error");
+    putchar('\n');
+
     extern const char *regs[];
+    // extern const char *csrs[];
     for (int i = 0; i < 32; i++) {
-      printf("%s:\t%08x\t%08x", regs[i], ref->gpr[i], cpu.gpr[i]);
+      printf("%-10s%08x\t%08x", regs[i], ref->gpr[i], cpu.gpr[i]);
       if (cpu.gpr[i] != ref->gpr[i])
         printf("\t Error");
       putchar('\n');
     }
-    printf("PC:\t%08x\t%08x\n", ref->pc, cpu.pc);
+
+    // uint32_t *csr_ptr = &cpu.csr_mepc;
+    // uint32_t *ref_csr_ptr = &ref->csr_mepc;
+    //
+    // for (int i = 0; i < CSR_NR; i++) {
+    //   printf("%-10s%08x\t%08x", csrs[i], ref_csr_ptr[i], csr_ptr[i]);
+    //   if (cpu.gpr[i] != ref->gpr[i])
+    //     printf("\t Error");
+    //   putchar('\n');
+    // }
   }
 }
 

@@ -24,6 +24,7 @@
 #define CSR_MCAUSE 0x342
 
 #define ECALL_U 11
+#define CSR_NR 4
 
 typedef struct {
   word_t gpr[32];
