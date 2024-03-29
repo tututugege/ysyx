@@ -18,6 +18,7 @@
 #include <difftest-def.h>
 #include <isa.h>
 #include <memory/paddr.h>
+#include <stdint.h>
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n,
                               bool direction) {
@@ -43,9 +44,9 @@ __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n,
 
 __EXPORT void difftest_regcpy(void *dut, bool direction) {
   if (direction == DIFFTEST_TO_REF) {
-    memcpy(&cpu, dut, sizeof(CPU_state));
+    memcpy(&cpu, dut, sizeof(uint32_t) * 33);
   } else {
-    memcpy(dut, &cpu, sizeof(CPU_state));
+    memcpy(dut, &cpu, sizeof(uint32_t) * 33);
   }
 }
 
