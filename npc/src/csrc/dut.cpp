@@ -1,6 +1,5 @@
 #include <common.h>
 #include <cpu-info.h>
-#include <cstdint>
 #include <dlfcn.h>
 #include <log.h>
 #include <readline/history.h>

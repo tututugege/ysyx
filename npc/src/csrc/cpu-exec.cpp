@@ -69,7 +69,9 @@ void cycle(int n) {
     log_write("%s\n", inst_buf);
 
     if (last_pc + 4 != PC) {
+#ifdef CONFIG_FTRACE
       ftrace_commit(last_pc, PC);
+#endif
     }
     last_pc = PC;
     last_inst = INST;

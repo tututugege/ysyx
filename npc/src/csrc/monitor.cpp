@@ -14,6 +14,7 @@ bool batch_mode = false;
 
 void sdb_mainloop();
 void init_device();
+void init_gpr();
 void reset(int n);
 void single_cycle();
 extern "C" void init_disasm(const char *triple);
@@ -22,8 +23,9 @@ VSimpleCpu *dut;
 VerilatedVcdC *m_trace;
 
 uint8_t inst_ram[CONFIG_MSIZE];
+uint32_t *GPR[GPR_NUM];
 
-uint64_t sim_time = 0;
+int sim_time = 0;
 
 NPCState npc_state = {.state = NPC_STOP};
 
@@ -218,8 +220,10 @@ static int parse_args(int argc, char *argv[]) {
   return 0;
 }
 
-int init_monitor(int argc, char *argv[]) {
+#define GPR_NAME(x) (dut->rootp->SimpleCpu__DOT__RF__DOT__gprSeq_##x)
+#define macro(i) GPR[i] = &(GPR_NAME(i))
 
+int init_monitor(int argc, char *argv[]) {
   parse_args(argc, argv);
 
   // Open the log file
@@ -241,6 +245,7 @@ int init_monitor(int argc, char *argv[]) {
 
   // init dut and wave
   dut = new VSimpleCpu;
+  init_gpr();
 
   // init device
 #ifdef CONFIG_DEVICE
@@ -280,6 +285,7 @@ int init_monitor(int argc, char *argv[]) {
         ret = 0;
       } else {
         printf(ANSI_FG_RED "Hit Bad Trap QAQ\n" ANSI_NONE);
+        /* single_cycle(); */
       }
     } else if (npc_state.state == NPC_QUIT) {
       printf("Quit\n");
@@ -297,4 +303,39 @@ int init_monitor(int argc, char *argv[]) {
   delete dut;
 
   return ret;
+}
+
+void init_gpr() {
+  macro(0);
+  macro(1);
+  macro(2);
+  macro(3);
+  macro(4);
+  macro(5);
+  macro(6);
+  macro(7);
+  macro(8);
+  macro(9);
+  macro(10);
+  macro(11);
+  macro(12);
+  macro(13);
+  macro(14);
+  macro(15);
+  macro(16);
+  macro(17);
+  macro(18);
+  macro(19);
+  macro(20);
+  macro(21);
+  macro(22);
+  macro(23);
+  macro(24);
+  macro(25);
+  macro(26);
+  macro(27);
+  macro(28);
+  macro(29);
+  macro(30);
+  macro(31);
 }

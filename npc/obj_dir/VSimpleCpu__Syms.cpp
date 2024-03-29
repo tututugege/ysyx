@@ -26,7 +26,7 @@ VSimpleCpu__Syms::VSimpleCpu__Syms(VerilatedContext* contextp, const char* namep
     , TOP____024unit{this, Verilated::catName(namep, "$unit")}
 {
         // Check resources
-        Verilated::stackCheck(261);
+        Verilated::stackCheck(269);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);

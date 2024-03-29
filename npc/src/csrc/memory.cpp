@@ -54,10 +54,6 @@ uint32_t io_read(int addr) {
   IOMap *map = fetch_mmio_map(addr);
   if (map == NULL) {
 
-#ifdef CONFIG_WAVE
-    m_trace->close();
-#endif
-
     /* panic("Error addr %08X", addr); */
     return 0;
   }
@@ -129,8 +125,15 @@ extern "C" int pmem_read(int addr, int MemRead) {
 
   return ret;
 }
-
 void _pmem_write(int waddr, int wdata, int len) {
+
+  if (waddr == CONFIG_SERIAL_MMIO) {
+    difftest_skip_ref();
+    printf("%c", wdata);
+    setbuf(stdout, NULL);
+    return;
+  }
+
   extern uint32_t last_pc;
   if (in_pmem(waddr)) {
 
@@ -148,11 +151,6 @@ void _pmem_write(int waddr, int wdata, int len) {
 }
 
 extern "C" void pmem_write(int waddr, int wdata, char wmask) {
-
-  if (waddr == CONFIG_SERIAL_MMIO) {
-    putchar(wdata);
-    return;
-  }
 
   wdata = (wdata >> (waddr & 0x3u) * 8);
   int len = 0;
