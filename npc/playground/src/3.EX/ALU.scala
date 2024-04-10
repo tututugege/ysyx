@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 import chisel3.util.experimental.decode._
-import Decoder._
+import DecodeTable._
 
 class ALU(width: Int) extends Module {
   val io = IO(new Bundle {
@@ -16,16 +16,16 @@ class ALU(width: Int) extends Module {
 
   val AluOpTable = TruthTable(
     Map(
-      BitPat("b" + AluOpAdd) -> BitPat("b0000000001"),
-      BitPat("b" + AluOpSub) -> BitPat("b0000000010"),
-      BitPat("b" + AluOpSlt) -> BitPat("b0000000100"),
-      BitPat("b" + AluOpSltu) -> BitPat("b0000001000"),
-      BitPat("b" + AluOpXor) -> BitPat("b0000010000"),
-      BitPat("b" + AluOpOr) -> BitPat("b0000100000"),
-      BitPat("b" + AluOpAnd) -> BitPat("b0001000000"),
-      BitPat("b" + AluOpSll) -> BitPat("b0010000000"),
-      BitPat("b" + AluOpSrl) -> BitPat("b0100000000"),
-      BitPat("b" + AluOpSra) -> BitPat("b1000000000")
+      BitPat(AluOpAdd) -> BitPat("b0000000001"),
+      BitPat(AluOpSub) -> BitPat("b0000000010"),
+      BitPat(AluOpSlt) -> BitPat("b0000000100"),
+      BitPat(AluOpSltu) -> BitPat("b0000001000"),
+      BitPat(AluOpXor) -> BitPat("b0000010000"),
+      BitPat(AluOpOr) -> BitPat("b0000100000"),
+      BitPat(AluOpAnd) -> BitPat("b0001000000"),
+      BitPat(AluOpSll) -> BitPat("b0010000000"),
+      BitPat(AluOpSrl) -> BitPat("b0100000000"),
+      BitPat(AluOpSra) -> BitPat("b1000000000")
     ),
     BitPat("b??????????")
   )

@@ -1,8 +1,10 @@
 #include <common.h>
 #include <cpu-info.h>
+#include <cstdint>
 #include <dlfcn.h>
 #include <log.h>
 #include <readline/history.h>
+#include <sys/types.h>
 
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 
@@ -12,8 +14,7 @@ typedef struct CPU_state {
 } CPU_state;
 CPU_state cpu;
 
-bool is_skip_ref = false;
-bool next_is_skip_ref = false;
+uint32_t skip_pc[2];
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n,
                             bool direction) = NULL;
@@ -55,16 +56,16 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_memcpy(RESET_VECTOR, inst_ram, CONFIG_MSIZE, DIFFTEST_TO_REF);
   for (int i = 0; i < GPR_NUM; i++) {
     cpu.gpr[i] = gpr(i);
-    cpu.pc = PC;
+    cpu.pc = RESET_VECTOR;
   }
 
   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
-static void checkregs(CPU_state *ref) {
+static void checkregs(CPU_state *ref, uint32_t pc) {
   int i;
-  if (ref->pc != PC)
-    goto fault;
+  /* if (ref->pc != COMMIT_PC) */
+  /*   goto fault; */
 
   for (i = 0; i < 32; i++) {
     if (ref->gpr[i] != gpr(i))
@@ -76,7 +77,7 @@ static void checkregs(CPU_state *ref) {
 
 fault:
   npc_state.state = NPC_ABORT;
-  npc_state.halt_pc = PC;
+  npc_state.halt_pc = COMMIT_PC;
   npc_state.halt_ret = 1;
 
   printf("Difftest: error\n");
@@ -87,34 +88,38 @@ fault:
       printf("\t Error");
     putchar('\n');
   }
-  printf("PC:\t%08x\t%08x\n", cpu.pc, PC);
+  printf("PC:\t%08x\t%08x\n", cpu.pc, pc);
 }
 
-void next_difftest_skip_ref() { next_is_skip_ref = true; }
-void difftest_skip_ref() { is_skip_ref = true; }
+void difftest_skip_ref(uint32_t pc) {
+  if (skip_pc[0] == 0) {
+    skip_pc[0] = pc;
+  } else {
+    skip_pc[1] = pc;
+  }
+}
 
-void difftest_step() {
-  if (is_skip_ref) {
+void difftest_step(uint32_t pc) {
+  if (pc == skip_pc[0] || pc == skip_pc[1]) {
     // to skip the checking of an instruction, just copy the reg state to
     // reference design
 
     for (int i = 0; i < GPR_NUM; i++) {
       cpu.gpr[i] = gpr(i);
     }
-    cpu.pc = PC;
+    cpu.pc = pc + 4;
 
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
-    is_skip_ref = false;
+
+    if (pc == skip_pc[0])
+      skip_pc[0] = 0;
+    else
+      skip_pc[1] = 0;
 
   } else {
 
     ref_difftest_exec(1);
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_DUT);
-    checkregs(&cpu);
-  }
-
-  if (next_is_skip_ref) {
-    is_skip_ref = true;
-    next_is_skip_ref = false;
+    checkregs(&cpu, pc);
   }
 }

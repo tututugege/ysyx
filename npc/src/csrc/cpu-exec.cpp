@@ -11,7 +11,7 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code,
 
 char inst_buf[128];
 
-inline void single_cycle() {
+void single_cycle() {
 
 #ifdef CONFIG_WAVE
   m_trace->dump(sim_time);
@@ -47,11 +47,19 @@ uint32_t last_inst = 0;
 void cycle(int n) {
   char *p;
   uint8_t *inst_str;
-  uint32_t inst;
+  uint32_t inst, pc;
 
   while (n-- > 0) {
 
-    single_cycle();
+    while (!COMMIT && n > 0) {
+      single_cycle();
+      n--;
+    }
+    inst = dut->io_commit_inst;
+    pc = dut->io_commit_pc;
+
+    if (!dut->io_commit_halt)
+      single_cycle();
 
 #ifdef CONFIG_ITRACE
     p = inst_buf;
@@ -78,24 +86,18 @@ void cycle(int n) {
 #endif
 
 #ifdef CONFIG_DIFFTEST
-    difftest_step();
+    difftest_step(pc);
 #endif
 
 #ifdef CONFIG_DEVICE
     /* device_update(); */
 #endif
 
-    if (dut->Halt || TIME_OUT || npc_state.state == NPC_ABORT ||
+    if (HALT || TIME_OUT || npc_state.state == NPC_ABORT ||
         npc_state.state == NPC_QUIT) {
-#ifdef CONFIG_DIFFTEST
-      if (dut->Halt)
-        ref_difftest_exec(1);
-#endif
       break;
     }
   }
-  /* extern uint64_t write_time, read_time; */
-  /* printf("\n%lu\n%lu", eval_time, read_time); */
 
 #ifdef CONFIG_ITRACE
   printf("%s\n", inst_buf);

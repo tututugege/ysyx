@@ -61,7 +61,7 @@ void isa_reg_display() {
     if (i % 8 == 7)
       putchar('\n');
   }
-  printf("PC: %08x\n", PC);
+  printf("PC: %08x\n", COMMIT_PC);
 }
 
 void sdb_mainloop() {
@@ -138,11 +138,11 @@ static int cmd_si(char *args) {
     return 0;
   }
 
-  if (dut->Halt == 1) {
+  if (dut->io_commit_halt == 1) {
     npc_state.state = NPC_ABORT;
-    npc_state.halt_pc = PC;
+    npc_state.halt_pc = COMMIT_PC;
     npc_state.halt_ret = gpr(GPR_A0);
-    printf("Halt at PC: %x\n", PC);
+    printf("Halt at PC: %x\n", COMMIT_PC);
   }
 
   return 0;
@@ -156,11 +156,11 @@ static int cmd_c(char *args) {
 
   cycle(MAX_SIM_TIME);
 
-  if (dut->Halt == 1) {
+  if (HALT == 1) {
     npc_state.state = NPC_ABORT;
-    npc_state.halt_pc = PC;
+    npc_state.halt_pc = COMMIT_PC;
     npc_state.halt_ret = gpr(GPR_A0);
-    printf("Halt at PC: %x\n", PC);
+    printf("Halt at PC: %x\n", COMMIT_PC);
   }
 
   return 0;

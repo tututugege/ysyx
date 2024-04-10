@@ -26,6 +26,6 @@ class RegFile(num: Int) extends Module {
     GPR(i) := gprSeq(i)
   }
 
-  io.rdata1 := Mux(io.rs1 === 0.U, 0.U(32.W), GPR(io.rs1))
-  io.rdata2 := Mux(io.rs2 === 0.U, 0.U(32.W), GPR(io.rs2))
+  io.rdata1 := MuxCase(GPR(io.rs1), Seq((io.rs1 === 0.U) -> 0.U(32.W), (io.waddr === io.rs1 && io.wen) -> io.wdata))
+  io.rdata2 := MuxCase(GPR(io.rs2), Seq((io.rs2 === 0.U) -> 0.U(32.W), (io.waddr === io.rs2 && io.wen) -> io.wdata))
 }

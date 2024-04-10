@@ -44,20 +44,18 @@ static inline bool in_pmem(paddr_t addr) {
 /*   } */
 /* } */
 
-static inline void host_write(void *addr, int len, word_t data) {
-  switch (len) {
-  case 1:
-    *(uint8_t *)addr = data;
-    return;
-  case 2:
-    *(uint16_t *)addr = data;
-    return;
-  case 4:
-    *(uint32_t *)addr = data;
-    return;
-  default:
-    panic("addr: %8p, len: %d", addr, len);
-  }
+static inline void host_write(void *addr, word_t wdata, int wmask) {
+  word_t mask = 0;
+  if (wmask & 0x1)
+    mask |= 0xFF;
+  if (wmask & 0x2)
+    mask |= 0xFF00;
+  if (wmask & 0x4)
+    mask |= 0xFF0000;
+  if (wmask & 0x8)
+    mask |= 0xFF000000;
+
+  *(word_t *)addr = (mask & wdata) | (~mask & *(word_t *)addr);
 }
 
 #endif

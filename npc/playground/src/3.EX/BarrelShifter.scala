@@ -52,9 +52,12 @@ class BarrelShifter(width: Int) extends Module {
             .dout(j - math.pow(2, i).toInt)
       }
     }
+
     SelectorNet(i).io.shamt := io.shamt(i)
     SelectorNet(i).io.left  := io.left
-    SelectorNet(i).io.din   := switch(i)
+
+    for (j <- 0 until width)
+      SelectorNet(i).io.din(j) := switch(i)(j).asUInt
   }
 
   io.dout := SelectorNet(length - 1).io.dout
@@ -64,29 +67,8 @@ class SelectorBundle(width: Int) extends Module {
   val io = IO(new Bundle {
     val shamt = Input(Bool())
     val left  = Input(Bool())
-    val din   = Input(Vec(width, Vec(4, UInt(1.W))))
+    val din   = Input(Vec(width, UInt(4.W)))
     val dout  = Output(UInt(width.W))
-  })
-
-  val switch = Wire(Vec(width, UInt(1.W)))
-  val selectorList = for (i <- 0 until width) yield {
-    val sel = Module(new Selector4)
-
-    sel.io.shamt := io.shamt
-    sel.io.left  := io.left
-    sel.io.din   := io.din(i)
-    switch(i)    := sel.io.dout
-  }
-
-  io.dout := switch.asUInt
-}
-
-class Selector4 extends Module {
-  val io = IO(new Bundle {
-    val shamt = Input(Bool())
-    val left  = Input(Bool())
-    val din   = Input(Vec(4, UInt(1.W)))
-    val dout  = Output(UInt(1.W))
   })
 
   val ShiftL = Wire(Bool())
@@ -97,11 +79,15 @@ class Selector4 extends Module {
   ShiftR := ~io.left && io.shamt
   ShiftN := ~io.shamt
 
-  io.dout := Mux1H(
-    Seq(
-      ShiftN -> io.din(0),
-      ShiftR -> io.din(1),
-      ShiftL -> io.din(3)
+  val switch = Wire(Vec(width, UInt(1.W)))
+  for (i <- 0 until width) {
+    switch(i) := Mux1H(
+      Seq(
+        ShiftN -> io.din(i)(0),
+        ShiftR -> io.din(i)(1),
+        ShiftL -> io.din(i)(3)
+      )
     )
-  )
+  }
+  io.dout := switch.asUInt
 }
