@@ -1,3 +1,4 @@
+#include <VTOP___024root.h>
 #include <common.h>
 #include <cpu-info.h>
 #include <difftest.h>
@@ -31,12 +32,12 @@ void add_mmio_map(const char *name, paddr_t addr, void *space, uint32_t len,
 static void check_bound(IOMap *map, paddr_t addr) {
   if (map == NULL) {
     Assert(map != NULL, "address ( 0x%08x) is out of bound at pc = 0x%08x",
-           addr, PC);
+           addr, IF_PC);
   } else {
     Assert(addr <= map->high && addr >= map->low,
            "address ( 0x%08x) is out of bound {%s} [ 0x%08x, 0x%08x ] at pc =  "
            "0x%08x",
-           addr, map->name, map->low, map->high, PC);
+           addr, map->name, map->low, map->high, IF_PC);
   }
 }
 
@@ -46,10 +47,6 @@ static IOMap *fetch_mmio_map(paddr_t addr) {
 }
 
 uint32_t io_read(int addr) {
-
-#ifdef CONFIG_DIFFTEST
-  next_difftest_skip_ref();
-#endif
 
   IOMap *map = fetch_mmio_map(addr);
   if (map == NULL) {
@@ -74,7 +71,7 @@ uint32_t io_read(int addr) {
 void io_write(int waddr, int wdata, int len) {
 
 #ifdef CONFIG_DIFFTEST
-  difftest_skip_ref();
+  difftest_skip_ref(MEM_PC);
 #endif
   IOMap *map = fetch_mmio_map(waddr);
   Assert(map, "error addr: %08X\n", waddr);
@@ -102,7 +99,7 @@ int _pmem_read(int addr) {
   if (in_pmem(addr)) {
 
 #ifdef CONFIG_MTRACE
-    log_write("%08x: read memory address %08x\n", PC, addr);
+    log_write("%08x: read memory address %08x\n", IF_PC, addr);
 #endif
 
     ret = *(uint32_t *)(inst_ram + (addr - CONFIG_MBASE));
@@ -125,10 +122,21 @@ extern "C" int pmem_read(int addr, int MemRead) {
 
   return ret;
 }
-void _pmem_write(int waddr, int wdata, int len) {
+void _pmem_write(int waddr, int wdata, int wmask) {
+
+  int len = 0;
+
+  if (wmask & 0x1)
+    len++;
+  if (wmask & 0x2)
+    len++;
+  if (wmask & 0x4)
+    len++;
+  if (wmask & 0x8)
+    len++;
 
   if (waddr == CONFIG_SERIAL_MMIO) {
-    difftest_skip_ref();
+    difftest_skip_ref(MEM_PC);
     printf("%c", wdata);
     setbuf(stdout, NULL);
     return;
@@ -144,7 +152,7 @@ void _pmem_write(int waddr, int wdata, int len) {
     int index = waddr - CONFIG_MBASE;
     void *ptr = inst_ram + index;
 
-    host_write(ptr, len, wdata);
+    host_write(ptr, wdata, wmask);
   } else {
     io_write(waddr, wdata, len);
   }
@@ -152,17 +160,5 @@ void _pmem_write(int waddr, int wdata, int len) {
 
 extern "C" void pmem_write(int waddr, int wdata, char wmask) {
 
-  wdata = (wdata >> (waddr & 0x3u) * 8);
-  int len = 0;
-
-  if (wmask & 0x1)
-    len++;
-  if (wmask & 0x2)
-    len++;
-  if (wmask & 0x4)
-    len++;
-  if (wmask & 0x8)
-    len++;
-
-  _pmem_write(waddr, wdata, len);
+  _pmem_write(waddr, wdata, wmask);
 }

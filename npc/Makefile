@@ -6,7 +6,7 @@
 
 BUILD_DIR = ./build
 OBJ_DIR   = ./obj_dir
-MODULE    = SimpleCpu
+MODULE    = TOP
 CSRC 			= ./src/csrc/*.cpp
 CSRC 			+= ./src/csrc/device/*.cpp
 VSRC      = ./build/$(MODULE).v ./src/vsrc/*.v

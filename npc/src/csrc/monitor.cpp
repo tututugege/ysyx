@@ -1,3 +1,4 @@
+#include <cmath>
 #include <common.h>
 #include <cpu-info.h>
 #include <difftest.h>
@@ -19,7 +20,7 @@ void reset(int n);
 void single_cycle();
 extern "C" void init_disasm(const char *triple);
 
-VSimpleCpu *dut;
+VTOP *dut;
 VerilatedVcdC *m_trace;
 
 uint8_t inst_ram[CONFIG_MSIZE];
@@ -220,7 +221,7 @@ static int parse_args(int argc, char *argv[]) {
   return 0;
 }
 
-#define GPR_NAME(x) (dut->rootp->SimpleCpu__DOT__RF__DOT__gprSeq_##x)
+#define GPR_NAME(x) (dut->rootp->TOP__DOT__ID__DOT__Rf__DOT__gprSeq_##x)
 #define macro(i) GPR[i] = &(GPR_NAME(i))
 
 int init_monitor(int argc, char *argv[]) {
@@ -244,7 +245,7 @@ int init_monitor(int argc, char *argv[]) {
 #endif
 
   // init dut and wave
-  dut = new VSimpleCpu;
+  dut = new VTOP;
   init_gpr();
 
   // init device
@@ -281,11 +282,12 @@ int init_monitor(int argc, char *argv[]) {
       if (npc_state.halt_ret == 0) {
 
         printf(ANSI_FG_GREEN "Hit Good Trap ^-^ at pc = 0x%08x\n" ANSI_NONE,
-               PC);
+               COMMIT_PC);
         ret = 0;
       } else {
         printf(ANSI_FG_RED "Hit Bad Trap QAQ\n" ANSI_NONE);
-        /* single_cycle(); */
+        m_trace->dump(sim_time++);
+        m_trace->dump(sim_time);
       }
     } else if (npc_state.state == NPC_QUIT) {
       printf("Quit\n");
