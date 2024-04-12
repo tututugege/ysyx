@@ -28,7 +28,7 @@ extern uint8_t inst_ram[CONFIG_MSIZE];
 extern uint32_t *GPR[GPR_NUM];
 extern const char *regs[];
 
-#define MAX_SIM_TIME 1000000
+#define MAX_SIM_TIME 100000000
 #define TIME_OUT (sim_time >= MAX_SIM_TIME)
 
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };

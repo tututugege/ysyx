@@ -5,7 +5,8 @@ import DecodeTable._
 
 class EXU(XLEN: Int) extends Module {
   val io = IO(new Bundle {
-    val inValid = Input(Bool())
+    val inValid    = Input(Bool())
+    val WBoutValid = Input(Bool())
 
     val ID2EX  = Flipped(Decoupled(new DecodeToExecute(XLEN)))
     val EX2MEM = Decoupled(new ExecuteToMemory(XLEN))
@@ -35,8 +36,8 @@ class EXU(XLEN: Int) extends Module {
 
   bypassReg := Mux(~io.EX2MEM.fire, io.bypassWB, bypassReg)
 
-  hazard1Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0), true.B, hazard1Reg))
-  hazard2Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0), true.B, hazard2Reg))
+  hazard1Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg))
+  hazard2Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg))
 
   data1 := MuxCase(
     in.rdata1,
