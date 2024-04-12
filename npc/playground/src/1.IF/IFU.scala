@@ -22,42 +22,48 @@ class IFU(XLEN: Int) extends Module {
     val pcTrap    = Input(UInt(XLEN.W))
     val pcMRet    = Input(UInt(XLEN.W))
 
-    val pcNext     = Output(UInt(XLEN.W))
-    val pcBrEnable = Output(Bool())
-    val pcBrRecord = Output(Bool())
+    val pcNext   = Output(UInt(XLEN.W))
+    val brEnable = Output(Bool())
+    val brRecord = Output(Bool())
   })
 
   val in  = io.Pre2IF.bits
   val out = io.IF2ID.bits
 
   // PC Module
-  val pcReg         = RegInit(TOP.START_PC.U(32.W))
-  val pcInc         = Wire(UInt(XLEN.W)) // not taken
-  val pcNormal      = Wire(UInt(XLEN.W))
-  val pcBrEnableReg = RegInit(false.B) // if error inst request has not been accepted
-  val pcBrRecordReg = RegInit(false.B)
+  val pcReg    = RegInit(TOP.START_PC.U(32.W))
+  val pcInc    = Wire(UInt(XLEN.W)) // not taken
+  val pcNormal = Wire(UInt(XLEN.W))
 
   // store last branch pc
   val brBuffer      = Reg(UInt(32.W))
   val brBufferValid = RegInit(false.B)
 
-  pcBrRecordReg := Mux(io.IF2ID.fire, false.B, Mux(io.brTaken, true.B, pcBrRecordReg))
-  io.pcBrRecord := pcBrRecordReg || io.brTaken
+  val record = Module(new RemBuffer())
+  record.io.reset := io.Pre2IF.fire
+  record.io.cond  := io.brTaken
+  io.brRecord     := record.io.out
 
-  pcBrEnableReg := Mux(io.IF2ID.fire, false.B, Mux(io.brTaken, ~io.arFireReg, pcBrEnableReg))
-  io.pcBrEnable := pcBrEnableReg || (io.brTaken && ~io.arFireReg)
+  val enable = Module(new RemBuffer())
+  enable.io.reset := io.Pre2IF.fire
+  enable.io.cond  := io.brTaken && ~io.arFireReg
+  io.brEnable     := enable.io.out
 
-  pcInc         := pcReg + 4.U
-  pcNormal      := Mux(io.pcBrEnable, io.pcBr, pcInc)
-  io.pcNext     := Mux(brBufferValid, brBuffer, pcNormal)
-  pcReg         := Mux(io.Pre2IF.fire, io.pcNext, pcReg)
-  brBufferValid := Mux(io.IF2ID.fire, io.pcBrRecord && ~io.pcBrEnable, brBufferValid)
-  brBuffer      := Mux(io.brTaken, io.pcBr, brBuffer)
+  pcInc     := pcReg + 4.U
+  pcNormal  := Mux(io.brEnable, io.pcBr, pcInc)
+  io.pcNext := Mux(brBufferValid, brBuffer, pcNormal)
+  pcReg     := Mux(io.Pre2IF.fire, io.pcNext, pcReg)
+  brBufferValid := Mux(
+    io.Pre2IF.fire,
+    io.brRecord && ~io.brEnable,
+    Mux(io.brTaken && io.brEnable, true.B, brBufferValid)
+  )
+  brBuffer := Mux(io.brTaken, io.pcBr, brBuffer)
 
   // axi r channel
   val rFireReg = RegInit(false.B)
   val rdataReg = Reg(UInt(XLEN.W))
-  rFireReg   := Mux(io.Pre2IF.fire, false.B, io.r.fire)
+  rFireReg   := Mux(io.Pre2IF.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
   rdataReg   := Mux(io.r.fire && ~io.IF2ID.ready, io.r.bits.rdata, rdataReg)
   io.r.ready := ~rFireReg
 

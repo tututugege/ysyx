@@ -5,9 +5,6 @@
 #include "VTOP__pch.h"
 #include "VTOP___024root.h"
 
-extern const VlUnpacked<CData/*0:0*/, 128> VTOP__ConstPool__TABLE_h701b3078_0;
-extern const VlUnpacked<CData/*2:0*/, 128> VTOP__ConstPool__TABLE_ha3511935_0;
-
 VL_INLINE_OPT void VTOP___024root___ico_sequent__TOP__0(VTOP___024root* vlSelf) {
     (void)vlSelf;  // Prevent unused variable warning
     VTOP__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -15,23 +12,87 @@ VL_INLINE_OPT void VTOP___024root___ico_sequent__TOP__0(VTOP___024root* vlSelf) 
     // Body
     vlSelf->TOP__DOT__InstRam_arvalid = (1U & ((~ (IData)(vlSelf->TOP__DOT__arFireReg)) 
                                                & (~ (IData)(vlSelf->reset))));
-    vlSelf->__Vtableidx2 = (0x10U | ((0x40U & ((~ (IData)(vlSelf->TOP__DOT__IF__DOT__rFireReg)) 
-                                               << 6U)) 
-                                     | ((0x20U & ((IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate) 
-                                                  << 3U)) 
-                                        | (((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
-                                            << 3U) 
-                                           | (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate)))));
-    if (VTOP__ConstPool__TABLE_h701b3078_0[vlSelf->__Vtableidx2]) {
-        vlSelf->TOP__DOT__InstRam__DOT__nxt_rstate 
-            = VTOP__ConstPool__TABLE_ha3511935_0[vlSelf->__Vtableidx2];
-    }
-    vlSelf->TOP__DOT__IF_io_Pre2IF_valid = ((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
+    vlSelf->TOP__DOT__InstRam__DOT__nxt_rstate = ((8U 
+                                                   & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                   ? 
+                                                  ((4U 
+                                                    & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                    ? 1U
+                                                    : 
+                                                   ((2U 
+                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                     ? 1U
+                                                     : 
+                                                    ((1U 
+                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                      ? 1U
+                                                      : 
+                                                     (((((IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate) 
+                                                         >> 3U) 
+                                                        & (~ (IData)(vlSelf->TOP__DOT__IF__DOT__rFireReg))) 
+                                                       & (0U 
+                                                          != (IData)(vlSelf->TOP__DOT__InstRam__DOT__LFSR)))
+                                                       ? 1U
+                                                       : 
+                                                      ((IData)(
+                                                               (((IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate) 
+                                                                 >> 3U) 
+                                                                & (~ (IData)(vlSelf->TOP__DOT__IF__DOT__rFireReg))))
+                                                        ? 2U
+                                                        : 8U)))))
+                                                   : 
+                                                  ((4U 
+                                                    & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                    ? 
+                                                   ((2U 
+                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                     ? 1U
+                                                     : 
+                                                    ((1U 
+                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                      ? 1U
+                                                      : 
+                                                     ((0U 
+                                                       == (IData)(vlSelf->TOP__DOT__InstRam__DOT__rcounter))
+                                                       ? 8U
+                                                       : 4U)))
+                                                    : 
+                                                   ((2U 
+                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                     ? 
+                                                    ((1U 
+                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                      ? 1U
+                                                      : 
+                                                     ((((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
+                                                        & (IData)(vlSelf->TOP__DOT__InstRam_arready)) 
+                                                       & (0U 
+                                                          != (IData)(vlSelf->TOP__DOT__InstRam__DOT__LFSR)))
+                                                       ? 4U
+                                                       : 
+                                                      (((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
+                                                        & (IData)(vlSelf->TOP__DOT__InstRam_arready))
+                                                        ? 8U
+                                                        : 2U)))
+                                                     : 
+                                                    ((1U 
+                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
+                                                      ? 
+                                                     ((0U 
+                                                       == (IData)(vlSelf->TOP__DOT__InstRam__DOT__arcounter))
+                                                       ? 2U
+                                                       : 1U)
+                                                      : 1U))));
+    vlSelf->TOP__DOT___arFireReg_T_1 = ((IData)(vlSelf->TOP__DOT__InstRam_arready) 
+                                        & (IData)(vlSelf->TOP__DOT__InstRam_arvalid));
+    vlSelf->TOP__DOT__IF_io_Pre2IF_valid = ((IData)(vlSelf->TOP__DOT___arFireReg_T_1) 
                                             | (IData)(vlSelf->TOP__DOT__arFireReg));
-    vlSelf->TOP__DOT__IF__DOT___pcReg_T = (((~ ((IData)(vlSelf->TOP__DOT__Pre2IFValid) 
-                                                & (IData)(vlSelf->TOP__DOT___Pre2IFValid_T_2))) 
-                                            | (IData)(vlSelf->TOP__DOT__IF__DOT___pcBrRecordReg_T)) 
-                                           & (IData)(vlSelf->TOP__DOT__IF_io_Pre2IF_valid));
+    vlSelf->TOP__DOT__IF__DOT__record_io_reset = ((
+                                                   (~ 
+                                                    ((IData)(vlSelf->TOP__DOT__Pre2IFValid) 
+                                                     & (IData)(vlSelf->TOP__DOT___Pre2IFValid_T_2))) 
+                                                   | (IData)(vlSelf->TOP__DOT__IF__DOT___io_Pre2IF_ready_T)) 
+                                                  & (IData)(vlSelf->TOP__DOT__IF_io_Pre2IF_valid));
 }
 
 void VTOP___024root___eval_ico(VTOP___024root* vlSelf) {

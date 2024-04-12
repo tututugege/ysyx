@@ -110,16 +110,9 @@ int _pmem_read(int addr) {
   return ret;
 }
 
-extern "C" int pmem_read(int addr, int MemRead) {
-  if (!MemRead)
-    return 0;
+extern "C" int pmem_read(int addr) {
 
-  /* clock_t start = clock(); */
   int ret = _pmem_read(addr);
-  /* clock_t end = clock(); */
-
-  /* read_time += end - start; */
-
   return ret;
 }
 void _pmem_write(int waddr, int wdata, int wmask) {

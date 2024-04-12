@@ -1,8 +1,6 @@
 import chisel3._
 import chisel3.util._
 import chisel3.experimental.BundleLiterals._
-import firrtl.Utils
-import scala.reflect.internal.Reporter
 
 object TOP {
   val axiParams = AxiParamsBundle(32, 32, 3)
@@ -82,7 +80,7 @@ class TOP(XLEN: Int) extends Module {
   val arFireReg = RegInit(false.B)
   val pcNext    = Wire(UInt(XLEN.W))
   // axi ar channel
-  arFireReg  := Mux(IFin.fire, false.B, ar.fire)
+  arFireReg  := Mux(IFin.fire, false.B, Mux(ar.fire, true.B, arFireReg))
   IFin.valid := ar.fire || arFireReg
 
   ar.valid       := ~arFireReg && ~reset.asBool
@@ -98,11 +96,12 @@ class TOP(XLEN: Int) extends Module {
   Pre2IFValid := MuxCase(
     Pre2IFValid,
     Seq(
-      (IFin.fire) -> (~IF.io.pcBrRecord || IF.io.pcBrEnable),
-      (~IFin.valid && IFout.fire) -> false.B
+      (IFin.fire) -> (~IF.io.brRecord || IF.io.brEnable),
+      (~IFin.valid && IFout.fire) -> false.B,
+      (~IFout.fire && brTaken) -> false.B // stall and branch taken
     )
   )
-  IF.io.inValid := Pre2IFValid && (~IF.io.pcBrRecord || IF.io.pcBrEnable)
+  IF.io.inValid := Pre2IFValid && (~IF.io.brRecord || IF.io.brEnable)
 
   IF.io.r <> instAxiLite.r
   IF.io.pcBr      := pcBr
@@ -128,7 +127,7 @@ class TOP(XLEN: Int) extends Module {
     Seq(
       (IDin.fire) -> IFoutValid,
       (~IDin.valid && IDout.fire) -> false.B,
-      (~IDout.ready && brTaken) -> false.B
+      (~IDout.fire && brTaken) -> false.B // stall and branch taken
     )
   )
   ID.io.inValid := IF2IDValid
@@ -155,7 +154,8 @@ class TOP(XLEN: Int) extends Module {
       (~EXin.valid && EXout.fire) -> false.B
     )
   )
-  EX.io.inValid := ID2EXValid
+  EX.io.inValid    := ID2EXValid
+  EX.io.WBoutValid := WBout.valid
 
   pcBr    := EX.io.pcBr
   brTaken := EX.io.brTaken
@@ -171,7 +171,8 @@ class TOP(XLEN: Int) extends Module {
   hazard2(0) := (MEMin.bits.rd === EXin.bits.rs2) && MEMRegWrite
   hazard1(1) := (WBin.bits.rd === EXin.bits.rs1) && WBRegWrite
   hazard2(1) := (WBin.bits.rd === EXin.bits.rs2) && WBRegWrite
-  stall      := (hazard1(0) || hazard2(0)) && MEMin.bits.memRead
+  stall := (hazard1(0) || hazard2(0)) && MEMin.bits.memRead && EX2MEMValid ||
+    (hazard1(1) || hazard2(1)) && WBin.bits.memRead && MEM2WBValid && ~WBout.valid
 
   EX.io.stall     := stall
   EX.io.hazard1   := hazard1.asUInt

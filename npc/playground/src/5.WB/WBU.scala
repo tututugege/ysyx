@@ -17,10 +17,10 @@ class WBU(XLEN: Int) extends Module {
   val out = io.WBout.bits
 
   // read data channel
-  io.r.ready := true.B
+  io.r.ready := in.memRead && io.inValid
 
-// write response channel
-  io.b.ready := true.B
+  // write response channel
+  io.b.ready := in.memWrite && io.inValid
 
   // generate ReadData
   val rdataShift0 = Mux(in.aluOut(0), io.r.bits.rdata(31, 8), io.r.bits.rdata)
@@ -48,14 +48,8 @@ class WBU(XLEN: Int) extends Module {
     )
 
   // axi r b channel
-  val rDataFireReg = RegInit(false.B)
-  val bFireReg     = RegInit(false.B)
-
-  val rDataFire = rDataFireReg || io.r.fire
-  val bFire     = bFireReg || io.b.fire
-
-  rDataFireReg := Mux(io.WBout.fire, false.B, io.r.fire)
-  bFireReg     := Mux(io.WBout.fire, false.B, io.b.fire)
+  val rDataFire = io.r.fire
+  val bFire     = io.b.fire
 
   io.MEM2WB.ready := io.WBout.fire || ~io.inValid
   io.WBout.valid := MuxCase(
