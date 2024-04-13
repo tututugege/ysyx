@@ -9,9 +9,7 @@ object StageConnect {
   }
 }
 
-// class PreToFetch(XLEN: Int) extends Bundle {
-//   val bubbleN = Bool()
-// }
+class PreToFetch(XLEN: Int) extends Bundle {}
 
 class FetchToDecode(XLEN: Int) extends Bundle {
   val pc   = UInt(XLEN.W)

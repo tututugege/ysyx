@@ -30,9 +30,7 @@ class TOP(XLEN: Int) extends Module {
   val MEM = Module(new MEMU(XLEN))
   val WB  = Module(new WBU(XLEN))
 
-  /* axi ram */
-  val InstRam     = Module(new Ram())
-  val DataRam     = Module(new Ram())
+  /* axi */
   val dataAxiLite = Wire(new AxiLiteBundle(TOP.axiParams))
   val instAxiLite = Wire(new AxiLiteBundle(TOP.axiParams))
 
@@ -53,6 +51,9 @@ class TOP(XLEN: Int) extends Module {
   val ID2EXValid  = RegInit(false.B)
   val EX2MEMValid = RegInit(false.B)
   val MEM2WBValid = RegInit(false.B)
+
+  val arInstValid  = RegInit(false.B)
+  val arwDataValid = RegInit(false.B)
 
   val IFoutValid  = Wire(Bool())
   val IDoutValid  = Wire(Bool())
@@ -76,12 +77,13 @@ class TOP(XLEN: Int) extends Module {
   /** ******************* pre IF *********************
     */
 
+  val Pre2IF    = Wire(Decoupled(new PreToFetch(XLEN)))
   val ar        = instAxiLite.ar
   val arFireReg = RegInit(false.B)
   val pcNext    = Wire(UInt(XLEN.W))
   // axi ar channel
-  arFireReg  := Mux(IFin.fire, false.B, Mux(ar.fire, true.B, arFireReg))
-  IFin.valid := ar.fire || arFireReg
+  arFireReg    := Mux(IFin.fire, false.B, Mux(ar.fire, true.B, arFireReg))
+  Pre2IF.valid := ar.fire || arFireReg
 
   ar.valid       := ~arFireReg && ~reset.asBool
   ar.bits.arid   := 0.U
@@ -93,6 +95,7 @@ class TOP(XLEN: Int) extends Module {
     */
 
   // Pre <-> IF
+  StageConnect[PreToFetch](Pre2IF, IFin, Pre2IF.valid)
   Pre2IFValid := MuxCase(
     Pre2IFValid,
     Seq(
@@ -101,7 +104,17 @@ class TOP(XLEN: Int) extends Module {
       (~IFout.fire && brTaken) -> false.B // stall and branch taken
     )
   )
+
+  arInstValid := MuxCase(
+    arInstValid,
+    Seq(
+      (IFin.fire) -> Pre2IF.valid,
+      (~IFin.valid && IFout.fire) -> false.B
+    )
+  )
+
   IF.io.inValid := Pre2IFValid && (~IF.io.brRecord || IF.io.brEnable)
+  IF.io.arValid := arInstValid
 
   IF.io.r <> instAxiLite.r
   IF.io.pcBr      := pcBr
@@ -214,7 +227,17 @@ class TOP(XLEN: Int) extends Module {
       (~WBin.valid && WBout.fire) -> false.B
     )
   )
-  WB.io.inValid := MEM2WBValid
+
+  arwDataValid := MuxCase(
+    arwDataValid,
+    Seq(
+      (WBin.fire) -> ((MEMout.bits.memRead || MEMout.bits.memWrite) && MEMout.valid),
+      (~WBin.valid && WBout.fire) -> false.B
+    )
+  )
+
+  WB.io.inValid  := MEM2WBValid
+  WB.io.arwValid := arwDataValid
 
   WB.io.b <> dataAxiLite.b
   WB.io.r <> dataAxiLite.r
@@ -234,14 +257,12 @@ class TOP(XLEN: Int) extends Module {
   io.commit.halt   := WBout.bits.halt
   io.commit.commit := WBoutValid
 
-  /** *********** blackbox for axi slaver *******************
+  /** *********** axi arbiter and ram wrapper *******************
     */
 
-  ConnectBlackBoxAndAxi(InstRam, instAxiLite)
-  ConnectBlackBoxAndAxi(DataRam, dataAxiLite)
-  InstRam.io.clock := clock
-  InstRam.io.reset := reset
-  DataRam.io.clock := clock
-  DataRam.io.reset := reset
-
+  val arbiter    = Module(new AxiLiteArbiter())
+  val ramWrapper = Module(new AxiRamWrapper())
+  arbiter.io.InstAxiLite <> instAxiLite
+  arbiter.io.DataAxiLite <> dataAxiLite
+  ramWrapper.io.AxiLite <> arbiter.io.AxiLite
 }

@@ -40,6 +40,35 @@ class MEMU(XLEN: Int) extends Module {
   val shiftWdata0 = Mux(in.aluOut(0), Cat(in.rdata2(23, 0), 0.U(8.W)), in.rdata2)
   val shiftWdata1 = Mux(in.aluOut(1), Cat(shiftWdata0(15, 0), 0.U(16.W)), shiftWdata0)
 
+  // axi ar aw w channel
+  val arDataFireReg = RegInit(false.B)
+  val awFireReg     = RegInit(false.B)
+  val wFireReg      = RegInit(false.B)
+
+  val arDataFire = arDataFireReg || io.ar.fire
+  val awFire     = awFireReg || io.aw.fire
+  val wFire      = wFireReg || io.w.fire
+
+  arDataFireReg := Mux(io.MEM2WB.fire, false.B, Mux(io.ar.fire, true.B, arDataFireReg))
+  wFireReg      := Mux(io.MEM2WB.fire, false.B, Mux(io.w.fire, true.B, wFireReg))
+  awFireReg     := Mux(io.MEM2WB.fire, false.B, Mux(io.aw.fire, true.B, awFireReg))
+
+  io.ar.valid       := in.memRead && io.inValid && ~arDataFireReg
+  io.ar.bits.arid   := 1.U
+  io.ar.bits.araddr := addr
+  io.ar.bits.arsize := "b010".U
+  io.ar.bits.arprot := 0.U
+
+  io.aw.valid       := in.memWrite && io.inValid && ~awFireReg
+  io.aw.bits.awid   := 0.U
+  io.aw.bits.awaddr := addr
+  io.aw.bits.awsize := memSize
+  io.aw.bits.awprot := 0.U
+
+  io.w.valid      := in.memWrite && io.inValid && ~wFireReg
+  io.w.bits.wdata := shiftWdata1
+  io.w.bits.wstrb := decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
+
   out.pc    := in.pc
   out.inst  := in.inst
   out.func3 := in.func3
@@ -57,35 +86,6 @@ class MEMU(XLEN: Int) extends Module {
   out.syscall := in.syscall
   out.mret    := in.mret
   out.halt    := in.halt
-
-  // axi ar aw w channel
-  val arDataFireReg = RegInit(false.B)
-  val awFireReg     = RegInit(false.B)
-  val wFireReg      = RegInit(false.B)
-
-  val arDataFire = arDataFireReg || io.ar.fire
-  val awFire     = awFireReg || io.aw.fire
-  val wFire      = wFireReg || io.w.fire
-
-  arDataFireReg := Mux(io.MEM2WB.fire, false.B, Mux(io.ar.fire, true.B, arDataFireReg))
-  wFireReg      := Mux(io.MEM2WB.fire, false.B, Mux(io.w.fire, true.B, wFireReg))
-  awFireReg     := Mux(io.MEM2WB.fire, false.B, Mux(io.aw.fire, true.B, awFireReg))
-
-  io.ar.valid       := in.memRead && io.inValid && ~arDataFireReg
-  io.ar.bits.arid   := 0.U
-  io.ar.bits.araddr := addr
-  io.ar.bits.arsize := "b010".U
-  io.ar.bits.arprot := 0.U
-
-  io.aw.valid       := in.memWrite && io.inValid && ~awFireReg
-  io.aw.bits.awid   := 0.U
-  io.aw.bits.awaddr := addr
-  io.aw.bits.awsize := memSize
-  io.aw.bits.awprot := 0.U
-
-  io.w.valid      := in.memWrite && io.inValid && ~awFireReg
-  io.w.bits.wdata := shiftWdata1
-  io.w.bits.wstrb := decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
 
   io.EX2MEM.ready := io.MEM2WB.fire || ~io.inValid
   io.MEM2WB.valid := MuxCase(

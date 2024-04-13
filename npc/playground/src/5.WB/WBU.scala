@@ -5,9 +5,11 @@ import DecodeTable._
 
 class WBU(XLEN: Int) extends Module {
   val io = IO(new Bundle {
-    val inValid = Input(Bool())
-    val MEM2WB  = Flipped(Decoupled(new MemoryToWrite(XLEN)))
-    val WBout   = Decoupled(new WriteBack(XLEN))
+    val inValid  = Input(Bool())
+    val arwValid = Input(Bool())
+
+    val MEM2WB = Flipped(Decoupled(new MemoryToWrite(XLEN)))
+    val WBout  = Decoupled(new WriteBack(XLEN))
 
     val r = Flipped(Decoupled(new AxiReadDataChannel(TOP.axiParams)))
     val b = Flipped(Decoupled(new AxiWriteResponseChannel(TOP.axiParams)))
@@ -15,12 +17,6 @@ class WBU(XLEN: Int) extends Module {
 
   val in  = io.MEM2WB.bits
   val out = io.WBout.bits
-
-  // read data channel
-  io.r.ready := in.memRead && io.inValid
-
-  // write response channel
-  io.b.ready := in.memWrite && io.inValid
 
   // generate ReadData
   val rdataShift0 = Mux(in.aluOut(0), io.r.bits.rdata(31, 8), io.r.bits.rdata)
@@ -50,8 +46,18 @@ class WBU(XLEN: Int) extends Module {
   // axi r b channel
   val rDataFire = io.r.fire
   val bFire     = io.b.fire
+  val rFireReg  = Reg(Bool())
+  val bFireReg  = Reg(Bool())
 
-  io.MEM2WB.ready := io.WBout.fire || ~io.inValid
+  rFireReg := Mux(io.WBout.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
+  bFireReg := Mux(io.WBout.fire, false.B, Mux(io.b.fire, true.B, bFireReg))
+  // read data channel
+  io.r.ready := in.memRead && io.arwValid && ~rFireReg
+
+  // write response channel
+  io.b.ready := in.memWrite && io.arwValid && ~bFireReg
+
+  io.MEM2WB.ready := io.WBout.fire || ~io.inValid && ~io.arwValid
   io.WBout.valid := MuxCase(
     true.B,
     Seq(
@@ -74,5 +80,4 @@ class WBU(XLEN: Int) extends Module {
   out.syscall := in.syscall && io.inValid
   out.mret    := in.mret && io.inValid
   out.halt    := in.halt && io.inValid
-
 }

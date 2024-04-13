@@ -2,30 +2,12 @@ import chisel3._
 import chisel3.util._
 import scala.util.Random
 
-class AddrInfo extends Bundle {
-  val id   = UInt(3.W)
-  val addr = UInt(32.W)
+object Uart {
+
+  val CONFIG_SERIAL_MMIO = "ha00003f8"
 }
 
-class DataInfo extends Bundle {
-  val data = UInt(32.W)
-  val strb = UInt(4.W)
-}
-
-class Ram extends BlackBox {
-  val io = IO(new Bundle {
-    val ren   = Input(Bool())
-    val raddr = Input(UInt(32.W))
-    val rdata = Output(UInt(32.W))
-
-    val wen   = Input(Bool())
-    val waddr = Input(UInt(32.W))
-    val wdata = Input(UInt(32.W))
-    val wstrb = Input(UInt(4.W))
-  })
-}
-
-class AxiRamWrapper extends Module {
+class Uart extends Module {
   val io = IO(new Bundle {
     val AxiLite = Flipped(new AxiLiteBundle(TOP.axiParams))
   })
@@ -50,12 +32,11 @@ class AxiRamWrapper extends Module {
   val wRand  = wLfsr.io.out
   val bRand  = bLfsr.io.out
 
-  val ar   = io.AxiLite.ar
-  val r    = io.AxiLite.r
-  val aw   = io.AxiLite.aw
-  val w    = io.AxiLite.w
-  val b    = io.AxiLite.b
-  val Sram = Module(new Ram)
+  val ar = io.AxiLite.ar
+  val r  = io.AxiLite.r
+  val aw = io.AxiLite.aw
+  val w  = io.AxiLite.w
+  val b  = io.AxiLite.b
 
 // ar channel
   val arFifo  = Module(new Fifo[AddrInfo](new AddrInfo, 2))
@@ -69,12 +50,11 @@ class AxiRamWrapper extends Module {
 
 // r channel
   val rCount = RegInit(rRand)
-  rCount              := Mux(arFifo.io.deq.fire, rRand, Mux(r.ready && arFifo.io.deq.valid, rCount - 1.U, rCount))
-  Sram.io.ren         := arFifo.io.deq.valid && (rCount === 0.U)
-  Sram.io.raddr       := arFifo.io.deq.bits.addr
-  r.bits.rdata        := Sram.io.rdata
-  r.bits.rid          := arFifo.io.deq.bits.id
-  r.valid             := Sram.io.ren
+  rCount       := Mux(arFifo.io.deq.fire, rRand, Mux(r.ready && arFifo.io.deq.valid, rCount - 1.U, rCount))
+  r.bits.rdata := 0.U
+  r.bits.rid   := arFifo.io.deq.bits.id
+  r.valid      := arFifo.io.deq.valid && (rCount === 0.U)
+
   arFifo.io.deq.ready := r.ready && (rCount === 0.U)
 
 // aw channel
@@ -102,13 +82,12 @@ class AxiRamWrapper extends Module {
     bRand,
     Mux(b.ready && awFifo.io.deq.valid && wFifo.io.deq.valid, bCount - 1.U, bCount)
   )
-  Sram.io.wen         := awFifo.io.deq.valid && wFifo.io.deq.valid && (bCount === 0.U)
-  Sram.io.waddr       := awFifo.io.deq.bits.addr
-  Sram.io.wdata       := wFifo.io.deq.bits.data
-  Sram.io.wstrb       := wFifo.io.deq.bits.strb
-  b.valid             := Sram.io.wen
+  b.valid             := awFifo.io.deq.valid && wFifo.io.deq.valid && (bCount === 0.U)
   b.bits.bid          := awFifo.io.deq.bits.id
   awFifo.io.deq.ready := b.ready && (bCount === 0.U)
   wFifo.io.deq.ready  := b.ready && (bCount === 0.U)
 
+  when(wFifo.io.deq.fire && awFifo.io.deq.fire && awFifo.io.deq.bits.addr === Uart.CONFIG_SERIAL_MMIO.U) {
+    printf("%c", wFifo.io.deq.bits.data(7, 0))
+  }
 }

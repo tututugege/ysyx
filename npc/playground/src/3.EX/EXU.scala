@@ -34,10 +34,10 @@ class EXU(XLEN: Int) extends Module {
   val data1 = Wire(UInt(XLEN.W))
   val data2 = Wire(UInt(XLEN.W))
 
-  bypassReg := Mux(~io.EX2MEM.fire, io.bypassWB, bypassReg)
+  bypassReg := Mux(~io.EX2MEM.fire && (io.hazard1(1) || io.hazard2(1)) && io.WBoutValid, io.bypassWB, bypassReg)
 
-  hazard1Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg))
-  hazard2Reg := Mux(io.EX2MEM.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg))
+  hazard1Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg))
+  hazard2Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg))
 
   data1 := MuxCase(
     in.rdata1,
