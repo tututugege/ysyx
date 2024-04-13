@@ -19,7 +19,7 @@ extern "C" {
     // DPI import at src/vsrc/Ram.v:1:29
     extern int pmem_read(int raddr);
     // DPI import at src/vsrc/Ram.v:2:30
-    extern void pmem_write(int waddr, int wdata, char Wstrb);
+    extern void pmem_write(int waddr, int wdata, char wstrb);
 
 #ifdef __cplusplus
 }

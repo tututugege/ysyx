@@ -19,7 +19,8 @@ class Fifo[T <: Data](data: T, n: Int) extends Module {
   deqPtr := Mux(io.deq.fire, deqPtrInc, deqPtr)
   isFull := isFullNext
 
-  val queue = Vec(n, Reg(data))
+  val queue = Reg(Vec(n, data))
+
   when(io.enq.fire) {
     queue(enqPtr) := io.enq.bits
   }

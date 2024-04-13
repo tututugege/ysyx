@@ -18,16 +18,16 @@ VL_INLINE_OPT void VTOP___024unit____Vdpiimwrap_pmem_read_TOP____024unit(IData/*
     pmem_read__Vfuncrtn = pmem_read__Vfuncrtn__Vcvt;
 }
 
-extern "C" void pmem_write(int waddr, int wdata, char Wstrb);
+extern "C" void pmem_write(int waddr, int wdata, char wstrb);
 
-VL_INLINE_OPT void VTOP___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, IData/*31:0*/ wdata, CData/*7:0*/ Wstrb) {
+VL_INLINE_OPT void VTOP___024unit____Vdpiimwrap_pmem_write_TOP____024unit(IData/*31:0*/ waddr, IData/*31:0*/ wdata, CData/*7:0*/ wstrb) {
     VL_DEBUG_IF(VL_DBG_MSGF("+        VTOP___024unit____Vdpiimwrap_pmem_write_TOP____024unit\n"); );
     // Body
     int waddr__Vcvt;
     for (size_t waddr__Vidx = 0; waddr__Vidx < 1; ++waddr__Vidx) waddr__Vcvt = waddr;
     int wdata__Vcvt;
     for (size_t wdata__Vidx = 0; wdata__Vidx < 1; ++wdata__Vidx) wdata__Vcvt = wdata;
-    char Wstrb__Vcvt;
-    for (size_t Wstrb__Vidx = 0; Wstrb__Vidx < 1; ++Wstrb__Vidx) Wstrb__Vcvt = Wstrb;
-    pmem_write(waddr__Vcvt, wdata__Vcvt, Wstrb__Vcvt);
+    char wstrb__Vcvt;
+    for (size_t wstrb__Vidx = 0; wstrb__Vidx < 1; ++wstrb__Vidx) wstrb__Vcvt = wstrb;
+    pmem_write(waddr__Vcvt, wdata__Vcvt, wstrb__Vcvt);
 }

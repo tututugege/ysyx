@@ -10,88 +10,34 @@ VL_INLINE_OPT void VTOP___024root___ico_sequent__TOP__0(VTOP___024root* vlSelf) 
     VTOP__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VTOP___024root___ico_sequent__TOP__0\n"); );
     // Body
-    vlSelf->TOP__DOT__InstRam_arvalid = (1U & ((~ (IData)(vlSelf->TOP__DOT__arFireReg)) 
-                                               & (~ (IData)(vlSelf->reset))));
-    vlSelf->TOP__DOT__InstRam__DOT__nxt_rstate = ((8U 
-                                                   & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                   ? 
-                                                  ((4U 
-                                                    & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                    ? 1U
-                                                    : 
-                                                   ((2U 
-                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                     ? 1U
-                                                     : 
-                                                    ((1U 
-                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                      ? 1U
-                                                      : 
-                                                     (((((IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate) 
-                                                         >> 3U) 
-                                                        & (~ (IData)(vlSelf->TOP__DOT__IF__DOT__rFireReg))) 
-                                                       & (0U 
-                                                          != (IData)(vlSelf->TOP__DOT__InstRam__DOT__LFSR)))
-                                                       ? 1U
-                                                       : 
-                                                      ((IData)(
-                                                               (((IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate) 
-                                                                 >> 3U) 
-                                                                & (~ (IData)(vlSelf->TOP__DOT__IF__DOT__rFireReg))))
-                                                        ? 2U
-                                                        : 8U)))))
-                                                   : 
-                                                  ((4U 
-                                                    & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                    ? 
-                                                   ((2U 
-                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                     ? 1U
-                                                     : 
-                                                    ((1U 
-                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                      ? 1U
-                                                      : 
-                                                     ((0U 
-                                                       == (IData)(vlSelf->TOP__DOT__InstRam__DOT__rcounter))
-                                                       ? 8U
-                                                       : 4U)))
-                                                    : 
-                                                   ((2U 
-                                                     & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                     ? 
-                                                    ((1U 
-                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                      ? 1U
-                                                      : 
-                                                     ((((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
-                                                        & (IData)(vlSelf->TOP__DOT__InstRam_arready)) 
-                                                       & (0U 
-                                                          != (IData)(vlSelf->TOP__DOT__InstRam__DOT__LFSR)))
-                                                       ? 4U
-                                                       : 
-                                                      (((IData)(vlSelf->TOP__DOT__InstRam_arvalid) 
-                                                        & (IData)(vlSelf->TOP__DOT__InstRam_arready))
-                                                        ? 8U
-                                                        : 2U)))
-                                                     : 
-                                                    ((1U 
-                                                      & (IData)(vlSelf->TOP__DOT__InstRam__DOT__rstate))
-                                                      ? 
-                                                     ((0U 
-                                                       == (IData)(vlSelf->TOP__DOT__InstRam__DOT__arcounter))
-                                                       ? 2U
-                                                       : 1U)
-                                                      : 1U))));
-    vlSelf->TOP__DOT___arFireReg_T_1 = ((IData)(vlSelf->TOP__DOT__InstRam_arready) 
-                                        & (IData)(vlSelf->TOP__DOT__InstRam_arvalid));
+    vlSelf->TOP__DOT__arbiter_io_InstAxiLite_ar_valid 
+        = (1U & ((~ (IData)(vlSelf->TOP__DOT__arFireReg)) 
+                 & (~ (IData)(vlSelf->reset))));
+    vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT___isFullNext_T 
+        = ((~ (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__isFull)) 
+           & ((IData)(vlSelf->TOP__DOT__MEM_io_ar_valid) 
+              | (IData)(vlSelf->TOP__DOT__arbiter_io_InstAxiLite_ar_valid)));
+    vlSelf->TOP__DOT___arFireReg_T_1 = (((~ (IData)(vlSelf->TOP__DOT__MEM_io_ar_valid)) 
+                                         & (~ (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__isFull))) 
+                                        & (IData)(vlSelf->TOP__DOT__arbiter_io_InstAxiLite_ar_valid));
+    vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__isFullNext 
+        = (((IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT___isFullNext_T) 
+            & ((~ (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT___isFullNext_T_1)) 
+               & ((1U & ((IData)(1U) + (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__enqPtr))) 
+                  == (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__deqPtr)))) 
+           | ((~ ((IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT___isFullNext_T_1) 
+                  & (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__isFull))) 
+              & (IData)(vlSelf->TOP__DOT__ramWrapper__DOT__arFifo__DOT__isFull)));
     vlSelf->TOP__DOT__IF_io_Pre2IF_valid = ((IData)(vlSelf->TOP__DOT___arFireReg_T_1) 
                                             | (IData)(vlSelf->TOP__DOT__arFireReg));
+    vlSelf->TOP__DOT___Pre2IFValid_T_5 = ((~ (IData)(vlSelf->TOP__DOT__IF_io_Pre2IF_valid)) 
+                                          & (IData)(vlSelf->TOP__DOT__IF__DOT___rFireReg_T));
     vlSelf->TOP__DOT__IF__DOT__record_io_reset = ((
                                                    (~ 
-                                                    ((IData)(vlSelf->TOP__DOT__Pre2IFValid) 
-                                                     & (IData)(vlSelf->TOP__DOT___Pre2IFValid_T_2))) 
-                                                   | (IData)(vlSelf->TOP__DOT__IF__DOT___io_Pre2IF_ready_T)) 
+                                                    ((IData)(vlSelf->TOP__DOT__arInstValid) 
+                                                     | ((IData)(vlSelf->TOP__DOT__Pre2IFValid) 
+                                                        & (IData)(vlSelf->TOP__DOT___Pre2IFValid_T_2)))) 
+                                                   | (IData)(vlSelf->TOP__DOT__IF__DOT___rFireReg_T)) 
                                                   & (IData)(vlSelf->TOP__DOT__IF_io_Pre2IF_valid));
 }
 
@@ -102,6 +48,7 @@ void VTOP___024root___eval_ico(VTOP___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VicoTriggered.word(0U))) {
         VTOP___024root___ico_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -137,7 +84,7 @@ void VTOP___024root___eval_nba(VTOP___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
         VTOP___024root___nba_sequent__TOP__0(vlSelf);
-        vlSelf->__Vm_traceActivity[1U] = 1U;
+        vlSelf->__Vm_traceActivity[2U] = 1U;
     }
 }
 
@@ -204,7 +151,7 @@ void VTOP___024root___eval(VTOP___024root* vlSelf) {
 #ifdef VL_DEBUG
             VTOP___024root___dump_triggers__ico(vlSelf);
 #endif
-            VL_FATAL_MT("build/TOP.v", 2613, "", "Input combinational region did not converge.");
+            VL_FATAL_MT("build/TOP.v", 3557, "", "Input combinational region did not converge.");
         }
         __VicoIterCount = ((IData)(1U) + __VicoIterCount);
         __VicoContinue = 0U;
@@ -220,7 +167,7 @@ void VTOP___024root___eval(VTOP___024root* vlSelf) {
 #ifdef VL_DEBUG
             VTOP___024root___dump_triggers__nba(vlSelf);
 #endif
-            VL_FATAL_MT("build/TOP.v", 2613, "", "NBA region did not converge.");
+            VL_FATAL_MT("build/TOP.v", 3557, "", "NBA region did not converge.");
         }
         __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
         __VnbaContinue = 0U;
@@ -231,7 +178,7 @@ void VTOP___024root___eval(VTOP___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VTOP___024root___dump_triggers__act(vlSelf);
 #endif
-                VL_FATAL_MT("build/TOP.v", 2613, "", "Active region did not converge.");
+                VL_FATAL_MT("build/TOP.v", 3557, "", "Active region did not converge.");
             }
             vlSelf->__VactIterCount = ((IData)(1U) 
                                        + vlSelf->__VactIterCount);

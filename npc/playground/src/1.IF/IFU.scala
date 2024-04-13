@@ -5,8 +5,9 @@ class IFU(XLEN: Int) extends Module {
   val io = IO(new Bundle {
     //pipeline
     val inValid = Input(Bool())
+    val arValid = Input(Bool())
 
-    val Pre2IF = Flipped(Decoupled())
+    val Pre2IF = Flipped(Decoupled(new PreToFetch(XLEN)))
     val IF2ID  = Decoupled(new FetchToDecode(XLEN))
 
     // read data channel
@@ -63,14 +64,15 @@ class IFU(XLEN: Int) extends Module {
   // axi r channel
   val rFireReg = RegInit(false.B)
   val rdataReg = Reg(UInt(XLEN.W))
-  rFireReg   := Mux(io.Pre2IF.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
+  rFireReg   := Mux(io.IF2ID.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
   rdataReg   := Mux(io.r.fire && ~io.IF2ID.ready, io.r.bits.rdata, rdataReg)
-  io.r.ready := ~rFireReg
+  io.r.ready := io.arValid && ~rFireReg
 
   // IF to ID
   out.pc   := pcReg
   out.inst := Mux(rFireReg, rdataReg, io.r.bits.rdata)
 
-  io.Pre2IF.ready := io.IF2ID.fire || ~io.inValid
+  // must deal with memory request has been sent
+  io.Pre2IF.ready := io.IF2ID.fire || ~io.inValid && ~io.arValid
   io.IF2ID.valid  := io.r.fire || rFireReg
 }

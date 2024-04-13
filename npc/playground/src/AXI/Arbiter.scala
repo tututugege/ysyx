@@ -19,12 +19,22 @@ class AxiLiteArbiter extends Module {
   io.InstAxiLite.b.valid    := false.B
   io.InstAxiLite.b.bits.bid := 0.U
 
-  val busy = RegInit(false.B)
-  val arid = Reg(UInt(3.W)) // master can't be changed before the transaction is completed
-
   // IF has a higher priorty in ar channel
-  io.AxiLite.ar <> Mux(~io.InstAxiLite.ar.valid && io.DataAxiLite.ar.valid, io.DataAxiLite.ar, io.InstAxiLite.ar)
+  io.AxiLite.ar.bits := Mux(
+    io.DataAxiLite.ar.valid,
+    io.DataAxiLite.ar.bits,
+    io.InstAxiLite.ar.bits
+  )
+
+  io.AxiLite.ar.valid := io.InstAxiLite.ar.valid || io.DataAxiLite.ar.valid
+
+  io.InstAxiLite.ar.ready := io.AxiLite.ar.ready && ~io.DataAxiLite.ar.valid
+  io.DataAxiLite.ar.ready := io.AxiLite.ar.ready
 
   // choose master according to rid in r channel
-  io.AxiLite.r <> Mux(io.AxiLite.r.bits.rid(0), io.DataAxiLite.ar, io.InstAxiLite.ar)
+  io.AxiLite.r.ready     := Mux(io.AxiLite.r.bits.rid(0), io.DataAxiLite.r.ready, io.InstAxiLite.r.ready)
+  io.DataAxiLite.r.bits  := io.AxiLite.r.bits
+  io.InstAxiLite.r.bits  := io.AxiLite.r.bits
+  io.DataAxiLite.r.valid := io.AxiLite.r.bits.rid(0) && io.AxiLite.r.valid
+  io.InstAxiLite.r.valid := ~io.AxiLite.r.bits.rid(0) && io.AxiLite.r.valid
 }
