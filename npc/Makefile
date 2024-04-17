@@ -20,7 +20,7 @@ test:
 verilog: $(SSRCS)
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill --mill-version 0.11.6 -i __.test.runMain Elaborate -td $(BUILD_DIR)
+	mill  -i __.test.runMain Elaborate -td $(BUILD_DIR)
 
 help:
 	mill -i __.test.runMain Elaborate --help
