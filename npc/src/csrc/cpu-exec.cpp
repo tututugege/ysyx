@@ -47,7 +47,8 @@ uint32_t last_inst = 0;
 void cycle(int n) {
   char *p;
   uint8_t *inst_str;
-  uint32_t inst, pc;
+  uint32_t inst, pc, addr;
+  bool mem;
 
   while (n-- > 0) {
 
@@ -57,6 +58,11 @@ void cycle(int n) {
     }
     inst = dut->io_commit_inst;
     pc = dut->io_commit_pc;
+    mem = dut->io_commit_mem;
+    addr = dut->io_commit_addr;
+
+    if (mem && !in_pmem(addr))
+      difftest_skip_ref();
 
     if (!dut->io_commit_halt)
       single_cycle();
@@ -87,10 +93,6 @@ void cycle(int n) {
 
 #ifdef CONFIG_DIFFTEST
     difftest_step(pc);
-#endif
-
-#ifdef CONFIG_DEVICE
-    /* device_update(); */
 #endif
 
     if (HALT || TIME_OUT || npc_state.state == NPC_ABORT ||

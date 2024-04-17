@@ -3,7 +3,6 @@ import chisel3.util._
 import scala.util.Random
 
 object Uart {
-
   val CONFIG_SERIAL_MMIO = "ha00003f8"
 }
 

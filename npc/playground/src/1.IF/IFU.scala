@@ -11,21 +11,21 @@ class IFU(XLEN: Int) extends Module {
     val IF2ID  = Decoupled(new FetchToDecode(XLEN))
 
     // read data channel
-    val r         = Flipped(Decoupled(new AxiReadDataChannel(TOP.axiParams)))
-    val arFireReg = Input(Bool())
+    val r        = Flipped(Decoupled(new AxiReadDataChannel(TOP.axiParams)))
+    val arAssert = Input(Bool())
+
     // branch
     val brTaken = Input(Bool())
     val pcBr    = Input(UInt(XLEN.W))
 
     // exception
-    val exception = Input(Bool())
-    val mret      = Input(Bool())
-    val pcTrap    = Input(UInt(XLEN.W))
-    val pcMRet    = Input(UInt(XLEN.W))
+    // val exception = Input(Bool())
+    // val mret      = Input(Bool())
+    // val pcTrap    = Input(UInt(XLEN.W))
+    // val pcMRet    = Input(UInt(XLEN.W))
 
-    val pcNext   = Output(UInt(XLEN.W))
-    val brEnable = Output(Bool())
-    val brRecord = Output(Bool())
+    val pcNext = Output(UInt(XLEN.W))
+    val brFail = Output(Bool())
   })
 
   val in  = io.Pre2IF.bits
@@ -39,25 +39,17 @@ class IFU(XLEN: Int) extends Module {
   // store last branch pc
   val brBuffer      = Reg(UInt(32.W))
   val brBufferValid = RegInit(false.B)
-
-  val record = Module(new RemBuffer())
-  record.io.reset := io.Pre2IF.fire
-  record.io.cond  := io.brTaken
-  io.brRecord     := record.io.out
-
-  val enable = Module(new RemBuffer())
-  enable.io.reset := io.Pre2IF.fire
-  enable.io.cond  := io.brTaken && ~io.arFireReg
-  io.brEnable     := enable.io.out
+  val brEnable      = io.brTaken && ~io.arAssert
+  val brFail        = RemBuffer(io.Pre2IF.fire, io.brTaken && io.arAssert, io.brFail)
 
   pcInc     := pcReg + 4.U
-  pcNormal  := Mux(io.brEnable, io.pcBr, pcInc)
+  pcNormal  := Mux(brEnable, io.pcBr, pcInc)
   io.pcNext := Mux(brBufferValid, brBuffer, pcNormal)
   pcReg     := Mux(io.Pre2IF.fire, io.pcNext, pcReg)
   brBufferValid := Mux(
     io.Pre2IF.fire,
-    io.brRecord && ~io.brEnable,
-    Mux(io.brTaken && io.brEnable, true.B, brBufferValid)
+    brFail.io.out,
+    Mux(io.brTaken && brEnable, true.B, brBufferValid)
   )
   brBuffer := Mux(io.brTaken, io.pcBr, brBuffer)
 

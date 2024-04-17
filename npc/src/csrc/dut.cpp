@@ -14,7 +14,7 @@ typedef struct CPU_state {
 } CPU_state;
 CPU_state cpu;
 
-uint32_t skip_pc[2];
+bool difftest_skip = false;
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n,
                             bool direction) = NULL;
@@ -91,16 +91,10 @@ fault:
   printf("PC:\t%08x\t%08x\n", cpu.pc, pc);
 }
 
-void difftest_skip_ref(uint32_t pc) {
-  if (skip_pc[0] == 0) {
-    skip_pc[0] = pc;
-  } else {
-    skip_pc[1] = pc;
-  }
-}
+void difftest_skip_ref() { difftest_skip = true; }
 
 void difftest_step(uint32_t pc) {
-  if (pc == skip_pc[0] || pc == skip_pc[1]) {
+  if (difftest_skip) {
     // to skip the checking of an instruction, just copy the reg state to
     // reference design
 
@@ -110,11 +104,6 @@ void difftest_step(uint32_t pc) {
     cpu.pc = pc + 4;
 
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
-
-    if (pc == skip_pc[0])
-      skip_pc[0] = 0;
-    else
-      skip_pc[1] = 0;
 
   } else {
 

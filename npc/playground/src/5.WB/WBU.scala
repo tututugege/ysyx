@@ -15,6 +15,8 @@ class WBU(XLEN: Int) extends Module {
     val b = Flipped(Decoupled(new AxiWriteResponseChannel(TOP.axiParams)))
   })
 
+  val Csr = Module(new CSR)
+
   val in  = io.MEM2WB.bits
   val out = io.WBout.bits
 
@@ -66,18 +68,42 @@ class WBU(XLEN: Int) extends Module {
     )
   )
 
+  // csr
+  val csrRdata = Wire(UInt(32.W))
+
+  Csr.io.csrAddr := in.csrAddr
+  Csr.io.wdata := MuxLookup(
+    in.func3(1, 0),
+    in.csrWdata,
+    Seq(
+      DecodeTable.CsrSet.U -> Fill(32, 1.U(1.W)),
+      DecodeTable.CsrClr.U -> 0.U
+    )
+  )
+  Csr.io.wmask := Mux(in.func3(1), in.csrWdata, Fill(32, 1.U(1.W)))
+  Csr.io.wen   := in.csrWrite
+
+  csrRdata := Csr.io.rdata
+
+  Csr.io.exception := in.syscall
+  Csr.io.cause     := Mux(in.syscall, CSR.ExceptionCode.ECALL.U, 0.U)
+  Csr.io.pc        := in.pc
+
   out.pc   := in.pc
   out.inst := in.inst
 
-  out.regWdata := Mux(in.memRead, ReadData, in.aluOut)
+  out.regWdata := MuxCase(in.aluOut, Seq(in.memRead -> ReadData, in.csrRead -> csrRdata))
   out.regWrite := in.regWrite && io.inValid
   out.rd       := in.rd
 
-  out.csrWrite := in.csrWrite && io.inValid
-  out.csrRead  := in.csrRead && io.inValid
-  out.csrWdata := in.aluOut
-
   out.syscall := in.syscall && io.inValid
+  out.pcTrap  := Csr.io.mtvecRdata
+  out.pcMret  := Csr.io.mepcRdata
   out.mret    := in.mret && io.inValid
-  out.halt    := in.halt && io.inValid
+
+  out.halt := in.halt && io.inValid
+
+  out.memRead  := in.memRead && io.inValid
+  out.memWrite := in.memWrite && io.inValid
+  out.address  := in.aluOut
 }

@@ -6,6 +6,7 @@ import DecodeTable._
 class MEMU(XLEN: Int) extends Module {
   val io = IO(new Bundle {
     val inValid = Input(Bool())
+    val flush   = Input(Bool())
 
     val EX2MEM = Flipped(Decoupled(new ExecuteToMemory(XLEN)))
     val MEM2WB = Decoupled(new MemoryToWrite(XLEN))
@@ -45,6 +46,10 @@ class MEMU(XLEN: Int) extends Module {
   val awFireReg     = RegInit(false.B)
   val wFireReg      = RegInit(false.B)
 
+  val arAssert = RegInit(false.B)
+  val awAssert = RegInit(false.B)
+  val wAssert  = RegInit(false.B)
+
   val arDataFire = arDataFireReg || io.ar.fire
   val awFire     = awFireReg || io.aw.fire
   val wFire      = wFireReg || io.w.fire
@@ -53,19 +58,23 @@ class MEMU(XLEN: Int) extends Module {
   wFireReg      := Mux(io.MEM2WB.fire, false.B, Mux(io.w.fire, true.B, wFireReg))
   awFireReg     := Mux(io.MEM2WB.fire, false.B, Mux(io.aw.fire, true.B, awFireReg))
 
-  io.ar.valid       := in.memRead && io.inValid && ~arDataFireReg
+  arAssert := Mux(io.EX2MEM.fire, false.B, Mux(io.ar.valid, true.B, arAssert))
+  awAssert := Mux(io.EX2MEM.fire, false.B, Mux(io.aw.valid, true.B, awAssert))
+  wAssert  := Mux(io.EX2MEM.fire, false.B, Mux(io.w.valid, true.B, wAssert))
+
+  io.ar.valid       := in.memRead && io.inValid && ~arDataFireReg && ~(io.flush && ~arAssert)
   io.ar.bits.arid   := 1.U
   io.ar.bits.araddr := addr
   io.ar.bits.arsize := "b010".U
   io.ar.bits.arprot := 0.U
 
-  io.aw.valid       := in.memWrite && io.inValid && ~awFireReg
+  io.aw.valid       := in.memWrite && io.inValid && ~awFireReg && ~(io.flush && ~(awAssert || wAssert))
   io.aw.bits.awid   := 0.U
   io.aw.bits.awaddr := addr
   io.aw.bits.awsize := memSize
   io.aw.bits.awprot := 0.U
 
-  io.w.valid      := in.memWrite && io.inValid && ~wFireReg
+  io.w.valid      := in.memWrite && io.inValid && ~wFireReg && ~(io.flush && ~(awAssert || wAssert))
   io.w.bits.wdata := shiftWdata1
   io.w.bits.wstrb := decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
 
@@ -82,6 +91,8 @@ class MEMU(XLEN: Int) extends Module {
 
   out.csrWrite := in.csrWrite
   out.csrRead  := in.csrRead
+  out.csrWdata := in.csrWdata
+  out.csrAddr  := in.csrAddr
 
   out.syscall := in.syscall
   out.mret    := in.mret
@@ -95,5 +106,4 @@ class MEMU(XLEN: Int) extends Module {
       (in.memWrite && io.inValid) -> (awFire && wFire)
     )
   )
-
 }

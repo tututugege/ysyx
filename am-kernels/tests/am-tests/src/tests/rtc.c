@@ -17,6 +17,7 @@ void rtc_test() {
 
   while (1) {
 
+    // uint64_t time;
     // while ((time = io_read(AM_TIMER_UPTIME).us) / 1000000 < sec)
     //   printf("%x\n", (uint32_t)time);
     while (io_read(AM_TIMER_UPTIME).us / 1000000 < sec)

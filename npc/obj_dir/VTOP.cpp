@@ -12,13 +12,13 @@ VTOP::VTOP(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VTOP__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
-    , io_commit_rd{vlSymsp->TOP.io_commit_rd}
+    , io_commit_mem{vlSymsp->TOP.io_commit_mem}
     , io_commit_wen{vlSymsp->TOP.io_commit_wen}
     , io_commit_commit{vlSymsp->TOP.io_commit_commit}
     , io_commit_halt{vlSymsp->TOP.io_commit_halt}
     , io_commit_pc{vlSymsp->TOP.io_commit_pc}
     , io_commit_inst{vlSymsp->TOP.io_commit_inst}
-    , io_commit_wdata{vlSymsp->TOP.io_commit_wdata}
+    , io_commit_addr{vlSymsp->TOP.io_commit_addr}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {
