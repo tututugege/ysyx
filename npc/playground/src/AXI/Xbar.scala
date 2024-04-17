@@ -27,8 +27,8 @@ class RequestInfo extends Bundle {
 
 class CrossBar extends Module {
   val io = IO(new Bundle {
-    val master = Flipped(new AxiLiteBundle(TOP.axiParams))
-    val slave  = Vec(CrossBar.device.length, new AxiLiteBundle(TOP.axiParams))
+    val master = Flipped(new AxiLiteBundle())
+    val slave  = Vec(CrossBar.device.length, new AxiLiteBundle())
   })
 
   val arSel = Wire(UInt(CrossBar.device.length.W))

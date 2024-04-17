@@ -3,8 +3,7 @@ import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
 object TOP {
-  val axiParams = AxiParamsBundle(32, 32, 3)
-  val START_PC  = "h7FFFFFFC"
+  val START_PC = "h7FFFFFFC"
 }
 
 class CommitBundle() extends Bundle {
@@ -20,7 +19,9 @@ class CommitBundle() extends Bundle {
 class TOP(XLEN: Int) extends Module {
   val io = IO(new Bundle {
 
-    val commit = new CommitBundle()
+    val interrupt = Input(Bool())
+    val master    = new SocMasterBundle()
+    val commit    = new CommitBundle()
   })
 
   /* five stages */
@@ -31,8 +32,8 @@ class TOP(XLEN: Int) extends Module {
   val WB  = Module(new WBU(XLEN))
 
   /* axi */
-  val dataAxiLite = Wire(new AxiLiteBundle(TOP.axiParams))
-  val instAxiLite = Wire(new AxiLiteBundle(TOP.axiParams))
+  val dataAxiLite = Wire(new AxiLiteBundle())
+  val instAxiLite = Wire(new AxiLiteBundle())
 
   /* stage io */
   val IFin   = IF.io.Pre2IF
@@ -61,15 +62,17 @@ class TOP(XLEN: Int) extends Module {
   val MEMoutValid = Wire(Bool())
   val WBoutValid  = Wire(Bool())
 
-  instAxiLite.w.valid        := false.B
-  instAxiLite.w.bits.wdata   := 0.U
-  instAxiLite.w.bits.wstrb   := 0.U
-  instAxiLite.aw.valid       := false.B
-  instAxiLite.aw.bits.awid   := 0.U
-  instAxiLite.aw.bits.awaddr := 0.U
-  instAxiLite.aw.bits.awprot := 0.U
-  instAxiLite.aw.bits.awsize := 0.U
-  instAxiLite.b.ready        := false.B
+  instAxiLite.aw.valid        := false.B
+  instAxiLite.aw.bits.awaddr  := 0.U
+  instAxiLite.aw.bits.awid    := 0.U
+  instAxiLite.aw.bits.awlen   := 0.U
+  instAxiLite.aw.bits.awsize  := 0.U
+  instAxiLite.aw.bits.awburst := 0.U
+  instAxiLite.w.valid         := false.B
+  instAxiLite.w.bits.wdata    := 0.U
+  instAxiLite.w.bits.wstrb    := 0.U
+  instAxiLite.w.bits.wlast    := false.B
+  instAxiLite.b.ready         := false.B
 
   val pcBr    = Wire(UInt(XLEN.W))
   val brTaken = Wire(Bool())
@@ -88,11 +91,12 @@ class TOP(XLEN: Int) extends Module {
   arAssert     := Mux(IFin.fire, false.B, Mux(ar.valid, true.B, arAssert))
   Pre2IF.valid := (ar.fire || arFireReg) && ~flush
 
-  ar.valid       := ~arFireReg && ~reset.asBool
-  ar.bits.arid   := 0.U
-  ar.bits.arprot := 0.U
-  ar.bits.araddr := pcNext
-  ar.bits.arsize := "b10".U
+  ar.valid        := ~arFireReg && ~reset.asBool
+  ar.bits.arid    := 0.U
+  ar.bits.araddr  := pcNext
+  ar.bits.arlen   := "h00".U
+  ar.bits.arsize  := "b010".U
+  ar.bits.arburst := "b00".U
 
   /** ******************* IF *********************
     */
@@ -277,19 +281,12 @@ class TOP(XLEN: Int) extends Module {
   io.commit.halt   := WBout.bits.halt
   io.commit.commit := WBoutValid
 
-  /** *********** arbiter <-> xbar <-> ram/device *******************
+  /** *********** arbiter  *******************
     */
 
-  val arbiter    = Module(new AxiLiteArbiter())
-  val xbar       = Module(new CrossBar())
-  val ramWrapper = Module(new AxiRamWrapper())
-  val uart       = Module(new Uart())
-  val clint      = Module(new CLINT())
+  val arbiter = Module(new AxiLiteArbiter())
 
   arbiter.io.InstAxiLite <> instAxiLite
   arbiter.io.DataAxiLite <> dataAxiLite
-  xbar.io.master <> arbiter.io.AxiLite
-  xbar.io.slave(0) <> ramWrapper.io.AxiLite
-  xbar.io.slave(1) <> uart.io.AxiLite
-  xbar.io.slave(2) <> clint.io.AxiLite
+  io.master <> arbiter.io.master
 }

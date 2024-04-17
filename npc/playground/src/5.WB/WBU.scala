@@ -11,8 +11,8 @@ class WBU(XLEN: Int) extends Module {
     val MEM2WB = Flipped(Decoupled(new MemoryToWrite(XLEN)))
     val WBout  = Decoupled(new WriteBack(XLEN))
 
-    val r = Flipped(Decoupled(new AxiReadDataChannel(TOP.axiParams)))
-    val b = Flipped(Decoupled(new AxiWriteResponseChannel(TOP.axiParams)))
+    val r = Flipped(Decoupled(new AxiReadDataChannel()))
+    val b = Flipped(Decoupled(new AxiWriteResponseChannel()))
   })
 
   val Csr = Module(new CSR)
