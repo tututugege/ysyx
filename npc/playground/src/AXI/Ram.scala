@@ -27,7 +27,7 @@ class Ram extends BlackBox {
 
 class AxiRamWrapper extends Module {
   val io = IO(new Bundle {
-    val AxiLite = Flipped(new AxiLiteBundle(TOP.axiParams))
+    val AxiLite = Flipped(new AxiLiteBundle())
   })
 
   val rand1 = Random.nextInt(32)

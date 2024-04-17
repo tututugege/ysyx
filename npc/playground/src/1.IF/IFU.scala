@@ -11,7 +11,7 @@ class IFU(XLEN: Int) extends Module {
     val IF2ID  = Decoupled(new FetchToDecode(XLEN))
 
     // read data channel
-    val r        = Flipped(Decoupled(new AxiReadDataChannel(TOP.axiParams)))
+    val r        = Flipped(Decoupled(new AxiReadDataChannel()))
     val arAssert = Input(Bool())
 
     // branch

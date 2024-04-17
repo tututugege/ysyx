@@ -11,9 +11,9 @@ class MEMU(XLEN: Int) extends Module {
     val EX2MEM = Flipped(Decoupled(new ExecuteToMemory(XLEN)))
     val MEM2WB = Decoupled(new MemoryToWrite(XLEN))
 
-    val ar = Decoupled(new AxiReadRequestChannel(TOP.axiParams))
-    val aw = Decoupled(new AxiWriteRequestChannel(TOP.axiParams))
-    val w  = Decoupled(new AxiWriteDateChannel(TOP.axiParams))
+    val ar = Decoupled(new AxiReadRequestChannel())
+    val aw = Decoupled(new AxiWriteRequestChannel())
+    val w  = Decoupled(new AxiWriteDateChannel())
 
   })
 
@@ -62,21 +62,24 @@ class MEMU(XLEN: Int) extends Module {
   awAssert := Mux(io.EX2MEM.fire, false.B, Mux(io.aw.valid, true.B, awAssert))
   wAssert  := Mux(io.EX2MEM.fire, false.B, Mux(io.w.valid, true.B, wAssert))
 
-  io.ar.valid       := in.memRead && io.inValid && ~arDataFireReg && ~(io.flush && ~arAssert)
-  io.ar.bits.arid   := 1.U
-  io.ar.bits.araddr := addr
-  io.ar.bits.arsize := "b010".U
-  io.ar.bits.arprot := 0.U
+  io.ar.valid        := in.memRead && io.inValid && ~arDataFireReg && ~(io.flush && ~arAssert)
+  io.ar.bits.arid    := 1.U
+  io.ar.bits.araddr  := addr
+  io.ar.bits.arlen   := "h00".U
+  io.ar.bits.arsize  := "b010".U
+  io.ar.bits.arburst := "b00".U
 
-  io.aw.valid       := in.memWrite && io.inValid && ~awFireReg && ~(io.flush && ~(awAssert || wAssert))
-  io.aw.bits.awid   := 0.U
-  io.aw.bits.awaddr := addr
-  io.aw.bits.awsize := memSize
-  io.aw.bits.awprot := 0.U
+  io.aw.valid        := in.memWrite && io.inValid && ~awFireReg && ~(io.flush && ~(awAssert || wAssert))
+  io.aw.bits.awid    := 0.U
+  io.aw.bits.awaddr  := addr
+  io.aw.bits.awlen   := "h00".U
+  io.aw.bits.awsize  := memSize
+  io.aw.bits.awburst := "b00".U
 
   io.w.valid      := in.memWrite && io.inValid && ~wFireReg && ~(io.flush && ~(awAssert || wAssert))
   io.w.bits.wdata := shiftWdata1
   io.w.bits.wstrb := decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
+  io.w.bits.wlast := true.B
 
   out.pc    := in.pc
   out.inst  := in.inst
