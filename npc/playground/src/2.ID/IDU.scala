@@ -75,5 +75,4 @@ class IDU(XLEN: Int) extends Module {
 
   io.IF2ID.ready := io.ID2EX.fire || ~io.inValid
   io.ID2EX.valid := true.B
-
 }

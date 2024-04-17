@@ -109,7 +109,9 @@ class EXU(XLEN: Int) extends Module {
   out.regWrite := in.regWrite
   out.aluOut   := Alu.io.Result
 
+  out.csrAddr  := in.imm
   out.csrWrite := in.csrWrite
+  out.csrWdata := Mux(in.func3(2), in.rs1, data1)
   out.csrRead  := in.csrRead
 
   out.syscall := in.syscall

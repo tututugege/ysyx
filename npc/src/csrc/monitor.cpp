@@ -1,4 +1,3 @@
-#include <cmath>
 #include <common.h>
 #include <cpu-info.h>
 #include <difftest.h>
@@ -14,7 +13,6 @@ static char *diff_so_file;
 bool batch_mode = false;
 
 void sdb_mainloop();
-void init_device();
 void init_gpr();
 void reset(int n);
 void single_cycle();
@@ -247,11 +245,6 @@ int init_monitor(int argc, char *argv[]) {
   // init dut and wave
   dut = new VTOP;
   init_gpr();
-
-  // init device
-#ifdef CONFIG_DEVICE
-  init_device();
-#endif
 
 #ifdef CONFIG_WAVE
   m_trace = new VerilatedVcdC;

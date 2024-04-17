@@ -74,7 +74,9 @@ class ExecuteToMemory(XLEN: Int) extends Bundle {
   val aluOut   = UInt(XLEN.W)
 
   // CSR
+  val csrAddr  = UInt(12.W)
   val csrWrite = Bool()
+  val csrWdata = UInt(32.W)
   val csrRead  = Bool()
 
   // Exception
@@ -100,7 +102,9 @@ class MemoryToWrite(XLEN: Int) extends Bundle {
   val aluOut   = UInt(XLEN.W)
 
   // CSR
+  val csrAddr  = UInt(12.W)
   val csrWrite = Bool()
+  val csrWdata = UInt(XLEN.W)
   val csrRead  = Bool()
 
   // Exception
@@ -114,19 +118,19 @@ class WriteBack(XLEN: Int) extends Bundle {
   val pc   = UInt(XLEN.W)
   val inst = UInt(32.W)
 
+  val address  = UInt(XLEN.W)
+  val memRead  = Bool()
+  val memWrite = Bool()
+
   // RegFile
   val rd       = UInt(5.W)
   val regWrite = Bool()
   val regWdata = UInt(XLEN.W)
 
-  // CSR
-  val csrWrite = Bool()
-  val csrWdata = UInt(XLEN.W)
-  val csrRead  = Bool()
-
   // Exception
   val syscall = Bool()
+  val pcTrap  = UInt(XLEN.W)
   val mret    = Bool()
+  val pcMret  = UInt(XLEN.W)
   val halt    = Bool()
-
 }

@@ -62,8 +62,8 @@ class AxiRamWrapper extends Module {
   val arCount = RegInit(arRand)
   arCount := Mux(arFifo.io.enq.fire, arRand, Mux(ar.valid, arCount - 1.U, arCount))
 
-  ar.ready                := arFifo.io.enq.ready
-  arFifo.io.enq.valid     := ar.valid
+  ar.ready                := arFifo.io.enq.ready && (arCount === 0.U)
+  arFifo.io.enq.valid     := ar.valid && (arCount === 0.U)
   arFifo.io.enq.bits.addr := ar.bits.araddr
   arFifo.io.enq.bits.id   := ar.bits.arid
 

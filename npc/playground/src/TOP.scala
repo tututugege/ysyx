@@ -10,9 +10,9 @@ object TOP {
 class CommitBundle() extends Bundle {
   val pc     = Output(UInt(32.W))
   val inst   = Output(UInt(32.W))
-  val rd     = Output(UInt(5.W))
+  val addr   = Output(UInt(32.W))
+  val mem    = Output(Bool())
   val wen    = Output(Bool())
-  val wdata  = Output(UInt(32.W))
   val commit = Output(Bool())
   val halt   = Output(Bool())
 }
@@ -73,17 +73,20 @@ class TOP(XLEN: Int) extends Module {
 
   val pcBr    = Wire(UInt(XLEN.W))
   val brTaken = Wire(Bool())
+  val flush   = Wire(Bool())
 
   /** ******************* pre IF *********************
     */
 
   val Pre2IF    = Wire(Decoupled(new PreToFetch(XLEN)))
   val ar        = instAxiLite.ar
+  val arAssert  = RegInit(false.B)
   val arFireReg = RegInit(false.B)
   val pcNext    = Wire(UInt(XLEN.W))
   // axi ar channel
   arFireReg    := Mux(IFin.fire, false.B, Mux(ar.fire, true.B, arFireReg))
-  Pre2IF.valid := ar.fire || arFireReg
+  arAssert     := Mux(IFin.fire, false.B, Mux(ar.valid, true.B, arAssert))
+  Pre2IF.valid := (ar.fire || arFireReg) && ~flush
 
   ar.valid       := ~arFireReg && ~reset.asBool
   ar.bits.arid   := 0.U
@@ -96,12 +99,16 @@ class TOP(XLEN: Int) extends Module {
 
   // Pre <-> IF
   StageConnect[PreToFetch](Pre2IF, IFin, Pre2IF.valid)
-  Pre2IFValid := MuxCase(
-    Pre2IFValid,
-    Seq(
-      (IFin.fire) -> (~IF.io.brRecord || IF.io.brEnable),
-      (~IFin.valid && IFout.fire) -> false.B,
-      (~IFout.fire && brTaken) -> false.B // stall and branch taken
+  Pre2IFValid := Mux(
+    flush,
+    false.B,
+    MuxCase(
+      Pre2IFValid,
+      Seq(
+        (IFin.fire) -> ~IF.io.brFail,
+        (~IFin.valid && IFout.fire) -> false.B,
+        (~IFout.fire && brTaken) -> false.B // stall and branch taken
+      )
     )
   )
 
@@ -113,18 +120,13 @@ class TOP(XLEN: Int) extends Module {
     )
   )
 
-  IF.io.inValid := Pre2IFValid && (~IF.io.brRecord || IF.io.brEnable)
+  IF.io.inValid := Pre2IFValid
   IF.io.arValid := arInstValid
 
   IF.io.r <> instAxiLite.r
-  IF.io.pcBr      := pcBr
-  IF.io.brTaken   := brTaken
-  IF.io.arFireReg := arFireReg
-
-  IF.io.exception := WBout.bits.syscall
-  IF.io.mret      := WBout.bits.mret
-  IF.io.pcTrap    := 0.U
-  IF.io.pcMRet    := 0.U
+  IF.io.pcBr     := Mux(WBout.bits.syscall, WBout.bits.pcTrap, Mux(WBout.bits.mret, WBout.bits.pcMret, pcBr))
+  IF.io.brTaken  := brTaken || WBout.bits.syscall || WBout.bits.mret
+  IF.io.arAssert := arAssert
 
   pcNext := IF.io.pcNext
 
@@ -135,12 +137,16 @@ class TOP(XLEN: Int) extends Module {
   // IF <-> ID
   StageConnect[FetchToDecode](IFout, IDin, IFoutValid)
 
-  IF2IDValid := MuxCase(
-    IF2IDValid,
-    Seq(
-      (IDin.fire) -> IFoutValid,
-      (~IDin.valid && IDout.fire) -> false.B,
-      (~IDout.fire && brTaken) -> false.B // stall and branch taken
+  IF2IDValid := Mux(
+    flush,
+    false.B,
+    MuxCase(
+      IF2IDValid,
+      Seq(
+        (IDin.fire) -> IFoutValid,
+        (~IDin.valid && IDout.fire) -> false.B,
+        (~IDout.fire && brTaken) -> false.B // stall and branch taken
+      )
     )
   )
   ID.io.inValid := IF2IDValid
@@ -160,11 +166,15 @@ class TOP(XLEN: Int) extends Module {
   // ID <-> EX
   StageConnect[DecodeToExecute](IDout, EXin, IDoutValid)
 
-  ID2EXValid := MuxCase(
-    ID2EXValid,
-    Seq(
-      (EXin.fire) -> IDoutValid,
-      (~EXin.valid && EXout.fire) -> false.B
+  ID2EXValid := Mux(
+    flush,
+    false.B,
+    MuxCase(
+      ID2EXValid,
+      Seq(
+        (EXin.fire) -> IDoutValid,
+        (~EXin.valid && EXout.fire) -> false.B
+      )
     )
   )
   EX.io.inValid    := ID2EXValid
@@ -200,14 +210,19 @@ class TOP(XLEN: Int) extends Module {
 
   StageConnect[ExecuteToMemory](EXout, MEMin, EXoutValid)
 
-  EX2MEMValid := MuxCase(
-    EX2MEMValid,
-    Seq(
-      (MEMin.fire) -> EXoutValid,
-      (~MEMin.valid && MEMout.fire) -> false.B
+  EX2MEMValid := Mux(
+    flush,
+    false.B,
+    MuxCase(
+      EX2MEMValid,
+      Seq(
+        (MEMin.fire) -> EXoutValid,
+        (~MEMin.valid && MEMout.fire) -> false.B
+      )
     )
   )
   MEM.io.inValid := EX2MEMValid
+  MEM.io.flush   := flush
 
   MEM.io.ar <> dataAxiLite.ar
   MEM.io.aw <> dataAxiLite.aw
@@ -220,11 +235,15 @@ class TOP(XLEN: Int) extends Module {
 
   StageConnect[MemoryToWrite](MEMout, WBin, MEMoutValid)
 
-  MEM2WBValid := MuxCase(
-    MEM2WBValid,
-    Seq(
-      (WBin.fire) -> MEMoutValid,
-      (~WBin.valid && WBout.fire) -> false.B
+  MEM2WBValid := Mux(
+    flush,
+    false.B,
+    MuxCase(
+      MEM2WBValid,
+      Seq(
+        (WBin.fire) -> MEMoutValid,
+        (~WBin.valid && WBout.fire) -> false.B
+      )
     )
   )
 
@@ -245,24 +264,32 @@ class TOP(XLEN: Int) extends Module {
   WBout.ready := true.B
 
   WBoutValid := WBout.valid && MEM2WBValid
+  flush      := WBout.bits.syscall || WBout.bits.mret
 
   /** *********** commit for difftest *******************
     */
 
   io.commit.pc     := WBout.bits.pc
   io.commit.inst   := WBout.bits.inst
-  io.commit.rd     := WBout.bits.rd
   io.commit.wen    := WBout.bits.regWrite
-  io.commit.wdata  := WBout.bits.regWdata
+  io.commit.addr   := WBout.bits.address
+  io.commit.mem    := WBout.bits.memWrite || WBout.bits.memRead
   io.commit.halt   := WBout.bits.halt
   io.commit.commit := WBoutValid
 
-  /** *********** axi arbiter and ram wrapper *******************
+  /** *********** arbiter <-> xbar <-> ram/device *******************
     */
 
   val arbiter    = Module(new AxiLiteArbiter())
+  val xbar       = Module(new CrossBar())
   val ramWrapper = Module(new AxiRamWrapper())
+  val uart       = Module(new Uart())
+  val clint      = Module(new CLINT())
+
   arbiter.io.InstAxiLite <> instAxiLite
   arbiter.io.DataAxiLite <> dataAxiLite
-  ramWrapper.io.AxiLite <> arbiter.io.AxiLite
+  xbar.io.master <> arbiter.io.AxiLite
+  xbar.io.slave(0) <> ramWrapper.io.AxiLite
+  xbar.io.slave(1) <> uart.io.AxiLite
+  xbar.io.slave(2) <> clint.io.AxiLite
 }
