@@ -15,6 +15,9 @@ class IDU(XLEN: Int) extends Module {
     val regWrite = Input(Bool())
     val regWdata = Input(UInt(XLEN.W))
     val regWaddr = Input(UInt(5.W))
+
+    // for simulating
+    val ret = Output(Bool())
   })
   val Rf = Module(new RegFile(32))
 
@@ -55,6 +58,7 @@ class IDU(XLEN: Int) extends Module {
   Rf.io.waddr := io.regWaddr
   out.rdata1  := Rf.io.rdata1
   out.rdata2  := Rf.io.rdata2
+  io.ret      := Rf.io.ret
 
   /* Generate immediate operant*/
   val immI = (in.inst(31) ## in.inst(31, 20)).asSInt

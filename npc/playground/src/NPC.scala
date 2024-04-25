@@ -3,27 +3,39 @@ import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
 object TOP {
-  val START_PC = "h7FFFFFFC"
+  val START_PC = "h1FFFFFFC"
 }
 
 class CommitBundle() extends Bundle {
-  val pc     = Output(UInt(32.W))
-  val inst   = Output(UInt(32.W))
-  val addr   = Output(UInt(32.W))
-  val mem    = Output(Bool())
-  val wen    = Output(Bool())
+  val pc = Output(UInt(32.W))
+  // val inst   = Output(UInt(32.W))
+  val addr = Output(UInt(32.W))
+  val mem  = Output(Bool())
+  // val wen    = Output(Bool())
   val commit = Output(Bool())
+  val ret    = Output(Bool())
   val halt   = Output(Bool())
 }
 
-class TOP(XLEN: Int) extends Module {
+class ExitSim extends BlackBox {
+  val io = IO(new Bundle {
+    val clock  = Input(Clock())
+    val commit = Flipped(new CommitBundle)
+  })
+}
+
+class NPC(XLEN: Int) extends Module {
   val io = IO(new Bundle {
 
     val interrupt = Input(Bool())
     val master    = new SocMasterBundle()
-    val commit    = new CommitBundle()
+    val slave     = Flipped(new SocMasterBundle())
   })
 
+  val exit   = Module(new ExitSim)
+  val commit = Wire(new CommitBundle())
+
+  exit.io.commit := commit
   /* five stages */
   val IF  = Module(new IFU(XLEN))
   val ID  = Module(new IDU(XLEN))
@@ -34,6 +46,18 @@ class TOP(XLEN: Int) extends Module {
   /* axi */
   val dataAxiLite = Wire(new AxiLiteBundle())
   val instAxiLite = Wire(new AxiLiteBundle())
+
+  io.slave.awready := 0.U
+  io.slave.wready  := 0.U
+  io.slave.bvalid  := 0.U
+  io.slave.bresp   := 0.U
+  io.slave.bid     := 0.U
+  io.slave.arready := 0.U
+  io.slave.rvalid  := 0.U
+  io.slave.rresp   := 0.U
+  io.slave.rid     := 0.U
+  io.slave.rlast   := 0.U
+  io.slave.rdata   := 0.U
 
   /* stage io */
   val IFin   = IF.io.Pre2IF
@@ -199,13 +223,13 @@ class TOP(XLEN: Int) extends Module {
   hazard1(1) := (WBin.bits.rd === EXin.bits.rs1) && WBRegWrite
   hazard2(1) := (WBin.bits.rd === EXin.bits.rs2) && WBRegWrite
   stall := (hazard1(0) || hazard2(0)) && MEMin.bits.memRead && EX2MEMValid ||
-    (hazard1(1) || hazard2(1)) && WBin.bits.memRead && MEM2WBValid && ~WBout.valid
-
+    (hazard1(1) || hazard2(1)) && WBin.bits.memRead && MEM2WBValid
   EX.io.stall     := stall
   EX.io.hazard1   := hazard1.asUInt
   EX.io.hazard2   := hazard2.asUInt
   EX.io.bypassMEM := MEMin.bits.aluOut
-  EX.io.bypassWB  := WBout.bits.regWdata
+  EX.io.bypassWB  := WBin.bits.aluOut
+  EX.io.bypassLD  := WBout.bits.regWdata
 
   EXoutValid := EXout.valid && ID2EXValid
 
@@ -273,13 +297,15 @@ class TOP(XLEN: Int) extends Module {
   /** *********** commit for difftest *******************
     */
 
-  io.commit.pc     := WBout.bits.pc
-  io.commit.inst   := WBout.bits.inst
-  io.commit.wen    := WBout.bits.regWrite
-  io.commit.addr   := WBout.bits.address
-  io.commit.mem    := WBout.bits.memWrite || WBout.bits.memRead
-  io.commit.halt   := WBout.bits.halt
-  io.commit.commit := WBoutValid
+  commit.pc     := WBout.bits.pc
+  exit.io.clock := clock
+  // commit.inst   := WBout.bits.inst
+  // commit.wen    := WBout.bits.regWrite
+  commit.addr   := WBout.bits.address
+  commit.mem    := WBout.bits.memWrite || WBout.bits.memRead
+  commit.halt   := WBout.bits.halt
+  commit.ret    := ID.io.ret
+  commit.commit := WBoutValid
 
   /** *********** arbiter  *******************
     */

@@ -21,16 +21,18 @@ class WBU(XLEN: Int) extends Module {
   val out = io.WBout.bits
 
   // generate ReadData
-  val rdataShift0 = Mux(in.aluOut(0), io.r.bits.rdata(31, 8), io.r.bits.rdata)
-  val rdataShift1 = Mux(in.aluOut(1), rdataShift0(31, 16), rdataShift0)
+  val rdataShift0 = Mux(in.aluOut(0), io.r.bits.rdata(63, 8), io.r.bits.rdata)
+  val rdataShift1 = Mux(in.aluOut(1), rdataShift0(63, 16), rdataShift0)
+  val rdataShift2 = Mux(in.aluOut(2), rdataShift1(63, 32), rdataShift1)
+
   val rdataSignal = Mux(
     ~in.func3(2),
     MuxLookup(
       in.func3(1, 0),
-      rdataShift1(XLEN - 1),
+      rdataShift2(XLEN - 1),
       Seq(
-        "b00".U -> rdataShift1(7),
-        "b01".U -> rdataShift1(15)
+        "b00".U -> rdataShift2(7),
+        "b01".U -> rdataShift2(15)
       )
     ),
     0.U(1.W)
@@ -38,10 +40,10 @@ class WBU(XLEN: Int) extends Module {
   val ReadData =
     MuxLookup(
       in.func3(1, 0),
-      rdataShift1,
+      rdataShift2,
       Seq(
-        "b00".U -> Cat(Fill(24, rdataSignal), rdataShift1(7, 0)),
-        "b01".U -> Cat(Fill(16, rdataSignal), rdataShift1(15, 0))
+        "b00".U -> Cat(Fill(24, rdataSignal), rdataShift2(7, 0)),
+        "b01".U -> Cat(Fill(16, rdataSignal), rdataShift2(15, 0))
       )
     )
 

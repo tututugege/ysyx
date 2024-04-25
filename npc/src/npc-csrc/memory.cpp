@@ -1,5 +1,4 @@
-#include <VTOP___024root.h>
-#include <cassert>
+#include <VNPC.h>
 #include <common.h>
 #include <cpu-info.h>
 #include <difftest.h>

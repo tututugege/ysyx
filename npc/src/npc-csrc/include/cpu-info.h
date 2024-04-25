@@ -1,5 +1,5 @@
-#include <VTOP.h>
-#include <VTOP___024root.h>
+#include <VNPC.h>
+#include <VNPC___024root.h>
 #include <common.h>
 #include <verilated_vcd_c.h>
 
@@ -19,7 +19,7 @@ typedef struct {
   uint32_t halt_ret;
 } NPCState;
 
-extern VTOP *dut;
+extern VNPC *dut;
 extern VerilatedVcdC *m_trace;
 extern int sim_time;
 extern NPCState npc_state;
@@ -28,7 +28,7 @@ extern uint8_t inst_ram[CONFIG_MSIZE];
 extern uint32_t *GPR[GPR_NUM];
 extern const char *regs[];
 
-#define MAX_SIM_TIME 100000000
+#define MAX_SIM_TIME 1000000000
 #define TIME_OUT (sim_time >= MAX_SIM_TIME)
 
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };

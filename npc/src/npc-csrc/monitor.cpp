@@ -18,7 +18,7 @@ void reset(int n);
 void single_cycle();
 extern "C" void init_disasm(const char *triple);
 
-VTOP *dut;
+VNPC *dut;
 VerilatedVcdC *m_trace;
 
 uint8_t inst_ram[CONFIG_MSIZE];
@@ -223,6 +223,7 @@ static int parse_args(int argc, char *argv[]) {
 #define macro(i) GPR[i] = &(GPR_NAME(i))
 
 int init_monitor(int argc, char *argv[]) {
+  Verilated::commandArgs(argc, argv);
   parse_args(argc, argv);
 
   // Open the log file
@@ -243,7 +244,7 @@ int init_monitor(int argc, char *argv[]) {
 #endif
 
   // init dut and wave
-  dut = new VTOP;
+  dut = new VNPC;
   init_gpr();
 
 #ifdef CONFIG_WAVE

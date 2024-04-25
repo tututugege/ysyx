@@ -17,6 +17,7 @@ class EXU(XLEN: Int) extends Module {
     // forwarding
     val bypassMEM = Input(UInt(XLEN.W))
     val bypassWB  = Input(UInt(XLEN.W))
+    val bypassLD  = Input(UInt(XLEN.W))
     val hazard1   = Input(UInt(2.W))
     val hazard2   = Input(UInt(2.W))
     val stall     = Input(Bool())
@@ -34,7 +35,11 @@ class EXU(XLEN: Int) extends Module {
   val data1 = Wire(UInt(XLEN.W))
   val data2 = Wire(UInt(XLEN.W))
 
-  bypassReg := Mux(~io.EX2MEM.fire && (io.hazard1(1) || io.hazard2(1)) && io.WBoutValid, io.bypassWB, bypassReg)
+  bypassReg := Mux(
+    ~io.EX2MEM.fire && (io.hazard1(1) || io.hazard2(1)) && io.WBoutValid,
+    Mux(io.stall, io.bypassLD, io.bypassWB),
+    bypassReg
+  )
 
   hazard1Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg))
   hazard2Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg))
