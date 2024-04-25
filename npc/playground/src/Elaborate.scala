@@ -1,7 +1,7 @@
 import circt.stage._
 
 object Elaborate extends App {
-  def top       = new TOP(32)
+  def top       = new NPC(32)
   val useMFC    = false
   val generator = Seq(chisel3.stage.ChiselGeneratorAnnotation(() => top))
   if (useMFC) {

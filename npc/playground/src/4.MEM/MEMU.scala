@@ -35,7 +35,7 @@ class MEMU(XLEN: Int) extends Module {
     BitPat("b????")
   )
 
-  val addr    = Cat(in.aluOut(31, 2), 0.U(2.W))
+  val addr    = in.aluOut
   val memSize = in.func3(1, 0)
 
   val shiftWdata0 = Mux(in.aluOut(0), Cat(in.rdata2(23, 0), 0.U(8.W)), in.rdata2)
@@ -66,7 +66,7 @@ class MEMU(XLEN: Int) extends Module {
   io.ar.bits.arid    := 1.U
   io.ar.bits.araddr  := addr
   io.ar.bits.arlen   := "h00".U
-  io.ar.bits.arsize  := "b010".U
+  io.ar.bits.arsize  := memSize
   io.ar.bits.arburst := "b00".U
 
   io.aw.valid        := in.memWrite && io.inValid && ~awFireReg && ~(io.flush && ~(awAssert || wAssert))
@@ -76,9 +76,10 @@ class MEMU(XLEN: Int) extends Module {
   io.aw.bits.awsize  := memSize
   io.aw.bits.awburst := "b00".U
 
+  val wordStrb = decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
   io.w.valid      := in.memWrite && io.inValid && ~wFireReg && ~(io.flush && ~(awAssert || wAssert))
-  io.w.bits.wdata := shiftWdata1
-  io.w.bits.wstrb := decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
+  io.w.bits.wdata := Mux(addr(2), shiftWdata1 ## 0.U(32.W), shiftWdata1)
+  io.w.bits.wstrb := Mux(addr(2), wordStrb ## 0.U(4.W), wordStrb)
   io.w.bits.wlast := true.B
 
   out.pc    := in.pc

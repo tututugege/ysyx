@@ -12,6 +12,9 @@ class RegFile(num: Int) extends Module {
 
     val rdata1 = Output(UInt(32.W))
     val rdata2 = Output(UInt(32.W))
+
+    // for simulating
+    val ret = Output(Bool())
   })
 
   val GPR = Wire(Vec(num, UInt(32.W)))
@@ -28,4 +31,5 @@ class RegFile(num: Int) extends Module {
 
   io.rdata1 := MuxCase(GPR(io.rs1), Seq((io.rs1 === 0.U) -> 0.U(32.W), (io.waddr === io.rs1 && io.wen) -> io.wdata))
   io.rdata2 := MuxCase(GPR(io.rs2), Seq((io.rs2 === 0.U) -> 0.U(32.W), (io.waddr === io.rs2 && io.wen) -> io.wdata))
+  io.ret    := GPR(10).orR
 }

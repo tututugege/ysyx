@@ -14,20 +14,34 @@
  ***************************************************************************************/
 
 #include "common.h"
+#include "debug.h"
 #include "utils.h"
+#include <assert.h>
 #include <device/mmio.h>
 #include <isa.h>
 #include <memory/host.h>
 #include <memory/paddr.h>
 
 #if defined(CONFIG_PMEM_MALLOC)
-static uint8_t *pmem = NULL;
+static uint8_t *mrom = NULL;
 #else // CONFIG_PMEM_GARRAY
-static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
+static uint8_t mrom[CONFIG_MROM_SIZE] PG_ALIGN = {};
+static uint8_t sram[CONFIG_SRAM_SIZE] PG_ALIGN = {};
+static uint8_t flash[CONFIG_FLASH_SIZE] PG_ALIGN = {};
 #endif
 
-uint8_t *guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
-paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
+uint8_t *guest_to_host(paddr_t paddr) {
+  uint8_t *ret;
+  if (in_mrom(paddr)) {
+    ret = mrom + paddr - CONFIG_MROM_BASE;
+  } else if (in_sram(paddr)) {
+    ret = sram + paddr - CONFIG_SRAM_BASE;
+  } else {
+    panic("error addr 0x%x\n", paddr);
+  }
+  return ret;
+}
+// paddr_t host_to_guest(uint8_t *haddr) { return haddr - mrom + CONFIG_MBASE; }
 
 static word_t pmem_read(paddr_t addr, int len) {
   word_t ret = host_read(guest_to_host(addr), len);
@@ -39,25 +53,33 @@ static void pmem_write(paddr_t addr, int len, word_t data) {
 }
 
 static void out_of_bound(paddr_t addr) {
-  panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR
-        ", " FMT_PADDR "] at pc = " FMT_WORD,
-        addr, PMEM_LEFT, PMEM_RIGHT, cpu.pc);
+  panic("address = " FMT_PADDR " is out of bound of mrom [" FMT_PADDR
+        ", " FMT_PADDR "] sram [" FMT_PADDR ", " FMT_PADDR
+        "] at pc = " FMT_WORD,
+        addr, MROM_LEFT, MROM_RIGHT, SRAM_LEFT, SRAM_RIGHT, cpu.pc);
 }
 
 void init_mem() {
 #if defined(CONFIG_PMEM_MALLOC)
-  pmem = malloc(CONFIG_MSIZE);
-  assert(pmem);
+  mrom = malloc(CONFIG_MSIZE);
+  assert(mrom);
 #endif
 #ifdef CONFIG_MEM_RANDOM
-  uint32_t *p = (uint32_t *)pmem;
+  uint32_t *p = (uint32_t *)mrom;
   int i;
-  for (i = 0; i < (int)(CONFIG_MSIZE / sizeof(p[0])); i++) {
+  for (i = 0; i < (int)(CONFIG_MROM_SIZE / sizeof(p[0])); i++) {
     p[i] = rand();
   }
+
+  p = (uint32_t *)sram;
+  for (i = 0; i < (int)(CONFIG_SRAM_SIZE / sizeof(p[0])); i++) {
+    p[i] = rand();
+  }
+
 #endif
-  Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT,
-      PMEM_RIGHT);
+  Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "], [" FMT_PADDR
+      ", " FMT_PADDR "]",
+      MROM_LEFT, MROM_RIGHT, SRAM_LEFT, SRAM_RIGHT);
 }
 
 word_t paddr_read(paddr_t addr, int len) {

@@ -54,15 +54,16 @@ class IFU(XLEN: Int) extends Module {
   brBuffer := Mux(io.brTaken, io.pcBr, brBuffer)
 
   // axi r channel
-  val rFireReg = RegInit(false.B)
-  val rdataReg = Reg(UInt(XLEN.W))
+  val rFireReg    = RegInit(false.B)
+  val rdataReg    = Reg(UInt(XLEN.W))
+  val instruction = Mux(pcReg(2), io.r.bits.rdata(63, 32), io.r.bits.rdata(31, 0))
   rFireReg   := Mux(io.IF2ID.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
-  rdataReg   := Mux(io.r.fire && ~io.IF2ID.ready, io.r.bits.rdata, rdataReg)
+  rdataReg   := Mux(io.r.fire && ~io.IF2ID.ready, instruction, rdataReg)
   io.r.ready := io.arValid && ~rFireReg
 
   // IF to ID
   out.pc   := pcReg
-  out.inst := Mux(rFireReg, rdataReg, io.r.bits.rdata)
+  out.inst := Mux(rFireReg, rdataReg, instruction)
 
   // must deal with memory request has been sent
   io.Pre2IF.ready := io.IF2ID.fire || ~io.inValid && ~io.arValid
