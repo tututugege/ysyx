@@ -7,7 +7,7 @@ SOC_CSRC 	= ./src/soc-csrc/*.cpp
 NPC_SSRCS = ./playground/src/*.scala
 NPC_VSRC  = ./build/NPC.v 
 SOC_VSRC  = $(NPC_VSRC) $(foreach dir ,$(shell find ../ysyxSoC/perip/ -type d), $(wildcard $(dir)/*.v)) \
-						../ysyxSoC/generated/ysyxSoCFull.v ./playground/src/ExitSim.v
+						../ysyxSoC/build/ysyxSoCFull.v ./playground/src/ExitSim.v
 
 export PATH := $(PATH):$(abspath ./utils)
 

@@ -48,8 +48,7 @@ void init_difftest(char *ref_so_file, long img_size) {
   assert(ref_difftest_init);
 
   ref_difftest_init(0);
-  ref_difftest_memcpy(CONFIG_MROM_BASE, mrom, CONFIG_MROM_SIZE,
-                      DIFFTEST_TO_REF);
+  ref_difftest_memcpy(CONFIG_FLASH_BASE, flash, img_size, DIFFTEST_TO_REF);
 
   for (int i = 0; i < GPR_NUM; i++) {
     cpu.gpr[i] = gpr(i);

@@ -28,28 +28,44 @@ class EXU(XLEN: Int) extends Module {
   val Alu = Module(new ALU(XLEN))
 
   // bypass
-  val bypassReg  = Reg(UInt(32.W))
+  val bypass1Reg = Reg(UInt(32.W))
+  val bypass2Reg = Reg(UInt(32.W))
   val hazard1Reg = Reg(Bool())
   val hazard2Reg = Reg(Bool())
 
   val data1 = Wire(UInt(XLEN.W))
   val data2 = Wire(UInt(XLEN.W))
 
-  bypassReg := Mux(
-    ~io.EX2MEM.fire && (io.hazard1(1) || io.hazard2(1)) && io.WBoutValid,
+  bypass1Reg := Mux(
+    ~io.EX2MEM.fire && io.hazard1(1) && io.WBoutValid,
     Mux(io.stall, io.bypassLD, io.bypassWB),
-    bypassReg
+    bypass1Reg
   )
 
-  hazard1Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg))
-  hazard2Reg := Mux(io.ID2EX.fire, false.B, Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg))
+  bypass2Reg := Mux(
+    ~io.EX2MEM.fire && io.hazard2(1) && io.WBoutValid,
+    Mux(io.stall, io.bypassLD, io.bypassWB),
+    bypass2Reg
+  )
+
+  hazard1Reg := Mux(
+    io.ID2EX.fire,
+    false.B,
+    Mux(io.hazard1(1) && ~io.hazard1(0) && io.WBoutValid, true.B, hazard1Reg)
+  )
+
+  hazard2Reg := Mux(
+    io.ID2EX.fire,
+    false.B,
+    Mux(io.hazard2(1) && ~io.hazard2(0) && io.WBoutValid, true.B, hazard2Reg)
+  )
 
   data1 := MuxCase(
     in.rdata1,
     Seq(
       io.hazard1(0) -> io.bypassMEM,
       (io.hazard1(1) && ~io.hazard1(0)) -> io.bypassWB,
-      hazard1Reg -> bypassReg
+      hazard1Reg -> bypass1Reg
     )
   )
 
@@ -58,7 +74,7 @@ class EXU(XLEN: Int) extends Module {
     Seq(
       io.hazard2(0) -> io.bypassMEM,
       (io.hazard2(1) && ~io.hazard2(0)) -> io.bypassWB,
-      hazard2Reg -> bypassReg
+      hazard2Reg -> bypass2Reg
     )
   )
 
@@ -84,8 +100,10 @@ class EXU(XLEN: Int) extends Module {
   Alu.io.AluOp := in.aluOp
 
   // branch
-  val pcBrImm  = in.pc + in.imm // compute branch pc for jal, B-type
-  val pcBrReg  = data1 // branch pc for jalr
+  val brSrc1  = Mux1H(Seq(in.pcSrc(0) -> in.pc, in.pcSrc(1) -> data1))
+  val pcBrImm = brSrc1 + in.imm // compute branch pc for jal, B-type
+  val pcBrReg = pcBrImm(31, 1) ## 0.U(1.W) // branch pc for jalr
+
   val brEnable = RegInit(true.B) // brTaken cannot be asserted more than one cycle when stalling
   val brTaken  = Wire(Bool())
 

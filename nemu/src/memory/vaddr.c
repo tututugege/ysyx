@@ -24,5 +24,8 @@ void vaddr_write(vaddr_t addr, int len, word_t data) {
   if (in_mrom(addr))
     panic("write mrom!!! addr = 0x%x\n", addr);
 
+  if (in_flash(addr))
+    panic("write flash!!! addr = 0x%x\n", addr);
+
   paddr_write(addr, len, data);
 }

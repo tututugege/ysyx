@@ -1,73 +1,107 @@
 import chisel3._
 import chisel3.util._
 
-class SocMasterBundle extends Bundle {
-  // aw
-  val awready = Input(Bool())
-  val awvalid = Output(Bool())
-  val awaddr  = Output(UInt(32.W))
-  val awid    = Output(UInt(4.W))
-  val awlen   = Output(UInt(8.W))
-  val awsize  = Output(UInt(3.W))
-  val awburst = Output(UInt(2.W))
-
-  // w
-  val wready = Input(Bool())
-  val wvalid = Output(Bool())
-  val wdata  = Output(UInt(64.W))
-  val wstrb  = Output(UInt(8.W))
-  val wlast  = Output(Bool())
-
-  // b
-  val bready = Output(Bool())
-  val bvalid = Input(Bool())
-  val bresp  = Input(UInt(2.W))
-  val bid    = Input(UInt(4.W))
-
-  // ar
-  val arready = Input(Bool())
-  val arvalid = Output(Bool())
-  val araddr  = Output(UInt(32.W))
-  val arid    = Output(UInt(4.W))
-  val arlen   = Output(UInt(8.W))
-  val arsize  = Output(UInt(3.W))
-  val arburst = Output(UInt(2.W))
-
-  // r
-  val rready = Output(Bool())
-  val rvalid = Input(Bool())
-  val rresp  = Input(UInt(2.W))
-  val rdata  = Input(UInt(64.W))
-  val rlast  = Input(Bool())
-  val rid    = Input(UInt(4.W))
-}
-
 class AxiLiteArbiter extends Module {
   val io = IO(new Bundle {
     val DataAxiLite = Flipped(new AxiLiteBundle())
     val InstAxiLite = Flipped(new AxiLiteBundle())
 
-    val master = new SocMasterBundle()
+    val master = new AxiLiteBundle()
   })
 
-  io.DataAxiLite.aw.ready := io.master.awready
-  io.master.awvalid       := io.DataAxiLite.aw.valid
-  io.master.awaddr        := io.DataAxiLite.aw.bits.awaddr
-  io.master.awid          := io.DataAxiLite.aw.bits.awid
-  io.master.awlen         := io.DataAxiLite.aw.bits.awlen
-  io.master.awsize        := io.DataAxiLite.aw.bits.awsize
-  io.master.awburst       := io.DataAxiLite.aw.bits.awburst
+  val ar = io.master.ar
+  val r  = io.master.r
+  val aw = io.master.aw
+  val w  = io.master.w
+  val b  = io.master.b
 
-  io.DataAxiLite.w.ready := io.master.wready
-  io.master.wvalid       := io.DataAxiLite.w.valid
-  io.master.wdata        := io.DataAxiLite.w.bits.wdata
-  io.master.wstrb        := io.DataAxiLite.w.bits.wstrb
-  io.master.wlast        := io.DataAxiLite.w.bits.wlast
+  // r channel buffer
+  val instBufValid = RegInit(false.B)
+  val instBufRdata = Reg(UInt(64.W))
+  val instBufRlast = Reg(Bool())
+  val instBufRresp = Reg(UInt(2.W))
 
-  io.master.bready            := io.DataAxiLite.b.ready
-  io.DataAxiLite.b.valid      := io.master.bvalid
-  io.DataAxiLite.b.bits.bresp := io.master.bresp
-  io.DataAxiLite.b.bits.bid   := io.master.bid
+  val dataBufValid = RegInit(false.B)
+  val dataBufRdata = Reg(UInt(64.W))
+  val dataBufRlast = Reg(Bool())
+  val dataBufRresp = Reg(UInt(2.W))
+
+  val instNeedBuf = ~r.bits.rid(0) && ~io.InstAxiLite.r.ready && r.fire
+  val dataNeedBuf = r.bits.rid(0) && ~io.DataAxiLite.r.ready && r.fire
+
+  instBufValid := Mux(
+    instNeedBuf,
+    true.B,
+    Mux(
+      io.InstAxiLite.r.fire && instBufValid,
+      false.B,
+      instBufValid
+    )
+  )
+
+  instBufRdata := Mux(
+    instNeedBuf,
+    r.bits.rdata,
+    instBufRdata
+  )
+
+  instBufRlast := Mux(
+    instNeedBuf,
+    r.bits.rlast,
+    instBufRlast
+  )
+
+  instBufRresp := Mux(
+    instNeedBuf,
+    r.bits.rresp,
+    instBufRresp
+  )
+  dataBufValid := Mux(
+    dataNeedBuf,
+    true.B,
+    Mux(
+      io.DataAxiLite.r.fire && dataBufValid,
+      false.B,
+      dataBufValid
+    )
+  )
+
+  dataBufRdata := Mux(
+    dataNeedBuf,
+    r.bits.rdata,
+    dataBufRdata
+  )
+
+  instBufRlast := Mux(
+    dataNeedBuf,
+    r.bits.rlast,
+    dataBufRlast
+  )
+
+  instBufRresp := Mux(
+    dataNeedBuf,
+    r.bits.rresp,
+    dataBufRresp
+  )
+
+  io.DataAxiLite.aw.ready := aw.ready
+  aw.valid                := io.DataAxiLite.aw.valid
+  aw.bits.awaddr          := io.DataAxiLite.aw.bits.awaddr
+  aw.bits.awid            := io.DataAxiLite.aw.bits.awid
+  aw.bits.awlen           := io.DataAxiLite.aw.bits.awlen
+  aw.bits.awsize          := io.DataAxiLite.aw.bits.awsize
+  aw.bits.awburst         := io.DataAxiLite.aw.bits.awburst
+
+  io.DataAxiLite.w.ready := w.ready
+  w.valid                := io.DataAxiLite.w.valid
+  w.bits.wdata           := io.DataAxiLite.w.bits.wdata
+  w.bits.wstrb           := io.DataAxiLite.w.bits.wstrb
+  w.bits.wlast           := io.DataAxiLite.w.bits.wlast
+
+  b.ready                     := io.DataAxiLite.b.ready
+  io.DataAxiLite.b.valid      := b.valid
+  io.DataAxiLite.b.bits.bresp := b.bits.bresp
+  io.DataAxiLite.b.bits.bid   := b.bits.bid
 
   io.InstAxiLite.w.ready      := false.B
   io.InstAxiLite.aw.ready     := false.B
@@ -82,28 +116,34 @@ class AxiLiteArbiter extends Module {
     io.InstAxiLite.ar.bits
   )
 
-  io.master.arvalid := io.InstAxiLite.ar.valid || io.DataAxiLite.ar.valid
-  io.master.araddr  := masterAr.araddr
-  io.master.arid    := masterAr.arid
-  io.master.arlen   := masterAr.arlen
-  io.master.arsize  := masterAr.arsize
-  io.master.arburst := masterAr.arburst
+  ar.valid        := io.InstAxiLite.ar.valid || io.DataAxiLite.ar.valid
+  ar.bits.araddr  := masterAr.araddr
+  ar.bits.arid    := masterAr.arid
+  ar.bits.arlen   := masterAr.arlen
+  ar.bits.arsize  := masterAr.arsize
+  ar.bits.arburst := masterAr.arburst
 
-  io.InstAxiLite.ar.ready := io.master.arready && ~io.DataAxiLite.ar.valid
-  io.DataAxiLite.ar.ready := io.master.arready
+  io.InstAxiLite.ar.ready := ar.ready && ~io.DataAxiLite.ar.valid
+  io.DataAxiLite.ar.ready := ar.ready
 
   // choose master according to rid in r channel
-  io.master.rready            := Mux(io.master.rid(0), io.DataAxiLite.r.ready, io.InstAxiLite.r.ready)
-  io.DataAxiLite.r.bits.rresp := io.master.rresp
-  io.DataAxiLite.r.bits.rdata := io.master.rdata
-  io.DataAxiLite.r.bits.rlast := io.master.rlast
-  io.DataAxiLite.r.bits.rid   := io.master.rid
+  r.ready := Mux(
+    r.bits.rid(0),
+    io.DataAxiLite.r.ready || ~dataBufValid,
+    io.InstAxiLite.r.ready || ~instBufValid
+  )
 
-  io.InstAxiLite.r.bits.rresp := io.master.rresp
-  io.InstAxiLite.r.bits.rdata := io.master.rdata
-  io.InstAxiLite.r.bits.rlast := io.master.rlast
-  io.InstAxiLite.r.bits.rid   := io.master.rid
+  io.DataAxiLite.r.bits.rresp := Mux(dataBufValid, dataBufRresp, r.bits.rresp)
+  io.DataAxiLite.r.bits.rdata := Mux(dataBufValid, dataBufRdata, r.bits.rdata)
+  io.DataAxiLite.r.bits.rlast := Mux(dataBufValid, dataBufRlast, r.bits.rlast)
+  io.DataAxiLite.r.bits.rid   := 1.U
 
-  io.DataAxiLite.r.valid := io.master.rid(0) && io.master.rvalid
-  io.InstAxiLite.r.valid := ~io.master.rid(0) && io.master.rvalid
+  io.InstAxiLite.r.bits.rresp := Mux(instBufValid, instBufRresp, r.bits.rresp)
+  io.InstAxiLite.r.bits.rdata := Mux(instBufValid, instBufRdata, r.bits.rdata)
+  io.InstAxiLite.r.bits.rlast := Mux(instBufValid, instBufRlast, r.bits.rlast)
+  io.InstAxiLite.r.bits.rid   := 0.U
+
+  io.DataAxiLite.r.valid := r.bits.rid(0) && r.valid || dataBufValid
+  io.InstAxiLite.r.valid := ~r.bits.rid(0) && r.valid || instBufValid
+
 }

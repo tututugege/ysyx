@@ -16,13 +16,14 @@
 #define UART_LSR_THRE (1 << 5)
 
 extern char _heap_start;
+extern char _heap_end;
 int main(const char *args);
 
 extern char _pmem_start;
 #define PMEM_SIZE (128 * 1024 * 1024)
 #define PMEM_END ((uintptr_t) & _pmem_start + PMEM_SIZE)
 
-Area heap = RANGE(&_heap_start, &_heap_start + 0x1000);
+Area heap = RANGE(&_heap_start, &_heap_end);
 #ifndef MAINARGS
 #define MAINARGS ""
 #endif
@@ -43,7 +44,8 @@ void halt(int code) {
     ;
 }
 
-extern char _etext, _bdata, _edata, _bss_start, _bss_end;
+extern char _bss_start, _bss_end;
+
 void _trm_init() {
   *(volatile uint8_t *)(UART_BASE + UART_LCR) =
       UART_LCR_RESET | UART_LCR_DIV_ACCESS;
@@ -51,11 +53,6 @@ void _trm_init() {
   *(volatile uint8_t *)(UART_BASE + UART_DIV_LSB) = 1;
 
   *(volatile uint8_t *)(UART_BASE + UART_LCR) = UART_LCR_RESET;
-
-  char *src, *dst;
-  src = &_etext;
-  dst = &_bdata;
-  memcpy(dst, src, &_edata - &_bdata);
   memset(&_bss_start, 0, &_bss_end - &_bss_start);
   int ret = main(mainargs);
   halt(ret);

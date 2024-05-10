@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <verilated_vcd_c.h>
 
-#define MAX_SIM_TIME 1000000
+#define MAX_SIM_TIME 200000000
 #define EBREAK 0x00100073
 #define GPR_NUM 32
 #define CONFIG_SRAM_BASE 0x0f000000
@@ -17,11 +17,13 @@
 #define CONFIG_FLASH_BASE 0x30000000
 #define CONFIG_FLASH_SIZE 0x1000000
 
-#define RESET_VECTOR CONFIG_MROM_BASE
+#define RESET_VECTOR CONFIG_FLASH_BASE
 #define gpr(i) (*GPR[i])
 
 typedef uint32_t paddr_t;
-#define CONFIG_WAVE
+/* #define CONFIG_WAVE */
+/* #define CONFIG_DIFFTEST */
+/* #define CONFIG_INFINITY */
 
 enum SOC_state { RUNNING, GOOD_TRAP, BAD_TRAP };
 void single_cycle();

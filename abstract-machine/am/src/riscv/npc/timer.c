@@ -11,8 +11,6 @@
 #define FB_ADDR (MMIO_BASE + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE + 0x1200000)
 
-void __am_timer_init() {}
-
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
   uptime->us = (uint64_t)inl(RTC_ADDR + 4);
   uptime->us |= (uint64_t)inl(RTC_ADDR);

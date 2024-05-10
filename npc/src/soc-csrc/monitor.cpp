@@ -46,10 +46,16 @@ bool monitor() {
   printf("Reset NPC...\n");
   reset(10);
 
+#ifdef CONFIG_INFINITY
+  while (1) {
+#else
   while (sim_time < MAX_SIM_TIME && state == RUNNING) {
+#endif
     single_cycle();
     if (commit_pc) {
-      /* difftest_step(commit_pc); */
+#ifdef CONFIG_DIFFTEST
+      difftest_step(commit_pc);
+#endif
       commit_pc = 0;
     }
   }

@@ -4,31 +4,37 @@ bool monitor();
 void init_difftest();
 void init_difftest(char *ref_so_file, long img_size);
 
-int init_mrom(char *img) {
-  FILE *fp = fopen(img, "r");
-  assert(fp != NULL);
+/* int init_mrom(char *img) { */
+/*   FILE *fp = fopen(img, "r"); */
+/*   assert(fp != NULL); */
+/**/
+/*   fseek(fp, 0, SEEK_END); */
+/*   int file_size = ftell(fp); */
+/*   rewind(fp); */
+/*   assert(fread(mrom, sizeof(uint8_t), file_size, fp)); */
+/*   fclose(fp); */
+/*   printf("img size: %d\n", file_size); */
+/*   return file_size; */
+/* } */
 
-  fseek(fp, 0, SEEK_END);
-  int file_size = ftell(fp);
-  rewind(fp);
-  assert(fread(mrom, sizeof(uint8_t), file_size, fp));
-  fclose(fp);
-  printf("img size: %d\n", file_size);
-  return file_size;
-}
-
-void init_flash() {
+int init_flash(char *img) {
   /* for (int i = 0; i < CONFIG_FLASH_SIZE / sizeof(int); i++) */
   /*   *(uint32_t *)(flash + i * sizeof(int)) = */
   /*       CONFIG_FLASH_BASE + i * sizeof(int); */
-  FILE *fp = fopen(
-      "/home/tututu/hry/ysyx/ysyx-workbench/npc/soc-test/uart_test.bin", "r");
-  assert(fp);
+  /* FILE *fp = fopen( */
+  /*     "/home/tututu/hry/ysyx/ysyx-workbench/npc/soc-test/uart_test.bin",
+   * "r"); */
+  FILE *fp = fopen(img, "r");
+  assert(fp != NULL);
   fseek(fp, 0, SEEK_END);
   int file_size = ftell(fp);
   rewind(fp);
   assert(fread(flash, sizeof(uint8_t), file_size, fp));
   fclose(fp);
+
+  /* printf("%08x\n", *(uint32_t *)(flash + 0xe8)); */
+
+  return file_size;
 }
 
 VysyxSoCFull *dut;
@@ -52,8 +58,7 @@ int main(int argc, char *argv[]) {
 
   assert(argc == 3);
   init_gpr();
-  init_flash();
-  init_difftest(argv[2], init_mrom(argv[1]));
+  init_difftest(argv[2], init_flash(argv[1]));
   int ret = !monitor();
 
 #ifdef CONFIG_WAVE

@@ -3,39 +3,18 @@ import chisel3.util._
 import chisel3.util.experimental.decode._
 import firrtl.CoreTransform
 
-object CrossBar {
-  val device = Seq[(Int, String, String)](
-// bus number, name, address space
-    (0, "RAM", "b10000???????????????????????????"),
-    (1, "UART", "b101000000000000000000011111110??"),
-    (2, "CLINT", "b101000000000000000000000010?????")
-  )
-
-  val map = for (i <- 0 until device.length) yield {
-    BitPat(device(i)._3) -> BitPat("b" + "0" * (device.length - i - 1) + (1 << device(i)._1).toBinaryString)
-  }
-
-  val table = TruthTable(
-    map,
-    BitPat("b" + "0" * device.length)
-  )
-}
-
-class RequestInfo extends Bundle {
-  val slaveNum = UInt(CrossBar.device.length.W)
-}
-
 class CrossBar extends Module {
   val io = IO(new Bundle {
     val master = Flipped(new AxiLiteBundle())
-    val slave  = Vec(CrossBar.device.length, new AxiLiteBundle())
+    val clint  = new AxiLiteBundle()
+    val other  = new AxiLiteBundle()
   })
 
-  val arSel = Wire(UInt(CrossBar.device.length.W))
-  val rSel  = Wire(UInt(CrossBar.device.length.W))
-  val awSel = Wire(UInt(CrossBar.device.length.W))
-  val wSel  = Wire(UInt(CrossBar.device.length.W))
-  val bSel  = Wire(UInt(CrossBar.device.length.W))
+  val arSel = Wire(Bool())
+  val rSel  = Wire(Bool())
+  val awSel = Wire(Bool())
+  val wSel  = Wire(Bool())
+  val bSel  = Wire(Bool())
 
   val ar = io.master.ar
   val r  = io.master.r
@@ -44,11 +23,11 @@ class CrossBar extends Module {
   val b  = io.master.b
 
   // the response must be consistent with the order of request in our core
-  val arFifo = Module(new Fifo(new RequestInfo, 2))
-  val awFifo = Module(new Fifo(new RequestInfo, 2))
+  val arFifo = Module(new Fifo(Bool(), 2))
+  val awFifo = Module(new Fifo(Bool(), 2))
 
   // if aw channel shakes hands before wchannel, the sel is necessary to select channel
-  val awSelReg  = Reg(UInt(CrossBar.device.length.W))
+  val awSelReg  = Reg(UInt(2.W))
   val awFireReg = RegInit(false.B)
   val wFireReg  = RegInit(false.B)
 
@@ -56,67 +35,88 @@ class CrossBar extends Module {
   awFireReg := Mux(awFifo.io.enq.fire, false.B, Mux(aw.fire, true.B, awFireReg))
   wFireReg  := Mux(awFifo.io.enq.fire, false.B, Mux(w.fire, true.B, wFireReg))
 
-  arSel := decoder(ar.bits.araddr, CrossBar.table)
-  awSel := decoder(aw.bits.awaddr, CrossBar.table)
+  arSel := ar.bits.araddr(31, 16) === "h0200".U
+  awSel := aw.bits.awaddr(31, 16) === "h0200".U
   wSel  := Mux(awFireReg, awSelReg, awSel)
 
-  arFifo.io.enq.valid         := ar.fire
-  arFifo.io.enq.bits.slaveNum := arSel
+  arFifo.io.enq.valid := ar.fire
+  arFifo.io.enq.bits  := arSel
 
-  awFifo.io.enq.valid         := aw.fire
-  awFifo.io.enq.bits.slaveNum := awSel
+  awFifo.io.enq.valid := aw.fire
+  awFifo.io.enq.bits  := awSel
 
   ar.ready := Mux1H(
-    for (i <- 0 until CrossBar.device.length) yield {
-      arSel(i) -> (io.slave(i).ar.ready && arFifo.io.enq.ready)
-    }
+    Seq(
+      arSel -> (io.clint.ar.ready && arFifo.io.enq.ready),
+      ~arSel -> (io.other.ar.ready && arFifo.io.enq.ready)
+    )
   )
 
   aw.ready := Mux1H(
-    for (i <- 0 until CrossBar.device.length) yield {
-      awSel(i) -> (io.slave(i).aw.ready && awFifo.io.enq.ready)
-    }
+    Seq(
+      awSel -> (io.clint.aw.ready && awFifo.io.enq.ready),
+      ~awSel -> (io.other.aw.ready && awFifo.io.enq.ready)
+    )
   )
 
   w.ready := Mux1H(
-    for (i <- 0 until CrossBar.device.length) yield {
-      wSel(i) -> (io.slave(i).w.ready && awFifo.io.enq.ready)
-    }
+    Seq(
+      wSel -> (io.clint.w.ready && awFifo.io.enq.ready),
+      ~wSel -> (io.other.w.ready && awFifo.io.enq.ready)
+    )
   )
 
-  for (i <- 0 until CrossBar.device.length) {
-    io.slave(i).ar.valid := Mux(arSel(i), ar.valid, false.B) && arFifo.io.enq.ready
-    io.slave(i).ar.bits  := ar.bits
-    io.slave(i).aw.valid := Mux(awSel(i), aw.valid, false.B) && awFifo.io.enq.ready
-    io.slave(i).aw.bits  := aw.bits
-    io.slave(i).w.valid  := Mux(wSel(i), w.valid, false.B) && awFifo.io.enq.ready
-    io.slave(i).w.bits   := w.bits
-  }
+  io.clint.ar.valid := Mux(arSel, ar.valid, false.B) && arFifo.io.enq.ready
+  io.clint.ar.bits  := ar.bits
+  io.clint.aw.valid := Mux(awSel, aw.valid, false.B) && awFifo.io.enq.ready
+  io.clint.aw.bits  := aw.bits
+  io.clint.w.valid  := Mux(wSel, w.valid, false.B) && awFifo.io.enq.ready
+  io.clint.w.bits   := w.bits
+
+  io.other.ar.valid := Mux(~arSel, ar.valid, false.B) && arFifo.io.enq.ready
+  io.other.ar.bits  := ar.bits
+  io.other.aw.valid := Mux(~awSel, aw.valid, false.B) && awFifo.io.enq.ready
+  io.other.aw.bits  := aw.bits
+  io.other.w.valid  := Mux(~wSel, w.valid, false.B) && awFifo.io.enq.ready
+  io.other.w.bits   := w.bits
+
   // r channel
-  rSel := arFifo.io.deq.bits.slaveNum
-  bSel := awFifo.io.deq.bits.slaveNum
+  rSel := arFifo.io.deq.bits
+  bSel := awFifo.io.deq.bits
 
   arFifo.io.deq.ready := r.fire
-  r.bits := Mux1H(for (i <- 0 until CrossBar.device.length) yield {
-    rSel(i) -> io.slave(i).r.bits
-  })
+  r.bits := Mux1H(
+    Seq(
+      rSel -> io.clint.r.bits,
+      ~rSel -> io.other.r.bits
+    )
+  )
 
-  r.valid := Mux1H(for (i <- 0 until CrossBar.device.length) yield {
-    rSel(i) -> io.slave(i).r.valid
-  })
+  r.valid := Mux1H(
+    Seq(
+      rSel -> io.clint.r.valid,
+      ~rSel -> io.other.r.valid
+    )
+  )
 
   // b channel
   awFifo.io.deq.ready := b.fire
-  b.bits := Mux1H(for (i <- 0 until CrossBar.device.length) yield {
-    bSel(i) -> io.slave(i).b.bits
-  })
+  b.bits := Mux1H(
+    Seq(
+      bSel -> io.clint.b.bits,
+      ~bSel -> io.other.b.bits
+    )
+  )
 
-  b.valid := Mux1H(for (i <- 0 until CrossBar.device.length) yield {
-    bSel(i) -> io.slave(i).b.valid
-  })
+  b.valid := Mux1H(
+    Seq(
+      bSel -> io.clint.b.valid,
+      ~bSel -> io.other.b.valid
+    )
+  )
 
-  for (i <- 0 until CrossBar.device.length) {
-    io.slave(i).r.ready := Mux(rSel(i), r.ready, false.B)
-    io.slave(i).b.ready := Mux(bSel(i), b.ready, false.B)
-  }
+  io.clint.r.ready := Mux(rSel, r.ready, false.B)
+  io.clint.b.ready := Mux(bSel, b.ready, false.B)
+  io.other.r.ready := Mux(~rSel, r.ready, false.B)
+  io.other.b.ready := Mux(~bSel, b.ready, false.B)
 }

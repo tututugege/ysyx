@@ -23,7 +23,7 @@
 #define SRAM_LEFT ((paddr_t)CONFIG_SRAM_BASE)
 #define SRAM_RIGHT ((paddr_t)CONFIG_SRAM_BASE + CONFIG_SRAM_SIZE - 1)
 
-#define RESET_VECTOR (MROM_LEFT + CONFIG_PC_RESET_OFFSET)
+#define RESET_VECTOR (CONFIG_FLASH_BASE + CONFIG_PC_RESET_OFFSET)
 
 /* convert the guest physical address in the guest program to host virtual
  * address in NEMU */
@@ -31,13 +31,6 @@ uint8_t *guest_to_host(paddr_t paddr);
 /* convert the host virtual address in NEMU to guest physical address in the
  * guest program */
 paddr_t host_to_guest(uint8_t *haddr);
-
-static inline bool in_pmem(paddr_t addr) {
-  return (addr >= CONFIG_MROM_BASE &&
-          addr - CONFIG_MROM_BASE < CONFIG_MROM_SIZE) ||
-         (addr >= CONFIG_SRAM_BASE &&
-          addr - CONFIG_SRAM_BASE < CONFIG_SRAM_SIZE);
-}
 
 static inline bool in_mrom(paddr_t paddr) {
   return (paddr >= CONFIG_MROM_BASE &&
@@ -48,6 +41,21 @@ static inline bool in_sram(paddr_t paddr) {
   return (paddr >= CONFIG_SRAM_BASE &&
           paddr - CONFIG_SRAM_BASE < CONFIG_SRAM_SIZE);
 }
+
+static inline bool in_flash(paddr_t paddr) {
+  return (paddr >= CONFIG_FLASH_BASE &&
+          paddr - CONFIG_FLASH_BASE < CONFIG_FLASH_SIZE);
+}
+
+static inline bool in_psram(paddr_t paddr) {
+  return (paddr >= CONFIG_PSRAM_BASE &&
+          paddr - CONFIG_PSRAM_BASE < CONFIG_PSRAM_SIZE);
+}
+
+static inline bool in_pmem(paddr_t addr) {
+  return in_mrom(addr) || in_sram(addr) || in_flash(addr) || in_psram(addr);
+}
+
 word_t paddr_read(paddr_t addr, int len);
 void paddr_write(paddr_t addr, int len, word_t data);
 
