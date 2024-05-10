@@ -7,6 +7,7 @@ class MEMU(XLEN: Int) extends Module {
   val io = IO(new Bundle {
     val inValid = Input(Bool())
     val flush   = Input(Bool())
+    val memRaw  = Input(Bool())
 
     val EX2MEM = Flipped(Decoupled(new ExecuteToMemory(XLEN)))
     val MEM2WB = Decoupled(new MemoryToWrite(XLEN))
@@ -38,8 +39,10 @@ class MEMU(XLEN: Int) extends Module {
   val addr    = in.aluOut
   val memSize = in.func3(1, 0)
 
-  val shiftWdata0 = Mux(in.aluOut(0), Cat(in.rdata2(23, 0), 0.U(8.W)), in.rdata2)
-  val shiftWdata1 = Mux(in.aluOut(1), Cat(shiftWdata0(15, 0), 0.U(16.W)), shiftWdata0)
+  val shiftWdata0 =
+    Mux(in.aluOut(0), Cat(in.rdata2(23, 0), 0.U(8.W)), in.rdata2)
+  val shiftWdata1 =
+    Mux(in.aluOut(1), Cat(shiftWdata0(15, 0), 0.U(16.W)), shiftWdata0)
 
   // axi ar aw w channel
   val arDataFireReg = RegInit(false.B)
@@ -54,15 +57,19 @@ class MEMU(XLEN: Int) extends Module {
   val awFire     = awFireReg || io.aw.fire
   val wFire      = wFireReg || io.w.fire
 
-  arDataFireReg := Mux(io.MEM2WB.fire, false.B, Mux(io.ar.fire, true.B, arDataFireReg))
-  wFireReg      := Mux(io.MEM2WB.fire, false.B, Mux(io.w.fire, true.B, wFireReg))
-  awFireReg     := Mux(io.MEM2WB.fire, false.B, Mux(io.aw.fire, true.B, awFireReg))
+  arDataFireReg := Mux(
+    io.MEM2WB.fire,
+    false.B,
+    Mux(io.ar.fire, true.B, arDataFireReg)
+  )
+  wFireReg  := Mux(io.MEM2WB.fire, false.B, Mux(io.w.fire, true.B, wFireReg))
+  awFireReg := Mux(io.MEM2WB.fire, false.B, Mux(io.aw.fire, true.B, awFireReg))
 
   arAssert := Mux(io.EX2MEM.fire, false.B, Mux(io.ar.valid, true.B, arAssert))
   awAssert := Mux(io.EX2MEM.fire, false.B, Mux(io.aw.valid, true.B, awAssert))
   wAssert  := Mux(io.EX2MEM.fire, false.B, Mux(io.w.valid, true.B, wAssert))
 
-  io.ar.valid        := in.memRead && io.inValid && ~arDataFireReg && ~(io.flush && ~arAssert)
+  io.ar.valid        := in.memRead && io.inValid && ~arDataFireReg && ~(io.flush && ~arAssert) && ~io.memRaw
   io.ar.bits.arid    := 1.U
   io.ar.bits.araddr  := addr
   io.ar.bits.arlen   := "h00".U

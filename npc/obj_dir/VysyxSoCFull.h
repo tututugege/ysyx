@@ -30,9 +30,6 @@ class alignas(VL_CACHE_LINE_BYTES) VysyxSoCFull VL_NOT_FINAL : public VerilatedM
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clock,0,0);
     VL_IN8(&reset,0,0);
-    VL_IN8(&externalPins_ps2_clk,0,0);
-    VL_IN8(&externalPins_ps2_data,0,0);
-    VL_IN8(&externalPins_uart_rx,0,0);
     VL_OUT8(&externalPins_gpio_seg_0,7,0);
     VL_OUT8(&externalPins_gpio_seg_1,7,0);
     VL_OUT8(&externalPins_gpio_seg_2,7,0);
@@ -41,15 +38,18 @@ class alignas(VL_CACHE_LINE_BYTES) VysyxSoCFull VL_NOT_FINAL : public VerilatedM
     VL_OUT8(&externalPins_gpio_seg_5,7,0);
     VL_OUT8(&externalPins_gpio_seg_6,7,0);
     VL_OUT8(&externalPins_gpio_seg_7,7,0);
+    VL_IN8(&externalPins_ps2_clk,0,0);
+    VL_IN8(&externalPins_ps2_data,0,0);
     VL_OUT8(&externalPins_vga_r,7,0);
     VL_OUT8(&externalPins_vga_g,7,0);
     VL_OUT8(&externalPins_vga_b,7,0);
     VL_OUT8(&externalPins_vga_hsync,0,0);
     VL_OUT8(&externalPins_vga_vsync,0,0);
     VL_OUT8(&externalPins_vga_valid,0,0);
+    VL_IN8(&externalPins_uart_rx,0,0);
     VL_OUT8(&externalPins_uart_tx,0,0);
-    VL_IN16(&externalPins_gpio_in,15,0);
     VL_OUT16(&externalPins_gpio_out,15,0);
+    VL_IN16(&externalPins_gpio_in,15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

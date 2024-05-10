@@ -2,7 +2,7 @@
 #include <klib-macros.h>
 #include <klib.h>
 
-#define N 32
+#define N 8
 char data[N];
 
 static inline void reset() {

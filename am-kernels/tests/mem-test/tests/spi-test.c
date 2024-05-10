@@ -28,7 +28,6 @@
     (((x) >> 24) & 0xFF)))
 
 uint32_t flash_read(uint32_t addr) {
-  *(volatile char *)(SPI_BASE + SPI_DIVIDER) = 2;
   *(volatile char *)(SPI_BASE + SPI_SS) = SS_FLASH;
   *(volatile int *)(SPI_BASE + SPI_TX1) = (addr & FLASH_ADDR) | FLASH_CMD_RD;
   *(volatile int *)(SPI_BASE + SPI_CTRL) =

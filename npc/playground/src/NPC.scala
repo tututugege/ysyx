@@ -3,7 +3,7 @@ import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
 object TOP {
-  val START_PC = "h1FFFFFFC"
+  val START_PC = "h2FFFFFFC"
 }
 
 class CommitBundle() extends Bundle {
@@ -152,7 +152,11 @@ class NPC(XLEN: Int) extends Module {
   IF.io.arValid := arInstValid
 
   IF.io.r <> instAxiLite.r
-  IF.io.pcBr     := Mux(WBout.bits.syscall, WBout.bits.pcTrap, Mux(WBout.bits.mret, WBout.bits.pcMret, pcBr))
+  IF.io.pcBr := Mux(
+    WBout.bits.syscall,
+    WBout.bits.pcTrap,
+    Mux(WBout.bits.mret, WBout.bits.pcMret, pcBr)
+  )
   IF.io.brTaken  := brTaken || WBout.bits.syscall || WBout.bits.mret
   IF.io.arAssert := arAssert
 
@@ -236,6 +240,7 @@ class NPC(XLEN: Int) extends Module {
   /** ***************** MEM ************************
     */
 
+  val memRaw = Wire(Bool())
   StageConnect[ExecuteToMemory](EXout, MEMin, EXoutValid)
 
   EX2MEMValid := Mux(
@@ -251,6 +256,7 @@ class NPC(XLEN: Int) extends Module {
   )
   MEM.io.inValid := EX2MEMValid
   MEM.io.flush   := flush
+  MEM.io.memRaw  := memRaw
 
   MEM.io.ar <> dataAxiLite.ar
   MEM.io.aw <> dataAxiLite.aw
@@ -282,6 +288,10 @@ class NPC(XLEN: Int) extends Module {
       (~WBin.valid && WBout.fire) -> false.B
     )
   )
+  // memory access RAW
+  memRaw := (WBin.bits.aluOut(31, 3) === MEMin.bits.aluOut(31, 3)) &&
+    (WBin.bits.memWrite && MEMin.bits.memRead) &&
+    (EX2MEMValid && MEM2WBValid)
 
   WB.io.inValid  := MEM2WBValid
   WB.io.arwValid := arwDataValid
@@ -307,12 +317,17 @@ class NPC(XLEN: Int) extends Module {
   commit.ret    := ID.io.ret
   commit.commit := WBoutValid
 
-  /** *********** arbiter  *******************
+  /** *********** arbiter *******************
     */
 
   val arbiter = Module(new AxiLiteArbiter())
+  val xbar    = Module(new CrossBar())
+  val clint   = Module(new CLINT())
 
   arbiter.io.InstAxiLite <> instAxiLite
   arbiter.io.DataAxiLite <> dataAxiLite
-  io.master <> arbiter.io.master
+  arbiter.io.master <> xbar.io.master
+  xbar.io.clint <> clint.io.AxiLite
+
+  ConnectAxiSoC(xbar.io.other, io.master)
 }

@@ -21,14 +21,14 @@ char test[] = {0b11001100, 0b10101111, 0b11110000, 0b10110111};
 char ans[] = {0b00110011, 0b11110101, 0b00001111, 0b11101101};
 
 int main() {
-  *(volatile char *)(SPI_BASE + SPI_DIVIDER) = 2;
   *(volatile char *)(SPI_BASE + SPI_SS) = SS_BITREV;
   int res;
 
   for (int i = 0; i < sizeof(test); i++) {
     *(volatile char *)(SPI_BASE + SPI_TX0) = test[i];
-    *(volatile int *)(SPI_BASE + SPI_CTRL) =
-        SPI_CTRL_LSB | (SPI_CTRL_CHAR_LEN & 0x10) | SPI_CTRL_GO_BSY;
+    *(volatile int *)(SPI_BASE + SPI_CTRL) = SPI_CTRL_LSB |
+                                             (SPI_CTRL_CHAR_LEN & 0x10) |
+                                             SPI_CTRL_GO_BSY | SPI_CTRL_ASS;
     while (*(volatile int *)(SPI_BASE + SPI_CTRL) & SPI_CTRL_GO_BSY)
       ;
 

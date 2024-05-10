@@ -1,5 +1,11 @@
 AM_SRCS := riscv/ysyxsoc/start.S \
            riscv/ysyxsoc/trm.c \
+           riscv/ysyxsoc/ioe.c \
+           riscv/ysyxsoc/timer.c \
+           riscv/ysyxsoc/gpu.c \
+           riscv/ysyxsoc/input.c \
+           riscv/ysyxsoc/cte.c \
+           riscv/ysyxsoc/trap.S \
            platform/dummy/vme.c \
            platform/dummy/mpe.c
 
@@ -8,7 +14,7 @@ LDFLAGS   += -T $(AM_HOME)/scripts/platform/linker.ld \
 						 --defsym=_pmem_start=0x20000000 --defsym=_entry_offset=0x0 \
 						 --defsym=_stack_top=0x0f000000
 
-LDFLAGS   += --gc-sections -e _start
+LDFLAGS   += -gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 .PHONY: $(AM_HOME)/am/src/riscv/ysyxsoc/trm.c
 

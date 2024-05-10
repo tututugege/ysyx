@@ -12,9 +12,6 @@ VysyxSoCFull::VysyxSoCFull(VerilatedContext* _vcontextp__, const char* _vcname__
     , vlSymsp{new VysyxSoCFull__Syms(contextp(), _vcname__, this)}
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
-    , externalPins_ps2_clk{vlSymsp->TOP.externalPins_ps2_clk}
-    , externalPins_ps2_data{vlSymsp->TOP.externalPins_ps2_data}
-    , externalPins_uart_rx{vlSymsp->TOP.externalPins_uart_rx}
     , externalPins_gpio_seg_0{vlSymsp->TOP.externalPins_gpio_seg_0}
     , externalPins_gpio_seg_1{vlSymsp->TOP.externalPins_gpio_seg_1}
     , externalPins_gpio_seg_2{vlSymsp->TOP.externalPins_gpio_seg_2}
@@ -23,15 +20,18 @@ VysyxSoCFull::VysyxSoCFull(VerilatedContext* _vcontextp__, const char* _vcname__
     , externalPins_gpio_seg_5{vlSymsp->TOP.externalPins_gpio_seg_5}
     , externalPins_gpio_seg_6{vlSymsp->TOP.externalPins_gpio_seg_6}
     , externalPins_gpio_seg_7{vlSymsp->TOP.externalPins_gpio_seg_7}
+    , externalPins_ps2_clk{vlSymsp->TOP.externalPins_ps2_clk}
+    , externalPins_ps2_data{vlSymsp->TOP.externalPins_ps2_data}
     , externalPins_vga_r{vlSymsp->TOP.externalPins_vga_r}
     , externalPins_vga_g{vlSymsp->TOP.externalPins_vga_g}
     , externalPins_vga_b{vlSymsp->TOP.externalPins_vga_b}
     , externalPins_vga_hsync{vlSymsp->TOP.externalPins_vga_hsync}
     , externalPins_vga_vsync{vlSymsp->TOP.externalPins_vga_vsync}
     , externalPins_vga_valid{vlSymsp->TOP.externalPins_vga_valid}
+    , externalPins_uart_rx{vlSymsp->TOP.externalPins_uart_rx}
     , externalPins_uart_tx{vlSymsp->TOP.externalPins_uart_tx}
-    , externalPins_gpio_in{vlSymsp->TOP.externalPins_gpio_in}
     , externalPins_gpio_out{vlSymsp->TOP.externalPins_gpio_out}
+    , externalPins_gpio_in{vlSymsp->TOP.externalPins_gpio_in}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {

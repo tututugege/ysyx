@@ -3,8 +3,8 @@ import chisel3.util._
 import scala.util.Random
 
 object CLINT {
-  val CONFIG_MTIME_HI_MMIO = "ha000004c"
-  val CONFIG_MTIME_LO_MMIO = "ha0000048"
+  val CONFIG_MTIME_LO_MMIO = "h02000000"
+  val CONFIG_MTIME_HI_MMIO = "h02000004"
 }
 
 class CLINT extends Module {
@@ -45,6 +45,8 @@ class CLINT extends Module {
   val rdata  = Wire(UInt(32.W))
   rCount       := Mux(arFifo.io.deq.fire, rRand, Mux(r.ready && arFifo.io.deq.valid, rCount - 1.U, rCount))
   r.bits.rdata := rdata
+  r.bits.rlast := 0.U
+  r.bits.rresp := 0.U
   r.bits.rid   := arFifo.io.deq.bits.id
   r.valid      := arFifo.io.deq.valid && (rCount === 0.U)
 
@@ -65,6 +67,7 @@ class CLINT extends Module {
   w.ready := false.B
 
 // b channel
-  b.valid    := false.B
-  b.bits.bid := 0.U
+  b.valid      := false.B
+  b.bits.bresp := 0.U
+  b.bits.bid   := 0.U
 }

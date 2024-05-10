@@ -28,6 +28,7 @@ static uint8_t *mrom = NULL;
 static uint8_t mrom[CONFIG_MROM_SIZE] PG_ALIGN = {};
 static uint8_t sram[CONFIG_SRAM_SIZE] PG_ALIGN = {};
 static uint8_t flash[CONFIG_FLASH_SIZE] PG_ALIGN = {};
+static uint8_t psram[CONFIG_PSRAM_SIZE] PG_ALIGN = {};
 #endif
 
 uint8_t *guest_to_host(paddr_t paddr) {
@@ -36,6 +37,10 @@ uint8_t *guest_to_host(paddr_t paddr) {
     ret = mrom + paddr - CONFIG_MROM_BASE;
   } else if (in_sram(paddr)) {
     ret = sram + paddr - CONFIG_SRAM_BASE;
+  } else if (in_flash(paddr)) {
+    ret = flash + paddr - CONFIG_FLASH_BASE;
+  } else if (in_psram(paddr)) {
+    ret = psram + paddr - CONFIG_PSRAM_BASE;
   } else {
     panic("error addr 0x%x\n", paddr);
   }
