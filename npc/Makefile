@@ -52,13 +52,10 @@ VERILATOR = verilator
 
 SOC_VERILATOR_INCLUDE  = /home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/perip/uart16550/rtl/ 
 SOC_VERILATOR_INCLUDE += /home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/perip/spi/rtl/
-SOC_VERILATOR_FLAGS = --trace --cc --build --exe --autoflush \
-									$(foreach dir, $(SOC_VERILATOR_INCLUDE), $(addprefix -I, $(dir))) \
-									--timescale "1ns/1ns" --no-timing \
-									--top-module ysyxSoCFull $(SOC_VERILATOR_CFLAGS)
 
 SOC_VERILATOR_CINCLUDE = /home/tututu/hry/ysyx/ysyx-workbench/npc/src/soc-csrc/include
-SOC_VERILATOR_CFLAGS = $(addprefix -CFLAGS , -I$(SOC_VERILATOR_CINCLUDE))
+SOC_VERILATOR_CFLAGS = $(foreach dir, $(SOC_VERILATOR_CINCLUDE), $(addprefix -CFLAGS , -I$(dir)))
+SOC_VERILATOR_CFLAGS += -CFLAGS -MMD
 SOC_VERILATOR_CFLAGS += -CFLAGS -ggdb  -LDFLAGS -ggdb
 
 remove_quote = $(patsubst "%",%,$(1))
@@ -73,11 +70,33 @@ NPC_VERILATOR_CFLAGS += $(addprefix -CFLAGS , -fPIE)
 NPC_VERILATOR_CFLAGS += $(addprefix -LDFLAGS , -lreadline)
 NPC_VERILATOR_CFLAGS += $(addprefix -LDFLAGS , -lSDL2)
 
+# nvboard file
 
-soc-sim: $(SOC_VSRC) $(SOC_CSRC) $(NPC_VSRC)
+# rules for NVBoard
+include $(NVBOARD_HOME)/scripts/nvboard.mk
+
+# constraint file
+NXDC_FILES = constr/top.nxdc
+SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
+SOC_CSRC += $(SRC_AUTO_BIND)
+SOC_VERILATOR_CFLAGS += $(addprefix -LDFLAGS , $(LDFLAGS))
+SOC_VERILATOR_CFLAGS += $(addprefix -CFLAGS , -DTOP_NAME=VysyxSoCFull)
+SOC_VERILATOR_CINCLUDE += $(INC_PATH)
+
+
+$(SRC_AUTO_BIND): $(NXDC_FILES)
+	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
+
+SOC_VERILATOR_FLAGS = --trace --cc --build --exe --autoflush \
+									-O3 --x-assign fast --x-initial fast --noassert\
+									$(foreach dir, $(SOC_VERILATOR_INCLUDE), $(addprefix -I, $(dir))) \
+									--timescale "1ns/1ns" --no-timing -MMD\
+									--top-module ysyxSoCFull $(SOC_VERILATOR_CFLAGS)
+
+soc-sim: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	# @echo "Write this Makefile by yourself."
 	$(call git_commit, "sim SOC") # DO NOT REMOVE THIS LINE!!!
-	$(VERILATOR) $(SOC_VERILATOR_FLAGS) $(SOC_VSRC) $(SOC_CSRC)
+	$(VERILATOR)  $^ $(SOC_VERILATOR_FLAGS)
 	./obj_dir/V$(SOC_TOP) $(IMG) $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
 npc-sim: $(NPC_VSRC) $(NPC_CSRC)
@@ -86,11 +105,11 @@ npc-sim: $(NPC_VSRC) $(NPC_CSRC)
 	$(VERILATOR) $(NPC_VERILATOR_FLAGS) $(NPC_VSRC) $(NPC_VERILATOR_CFLAGS) $(NPC_CSRC)
 	./obj_dir/V$(NPC_TOP) $(ARGS) $(IMG)
 
-soc-run:
+soc-run: $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	make -C $(OBJ_DIR) -f V$(SOC_TOP).mk V$(SOC_TOP)
 	./obj_dir/V$(SOC_TOP) $(IMG) $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
-soc-gdb:
+soc-gdb: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	make -C $(OBJ_DIR) -f V$(SOC_TOP).mk V$(SOC_TOP)
 	gdb --args ./obj_dir/V$(SOC_TOP) $(IMG) $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
