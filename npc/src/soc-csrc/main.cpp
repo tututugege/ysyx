@@ -1,4 +1,5 @@
 #include <common.h>
+#include <nvboard.h>
 
 bool monitor();
 void init_difftest();
@@ -18,21 +19,15 @@ void init_difftest(char *ref_so_file, long img_size);
 /* } */
 
 int init_flash(char *img) {
-  /* for (int i = 0; i < CONFIG_FLASH_SIZE / sizeof(int); i++) */
-  /*   *(uint32_t *)(flash + i * sizeof(int)) = */
-  /*       CONFIG_FLASH_BASE + i * sizeof(int); */
-  /* FILE *fp = fopen( */
-  /*     "/home/tututu/hry/ysyx/ysyx-workbench/npc/soc-test/uart_test.bin",
-   * "r"); */
+
   FILE *fp = fopen(img, "r");
   assert(fp != NULL);
   fseek(fp, 0, SEEK_END);
   int file_size = ftell(fp);
+  printf("image size: %x\n", file_size);
   rewind(fp);
   assert(fread(flash, sizeof(uint8_t), file_size, fp));
   fclose(fp);
-
-  /* printf("%08x\n", *(uint32_t *)(flash + 0xe8)); */
 
   return file_size;
 }
@@ -45,10 +40,17 @@ VerilatedVcdC *m_trace;
       &dut->rootp                                                              \
            ->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ID__DOT__Rf__DOT__gprSeq_##x;
 void init_gpr();
+void nvboard_bind_all_pins(VysyxSoCFull *top);
 
 int main(int argc, char *argv[]) {
   Verilated::commandArgs(argc, argv);
   dut = new VysyxSoCFull;
+
+#ifdef CONFIG_NVBOARD
+  nvboard_bind_all_pins(dut);
+  nvboard_init();
+#endif
+
 #ifdef CONFIG_WAVE
   Verilated::traceEverOn(true);
   m_trace = new VerilatedVcdC;
@@ -61,12 +63,7 @@ int main(int argc, char *argv[]) {
   init_difftest(argv[2], init_flash(argv[1]));
   int ret = !monitor();
 
-#ifdef CONFIG_WAVE
-  m_trace->close();
   delete dut;
-  delete m_trace;
-#endif
-
   return ret;
 }
 

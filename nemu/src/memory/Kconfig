@@ -28,13 +28,21 @@ config FLASH_SIZE
   default 0x1000000
 
 config PSRAM_BASE
-  hex "PSRAm base address"
-  default 0x0        if ISA_x86
+  hex "PSRAM base address"
   default 0x80000000
 
 config PSRAM_SIZE
   hex "PSRAM size"
   default 0x400000
+
+config SDRAM_BASE
+  hex "SDRAM base address"
+  default 0xa0000000
+
+config SDRAM_SIZE
+  hex "SDRAM size"
+  default 0x4000000
+
 
 config PC_RESET_OFFSET
   hex "Offset of reset vector from the base of memory"

@@ -1,5 +1,5 @@
-#include <cassert>
 #include <common.h>
+#include <nvboard.h>
 
 int sim_time = 0;
 SOC_state state = RUNNING;
@@ -26,6 +26,10 @@ void single_cycle() {
   sim_time++;
   dut->clock = 1;
   dut->eval();
+
+#ifdef CONFIG_NVBOARD
+  nvboard_update();
+#endif
 }
 
 void reset(int n) {
@@ -47,7 +51,7 @@ bool monitor() {
   reset(10);
 
 #ifdef CONFIG_INFINITY
-  while (1) {
+  while (state == RUNNING) {
 #else
   while (sim_time < MAX_SIM_TIME && state == RUNNING) {
 #endif
@@ -74,6 +78,10 @@ bool monitor() {
     printf(ANSI_FG_RED "TIME OUT QAQ\n" ANSI_NONE);
   }
   std::cout << "*********************************" << std::endl;
+#ifdef CONFIG_WAVE
+  m_trace->close();
+  delete m_trace;
+#endif
 
   return ret;
 }

@@ -36,21 +36,30 @@ VM_MODPREFIX = VysyxSoCFull
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
 	-I/home/tututu/hry/ysyx/ysyx-workbench/npc/src/soc-csrc/include \
+	-I/home/tututu/hry/ysyx/nvboard/usr/include \
+	-MMD \
 	-ggdb \
+	-DTOP_NAME=VysyxSoCFull \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
+	/home/tututu/hry/ysyx/nvboard/build/nvboard.a \
 	-ggdb \
+	-lSDL2 \
+	-lSDL2_image \
+	-lSDL2_ttf \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	auto_bind \
 	dut \
 	main \
 	monitor \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	./src/soc-csrc \
+	/home/tututu/hry/ysyx/ysyx-workbench/npc/build \
+	src/soc-csrc \
 
 
 ### Default rules...
@@ -62,11 +71,13 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-dut.o: ./src/soc-csrc/dut.cpp
+auto_bind.o: /home/tututu/hry/ysyx/ysyx-workbench/npc/build/auto_bind.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: ./src/soc-csrc/main.cpp
+dut.o: src/soc-csrc/dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-monitor.o: ./src/soc-csrc/monitor.cpp
+main.o: src/soc-csrc/main.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+monitor.o: src/soc-csrc/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

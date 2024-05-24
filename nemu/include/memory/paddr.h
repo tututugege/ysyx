@@ -52,8 +52,14 @@ static inline bool in_psram(paddr_t paddr) {
           paddr - CONFIG_PSRAM_BASE < CONFIG_PSRAM_SIZE);
 }
 
+static inline bool in_sdram(paddr_t paddr) {
+  return (paddr >= CONFIG_SDRAM_BASE &&
+          paddr - CONFIG_SDRAM_BASE < CONFIG_SDRAM_SIZE);
+}
+
 static inline bool in_pmem(paddr_t addr) {
-  return in_mrom(addr) || in_sram(addr) || in_flash(addr) || in_psram(addr);
+  return in_mrom(addr) || in_sram(addr) || in_flash(addr) || in_psram(addr) ||
+         in_sdram(addr);
 }
 
 word_t paddr_read(paddr_t addr, int len);

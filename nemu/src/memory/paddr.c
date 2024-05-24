@@ -29,6 +29,7 @@ static uint8_t mrom[CONFIG_MROM_SIZE] PG_ALIGN = {};
 static uint8_t sram[CONFIG_SRAM_SIZE] PG_ALIGN = {};
 static uint8_t flash[CONFIG_FLASH_SIZE] PG_ALIGN = {};
 static uint8_t psram[CONFIG_PSRAM_SIZE] PG_ALIGN = {};
+static uint8_t sdram[CONFIG_SDRAM_SIZE] PG_ALIGN = {};
 #endif
 
 uint8_t *guest_to_host(paddr_t paddr) {
@@ -41,12 +42,16 @@ uint8_t *guest_to_host(paddr_t paddr) {
     ret = flash + paddr - CONFIG_FLASH_BASE;
   } else if (in_psram(paddr)) {
     ret = psram + paddr - CONFIG_PSRAM_BASE;
+  } else if (in_sdram(paddr)) {
+    ret = sdram + paddr - CONFIG_SDRAM_BASE;
   } else {
+
     panic("error addr 0x%x\n", paddr);
   }
   return ret;
 }
-// paddr_t host_to_guest(uint8_t *haddr) { return haddr - mrom + CONFIG_MBASE; }
+// paddr_t host_to_guest(uint8_t *haddr) { return haddr - mrom + CONFIG_MBASE;
+// }
 
 static word_t pmem_read(paddr_t addr, int len) {
   word_t ret = host_read(guest_to_host(addr), len);
