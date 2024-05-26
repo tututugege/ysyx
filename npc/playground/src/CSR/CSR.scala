@@ -5,11 +5,13 @@ import chisel3.util.experimental._
 object CSR {
 
   object CsrNum {
-    val mstatus = "h300"
-    val mtvec   = "h305"
-    val mepc    = "h341"
-    val mcause  = "h342"
-    val mtval   = "h343"
+    val mstatus   = "h300"
+    val mtvec     = "h305"
+    val mepc      = "h341"
+    val mcause    = "h342"
+    val mtval     = "h343"
+    val mvendorid = "hf11"
+    val marchid   = "hf12"
   }
 
   object ExceptionCode {
@@ -41,11 +43,13 @@ class CSR extends Module {
   import CSR._
   val io = IO(new CsrBundle)
 
-  val mstatusReg = RegInit(0x1800.U(32.W));
-  val mtvecReg   = RegInit(0.U(32.W));
-  val mepcReg    = RegInit(0.U(32.W));
-  val mcauseReg  = RegInit(0.U(32.W));
-  val mtvalReg   = RegInit(0.U(32.W));
+  val mstatusReg   = RegInit(0x1800.U(32.W));
+  val mtvecReg     = RegInit(0.U(32.W));
+  val mepcReg      = RegInit(0.U(32.W));
+  val mcauseReg    = RegInit(0.U(32.W));
+  val mtvalReg     = RegInit(0.U(32.W));
+  val mvendoridReg = RegInit("h79737978".U(32.W));
+  val marchidReg   = RegInit("h15fdf02".U(32.W));
 
   val mstatusWdata = Wire(UInt(32.W))
   val mtvecWdata   = Wire(UInt(32.W))
@@ -91,7 +95,9 @@ class CSR extends Module {
       CsrNum.mtvec.U -> mtvecReg,
       CsrNum.mepc.U -> mepcReg,
       CsrNum.mcause.U -> mcauseReg,
-      CsrNum.mtval.U -> mtvalReg
+      CsrNum.mtval.U -> mtvalReg,
+      CsrNum.mvendorid.U -> mvendoridReg,
+      CsrNum.marchid.U -> marchidReg
     )
   )
 }

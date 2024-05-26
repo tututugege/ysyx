@@ -3,18 +3,6 @@
 #include <klib.h>
 #include <riscv/riscv.h>
 
-#define UART_BASE 0x10000000L
-#define UART_TX 0
-#define UART_LCR 3
-#define UART_LCR_RESET 0b00000011
-#define UART_LCR_DIV_ACCESS (1 << 7)
-
-#define UART_DIV_LSB 0
-
-#define UART_LSR 5
-#define UART_LSR_TEMT (1 << 6)
-#define UART_LSR_THRE (1 << 5)
-
 extern char _heap_start;
 extern char _heap_end;
 int main(const char *args);
@@ -29,12 +17,9 @@ Area heap = RANGE(&_heap_start, &_heap_end);
 #endif
 static const char mainargs[] = MAINARGS;
 
-void putch(char ch) {
-  while (!(inb(UART_BASE + UART_LSR) & (UART_LSR_TEMT | UART_LSR_THRE)))
-    ;
+void putch(char ch) { io_write(AM_UART_TX, ch); }
 
-  outb(UART_BASE + UART_TX, ch);
-}
+int getch() { return io_read(AM_UART_RX).data; }
 
 void halt(int code) {
 
@@ -47,12 +32,7 @@ void halt(int code) {
 extern char _bss_start, _bss_end;
 
 void _trm_init() {
-  *(volatile uint8_t *)(UART_BASE + UART_LCR) =
-      UART_LCR_RESET | UART_LCR_DIV_ACCESS;
-
-  *(volatile uint8_t *)(UART_BASE + UART_DIV_LSB) = 1;
-
-  *(volatile uint8_t *)(UART_BASE + UART_LCR) = UART_LCR_RESET;
+  ioe_init();
   memset(&_bss_start, 0, &_bss_end - &_bss_start);
   int ret = main(mainargs);
   halt(ret);
