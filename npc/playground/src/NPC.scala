@@ -2,7 +2,7 @@ import chisel3._
 import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
-object TOP {
+object NPC {
   val START_PC = "h2FFFFFFC"
 }
 
@@ -36,6 +36,7 @@ class NPC(XLEN: Int) extends Module {
   val commit = Wire(new CommitBundle())
 
   exit.io.commit := commit
+
   /* five stages */
   val IF  = Module(new IFU(XLEN))
   val ID  = Module(new IDU(XLEN))
@@ -330,4 +331,47 @@ class NPC(XLEN: Int) extends Module {
   xbar.io.clint <> clint.io.AxiLite
 
   ConnectAxiSoC(xbar.io.other, io.master)
+
+  /* performance counter */
+  val CONFIG_CNT     = true.B
+  val instFetchDelay = RegInit(0.U(32.W))
+  val memLoadDelay   = RegInit(0.U(32.W))
+  val exCnt          = RegInit(0.U(32.W))
+
+  val instFetchCnt = RegInit(0.U(32.W))
+
+  val brCnt   = RegInit(0.U(32.W))
+  val brTkCnt = RegInit(0.U(32.W))
+  val calCnt  = RegInit(0.U(32.W))
+  val csrCnt  = RegInit(0.U(32.W))
+  val ldCnt   = RegInit(0.U(32.W))
+  val stCnt   = RegInit(0.U(32.W))
+
+  brCnt := Mux(
+    IDout.fire && (IDout.bits.jump || IDout.bits.pcSrc =/= DecodeTable.PcSrcInc.U) && IF2IDValid,
+    brCnt + 1.U,
+    brCnt
+  )
+  brTkCnt := Mux(IDout.fire && EX.io.brTaken && IF2IDValid, brTkCnt + 1.U, brTkCnt)
+  ldCnt   := Mux(IDout.fire && IDout.bits.memRead && IF2IDValid, ldCnt + 1.U, ldCnt)
+  stCnt   := Mux(IDout.fire && IDout.bits.memWrite && IF2IDValid, stCnt + 1.U, stCnt)
+  csrCnt  := Mux(IDout.fire && (IDout.bits.csrRead || IDout.bits.csrWrite) && IF2IDValid, csrCnt + 1.U, csrCnt)
+  calCnt := Mux(
+    IDout.fire && (IDout.bits.regWrite && ~IDout.bits.csrRead && ~IDout.bits.csrWrite && ~IDout.bits.jump && ~IDout.bits.memRead) && IF2IDValid,
+    calCnt + 1.U,
+    calCnt
+  )
+
+  instFetchCnt := Mux(instAxiLite.r.fire, instFetchCnt + 1.U, instFetchCnt)
+
+  when(commit.halt) {
+    printf("instruction fetch number     : %d\n", instFetchCnt)
+    printf("branch instruction number    : %d\n", brCnt)
+    printf("branch taken number          : %d\n", brTkCnt)
+    printf("load instruction number      : %d\n", ldCnt)
+    printf("store instruction number     : %d\n", stCnt)
+    printf("CSR instruction number       : %d\n", csrCnt)
+    printf("calculate instruction number : %d\n", calCnt)
+  }
+
 }

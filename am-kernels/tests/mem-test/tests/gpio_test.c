@@ -5,12 +5,21 @@
 
 #define GPIO_LED 0x0
 #define GPIO_SW 0x4
+#define GPIO_SEG 0x8
 int main() {
 
   unsigned short led = 1 << 15;
   unsigned short sw = 0;
   unsigned short old_sw = 0;
   unsigned short mask = 0;
+  unsigned int id;
+  unsigned int bcd_id = 0;
+
+  asm volatile("csrr %0, marchid\n" : "=r"(id));
+  printf("student id: %d\n", id);
+
+  *(volatile unsigned int *)(GPIO_BASE_BASE + GPIO_SEG) = bcd_id;
+
   while (1) {
     *(volatile short *)(GPIO_BASE_BASE + GPIO_LED) = led;
     led >>= 1;

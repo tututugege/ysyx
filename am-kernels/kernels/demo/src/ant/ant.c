@@ -18,7 +18,6 @@ static void refresh(int x, int y) {
 
 void ant() {
   w = screen_tile_width();
-  // printf("malloc: %d\n", w);
   h = screen_tile_height();
 
   int dx = 0, dy = 1, i, k;

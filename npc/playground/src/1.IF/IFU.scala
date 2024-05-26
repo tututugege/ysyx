@@ -32,7 +32,7 @@ class IFU(XLEN: Int) extends Module {
   val out = io.IF2ID.bits
 
   // PC Module
-  val pcReg    = RegInit(TOP.START_PC.U(32.W))
+  val pcReg    = RegInit(NPC.START_PC.U(32.W))
   val pcInc    = Wire(UInt(XLEN.W)) // not taken
   val pcNormal = Wire(UInt(XLEN.W))
 

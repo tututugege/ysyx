@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <verilated_vcd_c.h>
 
-#define MAX_SIM_TIME 500000
 #define EBREAK 0x00100073
 #define GPR_NUM 32
 #define CONFIG_SRAM_BASE 0x0f000000
@@ -21,7 +20,10 @@
 #define gpr(i) (*GPR[i])
 
 typedef uint32_t paddr_t;
+
+#define MAX_SIM_TIME 51000000
 /*#define CONFIG_WAVE*/
+#define CONFIG_WAVE_START 50000000
 /*#define CONFIG_DIFFTEST */
 #define CONFIG_INFINITY
 #define CONFIG_NVBOARD

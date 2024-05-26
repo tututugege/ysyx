@@ -1,6 +1,6 @@
 #ifndef __DRAW_H__
 
-/* #define HAS_GUI */
+#define HAS_GUI
 
 #include <am.h>
 #include <amdev.h>
@@ -14,8 +14,8 @@
 
 #ifdef HAS_GUI
 #define TILE_W 4
-#define SCREEN_W 320
-#define SCREEN_H 200
+#define SCREEN_W 640
+#define SCREEN_H 480
 static inline void set_color(int c) {}
 
 static inline void print_char(char c, int y, int x) {

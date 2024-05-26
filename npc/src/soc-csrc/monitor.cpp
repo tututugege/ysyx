@@ -8,20 +8,26 @@ uint32_t *GPR[GPR_NUM];
 uint8_t mrom[CONFIG_MROM_SIZE];
 uint8_t flash[CONFIG_FLASH_SIZE];
 
+// performance counter
+int cycle_cnt = 0;
+int inst_cnt = 0;
+
 void difftest_skip_ref();
 void difftest_step(uint32_t pc);
 
 void single_cycle() {
 
 #ifdef CONFIG_WAVE
-  m_trace->dump(sim_time);
+  if (sim_time > CONFIG_WAVE_START)
+    m_trace->dump(sim_time - CONFIG_WAVE_START);
 #endif
   sim_time++;
   dut->clock = 0;
   dut->eval();
 
 #ifdef CONFIG_WAVE
-  m_trace->dump(sim_time);
+  if (sim_time > CONFIG_WAVE_START)
+    m_trace->dump(sim_time - CONFIG_WAVE_START);
 #endif
   sim_time++;
   dut->clock = 1;
@@ -56,15 +62,22 @@ bool monitor() {
   while (sim_time < MAX_SIM_TIME && state == RUNNING) {
 #endif
     single_cycle();
-    if (commit_pc) {
+    cycle_cnt++;
+
 #ifdef CONFIG_DIFFTEST
+    if (commit_pc) {
       difftest_step(commit_pc);
-#endif
       commit_pc = 0;
     }
+#endif
   }
 
   single_cycle();
+  cycle_cnt++;
+
+  printf("cycle: %d, inst: %d\nipc: %f", cycle_cnt, inst_cnt,
+         inst_cnt / (float)cycle_cnt);
+
   bool ret = false;
 
   std::cout << std::endl << "*********************************" << std::endl;
@@ -105,6 +118,7 @@ extern "C" void halt(uint32_t pc, int mem, int addr, int halt, int ret) {
     halt_pc = pc;
   } else {
     commit_pc = pc;
+    inst_cnt++;
   }
   if (mem && ((addr & ~(0xF)) == UART_BASE)) {
     difftest_skip_ref();
