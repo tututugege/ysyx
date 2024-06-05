@@ -32,10 +32,7 @@ class NPC(XLEN: Int) extends Module {
     val slave     = Flipped(new SocMasterBundle())
   })
 
-  val exit   = Module(new ExitSim)
   val commit = Wire(new CommitBundle())
-
-  exit.io.commit := commit
 
   /* five stages */
   val IF  = Module(new IFU(XLEN))
@@ -308,8 +305,7 @@ class NPC(XLEN: Int) extends Module {
   /** *********** commit for difftest *******************
     */
 
-  commit.pc     := WBout.bits.pc
-  exit.io.clock := clock
+  commit.pc := WBout.bits.pc
   // commit.inst   := WBout.bits.inst
   // commit.wen    := WBout.bits.regWrite
   commit.addr   := WBout.bits.address
@@ -333,45 +329,93 @@ class NPC(XLEN: Int) extends Module {
   ConnectAxiSoC(xbar.io.other, io.master)
 
   /* performance counter */
-  val CONFIG_CNT     = true.B
-  val instFetchDelay = RegInit(0.U(32.W))
-  val memLoadDelay   = RegInit(0.U(32.W))
-  val exCnt          = RegInit(0.U(32.W))
-
-  val instFetchCnt = RegInit(0.U(32.W))
-
-  val brCnt   = RegInit(0.U(32.W))
-  val brTkCnt = RegInit(0.U(32.W))
-  val calCnt  = RegInit(0.U(32.W))
-  val csrCnt  = RegInit(0.U(32.W))
-  val ldCnt   = RegInit(0.U(32.W))
-  val stCnt   = RegInit(0.U(32.W))
-
-  brCnt := Mux(
-    IDout.fire && (IDout.bits.jump || IDout.bits.pcSrc =/= DecodeTable.PcSrcInc.U) && IF2IDValid,
-    brCnt + 1.U,
-    brCnt
-  )
-  brTkCnt := Mux(IDout.fire && EX.io.brTaken && IF2IDValid, brTkCnt + 1.U, brTkCnt)
-  ldCnt   := Mux(IDout.fire && IDout.bits.memRead && IF2IDValid, ldCnt + 1.U, ldCnt)
-  stCnt   := Mux(IDout.fire && IDout.bits.memWrite && IF2IDValid, stCnt + 1.U, stCnt)
-  csrCnt  := Mux(IDout.fire && (IDout.bits.csrRead || IDout.bits.csrWrite) && IF2IDValid, csrCnt + 1.U, csrCnt)
-  calCnt := Mux(
-    IDout.fire && (IDout.bits.regWrite && ~IDout.bits.csrRead && ~IDout.bits.csrWrite && ~IDout.bits.jump && ~IDout.bits.memRead) && IF2IDValid,
-    calCnt + 1.U,
-    calCnt
-  )
-
-  instFetchCnt := Mux(instAxiLite.r.fire, instFetchCnt + 1.U, instFetchCnt)
-
-  when(commit.halt) {
-    printf("instruction fetch number     : %d\n", instFetchCnt)
-    printf("branch instruction number    : %d\n", brCnt)
-    printf("branch taken number          : %d\n", brTkCnt)
-    printf("load instruction number      : %d\n", ldCnt)
-    printf("store instruction number     : %d\n", stCnt)
-    printf("CSR instruction number       : %d\n", csrCnt)
-    printf("calculate instruction number : %d\n", calCnt)
-  }
-
+  // val CONFIG_CNT   = true.B
+  // val instArDelay  = RegInit(0.U(32.W))
+  // val instRDelay   = RegInit(0.U(32.W))
+  // val loadArDelay  = RegInit(0.U(32.W))
+  // val loadRDelay   = RegInit(0.U(32.W))
+  // val storeAwDelay = RegInit(0.U(32.W))
+  // val storeWDelay  = RegInit(0.U(32.W))
+  // val storeBDelay  = RegInit(0.U(32.W))
+  //
+  // val instFetchCnt = RegInit(0.U(32.W))
+  // val brCancelCnt  = Wire(UInt(32.W))
+  //
+  // val brCnt   = RegInit(0.U(32.W))
+  // val brTkCnt = RegInit(0.U(32.W))
+  // val calCnt  = RegInit(0.U(32.W))
+  // val csrCnt  = RegInit(0.U(32.W))
+  // val ldCnt   = RegInit(0.U(32.W))
+  // val stCnt   = RegInit(0.U(32.W))
+  //
+  // instArDelay := Mux(ar.valid, instArDelay + 1.U, instArDelay)
+  // instRDelay  := Mux(instAxiLite.r.ready, instRDelay + 1.U, instRDelay)
+  // loadArDelay := Mux(dataAxiLite.ar.valid, loadArDelay + 1.U, loadArDelay)
+  // loadRDelay  := Mux(dataAxiLite.r.ready, loadRDelay + 1.U, loadRDelay)
+  //
+  // storeAwDelay := Mux(dataAxiLite.aw.valid, storeAwDelay + 1.U, storeAwDelay)
+  // storeWDelay  := Mux(dataAxiLite.w.valid, storeWDelay + 1.U, storeWDelay)
+  // storeBDelay  := Mux(dataAxiLite.b.ready, storeBDelay + 1.U, storeBDelay)
+  //
+  // brCnt := Mux(
+  //   IDout.fire && (IDout.bits.jump || IDout.bits.pcSrc =/= DecodeTable.PcSrcInc.U) && IF2IDValid && IDoutValid,
+  //   brCnt + 1.U,
+  //   brCnt
+  // )
+  //
+  // val preBrCancelCnt = RegInit(0.U(32.W))
+  // val IFBrCancelCnt  = RegInit(0.U(32.W))
+  // val IDBrCancelCnt  = RegInit(0.U(32.W))
+  // preBrCancelCnt := Mux(EX.io.brTaken && ID2EXValid && IF.io.brFail, preBrCancelCnt + 1.U, preBrCancelCnt)
+  // IFBrCancelCnt  := Mux(EX.io.brTaken && ID2EXValid && Pre2IFValid, IFBrCancelCnt + 1.U, IFBrCancelCnt)
+  // IDBrCancelCnt  := Mux(EX.io.brTaken && ID2EXValid && IF2IDValid, IDBrCancelCnt + 1.U, IDBrCancelCnt)
+  // brCancelCnt    := preBrCancelCnt + IFBrCancelCnt + IDBrCancelCnt
+  //
+  // brTkCnt := Mux(EX.io.brTaken && ID2EXValid, brTkCnt + 1.U, brTkCnt)
+  // ldCnt   := Mux(IDout.fire && IDout.bits.memRead && IF2IDValid && IDoutValid, ldCnt + 1.U, ldCnt)
+  // stCnt   := Mux(IDout.fire && IDout.bits.memWrite && IF2IDValid && IDoutValid, stCnt + 1.U, stCnt)
+  // csrCnt := Mux(
+  //   IDout.fire && (IDout.bits.csrRead || IDout.bits.csrWrite) && IF2IDValid && IDoutValid,
+  //   csrCnt + 1.U,
+  //   csrCnt
+  // )
+  // calCnt := Mux(
+  //   IDout.fire && (IDout.bits.regWrite && ~IDout.bits.csrRead && ~IDout.bits.csrWrite && ~IDout.bits.jump && ~IDout.bits.memRead) && IF2IDValid,
+  //   calCnt + 1.U,
+  //   calCnt
+  // )
+  //
+  // instFetchCnt := Mux(instAxiLite.r.fire, instFetchCnt + 1.U, instFetchCnt)
+  //
+  // val exit = Module(new ExitSim)
+  //
+  // exit.io.commit := commit
+  // exit.io.clock  := clock
+  //
+  // when(commit.halt) {
+  //   printf("************ instruction type ***************\n")
+  //   printf("instruction fetch number     : %d\n", instFetchCnt)
+  //   printf("load instruction number      : %d\n", ldCnt)
+  //   printf("store instruction number     : %d\n", stCnt)
+  //   printf("calculate instruction number : %d\n", calCnt)
+  //   printf("branch instruction number    : %d\n", brCnt)
+  //   printf("CSR instruction number       : %d\n\n", csrCnt)
+  //
+  //   printf("**************** branch **********************\n")
+  //   printf("branch instruction number    : %d\n", brCnt)
+  //   printf("branch taken number          : %d\n", brTkCnt)
+  //   printf("branch cancel number         : %d\n\n", brCancelCnt)
+  //
+  //   printf("************ instruction fetch **************\n")
+  //   printf("instruction fetch number     : %d\n", instFetchCnt)
+  //   printf("instruction ar delay         : %d\n", instArDelay)
+  //   printf("instruction r  delay         : %d\n", instRDelay)
+  //   printf("load instruction number      : %d\n", ldCnt)
+  //   printf("load        ar delay         : %d\n", loadArDelay)
+  //   printf("load        r  delay         : %d\n", loadRDelay)
+  //   printf("store instruction number     : %d\n", stCnt)
+  //   printf("store       aw delay         : %d\n", storeAwDelay)
+  //   printf("store       w  delay         : %d\n", storeWDelay)
+  //   printf("store       b  delay         : %d\n", storeBDelay)
+  // }
 }

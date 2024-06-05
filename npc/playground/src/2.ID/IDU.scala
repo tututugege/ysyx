@@ -19,7 +19,7 @@ class IDU(XLEN: Int) extends Module {
     // for simulating
     val ret = Output(Bool())
   })
-  val Rf = Module(new RegFile(32))
+  val Rf = Module(new RegFile(16))
 
   val Type       = Wire(UInt(3.W))
   val DecoderOut = Wire(UInt(table.outputWidth.W))
