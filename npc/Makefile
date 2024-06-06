@@ -4,40 +4,40 @@ SOC_TOP   = ysyxSoCFull
 NPC_TOP   = NPC
 NPC_CSRC 	= ./src/npc-csrc/*.cpp
 SOC_CSRC 	= ./src/soc-csrc/*.cpp
-NPC_SSRCS = ./playground/src/*.scala
+NPC_SSRCS = ./chisel-playground/src/main/*.scala
 NPC_VSRC  = ./build/NPC.v 
 SOC_VSRC  = $(NPC_VSRC) $(foreach dir ,$(shell find ../ysyxSoC/perip/ -type d), $(wildcard $(dir)/*.v)) \
 						../ysyxSoC/build/ysyxSoCFull.v ./playground/src/ExitSim.v
 
 export PATH := $(PATH):$(abspath ./utils)
 
-test:
-	mill -i __.test
-
-verilog: $(NPC_SSRCS)
-	$(call git_commit, "generate verilog")
-	mkdir -p $(BUILD_DIR)
-	mill  -i __.test.runMain Elaborate -td $(BUILD_DIR)
-
-help:
-	mill -i __.test.runMain Elaborate --help
-
-compile:
-	mill -i __.compile
-
-bsp:
-	mill -i mill.bsp.BSP/install
-
-reformat:
-	mill -i __.reformat
-
-checkformat:
-	mill -i __.checkFormat
-
-clean:
-	rm -rf $(BUILD_DIR)
-	rm -rf $(OBJ_DIR)
-	rm *.vcd	
+# test:
+# 	mill -i __.test
+#
+# verilog: $(NPC_SSRCS)
+# 	$(call git_commit, "generate verilog")
+# 	mkdir -p $(BUILD_DIR)
+# 	mill  -i __.test.runMain Elaborate -td $(BUILD_DIR)
+#
+# help:
+# 	mill -i __.test.runMain Elaborate --help
+#
+# compile:
+# 	mill -i __.compile
+#
+# bsp:
+# 	mill -i mill.bsp.BSP/install
+#
+# reformat:
+# 	mill -i __.reformat
+#
+# checkformat:
+# 	mill -i __.checkFormat
+#
+# clean:
+# 	rm -rf $(BUILD_DIR)
+# 	rm -rf $(OBJ_DIR)
+# 	rm *.vcd	
 
 .PHONY: test verilog help compile bsp reformat checkformat clean sim wave run
 
