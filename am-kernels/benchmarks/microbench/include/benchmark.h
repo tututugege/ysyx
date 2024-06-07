@@ -15,7 +15,7 @@ extern "C" {
 #define REF_CPU "i9-9900K @ 3.60GHz"
 #define REF_SCORE 100000
 
-#define REPEAT 20
+#define REPEAT 1
 
 //                  size |  heap | time |  checksum
 #define QSORT_S                                                                \

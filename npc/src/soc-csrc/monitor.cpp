@@ -75,8 +75,8 @@ bool monitor() {
   single_cycle();
   cycle_cnt++;
 
-  printf("cycle: %d, inst: %d\nipc: %f", cycle_cnt, inst_cnt,
-         inst_cnt / (float)cycle_cnt);
+  /*printf("cycle: %d, inst: %d\nipc: %f", cycle_cnt, inst_cnt,*/
+  /*       inst_cnt / (float)cycle_cnt);*/
 
   bool ret = false;
 
@@ -118,7 +118,6 @@ extern "C" void halt(uint32_t pc, int mem, int addr, int halt, int ret) {
     halt_pc = pc;
   } else {
     commit_pc = pc;
-    inst_cnt++;
   }
   if (mem && ((addr & ~(0xF)) == UART_BASE)) {
     difftest_skip_ref();

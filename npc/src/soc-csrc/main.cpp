@@ -84,20 +84,4 @@ void init_gpr() {
   DEF_GPR(13);
   DEF_GPR(14);
   DEF_GPR(15);
-  DEF_GPR(16);
-  DEF_GPR(17);
-  DEF_GPR(18);
-  DEF_GPR(19);
-  DEF_GPR(20);
-  DEF_GPR(21);
-  DEF_GPR(22);
-  DEF_GPR(23);
-  DEF_GPR(24);
-  DEF_GPR(25);
-  DEF_GPR(26);
-  DEF_GPR(27);
-  DEF_GPR(28);
-  DEF_GPR(29);
-  DEF_GPR(30);
-  DEF_GPR(31);
 }
