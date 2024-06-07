@@ -11,7 +11,7 @@ const char *regs[] = {"zero", "ra", "sp",  "gp",  "tp", "t0", "t1", "t2",
                       "s8",   "s9", "s10", "s11", "t3", "t4", "t5", "t6"};
 
 typedef struct CPU_state {
-  uint32_t gpr[GPR_NUM];
+  uint32_t gpr[32];
   uint32_t pc;
 } CPU_state;
 CPU_state cpu;
@@ -61,12 +61,12 @@ void init_difftest(char *ref_so_file, long img_size) {
 static void checkregs(CPU_state *ref, uint32_t pc) {
   int i;
 
-  for (i = 0; i < 32; i++) {
+  for (i = 0; i < GPR_NUM; i++) {
     if (ref->gpr[i] != gpr(i))
       break;
   }
 
-  if (i == 32)
+  if (i == GPR_NUM)
     return;
 
 fault:
