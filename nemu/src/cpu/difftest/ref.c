@@ -14,11 +14,15 @@
  ***************************************************************************************/
 
 #include "common.h"
+#include <assert.h>
 #include <cpu/cpu.h>
 #include <difftest-def.h>
 #include <isa.h>
 #include <memory/paddr.h>
 #include <stdint.h>
+
+bool gen_trace = false;
+char *trace_path = NULL;
 
 __EXPORT void difftest_memcpy(paddr_t addr, void *buf, size_t n,
                               bool direction) {
@@ -54,7 +58,12 @@ __EXPORT void difftest_exec(uint64_t n) { cpu_exec(n); }
 
 __EXPORT void difftest_raise_intr(word_t NO) { assert(0); }
 
-__EXPORT void difftest_init(int port) {
+__EXPORT void difftest_init(int port, bool trace, char *path) {
+  if (trace) {
+    gen_trace = true;
+    assert(path);
+    trace_path = path;
+  }
   void init_mem();
   init_mem();
   /* Perform ISA dependent initialization. */

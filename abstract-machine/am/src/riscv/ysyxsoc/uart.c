@@ -26,8 +26,8 @@ void __am_uart_init() {
 }
 
 void __am_uart_tx(AM_UART_TX_T *cfg) {
-  while (!(inb(UART_BASE + UART_LSR) & (UART_LSR_THRE | UART_LSR_TEMT)))
-    ;
+  // while (!(inb(UART_BASE + UART_LSR) & (UART_LSR_THRE | UART_LSR_TEMT)))
+  //   ;
 
   outb(UART_BASE + UART_TX, cfg->data);
 }

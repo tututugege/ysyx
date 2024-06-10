@@ -57,6 +57,16 @@ static inline bool in_sdram(paddr_t paddr) {
           paddr - CONFIG_SDRAM_BASE < CONFIG_SDRAM_SIZE);
 }
 
+static inline bool in_uart(paddr_t paddr) {
+  return (paddr >= CONFIG_UART_BASE &&
+          paddr - CONFIG_UART_BASE < CONFIG_UART_SIZE);
+}
+
+static inline bool in_clint(paddr_t paddr) {
+  return (paddr >= CONFIG_CLINT_BASE &&
+          paddr - CONFIG_CLINT_BASE < CONFIG_CLINT_SIZE);
+}
+
 static inline bool in_pmem(paddr_t addr) {
   return in_mrom(addr) || in_sram(addr) || in_flash(addr) || in_psram(addr) ||
          in_sdram(addr);

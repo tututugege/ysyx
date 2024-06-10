@@ -32,7 +32,7 @@ void halt(int code) {
 extern char _bss_start, _bss_end;
 
 void _trm_init() {
-  ioe_init();
+  // ioe_init();
   memset(&_bss_start, 0, &_bss_end - &_bss_start);
   int ret = main(mainargs);
   halt(ret);

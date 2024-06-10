@@ -26,6 +26,7 @@ void (*ref_difftest_exec)(uint64_t n) = NULL;
 void isa_reg_display();
 
 void init_difftest(char *ref_so_file, long img_size) {
+
   assert(ref_so_file != NULL);
 
   void *handle;
@@ -43,11 +44,14 @@ void init_difftest(char *ref_so_file, long img_size) {
   ref_difftest_exec = (void (*)(uint64_t))dlsym(handle, "difftest_exec");
   assert(ref_difftest_exec);
 
-  void (*ref_difftest_init)(int) =
-      (void (*)(int))dlsym(handle, "difftest_init");
+  void (*ref_difftest_init)(int, bool, char *) =
+      (void (*)(int, bool, char *))dlsym(handle, "difftest_init");
   assert(ref_difftest_init);
 
-  ref_difftest_init(0);
+  extern bool gen_trace;
+  extern char *trace_path;
+
+  ref_difftest_init(0, gen_trace, trace_path);
   ref_difftest_memcpy(CONFIG_FLASH_BASE, flash, img_size, DIFFTEST_TO_REF);
 
   for (int i = 0; i < GPR_NUM; i++) {
