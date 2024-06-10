@@ -31,6 +31,8 @@ gdb: all
 
 wave: all
 
+trace: all
+
 clean:
 	rm -rf Makefile.* build/
 

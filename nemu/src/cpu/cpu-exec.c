@@ -116,9 +116,20 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
 }
 
+#define CONFIG_CACHE_ITRACE
 static void execute(uint64_t n) {
   Decode s;
+  FILE *fp = NULL;
+  extern bool gen_trace;
+  extern char *trace_path;
+
+  if (gen_trace) {
+    fp = fopen(trace_path, "w");
+  }
+
   for (; n > 0; n--) {
+    if (gen_trace)
+      fwrite(&cpu.pc, 4, 1, fp);
     exec_once(&s, cpu.pc);
     g_nr_guest_inst++;
     trace_and_difftest(&s, cpu.pc);
@@ -126,6 +137,9 @@ static void execute(uint64_t n) {
       break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
+
+  if (gen_trace)
+    fclose(fp);
 }
 
 static void statistic() {

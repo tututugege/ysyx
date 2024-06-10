@@ -43,6 +43,22 @@ config SDRAM_SIZE
   hex "SDRAM size"
   default 0x4000000
 
+config UART_BASE
+  hex "UART base address"
+  default 0x10000000
+
+config UART_SIZE
+  hex "UART size"
+  default 0x10000
+
+config CLINT_BASE
+  hex "CLINT base address"
+  default 0x02000000
+
+config CLINT_SIZE
+  hex "CLINT size"
+  default 0x10000
+
 
 config PC_RESET_OFFSET
   hex "Offset of reset vector from the base of memory"

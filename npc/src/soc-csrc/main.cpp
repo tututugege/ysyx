@@ -1,9 +1,26 @@
 #include <common.h>
+#include <getopt.h>
 #include <nvboard.h>
 
 bool monitor();
 void init_difftest();
 void init_difftest(char *ref_so_file, long img_size);
+void init_gpr();
+
+VysyxSoCFull *dut;
+VerilatedVcdC *m_trace;
+
+#define DEF_GPR(x)                                                             \
+  GPR[x] =                                                                     \
+      &dut->rootp                                                              \
+           ->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ID__DOT__Rf__DOT__gprSeq_##x;
+
+void nvboard_bind_all_pins(VysyxSoCFull *top);
+
+char *img_file = NULL;
+char *diff_so_file = NULL;
+bool gen_trace = false;
+char *trace_path = NULL;
 
 /* int init_mrom(char *img) { */
 /*   FILE *fp = fopen(img, "r"); */
@@ -32,19 +49,60 @@ int init_flash(char *img) {
   return file_size;
 }
 
-VysyxSoCFull *dut;
-VerilatedVcdC *m_trace;
+void parse_arg(int argc, char *argv[]) {
+  const struct option table[] = {
+      {"trace", required_argument, NULL, 't'},
+      {"diff", required_argument, NULL, 'd'},
+      {"help", no_argument, NULL, 'h'},
+      {0, 0, NULL, 0},
+  };
 
-#define DEF_GPR(x)                                                             \
-  GPR[x] =                                                                     \
-      &dut->rootp                                                              \
-           ->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__ID__DOT__Rf__DOT__gprSeq_##x;
-void init_gpr();
-void nvboard_bind_all_pins(VysyxSoCFull *top);
+  int o;
+  while ((o = getopt_long(argc, argv, "-ht:d:", table, NULL)) != -1) {
+
+    switch (o) {
+
+    case 'd':
+      diff_so_file = optarg;
+      break;
+#ifdef CONFIG_DIFFTEST
+    case 't':
+      gen_trace = true;
+      trace_path = optarg;
+      break;
+#endif
+    case 1:
+      img_file = optarg;
+      break;
+    default:
+      printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
+      printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
+      printf("\t-t,--trace              generate instruction trace\n");
+      printf("\n");
+      exit(0);
+    }
+  }
+}
 
 int main(int argc, char *argv[]) {
   Verilated::commandArgs(argc, argv);
+
+  parse_arg(argc, argv);
+
+  assert(img_file);
+
   dut = new VysyxSoCFull;
+  init_gpr();
+
+#ifdef CONFIG_DIFFTEST
+  init_difftest(diff_so_file, init_flash(img_file));
+
+  if (gen_trace) {
+    extern void (*ref_difftest_exec)(uint64_t n);
+    ref_difftest_exec(-1);
+    return 0;
+  }
+#endif
 
 #ifdef CONFIG_NVBOARD
   nvboard_bind_all_pins(dut);
@@ -58,9 +116,6 @@ int main(int argc, char *argv[]) {
   m_trace->open("wave.vcd");
 #endif
 
-  assert(argc == 3);
-  init_gpr();
-  init_difftest(argv[2], init_flash(argv[1]));
   int ret = !monitor();
 
   delete dut;
