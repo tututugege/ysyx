@@ -116,9 +116,15 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
 }
 
+typedef struct itrace_node {
+  uint32_t pc;
+  int num;
+} itrace_node;
+
 #define CONFIG_CACHE_ITRACE
 static void execute(uint64_t n) {
   Decode s;
+  itrace_node itrace_pc = {.pc = cpu.pc, .num = 1};
   FILE *fp = NULL;
   extern bool gen_trace;
   extern char *trace_path;
@@ -128,9 +134,17 @@ static void execute(uint64_t n) {
   }
 
   for (; n > 0; n--) {
-    if (gen_trace)
-      fwrite(&cpu.pc, 4, 1, fp);
     exec_once(&s, cpu.pc);
+    if (gen_trace) {
+      if (s.snpc == s.dnpc) {
+        itrace_pc.num++;
+      } else {
+        fwrite(&itrace_pc, sizeof(itrace_pc), 1, fp);
+        itrace_pc.pc = cpu.pc;
+        itrace_pc.num = 1;
+      }
+    }
+
     g_nr_guest_inst++;
     trace_and_difftest(&s, cpu.pc);
     if (nemu_state.state != NEMU_RUNNING)
