@@ -279,7 +279,7 @@ int init_monitor(int argc, char *argv[]) {
                COMMIT_PC);
         ret = 0;
       } else {
-        printf(ANSI_FG_RED "Hit Bad Trap QAQ\n" ANSI_NONE);
+        printf(ANSI_FG_RED "Hit Bad Trap QAQ at pc = 0x%08x\n" ANSI_NONE);
         m_trace->dump(sim_time++);
         m_trace->dump(sim_time);
       }

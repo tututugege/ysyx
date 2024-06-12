@@ -82,7 +82,7 @@ soc-sim: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	# @echo "Write this Makefile by yourself."
 	$(call git_commit, "sim SOC") # DO NOT REMOVE THIS LINE!!!
 	$(VERILATOR)  $^ $(SOC_VERILATOR_FLAGS)
-	./obj_dir/V$(SOC_TOP) $(IMG) $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+	./obj_dir/V$(SOC_TOP) $(IMG) --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
 npc-sim: $(NPC_VSRC) $(NPC_CSRC)
 	# @echo "Write this Makefile by yourself."
