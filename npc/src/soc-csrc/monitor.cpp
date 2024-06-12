@@ -101,6 +101,7 @@ bool monitor() {
 
 #define UART_BASE 0x10000000L
 #define UART_TX 0
+#define CLINT_BASE 0x2000000L
 
 extern "C" void flash_read(uint32_t addr, uint32_t *data) {
   *data = *(uint32_t *)(flash + (addr & 0xFFFFFC));
@@ -109,6 +110,8 @@ extern "C" void mrom_read(uint32_t addr, uint32_t *data) {
   *data = *(uint32_t *)(mrom + (addr & 0x0FFC));
 }
 extern "C" void halt(uint32_t pc, int mem, int addr, int halt, int ret) {
+  static int count = 0;
+  count++;
   if (halt) {
     if (ret == 0)
       state = GOOD_TRAP;
@@ -119,7 +122,11 @@ extern "C" void halt(uint32_t pc, int mem, int addr, int halt, int ret) {
   } else {
     commit_pc = pc;
   }
-  if (mem && ((addr & ~(0xF)) == UART_BASE)) {
+  if (mem && ((addr & ~(0xF)) == UART_BASE) ||
+      mem && ((addr & ~(0xF)) == CLINT_BASE)) {
     difftest_skip_ref();
   }
+
+  // if (count % 10000 == 0)
+  //   printf("a\n");
 }

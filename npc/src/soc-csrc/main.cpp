@@ -93,9 +93,10 @@ int main(int argc, char *argv[]) {
 
   dut = new VysyxSoCFull;
   init_gpr();
+  int file_size = init_flash(img_file);
 
 #ifdef CONFIG_DIFFTEST
-  init_difftest(diff_so_file, init_flash(img_file));
+  init_difftest(diff_so_file, file_size);
 
   if (gen_trace) {
     extern void (*ref_difftest_exec)(uint64_t n);
