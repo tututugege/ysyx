@@ -10,8 +10,8 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
     VMultiplier__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VMultiplier___024root___ico_sequent__TOP__0\n"); );
     // Body
-    vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0 
-        = (1U & ((~ (vlSelf->io_y >> 0x1fU)) | (IData)(vlSelf->io_signed)));
+    vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0 
+        = (1U & ((~ (vlSelf->io_y >> 0x1fU)) | (IData)(vlSelf->io_ySigned)));
     vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0 
         = ((6U == (vlSelf->io_y >> 0x1dU)) | (5U == 
                                               (vlSelf->io_y 
@@ -74,7 +74,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
         = ((6U == (7U & (vlSelf->io_y >> 0xbU))) | 
            (5U == (7U & (vlSelf->io_y >> 0xbU))));
     vlSelf->Multiplier__DOT__extX = (((QData)((IData)(
-                                                      ((IData)(vlSelf->io_signed) 
+                                                      ((IData)(vlSelf->io_xSigned) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1fU)))) 
                                       << 0x20U) | (QData)((IData)(vlSelf->io_x)));
@@ -616,7 +616,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                            >> 0xbU))))
                                                     ? vlSelf->Multiplier__DOT__extX
                                                     : 0ULL)))));
-    vlSelf->__VdfgTmp_h0efb5688__0 = (1U & (~ ((IData)(vlSelf->io_signed)
+    vlSelf->__VdfgTmp_hab77e2e0__0 = (1U & (~ ((IData)(vlSelf->io_xSigned)
                                                 ? (IData)(
                                                           (vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                            >> 0x20U))
@@ -637,7 +637,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0x20U))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1eU))))));
     vlSelf->Multiplier__DOT___c22_12_io_out = (3U & 
@@ -647,7 +647,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             >> 0x19U))) 
                                                 + VL_SHIFTR_III(2,2,32, 
                                                                 ((2U 
-                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                       << 1U) 
                                                                      & (vlSelf->io_x 
                                                                         >> 0x16U))) 
@@ -662,7 +662,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             >> 0x1aU))) 
                                                 + VL_SHIFTR_III(2,2,32, 
                                                                 ((2U 
-                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                       << 1U) 
                                                                      & (vlSelf->io_x 
                                                                         >> 0x17U))) 
@@ -677,7 +677,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                            >> 0xaU))) 
                                                + VL_SHIFTR_III(2,2,32, 
                                                                ((2U 
-                                                                 & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                 & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                      << 1U) 
                                                                     & (vlSelf->io_x 
                                                                        >> 7U))) 
@@ -692,7 +692,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                            >> 9U))) 
                                                + VL_SHIFTR_III(2,2,32, 
                                                                ((2U 
-                                                                 & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                 & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                      << 1U) 
                                                                     & (vlSelf->io_x 
                                                                        >> 6U))) 
@@ -707,7 +707,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             >> 0x12U))) 
                                                 + VL_SHIFTR_III(2,2,32, 
                                                                 ((2U 
-                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                       << 1U) 
                                                                      & (vlSelf->io_x 
                                                                         >> 0xfU))) 
@@ -722,7 +722,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             >> 0x11U))) 
                                                 + VL_SHIFTR_III(2,2,32, 
                                                                 ((2U 
-                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                       << 1U) 
                                                                      & (vlSelf->io_x 
                                                                         >> 0xeU))) 
@@ -733,7 +733,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
     vlSelf->Multiplier__DOT___c32_14_io_out = (3U & 
                                                ((1U 
                                                  & (~ 
-                                                    ((IData)(vlSelf->io_signed)
+                                                    ((IData)(vlSelf->io_xSigned)
                                                       ? (IData)(
                                                                 (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                                  >> 0x20U))
@@ -752,7 +752,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0x1fU))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1dU))))));
     vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out 
@@ -772,7 +772,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0x18U))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x16U))))));
     vlSelf->Multiplier__DOT___c32_12_io_out = (3U & 
@@ -787,7 +787,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0x17U))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x15U))))));
     vlSelf->Multiplier__DOT___c32_9_io_out = (3U & 
@@ -801,7 +801,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                               >> 8U))) 
                                                   + 
                                                   (1U 
-                                                   & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                       & (vlSelf->io_x 
                                                          >> 6U))))));
     vlSelf->Multiplier__DOT___c32_8_io_out = (3U & 
@@ -815,7 +815,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                               >> 7U))) 
                                                   + 
                                                   (1U 
-                                                   & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                       & (vlSelf->io_x 
                                                          >> 5U))))));
     vlSelf->Multiplier__DOT___c32_10_io_out = (3U & 
@@ -830,7 +830,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0xfU))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0xdU))))));
     vlSelf->Multiplier__DOT___c32_11_io_out = (3U & 
@@ -845,11 +845,11 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                >> 0x10U))) 
                                                    + 
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0xeU))))));
     vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x6000000U 
@@ -964,7 +964,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                        & (vlSelf->io_y 
                                                           >> 0x19U)))))));
     vlSelf->Multiplier__DOT__c53_128__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x1800000U 
@@ -1086,7 +1086,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                              >> 0xeU))))));
     vlSelf->Multiplier__DOT__c53_126__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x600000U == 
@@ -1199,7 +1199,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                       (7U 
                                                        & (vlSelf->io_y 
                                                           >> 1U)))))));
-    vlSelf->Multiplier__DOT__signal = (1U & ((IData)(vlSelf->io_signed)
+    vlSelf->Multiplier__DOT__signal = (1U & ((IData)(vlSelf->io_xSigned)
                                               ? (IData)(
                                                         (vlSelf->Multiplier__DOT__casez_tmp 
                                                          >> 0x20U))
@@ -1510,7 +1510,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                              >> 0x15U))))));
     vlSelf->Multiplier__DOT__c53_84__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_41 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x18U == (0x18U 
@@ -1585,7 +1585,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                              >> 0x16U))))));
     vlSelf->Multiplier__DOT__c53_112__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x6000U == 
@@ -1617,7 +1617,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                  >> 0x1eU))))));
     vlSelf->Multiplier__DOT__c53_120__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x60000U == 
@@ -1629,7 +1629,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                              >> 0x1dU))))));
     vlSelf->Multiplier__DOT__c53_124__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x180000U == 
@@ -1647,7 +1647,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                  >> 0x1eU))))));
     vlSelf->Multiplier__DOT__c53_116__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x18000U == 
@@ -1918,7 +1918,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                  >> 0x1eU))))));
     vlSelf->Multiplier__DOT__c53_90__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_55 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x60U == (0x60U 
@@ -2021,7 +2021,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                             >> 0xaU))))));
     vlSelf->Multiplier__DOT__c53_96__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_69 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x180U == (0x180U 
@@ -2078,7 +2078,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                  >> 0x1eU))))));
     vlSelf->Multiplier__DOT__c53_102__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x600U == (0x600U 
@@ -2105,7 +2105,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                  >> 0x1eU))))));
     vlSelf->Multiplier__DOT__c53_108__DOT___c32_1_io_out 
-        = (3U & ((1U & (~ ((IData)(vlSelf->io_signed)
+        = (3U & ((1U & (~ ((IData)(vlSelf->io_xSigned)
                             ? (IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                        >> 0x20U)) : 
                            ((~ (IData)((0x1800U == 
@@ -2226,14 +2226,14 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                              >> 0x15U))))));
     vlSelf->Multiplier__DOT___c22_14_io_out = (3U & 
-                                               ((IData)(vlSelf->__VdfgTmp_h0efb5688__0) 
+                                               ((IData)(vlSelf->__VdfgTmp_hab77e2e0__0) 
                                                 + VL_SHIFTR_III(2,2,32, 
                                                                 ((2U 
-                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                                       << 1U) 
                                                                      & (vlSelf->io_x 
                                                                         >> 0x1eU))) 
-                                                                 | (IData)(vlSelf->__VdfgTmp_h0efb5688__0)), 1U)));
+                                                                 | (IData)(vlSelf->__VdfgTmp_hab77e2e0__0)), 1U)));
     vlSelf->Multiplier__DOT___c22_33_io_out = (3U & 
                                                ((1U 
                                                  & (IData)(vlSelf->Multiplier__DOT___c32_15_io_out)) 
@@ -2243,22 +2243,22 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                  | (1U 
                                                                     & (IData)(vlSelf->Multiplier__DOT___c32_15_io_out))), 1U)));
     vlSelf->Multiplier__DOT__c53_131__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0x1cU))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_130__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0x1bU))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_123__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0x14U))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_123__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_107__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0xcU))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_107__DOT___c32_1_io_out)))));
@@ -2284,7 +2284,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                 >> 2U))) + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_63__DOT___c32_1_io_out), 1U) 
                                             + (1U & (IData)(vlSelf->Multiplier__DOT__c53_67__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_83__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 4U))) + 
                  (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out), 1U) 
                   + (1U & (IData)(vlSelf->Multiplier__DOT__c53_83__DOT___c32_1_io_out)))));
@@ -2310,7 +2310,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                + (1U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_121__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0x13U))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out)))));
@@ -2320,7 +2320,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                + (1U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_104__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0xbU))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out)))));
@@ -2397,8 +2397,8 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                   & (IData)(
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                              >> 0x1eU))))));
-    vlSelf->__VdfgTmp_h4f803223__0 = (3U & (~ ((2U 
-                                                & (((IData)(vlSelf->io_signed)
+    vlSelf->__VdfgTmp_h87e2503e__0 = (3U & (~ ((2U 
+                                                & (((IData)(vlSelf->io_xSigned)
                                                      ? (IData)(
                                                                (vlSelf->Multiplier__DOT___ppTemp_T_27 
                                                                 >> 0x20U))
@@ -2927,14 +2927,14 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                  & (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_2_io_out)) 
                                                 + (
                                                    (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1aU))) 
                                                    + 
                                                    VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out), 1U))));
     vlSelf->Multiplier__DOT__c53_197__DOT___c32_1_io_out 
         = (3U & ((1U & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out)) 
-                 + ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                 + ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                            & (vlSelf->io_x >> 0x19U))) 
                     + VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out), 1U))));
     vlSelf->Multiplier__DOT__c53_196__DOT___c32_1_io_out 
@@ -2976,8 +2976,8 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                + (1U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out 
-        = (3U & ((1U & (IData)(vlSelf->__VdfgTmp_h4f803223__0)) 
-                 + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->__VdfgTmp_h4f803223__0), 1U) 
+        = (3U & ((1U & (IData)(vlSelf->__VdfgTmp_h87e2503e__0)) 
+                 + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->__VdfgTmp_h87e2503e__0), 1U) 
                     + (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_41 
                                      >> 0x1fU))))));
     vlSelf->Multiplier__DOT___c22_18_io_out = (3U & 
@@ -3061,12 +3061,12 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
     vlSelf->Multiplier__DOT__c53_190__DOT___c32_1_io_out 
         = (3U & ((1U & (IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_2_io_out)) 
                  + ((1U & (IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_2_io_out)) 
-                    + (1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                    + (1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                              & (vlSelf->io_x >> 0x12U))))));
     vlSelf->Multiplier__DOT__c53_189__DOT___c32_1_io_out 
         = (3U & ((1U & (IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out)) 
                  + ((1U & (IData)(vlSelf->Multiplier__DOT__c53_117__DOT___c32_2_io_out)) 
-                    + (1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                    + (1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                              & (vlSelf->io_x >> 0x11U))))));
     vlSelf->Multiplier__DOT___c22_27_io_out = (3U & 
                                                (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_109__DOT___c32_2_io_out), 1U) 
@@ -3238,7 +3238,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                  + ((1U & (IData)(vlSelf->Multiplier__DOT__c53_57__DOT___c32_2_io_out)) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_58__DOT___c32_2_io_out)))));
     vlSelf->Multiplier__DOT__c53_163__DOT___c32_1_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & vlSelf->io_x)) + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_60__DOT___c32_2_io_out), 1U) 
                                             + VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out), 1U))));
     vlSelf->Multiplier__DOT__c53_160__DOT___c32_1_io_out 
@@ -3246,7 +3246,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                  + ((1U & (IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out)) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_62__DOT___c32_2_io_out)))));
     vlSelf->Multiplier__DOT__c53_165__DOT___c32_1_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 1U))) + 
                  (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_64__DOT___c32_2_io_out), 1U) 
                   + VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_65__DOT___c32_2_io_out), 1U))));
@@ -3415,7 +3415,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                                                                  | (1U 
                                                                     & (IData)(vlSelf->Multiplier__DOT___c22_36_io_out))), 1U)));
     vlSelf->Multiplier__DOT__c53_167__DOT___c32_1_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 2U))) + 
                  (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_68__DOT___c32_2_io_out), 1U) 
                   + VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out), 1U))));
@@ -3424,7 +3424,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                  + ((1U & (IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out)) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_70__DOT___c32_2_io_out)))));
     vlSelf->Multiplier__DOT__c53_169__DOT___c32_1_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 3U))) + 
                  (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_2_io_out), 1U) 
                   + VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_73__DOT___c32_2_io_out), 1U))));
@@ -3574,7 +3574,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_144__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_180__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 9U))) + 
                  (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out), 1U) 
                   + (1U & (IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out)))));
@@ -3611,7 +3611,7 @@ VL_INLINE_OPT void VMultiplier___024root___ico_sequent__TOP__0(VMultiplier___024
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_183__DOT___c32_1_io_out)))));
     vlSelf->Multiplier__DOT__c53_182__DOT___c32_2_io_out 
-        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+        = (3U & ((1U & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                         & (vlSelf->io_x >> 0xaU))) 
                  + (VL_SHIFTR_III(2,2,32, (IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out), 1U) 
                     + (1U & (IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out)))));
@@ -5248,7 +5248,9 @@ void VMultiplier___024root___eval_debug_assertions(VMultiplier___024root* vlSelf
         Verilated::overWidthError("reset");}
     if (VL_UNLIKELY((vlSelf->io_go & 0xfeU))) {
         Verilated::overWidthError("io_go");}
-    if (VL_UNLIKELY((vlSelf->io_signed & 0xfeU))) {
-        Verilated::overWidthError("io_signed");}
+    if (VL_UNLIKELY((vlSelf->io_xSigned & 0xfeU))) {
+        Verilated::overWidthError("io_xSigned");}
+    if (VL_UNLIKELY((vlSelf->io_ySigned & 0xfeU))) {
+        Verilated::overWidthError("io_ySigned");}
 }
 #endif  // VL_DEBUG

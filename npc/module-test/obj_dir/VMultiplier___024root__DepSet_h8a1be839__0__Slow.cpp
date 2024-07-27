@@ -148,7 +148,8 @@ VL_ATTR_COLD void VMultiplier___024root___ctor_var_reset(VMultiplier___024root* 
     vlSelf->clock = VL_RAND_RESET_I(1);
     vlSelf->reset = VL_RAND_RESET_I(1);
     vlSelf->io_go = VL_RAND_RESET_I(1);
-    vlSelf->io_signed = VL_RAND_RESET_I(1);
+    vlSelf->io_xSigned = VL_RAND_RESET_I(1);
+    vlSelf->io_ySigned = VL_RAND_RESET_I(1);
     vlSelf->io_x = VL_RAND_RESET_I(32);
     vlSelf->io_y = VL_RAND_RESET_I(32);
     vlSelf->io_res = VL_RAND_RESET_Q(64);
@@ -335,7 +336,7 @@ VL_ATTR_COLD void VMultiplier___024root___ctor_var_reset(VMultiplier___024root* 
     vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0 = 0;
     vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0 = 0;
     vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0 = 0;
-    vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0 = 0;
+    vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0 = 0;
     vlSelf->Multiplier__DOT__c53__DOT___c32_2_io_out = VL_RAND_RESET_I(2);
     vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out = VL_RAND_RESET_I(2);
     vlSelf->Multiplier__DOT__c53_1__DOT___c32_2_io_out = VL_RAND_RESET_I(2);
@@ -798,8 +799,8 @@ VL_ATTR_COLD void VMultiplier___024root___ctor_var_reset(VMultiplier___024root* 
     vlSelf->Multiplier__DOT__c53_229__DOT___c32_1_io_out = VL_RAND_RESET_I(2);
     vlSelf->Multiplier__DOT__c53_230__DOT___c32_2_io_out = VL_RAND_RESET_I(2);
     vlSelf->Multiplier__DOT__c53_230__DOT___c32_1_io_out = VL_RAND_RESET_I(2);
-    vlSelf->__VdfgTmp_h0efb5688__0 = 0;
-    vlSelf->__VdfgTmp_h4f803223__0 = 0;
+    vlSelf->__VdfgTmp_hab77e2e0__0 = 0;
+    vlSelf->__VdfgTmp_h87e2503e__0 = 0;
     for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }

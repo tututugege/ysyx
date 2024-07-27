@@ -7,7 +7,7 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 
-#define MAX_SIM_TIME 100000000
+#define MAX_SIM_TIME 1000000
 int sim_time = 0;
 
 static VMultiplier *dut;
@@ -53,14 +53,15 @@ int main() {
     // uin_y = 0xb0000;
     dut->io_x = uin_x;
     dut->io_y = uin_y;
-    dut->io_signed = 0;
+    dut->io_xSigned = 0;
+    dut->io_ySigned = 0;
     uref_res = (uint64_t)uin_x * (uint64_t)uin_y;
     single_cycle();
 
     if (dut->io_res != uref_res) {
       fail = true;
       printf("Fail!!!\n");
-      printf("x: %8x y: %8x signed: %d\n", uin_x, uin_y, dut->io_signed);
+      printf("x: %8x y: %8x uu\n", uin_x, uin_y);
       printf("dut: %16llx\n", dut->io_res);
       printf("ref: %16llx\n", uref_res);
 
@@ -82,7 +83,8 @@ int main() {
 
     dut->io_x = in_x;
     dut->io_y = in_y;
-    dut->io_signed = 1;
+    dut->io_xSigned = 1;
+    dut->io_ySigned = 1;
 
     ref_res = (long long)in_x * (long long)in_y;
 
@@ -90,20 +92,44 @@ int main() {
 
     if (dut->io_res != ref_res) {
       fail = true;
-      break;
+      printf("Fail!!!\n");
+      printf("x: %d y: %d ss\n", in_x, in_y);
+      printf("dut: %16llx\n", dut->io_res);
+      printf("ref: %16llx\n", ref_res);
+      goto end;
     }
   }
 
-  if (fail == false)
-    printf("Success!\n");
-  else {
-    printf("Fail!!!\n");
-    printf("x: %d y: %d\n", in_x, in_y);
-    printf("dut: %16llx\n", dut->io_res);
-    printf("ref: %16llx\n", ref_res);
+  sim_time = 0;
+
+  while (sim_time < MAX_SIM_TIME) {
+    in_x = (rand() << 16) | (rand() & 0x0000FFFF);
+    uin_y = (rand() << 16) | (rand() & 0x0000FFFF);
+
+    dut->io_x = in_x;
+    dut->io_y = uin_y;
+    dut->io_xSigned = 1;
+    dut->io_ySigned = 0;
+
+    ref_res = (long long)in_x * (long long)uin_y;
+
+    single_cycle();
+
+    if (dut->io_res != ref_res) {
+      fail = true;
+      printf("Fail!!!\n");
+      printf("x: %8x y: %8x su\n", in_x, in_y);
+      printf("dut: %16llx\n", dut->io_res);
+      printf("ref: %16llx\n", ref_res);
+
+      goto end;
+    }
   }
 
 end:
+  if (fail == false)
+    printf("Success!\n");
+
   m_trace->close();
   delete dut;
 

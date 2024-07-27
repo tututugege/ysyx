@@ -28,7 +28,8 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier VL_NOT_FINAL : public VerilatedMo
     VL_IN8(&clock,0,0);
     VL_IN8(&reset,0,0);
     VL_IN8(&io_go,0,0);
-    VL_IN8(&io_signed,0,0);
+    VL_IN8(&io_xSigned,0,0);
+    VL_IN8(&io_ySigned,0,0);
     VL_IN(&io_x,31,0);
     VL_IN(&io_y,31,0);
     VL_OUT64(&io_res,63,0);

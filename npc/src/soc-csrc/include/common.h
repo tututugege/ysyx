@@ -23,10 +23,10 @@ typedef uint32_t paddr_t;
 
 #define MAX_SIM_TIME 7000000
 // #define CONFIG_WAVE
-#define CONFIG_WAVE_START 4000000
+#define CONFIG_WAVE_START 0
 // #define CONFIG_DIFFTEST
 #define CONFIG_INFINITY
-/*#define CONFIG_NVBOARD*/
+#define CONFIG_NVBOARD
 
 enum SOC_state { RUNNING, GOOD_TRAP, BAD_TRAP };
 void single_cycle();

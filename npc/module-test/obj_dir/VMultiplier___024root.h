@@ -19,7 +19,8 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         VL_IN8(clock,0,0);
         VL_IN8(reset,0,0);
         VL_IN8(io_go,0,0);
-        VL_IN8(io_signed,0,0);
+        VL_IN8(io_xSigned,0,0);
+        VL_IN8(io_ySigned,0,0);
         CData/*1:0*/ Multiplier__DOT___c22_108_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_107_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_106_io_out;
@@ -79,9 +80,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT___c22_61_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_60_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_59_io_out;
-        CData/*1:0*/ Multiplier__DOT___c22_58_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT___c22_58_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_57_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_56_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_55_io_out;
@@ -145,9 +146,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT___c32_15_io_out;
         CData/*1:0*/ Multiplier__DOT___c32_14_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_13_io_out;
-        CData/*1:0*/ Multiplier__DOT___c22_12_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT___c22_12_io_out;
         CData/*1:0*/ Multiplier__DOT___c32_13_io_out;
         CData/*1:0*/ Multiplier__DOT___c32_12_io_out;
         CData/*1:0*/ Multiplier__DOT___c22_11_io_out;
@@ -190,7 +191,7 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*0:0*/ Multiplier__DOT____VdfgTmp_h5be92e1d__0;
         CData/*0:0*/ Multiplier__DOT____VdfgTmp_ha0b85421__0;
         CData/*0:0*/ Multiplier__DOT____VdfgTmp_h68e1d768__0;
-        CData/*0:0*/ Multiplier__DOT____VdfgTmp_hb7bc760c__0;
+        CData/*0:0*/ Multiplier__DOT____VdfgTmp_h7a6e5d83__0;
         CData/*1:0*/ Multiplier__DOT__c53__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_1__DOT___c32_2_io_out;
@@ -211,9 +212,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_8__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_9__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_9__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_10__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_10__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_10__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_11__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_11__DOT___c32_1_io_out;
@@ -277,9 +278,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_40__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_41__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_41__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_42__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_42__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_42__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_43__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_43__DOT___c32_1_io_out;
@@ -343,9 +344,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_72__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_73__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_73__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_74__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_74__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_74__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_75__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_75__DOT___c32_1_io_out;
@@ -409,9 +410,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_104__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_105__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_105__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_106__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_106__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_106__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_107__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_107__DOT___c32_1_io_out;
@@ -475,9 +476,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_136__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_137__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_137__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_138__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_138__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_138__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_139__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_139__DOT___c32_1_io_out;
@@ -541,9 +542,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_168__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_169__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_169__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_170__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_170__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_170__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_171__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_171__DOT___c32_1_io_out;
@@ -607,9 +608,9 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_200__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_201__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_201__DOT___c32_1_io_out;
-        CData/*1:0*/ Multiplier__DOT__c53_202__DOT___c32_2_io_out;
     };
     struct {
+        CData/*1:0*/ Multiplier__DOT__c53_202__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_202__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_203__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_203__DOT___c32_1_io_out;
@@ -667,15 +668,15 @@ class alignas(VL_CACHE_LINE_BYTES) VMultiplier___024root final : public Verilate
         CData/*1:0*/ Multiplier__DOT__c53_229__DOT___c32_1_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_230__DOT___c32_2_io_out;
         CData/*1:0*/ Multiplier__DOT__c53_230__DOT___c32_1_io_out;
-        CData/*0:0*/ __VdfgTmp_h0efb5688__0;
-        CData/*1:0*/ __VdfgTmp_h4f803223__0;
+        CData/*0:0*/ __VdfgTmp_hab77e2e0__0;
+        CData/*1:0*/ __VdfgTmp_h87e2503e__0;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __VicoFirstIteration;
         CData/*0:0*/ __VactContinue;
         VL_IN(io_x,31,0);
-        VL_IN(io_y,31,0);
     };
     struct {
+        VL_IN(io_y,31,0);
         IData/*31:0*/ __VactIterCount;
         VL_OUT64(io_res,63,0);
         QData/*32:0*/ Multiplier__DOT__extX;

@@ -13,7 +13,8 @@ VMultiplier::VMultiplier(VerilatedContext* _vcontextp__, const char* _vcname__)
     , clock{vlSymsp->TOP.clock}
     , reset{vlSymsp->TOP.reset}
     , io_go{vlSymsp->TOP.io_go}
-    , io_signed{vlSymsp->TOP.io_signed}
+    , io_xSigned{vlSymsp->TOP.io_xSigned}
+    , io_ySigned{vlSymsp->TOP.io_ySigned}
     , io_x{vlSymsp->TOP.io_x}
     , io_y{vlSymsp->TOP.io_y}
     , io_res{vlSymsp->TOP.io_res}

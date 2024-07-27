@@ -14,48 +14,50 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBit(c+1601,0,"clock",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+1602,0,"reset",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+1603,0,"io_go",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBit(c+1604,0,"io_signed",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBus(c+1605,0,"io_x",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
-    tracep->declBus(c+1606,0,"io_y",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
-    tracep->declQuad(c+1607,0,"io_res",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 63,0);
+    tracep->declBit(c+1604,0,"io_xSigned",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
+    tracep->declBit(c+1605,0,"io_ySigned",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
+    tracep->declBus(c+1606,0,"io_x",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
+    tracep->declBus(c+1607,0,"io_y",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
+    tracep->declQuad(c+1608,0,"io_res",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 63,0);
     tracep->pushPrefix("Multiplier", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBit(c+1601,0,"clock",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+1602,0,"reset",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
     tracep->declBit(c+1603,0,"io_go",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBit(c+1604,0,"io_signed",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBus(c+1605,0,"io_x",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
-    tracep->declBus(c+1606,0,"io_y",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
-    tracep->declQuad(c+1607,0,"io_res",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 63,0);
+    tracep->declBit(c+1604,0,"io_xSigned",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
+    tracep->declBit(c+1605,0,"io_ySigned",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
+    tracep->declBus(c+1606,0,"io_x",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
+    tracep->declBus(c+1607,0,"io_y",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 31,0);
+    tracep->declQuad(c+1608,0,"io_res",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 63,0);
     tracep->declQuad(c+1,0,"extX",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 32,0);
     tracep->declQuad(c+3,0,"negX",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 32,0);
     tracep->declQuad(c+5,0,"casez_tmp",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::VAR, VerilatedTraceSigType::LOGIC, false,-1, 32,0);
     tracep->declBit(c+7,0,"signal",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1);
-    tracep->declBus(c+1609,0,"tail_1",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1610,0,"tail_2",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1611,0,"tail_3",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1612,0,"tail_4",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1613,0,"tail_5",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1614,0,"tail_6",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1615,0,"tail_7",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1616,0,"tail_8",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1617,0,"tail_9",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1618,0,"tail_10",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1619,0,"tail_11",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1620,0,"tail_12",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1621,0,"tail_13",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1622,0,"tail_14",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1623,0,"tail_15",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
-    tracep->declBus(c+1624,0,"tail_16",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1610,0,"tail_1",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1611,0,"tail_2",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1612,0,"tail_3",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1613,0,"tail_4",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1614,0,"tail_5",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1615,0,"tail_6",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1616,0,"tail_7",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1617,0,"tail_8",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1618,0,"tail_9",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1619,0,"tail_10",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1620,0,"tail_11",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1621,0,"tail_12",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1622,0,"tail_13",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1623,0,"tail_14",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1624,0,"tail_15",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1625,0,"tail_16",-1, VerilatedTraceSigDirection::NONE, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->pushPrefix("c22", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1625,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1626,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+8,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1626,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1627,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+9,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_10", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1627,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1628,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+10,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_100", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -99,19 +101,19 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+30,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_11", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1628,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1629,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+31,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_12", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1629,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1630,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+32,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_13", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1630,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1631,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+33,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_14", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1631,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1632,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+34,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_15", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -179,7 +181,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+66,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_3", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1632,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1633,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+67,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_30", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -267,7 +269,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+109,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_5", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1633,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1634,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+110,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_50", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -355,7 +357,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+152,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_7", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1634,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1635,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+153,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_70", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -399,7 +401,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+173,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_8", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1635,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1636,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+174,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_80", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -443,7 +445,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+194,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_9", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1636,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
+    tracep->declBus(c+1637,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->declBus(c+195,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c22_90", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -491,31 +493,31 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+217,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1637,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1638,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+218,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_10", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1638,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1639,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+219,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_11", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1639,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1640,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+220,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_12", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1640,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1641,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+221,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_13", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1641,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1642,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+222,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_14", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1642,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1643,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+223,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_15", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1643,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1644,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+224,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_16", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -523,7 +525,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+226,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_17", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1644,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1645,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+227,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_18", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -555,7 +557,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+241,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_24", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1645,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1646,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+242,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_25", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -579,7 +581,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+252,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_3", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1646,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1647,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+253,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_30", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -631,7 +633,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+277,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_5", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1647,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1648,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+278,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_6", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -639,15 +641,15 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->declBus(c+280,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_7", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1648,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1649,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+281,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_8", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1649,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1650,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+282,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_9", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1650,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1651,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+283,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c53", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -663,14 +665,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1651,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1652,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+290,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+291,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+292,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1652,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1653,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+293,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -711,10 +713,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_102", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1653,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1654,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+312,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1654,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1655,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+313,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -735,14 +737,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_104", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1655,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1656,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+322,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+323,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+324,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1656,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1657,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+325,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -771,22 +773,22 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_107", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1657,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1658,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+338,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+339,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+340,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1658,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1659,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+341,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_108", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1659,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1660,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+342,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1660,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1661,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+343,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -807,14 +809,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_11", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1661,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1662,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+352,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+353,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+354,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1662,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1663,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+355,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -843,10 +845,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_112", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1663,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1664,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+368,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1664,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1665,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+369,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -891,10 +893,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_116", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1665,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1666,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+390,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1666,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1667,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+391,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -951,10 +953,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_120", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1667,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1668,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+418,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1668,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1669,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+419,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -963,14 +965,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_121", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1669,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1670,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+422,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+423,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+424,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1670,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1671,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+425,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -987,22 +989,22 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_123", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1671,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1672,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+432,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+433,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+434,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1672,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1673,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+435,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_124", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1673,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1674,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+436,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1674,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1675,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+437,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1023,10 +1025,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_126", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1675,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1676,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+446,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1676,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1677,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+447,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1047,10 +1049,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_128", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1677,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1678,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+456,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1678,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1679,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+457,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1083,26 +1085,26 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_130", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1679,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1680,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+472,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1680,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1681,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+473,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1681,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1682,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+474,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_131", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1682,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1683,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+475,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+476,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+477,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1683,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1684,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+478,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -1179,10 +1181,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_138", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1684,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1685,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+515,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1685,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1686,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+516,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1287,14 +1289,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_146", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1686,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1687,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+567,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+568,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+569,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1687,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1688,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+570,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -1491,10 +1493,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_161", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1688,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1689,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+667,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1689,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1690,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+668,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1515,10 +1517,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_163", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1690,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1691,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+677,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1691,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1692,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+678,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1539,10 +1541,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_165", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1692,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1693,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+687,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1693,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1694,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+688,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1563,10 +1565,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_167", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1694,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1695,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+697,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1695,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1696,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+698,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1587,10 +1589,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_169", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1696,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1697,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+707,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1697,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1698,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+708,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1743,14 +1745,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_180", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1698,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1699,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+783,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+784,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+785,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1699,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1700,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+786,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -1767,14 +1769,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_182", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1700,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1701,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+793,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+794,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+795,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1701,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1702,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+796,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -1851,10 +1853,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_189", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1702,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1703,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+833,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1703,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1704,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+834,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1875,10 +1877,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_190", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1704,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1705,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+843,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1705,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1706,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+844,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -1959,10 +1961,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_197", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1706,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1707,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+883,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1707,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1708,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+884,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -2487,14 +2489,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_29", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1708,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1709,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1145,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+1146,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1147,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1709,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1710,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1148,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -2835,14 +2837,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_55", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1710,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1711,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1317,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+1318,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1319,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1711,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1712,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1320,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
@@ -3207,22 +3209,22 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_83", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1712,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1713,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1501,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
     tracep->declBus(c+1502,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1503,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1713,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1714,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1504,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_84", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1714,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1715,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1505,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1715,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1716,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1506,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -3303,10 +3305,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_90", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1716,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1717,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1545,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1717,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1718,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1546,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -3375,10 +3377,10 @@ VL_ATTR_COLD void VMultiplier___024root__trace_init_sub__TOP__0(VMultiplier___02
     tracep->popPrefix();
     tracep->popPrefix();
     tracep->pushPrefix("c53_96", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1718,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
+    tracep->declBus(c+1719,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 4,0);
     tracep->declBus(c+1579,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->pushPrefix("c32_1", VerilatedTracePrefixType::SCOPE_MODULE);
-    tracep->declBus(c+1719,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
+    tracep->declBus(c+1720,0,"io_in",-1, VerilatedTraceSigDirection::INPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 2,0);
     tracep->declBus(c+1580,0,"io_out",-1, VerilatedTraceSigDirection::OUTPUT, VerilatedTraceSigKind::WIRE, VerilatedTraceSigType::LOGIC, false,-1, 1,0);
     tracep->popPrefix();
     tracep->pushPrefix("c32_2", VerilatedTracePrefixType::SCOPE_MODULE);
@@ -10745,7 +10747,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                                 >> 0x1fU)) 
                                                        << 2U)) 
-                                                   | (IData)(vlSelf->__VdfgTmp_h4f803223__0))))),5);
+                                                   | (IData)(vlSelf->__VdfgTmp_h87e2503e__0))))),5);
     bufp->fullCData(oldp+1454,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out)) 
@@ -10753,7 +10755,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                      & (IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_2_io_out))))),3);
     bufp->fullCData(oldp+1455,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                 >> 0x1fU)) 
-                                       << 2U)) | (IData)(vlSelf->__VdfgTmp_h4f803223__0))),3);
+                                       << 2U)) | (IData)(vlSelf->__VdfgTmp_h87e2503e__0))),3);
     bufp->fullCData(oldp+1456,(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out),2);
     bufp->fullCData(oldp+1457,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
@@ -11709,150 +11711,151 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
     bufp->fullBit(oldp+1601,(vlSelf->clock));
     bufp->fullBit(oldp+1602,(vlSelf->reset));
     bufp->fullBit(oldp+1603,(vlSelf->io_go));
-    bufp->fullBit(oldp+1604,(vlSelf->io_signed));
-    bufp->fullIData(oldp+1605,(vlSelf->io_x),32);
-    bufp->fullIData(oldp+1606,(vlSelf->io_y),32);
-    bufp->fullQData(oldp+1607,(vlSelf->io_res),64);
-    bufp->fullCData(oldp+1609,(((3U == (3U & vlSelf->io_y))
+    bufp->fullBit(oldp+1604,(vlSelf->io_xSigned));
+    bufp->fullBit(oldp+1605,(vlSelf->io_ySigned));
+    bufp->fullIData(oldp+1606,(vlSelf->io_x),32);
+    bufp->fullIData(oldp+1607,(vlSelf->io_y),32);
+    bufp->fullQData(oldp+1608,(vlSelf->io_res),64);
+    bufp->fullCData(oldp+1610,(((3U == (3U & vlSelf->io_y))
                                  ? 1U : ((2U == (3U 
                                                  & vlSelf->io_y)) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1610,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)
+    bufp->fullCData(oldp+1611,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 1U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1611,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)
+    bufp->fullCData(oldp+1612,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 3U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1612,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)
+    bufp->fullCData(oldp+1613,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 5U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1613,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)
+    bufp->fullCData(oldp+1614,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 7U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1614,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)
+    bufp->fullCData(oldp+1615,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 9U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1615,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)
+    bufp->fullCData(oldp+1616,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0xbU))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1616,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)
+    bufp->fullCData(oldp+1617,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0xdU))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1617,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)
+    bufp->fullCData(oldp+1618,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0xfU))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1618,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)
+    bufp->fullCData(oldp+1619,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x11U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1619,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)
+    bufp->fullCData(oldp+1620,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x13U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1620,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)
+    bufp->fullCData(oldp+1621,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x15U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1621,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)
+    bufp->fullCData(oldp+1622,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x17U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1622,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)
+    bufp->fullCData(oldp+1623,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x19U))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1623,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)
+    bufp->fullCData(oldp+1624,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)
                                  ? 1U : ((4U == (7U 
                                                  & (vlSelf->io_y 
                                                     >> 0x1bU))) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1624,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)
+    bufp->fullCData(oldp+1625,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)
                                  ? 1U : ((4U == (vlSelf->io_y 
                                                  >> 0x1dU)) 
                                          << 1U))),2);
-    bufp->fullCData(oldp+1625,((((IData)((3U == (3U 
+    bufp->fullCData(oldp+1626,((((IData)((3U == (3U 
                                                  & vlSelf->io_y))) 
                                  << 1U) | (1U & (IData)(vlSelf->Multiplier__DOT__casez_tmp)))),2);
-    bufp->fullCData(oldp+1626,(((((~ (IData)((3U == 
+    bufp->fullCData(oldp+1627,(((((~ (IData)((3U == 
                                               (3U & vlSelf->io_y)))) 
                                   & (2U == (3U & vlSelf->io_y))) 
                                  << 1U) | (1U & (IData)(
                                                         (vlSelf->Multiplier__DOT__casez_tmp 
                                                          >> 1U))))),2);
-    bufp->fullCData(oldp+1627,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1628,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 0xeU))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0x11U))))),2);
-    bufp->fullCData(oldp+1628,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1629,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 0xfU))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0x12U))))),2);
-    bufp->fullCData(oldp+1629,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1630,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 0x16U))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0x19U))))),2);
-    bufp->fullCData(oldp+1630,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1631,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 0x17U))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0x1aU))))),2);
-    bufp->fullCData(oldp+1631,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1632,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 0x1eU))) 
-                                | (IData)(vlSelf->__VdfgTmp_h0efb5688__0))),2);
-    bufp->fullCData(oldp+1632,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)) 
+                                | (IData)(vlSelf->__VdfgTmp_hab77e2e0__0))),2);
+    bufp->fullCData(oldp+1633,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)) 
                                   & (0x200U == (0x380U 
                                                 & vlSelf->io_y))) 
                                  << 1U) | (1U & (IData)(
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                          >> 1U))))),2);
-    bufp->fullCData(oldp+1633,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)) 
+    bufp->fullCData(oldp+1634,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)) 
                                   & (0x20000U == (0x38000U 
                                                   & vlSelf->io_y))) 
                                  << 1U) | (1U & (IData)(
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                          >> 1U))))),2);
-    bufp->fullCData(oldp+1634,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)) 
+    bufp->fullCData(oldp+1635,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)) 
                                   & (0x2000000U == 
                                      (0x3800000U & vlSelf->io_y))) 
                                  << 1U) | (1U & (IData)(
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                          >> 1U))))),2);
-    bufp->fullCData(oldp+1635,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1636,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 6U))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 9U))))),2);
-    bufp->fullCData(oldp+1636,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1637,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 1U) & (vlSelf->io_x 
                                                   >> 7U))) 
                                 | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0xaU))))),2);
-    bufp->fullCData(oldp+1637,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)) 
+    bufp->fullCData(oldp+1638,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)) 
                                   & (8U == (0xeU & vlSelf->io_y))) 
                                  << 2U) | ((2U & ((IData)(
                                                           (vlSelf->Multiplier__DOT___ppTemp_T_27 
@@ -11861,7 +11864,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                            | (1U & (IData)(
                                                            (vlSelf->Multiplier__DOT__casez_tmp 
                                                             >> 3U)))))),3);
-    bufp->fullCData(oldp+1638,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1639,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0xbU))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11869,7 +11872,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 0x11U)))))),3);
-    bufp->fullCData(oldp+1639,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1640,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0xcU))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11877,7 +11880,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 0x12U)))))),3);
-    bufp->fullCData(oldp+1640,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1641,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0x13U))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11885,7 +11888,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 0x19U)))))),3);
-    bufp->fullCData(oldp+1641,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1642,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0x14U))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11893,13 +11896,13 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 0x1aU)))))),3);
-    bufp->fullCData(oldp+1642,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1643,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0x1bU))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                    >> 0x1fU)) 
                                           << 1U)) | 
-                                   (1U & (~ ((IData)(vlSelf->io_signed)
+                                   (1U & (~ ((IData)(vlSelf->io_xSigned)
                                               ? (IData)(
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                          >> 0x20U))
@@ -11910,7 +11913,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                               & vlSelf->io_y)))) 
                                                  & (vlSelf->io_y 
                                                     >> 0x1dU)))))))),3);
-    bufp->fullCData(oldp+1643,((1U | ((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1644,((1U | ((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                               << 2U) 
                                              & (vlSelf->io_x 
                                                 >> 0x1cU))) 
@@ -11918,7 +11921,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                         >> 0x20U)) 
                                                << 1U))))),3);
-    bufp->fullCData(oldp+1644,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_2__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1645,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_2__DOT___c32_2_io_out) 
                                        << 1U)) | ((
                                                    ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)) 
                                                     & (0x80U 
@@ -11928,15 +11931,15 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    << 1U) 
                                                   | (1U 
                                                      & (IData)(vlSelf->Multiplier__DOT__c53_3__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1645,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1646,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
-                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        << 1U) 
                                                       & (vlSelf->io_x 
                                                          >> 0x19U))) 
                                                   | (1U 
                                                      & (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1646,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)) 
+    bufp->fullCData(oldp+1647,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)) 
                                   & (0x800U == (0xe00U 
                                                 & vlSelf->io_y))) 
                                  << 2U) | ((2U & ((IData)(
@@ -11946,7 +11949,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                            | (1U & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                             >> 3U)))))),3);
-    bufp->fullCData(oldp+1647,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)) 
+    bufp->fullCData(oldp+1648,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)) 
                                   & (0x80000U == (0xe0000U 
                                                   & vlSelf->io_y))) 
                                  << 2U) | ((2U & ((IData)(
@@ -11956,7 +11959,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                            | (1U & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                             >> 3U)))))),3);
-    bufp->fullCData(oldp+1648,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)) 
+    bufp->fullCData(oldp+1649,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)) 
                                   & (0x8000000U == 
                                      (0xe000000U & vlSelf->io_y))) 
                                  << 2U) | ((2U & ((IData)(
@@ -11966,7 +11969,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                            | (1U & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                             >> 3U)))))),3);
-    bufp->fullCData(oldp+1649,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1650,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 3U))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11974,7 +11977,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 9U)))))),3);
-    bufp->fullCData(oldp+1650,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1651,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 4U))) 
                                 | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -11982,7 +11985,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                           << 1U)) | 
                                    (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                   >> 0xaU)))))),3);
-    bufp->fullCData(oldp+1651,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1652,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)) 
                                    & (0x20U == (0x38U 
@@ -12000,7 +12003,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                   & (IData)(
                                                             (vlSelf->Multiplier__DOT__casez_tmp 
                                                              >> 5U)))))))),5);
-    bufp->fullCData(oldp+1652,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_1__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1653,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_1__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)) 
@@ -12008,7 +12011,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (0x38U 
                                                          & vlSelf->io_y)))))),3);
-    bufp->fullCData(oldp+1653,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1654,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                  >> 0x1bU)) 
@@ -12025,7 +12028,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                                          >> 0x20U))
@@ -12037,7 +12040,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0xbU)))))))))),5);
-    bufp->fullCData(oldp+1654,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
+    bufp->fullCData(oldp+1655,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12046,7 +12049,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                                      >> 0x20U))
@@ -12058,9 +12061,9 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0xbU)))))))),3);
-    bufp->fullCData(oldp+1655,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1656,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 8U))) 
                                  | ((4U & ((IData)(
@@ -12074,16 +12077,16 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                        | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                         >> 0x11U)))))))),5);
-    bufp->fullCData(oldp+1656,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1657,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0xbU)))))),3);
-    bufp->fullCData(oldp+1657,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1658,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 9U))) 
                                  | ((4U & ((IData)(
@@ -12097,14 +12100,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                        | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                         >> 0x12U)))))))),5);
-    bufp->fullCData(oldp+1658,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_107__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1659,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_107__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0xcU)))))),3);
-    bufp->fullCData(oldp+1659,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_105__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1660,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_105__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                  >> 0x1bU)) 
@@ -12121,7 +12124,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                                          >> 0x20U))
@@ -12133,7 +12136,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0xdU)))))))))),5);
-    bufp->fullCData(oldp+1660,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
+    bufp->fullCData(oldp+1661,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12142,7 +12145,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                                      >> 0x20U))
@@ -12154,7 +12157,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0xdU)))))))),3);
-    bufp->fullCData(oldp+1661,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1662,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)) 
                                    & (0x2000U == (0x3800U 
@@ -12172,7 +12175,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                   & (IData)(
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                              >> 5U)))))))),5);
-    bufp->fullCData(oldp+1662,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_11__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1663,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_11__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)) 
@@ -12180,7 +12183,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (0x3800U 
                                                          & vlSelf->io_y)))))),3);
-    bufp->fullCData(oldp+1663,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_110__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1664,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_110__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                  >> 0x1bU)) 
@@ -12197,7 +12200,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                                          >> 0x20U))
@@ -12209,7 +12212,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0xfU)))))))))),5);
-    bufp->fullCData(oldp+1664,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
+    bufp->fullCData(oldp+1665,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12218,7 +12221,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                                      >> 0x20U))
@@ -12230,7 +12233,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0xfU)))))))),3);
-    bufp->fullCData(oldp+1665,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1666,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                  >> 0x1bU)) 
@@ -12247,7 +12250,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                                          >> 0x20U))
@@ -12259,7 +12262,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0x11U)))))))))),5);
-    bufp->fullCData(oldp+1666,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
+    bufp->fullCData(oldp+1667,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12268,7 +12271,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                                      >> 0x20U))
@@ -12280,7 +12283,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x11U)))))))),3);
-    bufp->fullCData(oldp+1667,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1668,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                  >> 0x1bU)) 
@@ -12297,7 +12300,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                                          >> 0x20U))
@@ -12309,7 +12312,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0x13U)))))))))),5);
-    bufp->fullCData(oldp+1668,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
+    bufp->fullCData(oldp+1669,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12318,7 +12321,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                                      >> 0x20U))
@@ -12330,9 +12333,9 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x13U)))))))),3);
-    bufp->fullCData(oldp+1669,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1670,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 0x10U))) 
                                  | ((4U & ((IData)(
@@ -12346,16 +12349,16 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                        | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                         >> 0x19U)))))))),5);
-    bufp->fullCData(oldp+1670,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1671,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0x13U)))))),3);
-    bufp->fullCData(oldp+1671,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1672,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 0x11U))) 
                                  | ((4U & ((IData)(
@@ -12369,14 +12372,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                        | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                         >> 0x1aU)))))))),5);
-    bufp->fullCData(oldp+1672,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_123__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1673,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_123__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0x14U)))))),3);
-    bufp->fullCData(oldp+1673,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_122__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1674,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_122__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                  >> 0x1bU)) 
@@ -12393,7 +12396,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                                          >> 0x20U))
@@ -12405,7 +12408,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0x15U)))))))))),5);
-    bufp->fullCData(oldp+1674,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
+    bufp->fullCData(oldp+1675,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12414,7 +12417,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                                      >> 0x20U))
@@ -12426,7 +12429,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x15U)))))))),3);
-    bufp->fullCData(oldp+1675,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_125__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1676,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_125__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0x1bU)) 
@@ -12443,7 +12446,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                                          >> 0x20U))
@@ -12455,7 +12458,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0x17U)))))))))),5);
-    bufp->fullCData(oldp+1676,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
+    bufp->fullCData(oldp+1677,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12464,7 +12467,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                                      >> 0x20U))
@@ -12476,7 +12479,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x17U)))))))),3);
-    bufp->fullCData(oldp+1677,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1678,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                  >> 0x1bU)) 
@@ -12493,7 +12496,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                                          >> 0x20U))
@@ -12505,7 +12508,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 0x19U)))))))))),5);
-    bufp->fullCData(oldp+1678,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
+    bufp->fullCData(oldp+1679,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12514,7 +12517,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                                      >> 0x20U))
@@ -12526,9 +12529,9 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x19U)))))))),3);
-    bufp->fullCData(oldp+1679,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1680,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 0x18U))) 
                                  | ((4U & ((IData)(
@@ -12539,7 +12542,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                        >> 0x1fU)) 
                                               << 1U)) 
-                                       | (1U & (~ ((IData)(vlSelf->io_signed)
+                                       | (1U & (~ ((IData)(vlSelf->io_xSigned)
                                                     ? (IData)(
                                                               (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                                >> 0x20U))
@@ -12551,7 +12554,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                  & vlSelf->io_y)))) 
                                                     & (vlSelf->io_y 
                                                        >> 0x1bU)))))))))),5);
-    bufp->fullCData(oldp+1680,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
+    bufp->fullCData(oldp+1681,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12560,7 +12563,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                                      >> 0x20U))
@@ -12572,16 +12575,16 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 0x1bU)))))))),3);
-    bufp->fullCData(oldp+1681,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1682,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0x1bU)))))),3);
-    bufp->fullCData(oldp+1682,((1U | ((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1683,((1U | ((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
                                                 << 3U)) 
-                                      | ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                      | ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                  << 3U) 
                                                 & (vlSelf->io_x 
                                                    >> 0x19U))) 
@@ -12594,14 +12597,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                          >> 0x20U)) 
                                                 << 1U))))))),5);
-    bufp->fullCData(oldp+1683,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1684,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0x1cU)))))),3);
-    bufp->fullCData(oldp+1684,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_137__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1685,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_137__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_12__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12616,13 +12619,13 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (IData)(vlSelf->Multiplier__DOT__c53_14__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1685,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)) 
+    bufp->fullCData(oldp+1686,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)) 
                                   & (0x8000U == (0xe000U 
                                                  & vlSelf->io_y))) 
                                  << 2U) | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_15__DOT___c32_2_io_out) 
                                                   << 1U)) 
                                            | (1U & (IData)(vlSelf->Multiplier__DOT__c53_14__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1686,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1687,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)) 
                                    & (0x800000U == 
@@ -12634,7 +12637,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    << 1U)) 
                                                | (1U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_33__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1687,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_146__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1688,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_146__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)) 
@@ -12642,7 +12645,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (0xe00000U 
                                                          & vlSelf->io_y)))))),3);
-    bufp->fullCData(oldp+1688,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_159__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1689,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_159__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_58__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12656,7 +12659,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                             == 
                                                             (vlSelf->io_y 
                                                              >> 0x1dU)))))))),5);
-    bufp->fullCData(oldp+1689,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_57__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1690,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_57__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_56__DOT___c32_2_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)) 
@@ -12664,7 +12667,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (vlSelf->io_y 
                                                          >> 0x1dU)))))),3);
-    bufp->fullCData(oldp+1690,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_161__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1691,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_161__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_62__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12674,15 +12677,15 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    | ((2U 
                                                        & (IData)(vlSelf->Multiplier__DOT__c53_60__DOT___c32_2_io_out)) 
                                                       | (1U 
-                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                             & vlSelf->io_x))))))),5);
-    bufp->fullCData(oldp+1691,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1692,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_60__DOT___c32_2_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & vlSelf->io_x))))),3);
-    bufp->fullCData(oldp+1692,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_163__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1693,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_163__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_66__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12692,17 +12695,17 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    | ((2U 
                                                        & (IData)(vlSelf->Multiplier__DOT__c53_64__DOT___c32_2_io_out)) 
                                                       | (1U 
-                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                             & (vlSelf->io_x 
                                                                >> 1U)))))))),5);
-    bufp->fullCData(oldp+1693,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_65__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1694,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_65__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_64__DOT___c32_2_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 1U)))))),3);
-    bufp->fullCData(oldp+1694,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_165__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1695,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_165__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_70__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12712,17 +12715,17 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    | ((2U 
                                                        & (IData)(vlSelf->Multiplier__DOT__c53_68__DOT___c32_2_io_out)) 
                                                       | (1U 
-                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                             & (vlSelf->io_x 
                                                                >> 2U)))))))),5);
-    bufp->fullCData(oldp+1695,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1696,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_68__DOT___c32_2_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 2U)))))),3);
-    bufp->fullCData(oldp+1696,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_167__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1697,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_167__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_74__DOT___c32_2_io_out) 
                                         << 2U)) | (
@@ -12732,19 +12735,19 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                    | ((2U 
                                                        & (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_2_io_out)) 
                                                       | (1U 
-                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                         & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                             & (vlSelf->io_x 
                                                                >> 3U)))))))),5);
-    bufp->fullCData(oldp+1697,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_73__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1698,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_73__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_2_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 3U)))))),3);
-    bufp->fullCData(oldp+1698,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1699,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 6U))) 
                                  | ((4U & ((IData)(vlSelf->Multiplier__DOT__c53_98__DOT___c32_2_io_out) 
@@ -12752,16 +12755,16 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                     | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_97__DOT___c32_2_io_out) 
                                               << 1U)) 
                                        | (1U & (IData)(vlSelf->Multiplier__DOT__c53_96__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1699,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1700,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 9U)))))),3);
-    bufp->fullCData(oldp+1700,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1701,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 7U))) 
                                  | ((4U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_2_io_out) 
@@ -12769,19 +12772,19 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                     | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_100__DOT___c32_2_io_out) 
                                               << 1U)) 
                                        | (1U & (IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1701,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1702,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 0xaU)))))),3);
-    bufp->fullCData(oldp+1702,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_188__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1703,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_188__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_2_io_out) 
                                         << 2U)) | (
                                                    (4U 
-                                                    & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         << 2U) 
                                                        & (vlSelf->io_x 
                                                           >> 0xfU))) 
@@ -12790,18 +12793,18 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1703,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1704,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0xfU))) 
                                 | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_117__DOT___c32_2_io_out) 
                                           << 1U)) | 
                                    (1U & (IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1704,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_189__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1705,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_189__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out) 
                                         << 2U)) | (
                                                    (4U 
-                                                    & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         << 2U) 
                                                        & (vlSelf->io_x 
                                                           >> 0x10U))) 
@@ -12810,13 +12813,13 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1705,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->fullCData(oldp+1706,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 2U) & (vlSelf->io_x 
                                                   >> 0x10U))) 
                                 | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_2_io_out) 
                                           << 1U)) | 
                                    (1U & (IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1706,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_196__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1707,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_196__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)(vlSelf->Multiplier__DOT___c22_13_io_out) 
                                         << 2U)) | (
@@ -12824,21 +12827,21 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                     & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
                                                        << 1U)) 
                                                    | ((2U 
-                                                       & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                       & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                            << 1U) 
                                                           & (vlSelf->io_x 
                                                              >> 0x18U))) 
                                                       | (1U 
                                                          & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out))))))),5);
-    bufp->fullCData(oldp+1707,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
+    bufp->fullCData(oldp+1708,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
                                        << 1U)) | ((2U 
-                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        << 1U) 
                                                       & (vlSelf->io_x 
                                                          >> 0x18U))) 
                                                   | (1U 
                                                      & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out))))),3);
-    bufp->fullCData(oldp+1708,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1709,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)) 
                                    & (0x200000U == 
@@ -12856,7 +12859,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                   & (IData)(
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                              >> 5U)))))))),5);
-    bufp->fullCData(oldp+1709,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_29__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1710,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_29__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)) 
@@ -12864,7 +12867,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (0x380000U 
                                                          & vlSelf->io_y)))))),3);
-    bufp->fullCData(oldp+1710,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1711,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)) 
                                    & (0x20000000U == 
@@ -12883,7 +12886,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                   & (IData)(
                                                             (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                              >> 5U)))))))),5);
-    bufp->fullCData(oldp+1711,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_55__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1712,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_55__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out)) 
                                                   | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)) 
@@ -12891,9 +12894,9 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                         == 
                                                         (0x38000000U 
                                                          & vlSelf->io_y)))))),3);
-    bufp->fullCData(oldp+1712,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1713,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out) 
                                           << 3U)) | 
-                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                          << 3U) & (vlSelf->io_x 
                                                    >> 1U))) 
                                  | ((4U & ((IData)(
@@ -12907,14 +12910,14 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                        | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                         >> 0xaU)))))))),5);
-    bufp->fullCData(oldp+1713,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_83__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1714,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_83__DOT___c32_1_io_out) 
                                        << 2U)) | ((2U 
                                                    & (IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out)) 
                                                   | (1U 
-                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                     & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                         & (vlSelf->io_x 
                                                            >> 4U)))))),3);
-    bufp->fullCData(oldp+1714,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_80__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1715,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_80__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                  >> 0x1bU)) 
@@ -12931,7 +12934,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                                          >> 0x20U))
@@ -12943,7 +12946,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 5U)))))))))),5);
-    bufp->fullCData(oldp+1715,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_69 
+    bufp->fullCData(oldp+1716,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -12952,7 +12955,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                                      >> 0x20U))
@@ -12964,7 +12967,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 5U)))))))),3);
-    bufp->fullCData(oldp+1716,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_87__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1717,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_87__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                  >> 0x1bU)) 
@@ -12981,7 +12984,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_55 
                                                                          >> 0x20U))
@@ -12993,7 +12996,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 7U)))))))))),5);
-    bufp->fullCData(oldp+1717,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
+    bufp->fullCData(oldp+1718,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -13002,7 +13005,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_55 
                                                                      >> 0x20U))
@@ -13014,7 +13017,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                        & vlSelf->io_y)))) 
                                                           & (vlSelf->io_y 
                                                              >> 7U)))))))),3);
-    bufp->fullCData(oldp+1718,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_93__DOT___c32_1_io_out) 
+    bufp->fullCData(oldp+1719,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_93__DOT___c32_1_io_out) 
                                           << 3U)) | 
                                 ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                  >> 0x1bU)) 
@@ -13031,7 +13034,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                           << 1U)) 
                                                       | (1U 
                                                          & (~ 
-                                                            ((IData)(vlSelf->io_signed)
+                                                            ((IData)(vlSelf->io_xSigned)
                                                               ? (IData)(
                                                                         (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                                          >> 0x20U))
@@ -13043,7 +13046,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                                            & vlSelf->io_y)))) 
                                                               & (vlSelf->io_y 
                                                                  >> 9U)))))))))),5);
-    bufp->fullCData(oldp+1719,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
+    bufp->fullCData(oldp+1720,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                 >> 0x1dU)) 
                                        << 2U)) | ((2U 
                                                    & ((IData)(
@@ -13052,7 +13055,7 @@ VL_ATTR_COLD void VMultiplier___024root__trace_full_0_sub_0(VMultiplier___024roo
                                                       << 1U)) 
                                                   | (1U 
                                                      & (~ 
-                                                        ((IData)(vlSelf->io_signed)
+                                                        ((IData)(vlSelf->io_xSigned)
                                                           ? (IData)(
                                                                     (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                                      >> 0x20U))

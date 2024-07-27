@@ -6363,14 +6363,14 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                         (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                          >> 0x1fU)) 
                                                 << 2U)) 
-                                         | (IData)(vlSelf->__VdfgTmp_h4f803223__0))))),5);
+                                         | (IData)(vlSelf->__VdfgTmp_h87e2503e__0))))),5);
         bufp->chgCData(oldp+1453,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_2_io_out) 
                                           << 1U)) | 
                                    ((2U & (IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out)) 
                                     | (1U & (IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_2_io_out))))),3);
         bufp->chgCData(oldp+1454,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                    >> 0x1fU)) 
-                                          << 2U)) | (IData)(vlSelf->__VdfgTmp_h4f803223__0))),3);
+                                          << 2U)) | (IData)(vlSelf->__VdfgTmp_h87e2503e__0))),3);
         bufp->chgCData(oldp+1455,(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out),2);
         bufp->chgCData(oldp+1456,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_76__DOT___c32_1_io_out) 
                                           << 2U)) | 
@@ -7233,150 +7233,151 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
     bufp->chgBit(oldp+1600,(vlSelf->clock));
     bufp->chgBit(oldp+1601,(vlSelf->reset));
     bufp->chgBit(oldp+1602,(vlSelf->io_go));
-    bufp->chgBit(oldp+1603,(vlSelf->io_signed));
-    bufp->chgIData(oldp+1604,(vlSelf->io_x),32);
-    bufp->chgIData(oldp+1605,(vlSelf->io_y),32);
-    bufp->chgQData(oldp+1606,(vlSelf->io_res),64);
-    bufp->chgCData(oldp+1608,(((3U == (3U & vlSelf->io_y))
+    bufp->chgBit(oldp+1603,(vlSelf->io_xSigned));
+    bufp->chgBit(oldp+1604,(vlSelf->io_ySigned));
+    bufp->chgIData(oldp+1605,(vlSelf->io_x),32);
+    bufp->chgIData(oldp+1606,(vlSelf->io_y),32);
+    bufp->chgQData(oldp+1607,(vlSelf->io_res),64);
+    bufp->chgCData(oldp+1609,(((3U == (3U & vlSelf->io_y))
                                 ? 1U : ((2U == (3U 
                                                 & vlSelf->io_y)) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1609,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)
+    bufp->chgCData(oldp+1610,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 1U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1610,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)
+    bufp->chgCData(oldp+1611,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 3U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1611,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)
+    bufp->chgCData(oldp+1612,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 5U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1612,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)
+    bufp->chgCData(oldp+1613,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 7U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1613,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)
+    bufp->chgCData(oldp+1614,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 9U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1614,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)
+    bufp->chgCData(oldp+1615,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0xbU))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1615,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)
+    bufp->chgCData(oldp+1616,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0xdU))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1616,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)
+    bufp->chgCData(oldp+1617,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0xfU))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1617,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)
+    bufp->chgCData(oldp+1618,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x11U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1618,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)
+    bufp->chgCData(oldp+1619,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x13U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1619,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)
+    bufp->chgCData(oldp+1620,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x15U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1620,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)
+    bufp->chgCData(oldp+1621,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x17U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1621,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)
+    bufp->chgCData(oldp+1622,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x19U))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1622,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)
+    bufp->chgCData(oldp+1623,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)
                                 ? 1U : ((4U == (7U 
                                                 & (vlSelf->io_y 
                                                    >> 0x1bU))) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1623,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)
+    bufp->chgCData(oldp+1624,(((IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)
                                 ? 1U : ((4U == (vlSelf->io_y 
                                                 >> 0x1dU)) 
                                         << 1U))),2);
-    bufp->chgCData(oldp+1624,((((IData)((3U == (3U 
+    bufp->chgCData(oldp+1625,((((IData)((3U == (3U 
                                                 & vlSelf->io_y))) 
                                 << 1U) | (1U & (IData)(vlSelf->Multiplier__DOT__casez_tmp)))),2);
-    bufp->chgCData(oldp+1625,(((((~ (IData)((3U == 
+    bufp->chgCData(oldp+1626,(((((~ (IData)((3U == 
                                              (3U & vlSelf->io_y)))) 
                                  & (2U == (3U & vlSelf->io_y))) 
                                 << 1U) | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT__casez_tmp 
                                                         >> 1U))))),2);
-    bufp->chgCData(oldp+1626,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1627,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 0xeU))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x11U))))),2);
-    bufp->chgCData(oldp+1627,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1628,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 0xfU))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x12U))))),2);
-    bufp->chgCData(oldp+1628,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1629,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 0x16U))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x19U))))),2);
-    bufp->chgCData(oldp+1629,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1630,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 0x17U))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x1aU))))),2);
-    bufp->chgCData(oldp+1630,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1631,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 0x1eU))) 
-                               | (IData)(vlSelf->__VdfgTmp_h0efb5688__0))),2);
-    bufp->chgCData(oldp+1631,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)) 
+                               | (IData)(vlSelf->__VdfgTmp_hab77e2e0__0))),2);
+    bufp->chgCData(oldp+1632,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5102e58c__0)) 
                                  & (0x200U == (0x380U 
                                                & vlSelf->io_y))) 
                                 << 1U) | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                         >> 1U))))),2);
-    bufp->chgCData(oldp+1632,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)) 
+    bufp->chgCData(oldp+1633,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5feb7463__0)) 
                                  & (0x20000U == (0x38000U 
                                                  & vlSelf->io_y))) 
                                 << 1U) | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                         >> 1U))))),2);
-    bufp->chgCData(oldp+1633,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)) 
+    bufp->chgCData(oldp+1634,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb76a2bdc__0)) 
                                  & (0x2000000U == (0x3800000U 
                                                    & vlSelf->io_y))) 
                                 << 1U) | (1U & (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                         >> 1U))))),2);
-    bufp->chgCData(oldp+1634,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1635,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 6U))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 9U))))),2);
-    bufp->chgCData(oldp+1635,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1636,(((2U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 1U) & (vlSelf->io_x 
                                                  >> 7U))) 
                                | (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0xaU))))),2);
-    bufp->chgCData(oldp+1636,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)) 
+    bufp->chgCData(oldp+1637,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h557bf8db__0)) 
                                  & (8U == (0xeU & vlSelf->io_y))) 
                                 << 2U) | ((2U & ((IData)(
                                                          (vlSelf->Multiplier__DOT___ppTemp_T_27 
@@ -7385,7 +7386,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                           | (1U & (IData)(
                                                           (vlSelf->Multiplier__DOT__casez_tmp 
                                                            >> 3U)))))),3);
-    bufp->chgCData(oldp+1637,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1638,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0xbU))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7393,7 +7394,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0x11U)))))),3);
-    bufp->chgCData(oldp+1638,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1639,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0xcU))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7401,7 +7402,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0x12U)))))),3);
-    bufp->chgCData(oldp+1639,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1640,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0x13U))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7409,7 +7410,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0x19U)))))),3);
-    bufp->chgCData(oldp+1640,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1641,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0x14U))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7417,13 +7418,13 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0x1aU)))))),3);
-    bufp->chgCData(oldp+1641,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1642,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0x1bU))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                   >> 0x1fU)) 
                                          << 1U)) | 
-                                  (1U & (~ ((IData)(vlSelf->io_signed)
+                                  (1U & (~ ((IData)(vlSelf->io_xSigned)
                                              ? (IData)(
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                         >> 0x20U))
@@ -7434,7 +7435,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                              & vlSelf->io_y)))) 
                                                 & (vlSelf->io_y 
                                                    >> 0x1dU)))))))),3);
-    bufp->chgCData(oldp+1642,((1U | ((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1643,((1U | ((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                              << 2U) 
                                             & (vlSelf->io_x 
                                                >> 0x1cU))) 
@@ -7442,7 +7443,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                       (vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                        >> 0x20U)) 
                                               << 1U))))),3);
-    bufp->chgCData(oldp+1643,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_2__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1644,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_2__DOT___c32_2_io_out) 
                                       << 1U)) | (((
                                                    (~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha690227c__0)) 
                                                    & (0x80U 
@@ -7452,15 +7453,15 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                   << 1U) 
                                                  | (1U 
                                                     & (IData)(vlSelf->Multiplier__DOT__c53_3__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1644,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1645,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
-                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                       << 1U) 
                                                      & (vlSelf->io_x 
                                                         >> 0x19U))) 
                                                  | (1U 
                                                     & (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1645,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)) 
+    bufp->chgCData(oldp+1646,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h514988d4__0)) 
                                  & (0x800U == (0xe00U 
                                                & vlSelf->io_y))) 
                                 << 2U) | ((2U & ((IData)(
@@ -7470,7 +7471,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                           | (1U & (IData)(
                                                           (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                            >> 3U)))))),3);
-    bufp->chgCData(oldp+1646,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)) 
+    bufp->chgCData(oldp+1647,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha28613e5__0)) 
                                  & (0x80000U == (0xe0000U 
                                                  & vlSelf->io_y))) 
                                 << 2U) | ((2U & ((IData)(
@@ -7480,7 +7481,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                           | (1U & (IData)(
                                                           (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                            >> 3U)))))),3);
-    bufp->chgCData(oldp+1647,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)) 
+    bufp->chgCData(oldp+1648,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h5be92e1d__0)) 
                                  & (0x8000000U == (0xe000000U 
                                                    & vlSelf->io_y))) 
                                 << 2U) | ((2U & ((IData)(
@@ -7490,7 +7491,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                           | (1U & (IData)(
                                                           (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                            >> 3U)))))),3);
-    bufp->chgCData(oldp+1648,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1649,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 3U))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7498,7 +7499,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 9U)))))),3);
-    bufp->chgCData(oldp+1649,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1650,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 4U))) 
                                | ((2U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7506,7 +7507,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                          << 1U)) | 
                                   (1U & (IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                  >> 0xaU)))))),3);
-    bufp->chgCData(oldp+1650,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1651,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)) 
                                   & (0x20U == (0x38U 
@@ -7524,7 +7525,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                  & (IData)(
                                                            (vlSelf->Multiplier__DOT__casez_tmp 
                                                             >> 5U)))))))),5);
-    bufp->chgCData(oldp+1651,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_1__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1652,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_1__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53__DOT___c32_1_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hac82e295__0)) 
@@ -7532,7 +7533,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (0x38U 
                                                         & vlSelf->io_y)))))),3);
-    bufp->chgCData(oldp+1652,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1653,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                 >> 0x1bU)) 
@@ -7548,7 +7549,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                                         >> 0x20U))
@@ -7560,7 +7561,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0xbU)))))))))),5);
-    bufp->chgCData(oldp+1653,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
+    bufp->chgCData(oldp+1654,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7569,7 +7570,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                                     >> 0x20U))
@@ -7581,9 +7582,9 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0xbU)))))))),3);
-    bufp->chgCData(oldp+1654,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1655,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 8U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7596,16 +7597,16 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                     | (1U & (IData)(
                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                      >> 0x11U)))))))),5);
-    bufp->chgCData(oldp+1655,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1656,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0xbU)))))),3);
-    bufp->chgCData(oldp+1656,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1657,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 9U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7618,14 +7619,14 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                     | (1U & (IData)(
                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                      >> 0x12U)))))))),5);
-    bufp->chgCData(oldp+1657,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_107__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1658,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_107__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_104__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0xcU)))))),3);
-    bufp->chgCData(oldp+1658,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_105__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1659,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_105__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                 >> 0x1bU)) 
@@ -7641,7 +7642,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                                         >> 0x20U))
@@ -7653,7 +7654,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0xdU)))))))))),5);
-    bufp->chgCData(oldp+1659,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
+    bufp->chgCData(oldp+1660,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7662,7 +7663,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                                     >> 0x20U))
@@ -7674,7 +7675,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0xdU)))))))),3);
-    bufp->chgCData(oldp+1660,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1661,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)) 
                                   & (0x2000U == (0x3800U 
@@ -7692,7 +7693,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                  & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                             >> 5U)))))))),5);
-    bufp->chgCData(oldp+1661,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_11__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1662,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_11__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_9__DOT___c32_1_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h4c6e6f5e__0)) 
@@ -7700,7 +7701,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (0x3800U 
                                                         & vlSelf->io_y)))))),3);
-    bufp->chgCData(oldp+1662,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_110__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1663,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_110__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                 >> 0x1bU)) 
@@ -7716,7 +7717,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                                         >> 0x20U))
@@ -7728,7 +7729,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0xfU)))))))))),5);
-    bufp->chgCData(oldp+1663,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
+    bufp->chgCData(oldp+1664,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7737,7 +7738,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                                     >> 0x20U))
@@ -7749,7 +7750,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0xfU)))))))),3);
-    bufp->chgCData(oldp+1664,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1665,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                 >> 0x1bU)) 
@@ -7765,7 +7766,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                                         >> 0x20U))
@@ -7777,7 +7778,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0x11U)))))))))),5);
-    bufp->chgCData(oldp+1665,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
+    bufp->chgCData(oldp+1666,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7786,7 +7787,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                                     >> 0x20U))
@@ -7798,7 +7799,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x11U)))))))),3);
-    bufp->chgCData(oldp+1666,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1667,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                 >> 0x1bU)) 
@@ -7814,7 +7815,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                                         >> 0x20U))
@@ -7826,7 +7827,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0x13U)))))))))),5);
-    bufp->chgCData(oldp+1667,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
+    bufp->chgCData(oldp+1668,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7835,7 +7836,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_139 
                                                                     >> 0x20U))
@@ -7847,9 +7848,9 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x13U)))))))),3);
-    bufp->chgCData(oldp+1668,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1669,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 0x10U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7862,16 +7863,16 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                     | (1U & (IData)(
                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                      >> 0x19U)))))))),5);
-    bufp->chgCData(oldp+1669,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1670,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x13U)))))),3);
-    bufp->chgCData(oldp+1670,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1671,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 0x11U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -7884,14 +7885,14 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                     | (1U & (IData)(
                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                      >> 0x1aU)))))))),5);
-    bufp->chgCData(oldp+1671,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_123__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1672,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_123__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_121__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x14U)))))),3);
-    bufp->chgCData(oldp+1672,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_122__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1673,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_122__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                 >> 0x1bU)) 
@@ -7907,7 +7908,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                                         >> 0x20U))
@@ -7919,7 +7920,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0x15U)))))))))),5);
-    bufp->chgCData(oldp+1673,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
+    bufp->chgCData(oldp+1674,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7928,7 +7929,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_153 
                                                                     >> 0x20U))
@@ -7940,7 +7941,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x15U)))))))),3);
-    bufp->chgCData(oldp+1674,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_125__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1675,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_125__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                 >> 0x1bU)) 
@@ -7956,7 +7957,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                                         >> 0x20U))
@@ -7968,7 +7969,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0x17U)))))))))),5);
-    bufp->chgCData(oldp+1675,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
+    bufp->chgCData(oldp+1676,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -7977,7 +7978,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_167 
                                                                     >> 0x20U))
@@ -7989,7 +7990,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x17U)))))))),3);
-    bufp->chgCData(oldp+1676,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1677,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                 >> 0x1bU)) 
@@ -8005,7 +8006,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                                         >> 0x20U))
@@ -8017,7 +8018,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 0x19U)))))))))),5);
-    bufp->chgCData(oldp+1677,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
+    bufp->chgCData(oldp+1678,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -8026,7 +8027,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                                     >> 0x20U))
@@ -8038,9 +8039,9 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x19U)))))))),3);
-    bufp->chgCData(oldp+1678,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1679,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 0x18U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -8050,7 +8051,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                    (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                     >> 0x1fU)) 
                                            << 1U)) 
-                                    | (1U & (~ ((IData)(vlSelf->io_signed)
+                                    | (1U & (~ ((IData)(vlSelf->io_xSigned)
                                                  ? (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                             >> 0x20U))
@@ -8062,7 +8063,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                               & vlSelf->io_y)))) 
                                                  & (vlSelf->io_y 
                                                     >> 0x1bU)))))))))),5);
-    bufp->chgCData(oldp+1679,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
+    bufp->chgCData(oldp+1680,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -8071,7 +8072,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                                     >> 0x20U))
@@ -8083,16 +8084,16 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 0x1bU)))))))),3);
-    bufp->chgCData(oldp+1680,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1681,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_129__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1bU)))))),3);
-    bufp->chgCData(oldp+1681,((1U | ((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1682,((1U | ((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out) 
                                                << 3U)) 
-                                     | ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                     | ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                 << 3U) 
                                                & (vlSelf->io_x 
                                                   >> 0x19U))) 
@@ -8105,14 +8106,14 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        (vlSelf->Multiplier__DOT___ppTemp_T_209 
                                                         >> 0x20U)) 
                                                << 1U))))))),5);
-    bufp->chgCData(oldp+1682,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1683,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_131__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_130__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0x1cU)))))),3);
-    bufp->chgCData(oldp+1683,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_137__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1684,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_137__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_12__DOT___c32_2_io_out) 
                                        << 2U)) | ((
@@ -8127,13 +8128,13 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (IData)(vlSelf->Multiplier__DOT__c53_14__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1684,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)) 
+    bufp->chgCData(oldp+1685,(((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha492cabb__0)) 
                                  & (0x8000U == (0xe000U 
                                                 & vlSelf->io_y))) 
                                 << 2U) | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_15__DOT___c32_2_io_out) 
                                                  << 1U)) 
                                           | (1U & (IData)(vlSelf->Multiplier__DOT__c53_14__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1685,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1686,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)) 
                                   & (0x800000U == (0xe00000U 
@@ -8145,7 +8146,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                 << 1U)) 
                                               | (1U 
                                                  & (IData)(vlSelf->Multiplier__DOT__c53_33__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1686,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_146__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1687,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_146__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_145__DOT___c32_1_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68865fde__0)) 
@@ -8153,7 +8154,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (0xe00000U 
                                                         & vlSelf->io_y)))))),3);
-    bufp->chgCData(oldp+1687,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_159__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1688,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_159__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_58__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
@@ -8166,7 +8167,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                            == 
                                                            (vlSelf->io_y 
                                                             >> 0x1dU)))))))),5);
-    bufp->chgCData(oldp+1688,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_57__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1689,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_57__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_56__DOT___c32_2_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h68e1d768__0)) 
@@ -8174,7 +8175,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (vlSelf->io_y 
                                                         >> 0x1dU)))))),3);
-    bufp->chgCData(oldp+1689,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_161__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1690,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_161__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_62__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
@@ -8183,15 +8184,15 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                   | ((2U 
                                                       & (IData)(vlSelf->Multiplier__DOT__c53_60__DOT___c32_2_io_out)) 
                                                      | (1U 
-                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                            & vlSelf->io_x))))))),5);
-    bufp->chgCData(oldp+1690,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1691,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_61__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_60__DOT___c32_2_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & vlSelf->io_x))))),3);
-    bufp->chgCData(oldp+1691,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_163__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1692,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_163__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_66__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
@@ -8200,17 +8201,17 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                   | ((2U 
                                                       & (IData)(vlSelf->Multiplier__DOT__c53_64__DOT___c32_2_io_out)) 
                                                      | (1U 
-                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                            & (vlSelf->io_x 
                                                               >> 1U)))))))),5);
-    bufp->chgCData(oldp+1692,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_65__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1693,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_65__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_64__DOT___c32_2_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 1U)))))),3);
-    bufp->chgCData(oldp+1693,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_165__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1694,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_165__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_70__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
@@ -8219,17 +8220,17 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                   | ((2U 
                                                       & (IData)(vlSelf->Multiplier__DOT__c53_68__DOT___c32_2_io_out)) 
                                                      | (1U 
-                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                            & (vlSelf->io_x 
                                                               >> 2U)))))))),5);
-    bufp->chgCData(oldp+1694,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1695,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_69__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_68__DOT___c32_2_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 2U)))))),3);
-    bufp->chgCData(oldp+1695,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_167__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1696,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_167__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_74__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
@@ -8238,19 +8239,19 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                   | ((2U 
                                                       & (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_2_io_out)) 
                                                      | (1U 
-                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                        & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                            & (vlSelf->io_x 
                                                               >> 3U)))))))),5);
-    bufp->chgCData(oldp+1696,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_73__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1697,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_73__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_72__DOT___c32_2_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 3U)))))),3);
-    bufp->chgCData(oldp+1697,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1698,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 6U))) 
                                 | ((4U & ((IData)(vlSelf->Multiplier__DOT__c53_98__DOT___c32_2_io_out) 
@@ -8258,16 +8259,16 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                    ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_97__DOT___c32_2_io_out) 
                                            << 1U)) 
                                     | (1U & (IData)(vlSelf->Multiplier__DOT__c53_96__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1698,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1699,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_178__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 9U)))))),3);
-    bufp->chgCData(oldp+1699,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1700,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 7U))) 
                                 | ((4U & ((IData)(vlSelf->Multiplier__DOT__c53_101__DOT___c32_2_io_out) 
@@ -8275,18 +8276,18 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                    ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_100__DOT___c32_2_io_out) 
                                            << 1U)) 
                                     | (1U & (IData)(vlSelf->Multiplier__DOT__c53_99__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1700,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1701,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_182__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_180__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 0xaU)))))),3);
-    bufp->chgCData(oldp+1701,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_188__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1702,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_188__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_114__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
-                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        << 2U) 
                                                       & (vlSelf->io_x 
                                                          >> 0xfU))) 
@@ -8295,17 +8296,17 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1702,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1703,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0xfU))) 
                                | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_117__DOT___c32_2_io_out) 
                                          << 1U)) | 
                                   (1U & (IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1703,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_189__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1704,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_189__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT__c53_116__DOT___c32_2_io_out) 
                                        << 2U)) | ((4U 
-                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                   & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        << 2U) 
                                                       & (vlSelf->io_x 
                                                          >> 0x10U))) 
@@ -8314,34 +8315,34 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1704,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+    bufp->chgCData(oldp+1705,(((4U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                        << 2U) & (vlSelf->io_x 
                                                  >> 0x10U))) 
                                | ((2U & ((IData)(vlSelf->Multiplier__DOT__c53_119__DOT___c32_2_io_out) 
                                          << 1U)) | 
                                   (1U & (IData)(vlSelf->Multiplier__DOT__c53_118__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1705,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_196__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1706,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_196__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)(vlSelf->Multiplier__DOT___c22_13_io_out) 
                                        << 2U)) | ((4U 
                                                    & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
                                                       << 1U)) 
                                                   | ((2U 
-                                                      & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                      & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                           << 1U) 
                                                          & (vlSelf->io_x 
                                                             >> 0x18U))) 
                                                      | (1U 
                                                         & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out))))))),5);
-    bufp->chgCData(oldp+1706,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
+    bufp->chgCData(oldp+1707,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_127__DOT___c32_2_io_out) 
                                       << 1U)) | ((2U 
-                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                  & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                       << 1U) 
                                                      & (vlSelf->io_x 
                                                         >> 0x18U))) 
                                                  | (1U 
                                                     & (IData)(vlSelf->Multiplier__DOT__c53_128__DOT___c32_2_io_out))))),3);
-    bufp->chgCData(oldp+1707,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1708,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)) 
                                   & (0x200000U == (0x380000U 
@@ -8359,7 +8360,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                  & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_125 
                                                             >> 5U)))))))),5);
-    bufp->chgCData(oldp+1708,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_29__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1709,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_29__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_26__DOT___c32_1_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h1e610ac9__0)) 
@@ -8367,7 +8368,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (0x380000U 
                                                         & vlSelf->io_y)))))),3);
-    bufp->chgCData(oldp+1709,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1710,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)) 
                                   & (0x20000000U == 
@@ -8385,7 +8386,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                  & (IData)(
                                                            (vlSelf->Multiplier__DOT___ppTemp_T_181 
                                                             >> 5U)))))))),5);
-    bufp->chgCData(oldp+1710,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_55__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1711,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_55__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_51__DOT___c32_1_io_out)) 
                                                  | ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_ha0b85421__0)) 
@@ -8393,9 +8394,9 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                        == 
                                                        (0x38000000U 
                                                         & vlSelf->io_y)))))),3);
-    bufp->chgCData(oldp+1711,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1712,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out) 
                                          << 3U)) | 
-                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                               ((8U & (((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                         << 3U) & (vlSelf->io_x 
                                                   >> 1U))) 
                                 | ((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_223 
@@ -8408,14 +8409,14 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                     | (1U & (IData)(
                                                     (vlSelf->Multiplier__DOT___ppTemp_T_195 
                                                      >> 0xaU)))))))),5);
-    bufp->chgCData(oldp+1712,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_83__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1713,(((4U & ((IData)(vlSelf->Multiplier__DOT__c53_83__DOT___c32_1_io_out) 
                                       << 2U)) | ((2U 
                                                   & (IData)(vlSelf->Multiplier__DOT__c53_79__DOT___c32_1_io_out)) 
                                                  | (1U 
-                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_hb7bc760c__0)) 
+                                                    & ((~ (IData)(vlSelf->Multiplier__DOT____VdfgTmp_h7a6e5d83__0)) 
                                                        & (vlSelf->io_x 
                                                           >> 4U)))))),3);
-    bufp->chgCData(oldp+1713,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_80__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1714,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_80__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                 >> 0x1bU)) 
@@ -8431,7 +8432,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                                         >> 0x20U))
@@ -8443,7 +8444,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 5U)))))))))),5);
-    bufp->chgCData(oldp+1714,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_69 
+    bufp->chgCData(oldp+1715,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -8452,7 +8453,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_41 
                                                                     >> 0x20U))
@@ -8464,7 +8465,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 5U)))))))),3);
-    bufp->chgCData(oldp+1715,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_87__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1716,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_87__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                 >> 0x1bU)) 
@@ -8480,7 +8481,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_55 
                                                                         >> 0x20U))
@@ -8492,7 +8493,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 7U)))))))))),5);
-    bufp->chgCData(oldp+1716,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
+    bufp->chgCData(oldp+1717,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_83 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -8501,7 +8502,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_55 
                                                                     >> 0x20U))
@@ -8513,7 +8514,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                       & vlSelf->io_y)))) 
                                                          & (vlSelf->io_y 
                                                             >> 7U)))))))),3);
-    bufp->chgCData(oldp+1717,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_93__DOT___c32_1_io_out) 
+    bufp->chgCData(oldp+1718,(((0x10U & ((IData)(vlSelf->Multiplier__DOT__c53_93__DOT___c32_1_io_out) 
                                          << 3U)) | 
                                ((8U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_111 
                                                 >> 0x1bU)) 
@@ -8529,7 +8530,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                          << 1U)) 
                                                      | (1U 
                                                         & (~ 
-                                                           ((IData)(vlSelf->io_signed)
+                                                           ((IData)(vlSelf->io_xSigned)
                                                              ? (IData)(
                                                                        (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                                         >> 0x20U))
@@ -8541,7 +8542,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                                           & vlSelf->io_y)))) 
                                                              & (vlSelf->io_y 
                                                                 >> 9U)))))))))),5);
-    bufp->chgCData(oldp+1718,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
+    bufp->chgCData(oldp+1719,(((4U & ((IData)((vlSelf->Multiplier__DOT___ppTemp_T_97 
                                                >> 0x1dU)) 
                                       << 2U)) | ((2U 
                                                   & ((IData)(
@@ -8550,7 +8551,7 @@ void VMultiplier___024root__trace_chg_0_sub_0(VMultiplier___024root* vlSelf, Ver
                                                      << 1U)) 
                                                  | (1U 
                                                     & (~ 
-                                                       ((IData)(vlSelf->io_signed)
+                                                       ((IData)(vlSelf->io_xSigned)
                                                          ? (IData)(
                                                                    (vlSelf->Multiplier__DOT___ppTemp_T_69 
                                                                     >> 0x20U))

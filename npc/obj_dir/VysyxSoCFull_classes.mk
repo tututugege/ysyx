@@ -25,7 +25,6 @@ VM_TRACE_FST = 0
 VM_CLASSES_FAST += \
 	VysyxSoCFull \
 	VysyxSoCFull___024root__DepSet_h4d156741__0 \
-	VysyxSoCFull___024root__DepSet_h4d156741__1 \
 	VysyxSoCFull___024root__DepSet_h0188974b__0 \
 	VysyxSoCFull___024root__DepSet_h0188974b__1 \
 	VysyxSoCFull___024unit__DepSet_h308b0958__0 \
@@ -36,6 +35,7 @@ VM_CLASSES_SLOW += \
 	VysyxSoCFull___024root__Slow \
 	VysyxSoCFull___024root__DepSet_h4d156741__0__Slow \
 	VysyxSoCFull___024root__DepSet_h0188974b__0__Slow \
+	VysyxSoCFull___024root__DepSet_h0188974b__1__Slow \
 	VysyxSoCFull___024unit__Slow \
 	VysyxSoCFull___024unit__DepSet_h460a3d32__0__Slow \
 
@@ -43,12 +43,14 @@ VM_CLASSES_SLOW += \
 VM_SUPPORT_FAST += \
 	VysyxSoCFull__Dpi \
 	VysyxSoCFull__Trace__0 \
+	VysyxSoCFull__Trace__1 \
 
 # Generated support classes, non-fast-path, compile with low/medium optimization
 VM_SUPPORT_SLOW += \
 	VysyxSoCFull__Syms \
 	VysyxSoCFull__Trace__0__Slow \
 	VysyxSoCFull__TraceDecls__0__Slow \
+	VysyxSoCFull__Trace__1__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
