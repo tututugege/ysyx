@@ -1,6 +1,0 @@
-{
-    "verilog.linting.linter": "verilator",
-    "files.watcherExclude": {
-        "**/target": true
-    }
-}
