@@ -41,7 +41,8 @@ SOC_VERILATOR_INCLUDE += /home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/perip/spi/
 SOC_VERILATOR_CINCLUDE = /home/tututu/hry/ysyx/ysyx-workbench/npc/src/soc-csrc/include
 SOC_VERILATOR_CFLAGS = $(foreach dir, $(SOC_VERILATOR_CINCLUDE), $(addprefix -CFLAGS , -I$(dir)))
 SOC_VERILATOR_CFLAGS += -CFLAGS -MMD
-SOC_VERILATOR_CFLAGS += -CFLAGS -ggdb  -LDFLAGS -ggdb
+SOC_VERILATOR_CFLAGS += -CFLAGS -O2
+# SOC_VERILATOR_CFLAGS += -CFLAGS -ggdb  -LDFLAGS -ggdb
 
 remove_quote = $(patsubst "%",%,$(1))
 
