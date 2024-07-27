@@ -1,0 +1,22 @@
+{
+    "value": [
+        {
+            "analysisFile": "/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/compile.dest/zinc",
+            "classes": "ref:v0:cc1eb6c9:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/compile.dest/classes"
+        },
+        {
+            "analysisFile": "/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/cde/compile.dest/zinc",
+            "classes": "ref:v0:0df504b6:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/cde/compile.dest/classes"
+        },
+        {
+            "analysisFile": "/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/hardfloat/compile.dest/zinc",
+            "classes": "ref:v0:c9876bcd:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/hardfloat/compile.dest/classes"
+        },
+        {
+            "analysisFile": "/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/macros/compile.dest/zinc",
+            "classes": "ref:v0:fb98fd80:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/macros/compile.dest/classes"
+        }
+    ],
+    "valueHash": 806237737,
+    "inputsHash": -156169250
+}

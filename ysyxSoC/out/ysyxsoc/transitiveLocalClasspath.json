@@ -1,0 +1,18 @@
+{
+    "value": [
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/compile-resources",
+        "ref:v0:0533a2a0:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/src/main/resources",
+        "ref:v0:cc1eb6c9:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/compile.dest/classes",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/compile-resources",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/resources",
+        "ref:v0:0df504b6:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/cde/compile.dest/classes",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/hardfloat/hardfloat/compile-resources",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/hardfloat/hardfloat/src/main/resources",
+        "ref:v0:c9876bcd:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/hardfloat/compile.dest/classes",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/macros/compile-resources",
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/macros/src/main/resources",
+        "ref:v0:fb98fd80:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/macros/compile.dest/classes"
+    ],
+    "valueHash": 767643356,
+    "inputsHash": 725492567
+}

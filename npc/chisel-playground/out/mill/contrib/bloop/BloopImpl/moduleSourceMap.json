@@ -1,0 +1,16 @@
+{
+    "value": {
+        "playground": [
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/src/main/scala",
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/src/main/java",
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/main"
+        ],
+        "playground.test": [
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/src/test/scala",
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/src/test/java",
+            "/home/tututu/hry/ysyx/ysyx-workbench/npc/chisel-playground/src/test"
+        ]
+    },
+    "valueHash": -1625943414,
+    "inputsHash": 1121758902
+}

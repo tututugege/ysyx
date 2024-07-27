@@ -14,8 +14,8 @@
 
 #ifdef HAS_GUI
 #define TILE_W 4
-#define SCREEN_W 640
-#define SCREEN_H 480
+#define SCREEN_W 400
+#define SCREEN_H 300
 static inline void set_color(int c) {}
 
 static inline void print_char(char c, int y, int x) {

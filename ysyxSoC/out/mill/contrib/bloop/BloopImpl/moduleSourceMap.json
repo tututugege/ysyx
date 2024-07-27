@@ -1,0 +1,26 @@
+{
+    "value": {
+        "ysyxsoc": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/src/main/scala",
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/src/main/java",
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/src"
+        ],
+        "rocketchip.hardfloat": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/hardfloat/hardfloat/src/main/scala",
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/hardfloat/hardfloat/src/main/java"
+        ],
+        "rocketchip": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/src/main/scala",
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/src/main/java"
+        ],
+        "rocketchip.cde": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/src"
+        ],
+        "rocketchip.macros": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/macros/src/main/scala",
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/macros/src/main/java"
+        ]
+    },
+    "valueHash": 936716828,
+    "inputsHash": -1067526572
+}

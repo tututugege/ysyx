@@ -1,0 +1,9 @@
+{
+    "value": [
+        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/compile-resources",
+        "ref:v0:0533a2a0:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/src/main/resources",
+        "ref:v0:cc1eb6c9:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/out/rocketchip/compile.dest/classes"
+    ],
+    "valueHash": 681426392,
+    "inputsHash": 1200330921
+}

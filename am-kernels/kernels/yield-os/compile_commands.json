@@ -1,0 +1,36 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=gnu11",
+      "-g",
+      "-O2",
+      "-Wall",
+      "-Werror",
+      "-I/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os/include",
+      "-I/home/tututu/hry/ysyx/ysyx-workbench/abstract-machine/am/include/",
+      "-I/home/tututu/hry/ysyx/ysyx-workbench/abstract-machine/klib/include/",
+      "-D__ISA__=\"native\"",
+      "-D__ISA_NATIVE__",
+      "-D__ARCH__=native",
+      "-D__ARCH_NATIVE",
+      "-D__PLATFORM__=",
+      "-D__PLATFORM_",
+      "-DARCH_H=\"arch/native.h\"",
+      "-fno-asynchronous-unwind-tables",
+      "-fno-builtin",
+      "-fno-stack-protector",
+      "-Wno-main",
+      "-U_FORTIFY_SOURCE",
+      "-fvisibility=hidden",
+      "-fpie",
+      "-c",
+      "-o",
+      "/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os/build/native/yield-os.o",
+      "/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os/yield-os.c"
+    ],
+    "directory": "/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os",
+    "file": "/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os/yield-os.c",
+    "output": "/home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/yield-os/build/native/yield-os.o"
+  }
+]

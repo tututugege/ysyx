@@ -1,0 +1,44 @@
+$date
+2024-06-06T11:48+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module Sub $end
+ $var wire 4 ! ref $end
+ $var wire 1 " clock $end
+ $var wire 4 # io_b $end
+ $var wire 4 $ io_a $end
+ $var wire 1 % reset $end
+ $var wire 4 & io_c $end
+ $var wire 1 ' printf $end
+ $var wire 1 ( assert $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+b0000 $
+0"
+b0000 #
+b0000 !
+0%
+0'
+0(
+b0000 &
+$end
+#0
+b0001 !
+b0001 #
+b0010 $
+1%
+#1
+1"
+#6
+0"
+0%
+#11
+1"
+1(

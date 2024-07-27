@@ -1,0 +1,84 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "rocketchip.cde",
+        "directory": "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde",
+        "workspaceDir": "/home/tututu/hry/ysyx-workbench/ysyxSoC",
+        "sources": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/src"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar"
+        ],
+        "out": "/home/tututu/hry/ysyx-workbench/ysyxSoC/.bloop/out/rocketchip.cde",
+        "classesDir": "/home/tututu/hry/ysyx-workbench/ysyxSoC/.bloop/out/rocketchip.cde/classes",
+        "resources": [
+            "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/resources"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.13.10",
+            "options": [
+                
+            ],
+            "jars": [
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.10/scala-compiler-2.13.10.jar",
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.10/scala-reflect-2.13.10.jar",
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar",
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/io/github/java-diff-utils/java-diff-utils/4.12/java-diff-utils-4.12.jar",
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline/3.21.0/jline-3.21.0.jar",
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna/5.9.0/jna-5.9.0.jar"
+            ]
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/usr/lib/jvm/java-17-openjdk-amd64",
+                "options": [
+                    "-Duser.dir=/home/tututu/hry/ysyx-workbench/ysyxSoC"
+                ]
+            },
+            "mainClass": [
+                
+            ],
+            "classpath": [
+                "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar"
+            ],
+            "resources": [
+                "/home/tututu/hry/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/resources"
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.13.10",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

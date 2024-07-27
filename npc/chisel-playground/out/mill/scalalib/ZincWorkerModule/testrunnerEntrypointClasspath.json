@@ -1,0 +1,8 @@
+{
+    "value": [
+        "qref:v1:e52dd14d:/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/com/lihaoyi/mill-testrunner-entrypoint/0.11.7/mill-testrunner-entrypoint-0.11.7.jar",
+        "qref:v1:3ed2ed17:/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar"
+    ],
+    "valueHash": 874660785,
+    "inputsHash": -1417903759
+}
