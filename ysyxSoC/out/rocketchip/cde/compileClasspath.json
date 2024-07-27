@@ -1,8 +1,0 @@
-{
-    "value": [
-        "qref:v1:7c2877ad:/home/tututu/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.10/scala-library-2.13.10.jar",
-        "ref:v0:c984eca8:/home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/rocket-chip/cde/cde/compile-resources"
-    ],
-    "valueHash": -834922530,
-    "inputsHash": -1019324837
-}
