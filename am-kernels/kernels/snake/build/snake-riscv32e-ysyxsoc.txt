@@ -58,7 +58,7 @@ Disassembly of section .second:
  f000058:	91000317          	auipc	t1,0x91000
  f00005c:	fa830313          	addi	t1,t1,-88 # a0000000 <_stack_pointer+0xfc000000>
  f000060:	91002397          	auipc	t2,0x91002
- f000064:	b0138393          	addi	t2,t2,-1279 # a0001b61 <_stack_pointer+0xfc001b61>
+ f000064:	b0538393          	addi	t2,t2,-1275 # a0001b65 <_stack_pointer+0xfc001b65>
  f000068:	00038493          	mv	s1,t2
  f00006c:	ffc3f393          	andi	t2,t2,-4
 
@@ -1980,4 +1980,4 @@ a0001b5c:	0000                	.2byte	0x0
 	...
 
 a0001b60 <mainargs>:
-	...
+a0001b60:	6574 7473                                    test.
