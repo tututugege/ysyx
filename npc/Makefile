@@ -35,10 +35,10 @@ $(NPC_VSRC): verilog
 
 VERILATOR = verilator
 
-SOC_VERILATOR_INCLUDE  = /home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/perip/uart16550/rtl/ 
-SOC_VERILATOR_INCLUDE += /home/tututu/hry/ysyx/ysyx-workbench/ysyxSoC/perip/spi/rtl/
+SOC_VERILATOR_INCLUDE  = $(NPC_HOME)/../ysyxSoC/perip/uart16550/rtl/ 
+SOC_VERILATOR_INCLUDE += $(NPC_HOME)/../ysyxSoC/perip/spi/rtl/
 
-SOC_VERILATOR_CINCLUDE = /home/tututu/hry/ysyx/ysyx-workbench/npc/src/soc-csrc/include
+SOC_VERILATOR_CINCLUDE = $(NPC_HOME)/src/soc-csrc/include
 SOC_VERILATOR_CFLAGS = $(foreach dir, $(SOC_VERILATOR_CINCLUDE), $(addprefix -CFLAGS , -I$(dir)))
 SOC_VERILATOR_CFLAGS += -CFLAGS -MMD
 SOC_VERILATOR_CFLAGS += -CFLAGS -O2
