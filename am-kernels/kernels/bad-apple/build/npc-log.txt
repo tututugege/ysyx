@@ -1,2 +1,0 @@
-[1;34m[../src/csrc/monitor.cpp:66 init_log] Log is written to /home/tututu/hry/ysyx/ysyx-workbench/am-kernels/kernels/bad-apple/build/npc-log.txt[0m
-[1;34m[../src/csrc/monitor.cpp:32 welcome] Build time: 10:43:38, Apr 17 2024[0m
