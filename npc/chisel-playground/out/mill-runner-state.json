@@ -1,0 +1,22 @@
+{
+    "workerCache": {
+        "mill.scalalib.ZincWorkerModule.worker": {
+            "identityHashCode": 691096777,
+            "inputHash": -518929140
+        }
+    },
+    "evalWatched": [
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/src/main/scala",
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/src/main/java",
+        "ref:v0:7cfddb8a:/home/tututu/ysyx/npc/chisel-playground/src/main",
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/compile-resources",
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/src/main/scala",
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/src/main/java",
+        "ref:v0:c984eca8:/home/tututu/ysyx/npc/chisel-playground/src/src/main/resources"
+    ],
+    "moduleWatched": [],
+    "scriptImportGraph": [],
+    "classLoaderIdentity": [],
+    "runClasspath": [],
+    "runClasspathHash": 473519988
+}

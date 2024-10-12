@@ -2,7 +2,7 @@ import "DPI-C" function void halt(input int commit_pc,
                                 input int commit_mem,input int commit_addr,
                                 input int commit_halt,input int commit_ret);
 
-`define CONFIG_DIFFTEST 1'b0
+`define CONFIG_DIFFTEST 1'b1
 
 module ExitSim(
   input        clock,

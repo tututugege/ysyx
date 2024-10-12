@@ -157,6 +157,7 @@ static int decode_exec(Decode *s) {
     __VA_ARGS__;                                                               \
   }
 
+  s->is_br = 0;
   INSTPAT_START();
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui, U, R(rd) = imm);
 
@@ -164,30 +165,36 @@ static int decode_exec(Decode *s) {
           R(rd) = s->pc + imm);
 
   INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal, J, R(rd) = s->pc + 4,
-          s->dnpc = s->pc + imm);
+          s->dnpc = s->pc + imm, s->is_br = 1, s->br_target = s->pc + imm);
 
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr, I, R(rd) = s->pc + 4,
-          s->dnpc = (imm + src1) & ~(0x1));
+          s->dnpc = (imm + src1) & ~(0x1), s->is_br = 1,
+          s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 000 ????? 11000 11", beq, B,
-          s->dnpc = (src1 == src2) ? (s->pc + imm) : s->snpc);
+          s->dnpc = (src1 == src2) ? (s->pc + imm) : s->snpc, s->is_br = 1,
+          s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 001 ????? 11000 11", bne, B,
-          s->dnpc = (src1 != src2) ? (s->pc + imm) : s->snpc);
+          s->dnpc = (src1 != src2) ? (s->pc + imm) : s->snpc, s->is_br = 1,
+          s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 100 ????? 11000 11", blt, B,
-          s->dnpc = ((signed)src1 < (signed)src2) ? (s->pc + imm) : s->snpc);
+          s->dnpc = ((signed)src1 < (signed)src2) ? (s->pc + imm) : s->snpc,
+          s->is_br = 1, s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 101 ????? 11000 11", bge, B,
-          s->dnpc = ((signed)src1 >= (signed)src2) ? (s->pc + imm) : s->snpc);
+          s->dnpc = ((signed)src1 >= (signed)src2) ? (s->pc + imm) : s->snpc,
+          s->is_br = 1, s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 110 ????? 11000 11", bltu, B,
-          s->dnpc =
-              ((unsigned)src1 < (unsigned)src2) ? (s->pc + imm) : s->snpc);
+          s->dnpc = ((unsigned)src1 < (unsigned)src2) ? (s->pc + imm) : s->snpc,
+          s->is_br = 1, s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 111 ????? 11000 11", bgeu, B,
           s->dnpc =
-              ((unsigned)src1 >= (unsigned)src2) ? (s->pc + imm) : s->snpc);
+              ((unsigned)src1 >= (unsigned)src2) ? (s->pc + imm) : s->snpc,
+          s->is_br = 1, s->br_target = (s->pc + imm));
 
   INSTPAT("??????? ????? ????? 000 ????? 00000 11", lb, I,
           R(rd) = SEXT((Mr(src1 + imm, 1)), 8));

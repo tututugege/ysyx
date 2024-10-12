@@ -121,17 +121,27 @@ typedef struct itrace_node {
   int num;
 } itrace_node;
 
+typedef struct btrace_node {
+  uint32_t pc;
+  int br_taken;
+  uint32_t br_target;
+
+} btrace_node;
+
 #define CONFIG_CACHE_ITRACE
 static void execute(uint64_t n) {
   Decode s;
   itrace_node itrace_pc = {.pc = cpu.pc, .num = 1};
-  FILE *fp = NULL;
+  FILE *itrace_fp = NULL;
+  FILE *btrace_fp = NULL;
   extern bool gen_trace;
   extern char *trace_path;
 
   if (gen_trace) {
-    fp = fopen(trace_path, "w");
+    itrace_fp = fopen(trace_path, "w");
   }
+
+  btrace_fp = fopen("./btrace", "w");
 
   for (; n > 0; n--) {
     exec_once(&s, cpu.pc);
@@ -139,10 +149,17 @@ static void execute(uint64_t n) {
       if (s.snpc == s.dnpc) {
         itrace_pc.num++;
       } else {
-        fwrite(&itrace_pc, sizeof(itrace_pc), 1, fp);
+        fwrite(&itrace_pc, sizeof(itrace_pc), 1, itrace_fp);
         itrace_pc.pc = cpu.pc;
         itrace_pc.num = 1;
       }
+    }
+
+    if (s.is_br) {
+      btrace_node bnode = {.pc = s.pc,
+                           .br_taken = (s.dnpc == s.br_target),
+                           .br_target = s.br_target};
+      fwrite(&bnode, sizeof(btrace_node), 1, btrace_fp);
     }
 
     g_nr_guest_inst++;
@@ -152,8 +169,9 @@ static void execute(uint64_t n) {
     IFDEF(CONFIG_DEVICE, device_update());
   }
 
+  fclose(btrace_fp);
   if (gen_trace)
-    fclose(fp);
+    fclose(itrace_fp);
 }
 
 static void statistic() {
