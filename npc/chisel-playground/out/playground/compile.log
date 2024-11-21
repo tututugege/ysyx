@@ -1,9 +1,0 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 25 Scala sources to /home/tututu/ysyx/npc/chisel-playground/out/playground/compile.dest/classes ...[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/tututu/ysyx/npc/chisel-playground/src/main/3.EX/Multiplier.scala:142:36: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): implicit conversions from Array to immutable.IndexedSeq are implemented by copying; use `toIndexedSeq` explicitly if you want to copy, or use the more efficient non-copying ArraySeq.unsafeWrapArray[0m
-[0m[[0m[33mwarn[0m] [0m[0m      val sum = Cat(cols.map(_(0)).reverse)[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                   ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/tututu/ysyx/npc/chisel-playground/src/main/3.EX/Multiplier.scala:145:46: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): implicit conversions from Array to immutable.IndexedSeq are implemented by copying; use `toIndexedSeq` explicitly if you want to copy, or use the more efficient non-copying ArraySeq.unsafeWrapArray[0m
-[0m[[0m[33mwarn[0m] [0m[0m      val carry = Cat(cols.drop(k).map(_(1)).reverse)[0m
-[0m[[0m[33mwarn[0m] [0m[0m                                             ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
