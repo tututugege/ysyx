@@ -2,7 +2,7 @@ import chisel3._
 import chisel3.util._
 import chisel3.experimental.BundleLiterals._
 
-object NPC {
+object ysyx_23060226 {
   val START_PC     = "h2FFFFFFC"
   val CONFIG_CACHE = true
   val CONFIG_CNT   = false
@@ -29,7 +29,7 @@ class ExitSim extends BlackBox {
   })
 }
 
-class NPC(XLEN: Int) extends Module {
+class ysyx_23060226(XLEN: Int) extends Module {
   val io = IO(new Bundle {
 
     val interrupt = Input(Bool())
@@ -37,7 +37,7 @@ class NPC(XLEN: Int) extends Module {
     val slave     = Flipped(new SocMasterBundle())
   })
 
-  import NPC._
+  import ysyx_23060226._
 
   val commit = Wire(new CommitBundle())
 
@@ -63,6 +63,15 @@ class NPC(XLEN: Int) extends Module {
   io.slave.rid     := 0.U
   io.slave.rlast   := 0.U
   io.slave.rdata   := 0.U
+
+  io.master.arlock  := 0.U
+  io.master.arcache := 0.U
+  io.master.arprot  := 0.U
+  io.master.arqos   := 0.U
+  io.master.awlock  := 0.U
+  io.master.awcache := 0.U
+  io.master.awprot  := 0.U
+  io.master.awqos   := 0.U
 
   /* stage io */
   val IFin   = IF.io.Pre2IF

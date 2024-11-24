@@ -1,15 +1,16 @@
 -include ../Makefile
 
 BUILD_DIR = ./build
+YSYXSOC_DIR = ../../ysyxSoC
 OBJ_DIR   = ./obj_dir
 SOC_TOP   = ysyxSoCFull
-NPC_TOP   = NPC
+NPC_TOP   = ysyx_23060226
 NPC_CSRC 	= ./src/npc-csrc/*.cpp
 SOC_CSRC 	= ./src/soc-csrc/*.cpp
 NPC_SSRCS = ./chisel-playground/src/main/*.scala
-NPC_VSRC  = ./build/NPC.v ./chisel-playground/src/main/ExitSim.v
-SOC_VSRC  = $(NPC_VSRC) $(foreach dir ,$(shell find ../ysyxSoC/perip/ -type d), $(wildcard $(dir)/*.v)) \
-						../ysyxSoC/build/ysyxSoCFull.v ./chisel-playground/src/main/ExitSim.v
+NPC_VSRC  = ./build/ysyx_23060226.v ./chisel-playground/src/main/ExitSim.v
+SOC_VSRC  = $(NPC_VSRC) $(foreach dir ,$(shell find $(YSYXSOC_DIR)/perip/ -type d), $(wildcard $(dir)/*.v)) \
+						$(YSYXSOC_DIR)/build/ysyxSoCFull.v ./chisel-playground/src/main/ExitSim.v
 
 export PATH := $(PATH):$(abspath ./utils)
 
@@ -17,7 +18,7 @@ verilog: $(NPC_SSRCS)
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
 	make -C chisel-playground verilog
-	mv ./build/NPC.sv ./build/NPC.v
+	mv ./build/ysyx_23060226.sv ./build/ysyx_23060226.v
 
 clean:
 	rm -rf $(BUILD_DIR)
@@ -35,8 +36,8 @@ $(NPC_VSRC): verilog
 
 VERILATOR = verilator
 
-SOC_VERILATOR_INCLUDE  = $(NPC_HOME)/../ysyxSoC/perip/uart16550/rtl/ 
-SOC_VERILATOR_INCLUDE += $(NPC_HOME)/../ysyxSoC/perip/spi/rtl/
+SOC_VERILATOR_INCLUDE  = $(NPC_HOME)/$(YSYXSOC_DIR)/perip/uart16550/rtl/ 
+SOC_VERILATOR_INCLUDE += $(NPC_HOME)/$(YSYXSOC_DIR)/perip/spi/rtl/
 
 SOC_VERILATOR_CINCLUDE = $(NPC_HOME)/src/soc-csrc/include
 SOC_VERILATOR_CFLAGS = $(foreach dir, $(SOC_VERILATOR_CINCLUDE), $(addprefix -CFLAGS , -I$(dir)))

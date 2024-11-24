@@ -1,6 +1,6 @@
 import chisel3._
 import chisel3.util._
-import NPC._
+import ysyx_23060226._
 
 class IcacheBundle extends Bundle {
   val ar = Decoupled(new AxiReadRequestChannel())
@@ -135,10 +135,7 @@ class Icache(wayNum: Int, indexWidth: Int, offsetWidth: Int) extends Module {
     for (j <- 0 until bankNum) {
       cacheWayRdata(i)(j) := cache(i)(j).readWrite(
         indexAddr,
-        (if (bankNum == 1)
-           Mux(bufIndex(0), io.out.r.bits.rdata(63, 32), io.out.r.bits.rdata(31, 0))
-         else (if (j % 2 == 1) io.out.r.bits.rdata(63, 32)
-               else io.out.r.bits.rdata(31, 0))),
+        io.out.r.bits.rdata(31, 0),
         (inBankIdx === j.U && (state === idle || state === read && hit) && io.in.ar.valid) ||
           (refillCout === j.U && state === refill && io.out.r.valid && rand === i.U),
         state === refill && refillCout === j.U && io.out.r.valid && rand === i.U

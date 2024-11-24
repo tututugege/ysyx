@@ -32,7 +32,7 @@ class IFU(XLEN: Int) extends Module {
   val out = io.IF2ID.bits
 
   // PC Module
-  val pcReg    = RegInit(NPC.START_PC.U(32.W))
+  val pcReg    = RegInit(ysyx_23060226.START_PC.U(32.W))
   val pcInc    = Wire(UInt(XLEN.W)) // not taken
   val pcNormal = Wire(UInt(XLEN.W))
 
@@ -56,7 +56,7 @@ class IFU(XLEN: Int) extends Module {
   // axi r channel
   val rFireReg    = RegInit(false.B)
   val rdataReg    = Reg(UInt(XLEN.W))
-  val instruction = Mux(pcReg(2), io.r.bits.rdata(63, 32), io.r.bits.rdata(31, 0))
+  val instruction = io.r.bits.rdata
   rFireReg   := Mux(io.IF2ID.fire, false.B, Mux(io.r.fire, true.B, rFireReg))
   rdataReg   := Mux(io.r.fire && ~io.IF2ID.ready, instruction, rdataReg)
   io.r.ready := io.arValid && ~rFireReg

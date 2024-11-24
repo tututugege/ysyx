@@ -85,8 +85,8 @@ class MEMU(XLEN: Int) extends Module {
 
   val wordStrb = decoder(Cat(memSize, in.aluOut(1, 0)), StrbTable)
   io.w.valid      := in.memWrite && io.inValid && ~wFireReg && ~(io.flush && ~(awAssert || wAssert))
-  io.w.bits.wdata := Mux(addr(2), shiftWdata1 ## 0.U(32.W), shiftWdata1)
-  io.w.bits.wstrb := Mux(addr(2), wordStrb ## 0.U(4.W), wordStrb)
+  io.w.bits.wdata := shiftWdata1
+  io.w.bits.wstrb := wordStrb
   io.w.bits.wlast := true.B
 
   out.pc    := in.pc

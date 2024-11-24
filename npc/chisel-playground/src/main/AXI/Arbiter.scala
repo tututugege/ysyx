@@ -17,12 +17,12 @@ class AxiLiteArbiter extends Module {
 
   // r channel buffer
   val instBufValid = RegInit(false.B)
-  val instBufRdata = Reg(UInt(64.W))
+  val instBufRdata = Reg(UInt(32.W))
   val instBufRlast = Reg(Bool())
   val instBufRresp = Reg(UInt(2.W))
 
   val dataBufValid = RegInit(false.B)
-  val dataBufRdata = Reg(UInt(64.W))
+  val dataBufRdata = Reg(UInt(32.W))
   val dataBufRlast = Reg(Bool())
   val dataBufRresp = Reg(UInt(2.W))
 

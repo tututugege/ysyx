@@ -4,7 +4,7 @@ import chisel3.util.experimental.decode._
 
 object AxiConstants {
   val addrBits  = 32
-  val dataBits  = 64
+  val dataBits  = 32
   val sizeBits  = 3
   val idBits    = 4
   val lenBits   = 8
@@ -21,12 +21,16 @@ class SocMasterBundle extends Bundle {
   val awlen   = Output(UInt(8.W))
   val awsize  = Output(UInt(3.W))
   val awburst = Output(UInt(2.W))
+  val awlock  = Output(Bool())
+  val awcache = Output(UInt(4.W))
+  val awprot  = Output(UInt(3.W))
+  val awqos   = Output(UInt(4.W))
 
   // w
   val wready = Input(Bool())
   val wvalid = Output(Bool())
-  val wdata  = Output(UInt(64.W))
-  val wstrb  = Output(UInt(8.W))
+  val wdata  = Output(UInt(32.W))
+  val wstrb  = Output(UInt(4.W))
   val wlast  = Output(Bool())
 
   // b
@@ -43,12 +47,16 @@ class SocMasterBundle extends Bundle {
   val arlen   = Output(UInt(8.W))
   val arsize  = Output(UInt(3.W))
   val arburst = Output(UInt(2.W))
+  val arlock  = Output(Bool())
+  val arcache = Output(UInt(4.W))
+  val arprot  = Output(UInt(3.W))
+  val arqos   = Output(UInt(4.W))
 
   // r
   val rready = Output(Bool())
   val rvalid = Input(Bool())
   val rresp  = Input(UInt(2.W))
-  val rdata  = Input(UInt(64.W))
+  val rdata  = Input(UInt(32.W))
   val rlast  = Input(Bool())
   val rid    = Input(UInt(4.W))
 }
