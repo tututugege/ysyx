@@ -1,3 +1,4 @@
 wave.vcd
 obj_dir/*
 .bloop/*
+build/*
