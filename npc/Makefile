@@ -1,7 +1,7 @@
 -include ../Makefile
 
 BUILD_DIR = ./build
-YSYXSOC_DIR = ../../ysyxSoC
+YSYXSOC_DIR = ../ysyxSoC
 OBJ_DIR   = ./obj_dir
 SOC_TOP   = ysyxSoCFull
 NPC_TOP   = ysyx_23060226
