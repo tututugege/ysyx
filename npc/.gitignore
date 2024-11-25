@@ -1,4 +1,5 @@
 wave.vcd
 obj_dir/*
 .bloop/*
+.cache/*
 build/*
