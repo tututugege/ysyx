@@ -19,8 +19,10 @@ void nvboard_bind_all_pins(VysyxSoCFull *top);
 
 char *img_file = NULL;
 char *diff_so_file = NULL;
-bool gen_trace = false;
-char *trace_path = NULL;
+bool gen_btrace = false;
+bool gen_itrace = false;
+char *itrace_path = NULL;
+char *btrace_path = NULL;
 
 /* int init_mrom(char *img) { */
 /*   FILE *fp = fopen(img, "r"); */
@@ -51,7 +53,8 @@ int init_flash(char *img) {
 
 void parse_arg(int argc, char *argv[]) {
   const struct option table[] = {
-      {"trace", required_argument, NULL, 't'},
+      {"itrace", required_argument, NULL, 'i'},
+      {"btrace", required_argument, NULL, 'b'},
       {"diff", required_argument, NULL, 'd'},
       {"help", no_argument, NULL, 'h'},
       {0, 0, NULL, 0},
@@ -67,9 +70,14 @@ void parse_arg(int argc, char *argv[]) {
       break;
 #ifdef CONFIG_DIFFTEST
     case 't':
-      gen_trace = true;
-      trace_path = optarg;
+      gen_itrace = true;
+      itrace_path = optarg;
       break;
+    case 'b':
+      gen_btrace = true;
+      btrace_path = optarg;
+      break;
+
 #endif
     case 1:
       img_file = optarg;
@@ -77,7 +85,8 @@ void parse_arg(int argc, char *argv[]) {
     default:
       printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
       printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
-      printf("\t-t,--trace              generate instruction trace\n");
+      printf("\t-i,--itrace              generate instruction trace\n");
+      printf("\t-b,--btrace              generate branch trace\n");
       printf("\n");
       exit(0);
     }
@@ -98,11 +107,18 @@ int main(int argc, char *argv[]) {
 #ifdef CONFIG_DIFFTEST
   init_difftest(diff_so_file, file_size);
 
-  if (gen_trace) {
+  if (gen_itrace) {
     extern void (*ref_difftest_exec)(uint64_t n);
     ref_difftest_exec(-1);
     return 0;
   }
+
+  if (gen_btrace) {
+    extern void (*ref_difftest_exec)(uint64_t n);
+    ref_difftest_exec(-1);
+    return 0;
+  }
+
 #endif
 
 #ifdef CONFIG_NVBOARD

@@ -67,6 +67,11 @@ static inline bool in_clint(paddr_t paddr) {
           paddr - CONFIG_CLINT_BASE < CONFIG_CLINT_SIZE);
 }
 
+static inline bool in_gpio(paddr_t paddr) {
+  return (paddr >= CONFIG_GPIO_BASE &&
+          paddr - CONFIG_GPIO_BASE < CONFIG_GPIO_SIZE);
+}
+
 static inline bool in_pmem(paddr_t addr) {
   return in_mrom(addr) || in_sram(addr) || in_flash(addr) || in_psram(addr) ||
          in_sdram(addr);

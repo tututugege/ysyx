@@ -3,7 +3,7 @@
 
 btrace_node btrace[MAX_BTRACE];
 
-int init_itrace(char *name) {
+int init_btrace(char *name) {
   FILE *fp = fopen(name, "r");
   assert(fp != NULL);
   fseek(fp, 0, SEEK_END);
@@ -19,6 +19,8 @@ int init_itrace(char *name) {
 int main() {
   int fail = 0;
   int i;
+  init_btrace("../npc/btrace");
+
   for (i = 0; i < MAX_BTRACE; i++) {
     if (btrace[i].pc == 0)
       break;

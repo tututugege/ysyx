@@ -51,6 +51,14 @@ config UART_SIZE
   hex "UART size"
   default 0x10000
 
+config GPIO_BASE
+  hex "GPIO base address"
+  default 0x10002000
+
+config GPIO_SIZE
+  hex "GPIO size"
+  default 0x10
+
 config CLINT_BASE
   hex "CLINT base address"
   default 0x02000000

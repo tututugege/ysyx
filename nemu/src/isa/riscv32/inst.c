@@ -29,6 +29,7 @@
 
 enum {
   TYPE_I,
+  TYPE_CSR,
   TYPE_U,
   TYPE_S,
   TYPE_J,
@@ -44,6 +45,10 @@ enum {
 #define src2R()                                                                \
   do {                                                                         \
     *src2 = R(rs2);                                                            \
+  } while (0)
+#define immCSR()                                                               \
+  do {                                                                         \
+    *imm = BITS(i, 31, 20);                                                    \
   } while (0)
 #define immI()                                                                 \
   do {                                                                         \
@@ -101,6 +106,10 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2,
     src2R();
     immB();
     break;
+  case TYPE_CSR:
+    src1R();
+    immCSR();
+    break;
   }
 }
 
@@ -119,6 +128,7 @@ static inline void csr_wr(int csr_idx, int data) {
     cpu.csr_mcause = data;
     break;
   default:
+    printf("%X\n", csr_idx);
     assert(0);
   }
 }
@@ -135,8 +145,11 @@ static inline uint32_t csr_rd(int csr_idx) {
   case CSR_MSTATUS:
     ret = cpu.csr_mstatus;
     break;
-  case CSR_MCAUSE:
-    ret = cpu.csr_mcause;
+  case CSR_MVENDORID:
+    ret = 0x79737978;
+    break;
+  case CSR_MARCHID:
+    ret = 0x15fdf02;
     break;
   default:
     assert(0);
@@ -303,29 +316,29 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000001 ????? ????? 111 ????? 01100 11", remu, R,
           R(rd) = ((unsigned)src1 % (unsigned)src2));
 
-  INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw, I,
-          gpr(rd) = csr_rd(imm);
+  INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw, CSR,
+          if (rd != 0) gpr(rd) = csr_rd(imm);
           csr_wr(imm, src1););
 
-  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs, I,
+  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs, CSR,
           int temp = csr_rd(imm);
-          gpr(rd) = temp; csr_wr(imm, temp | src1));
+          gpr(rd) = temp; if (rs1 != 0) csr_wr(imm, temp | src1));
 
-  INSTPAT("??????? ????? ????? 011 ????? 11100 11", csrrc, I,
+  INSTPAT("??????? ????? ????? 011 ????? 11100 11", csrrc, CSR,
           int temp = csr_rd(imm);
-          gpr(rd) = temp; csr_wr(imm, temp & ~src1));
+          gpr(rd) = temp; if (rs1 != 0) csr_wr(imm, temp & ~src1));
 
-  INSTPAT("??????? ????? ????? 101 ????? 11100 11", csrrwi, I,
-          gpr(rd) = csr_rd(imm);
+  INSTPAT("??????? ????? ????? 101 ????? 11100 11", csrrwi, CSR,
+          if (rd != 0) gpr(rd) = csr_rd(imm);
           csr_wr(imm, rs1););
 
-  INSTPAT("??????? ????? ????? 110 ????? 11100 11", csrrsi, I,
+  INSTPAT("??????? ????? ????? 110 ????? 11100 11", csrrsi, CSR,
           int temp = csr_rd(imm);
-          gpr(rd) = temp; csr_wr(imm, temp | rs1));
+          gpr(rd) = temp; if (rs1 != 0) csr_wr(imm, temp | rs1));
 
-  INSTPAT("??????? ????? ????? 111 ????? 11100 11", csrrci, I,
+  INSTPAT("??????? ????? ????? 111 ????? 11100 11", csrrci, CSR,
           int temp = csr_rd(imm);
-          gpr(rd) = temp; csr_wr(imm, temp & ~rs1));
+          gpr(rd) = temp; if (rs1 != 0) csr_wr(imm, temp & ~rs1));
 
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall, N,
           s->dnpc = isa_raise_intr(ECALL_U, cpu.pc));

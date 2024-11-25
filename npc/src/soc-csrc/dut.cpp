@@ -48,10 +48,10 @@ void init_difftest(char *ref_so_file, long img_size) {
       (void (*)(int, bool, char *))dlsym(handle, "difftest_init");
   assert(ref_difftest_init);
 
-  extern bool gen_trace;
-  extern char *trace_path;
+  extern bool gen_itrace;
+  extern char *itrace_path;
 
-  ref_difftest_init(0, gen_trace, trace_path);
+  ref_difftest_init(0, gen_itrace, itrace_path);
   ref_difftest_memcpy(CONFIG_FLASH_BASE, flash, img_size, DIFFTEST_TO_REF);
 
   for (int i = 0; i < GPR_NUM; i++) {

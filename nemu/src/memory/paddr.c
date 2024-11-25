@@ -15,7 +15,6 @@
 
 #include "common.h"
 #include "debug.h"
-#include "utils.h"
 #include <assert.h>
 #include <device/mmio.h>
 #include <isa.h>
@@ -122,7 +121,10 @@ void paddr_write(paddr_t addr, int len, word_t data) {
   } else if (in_uart(addr)) {
     printf("%c", (char)data);
     return;
+  } else if (in_gpio(addr)) {
+    return;
   }
+
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }

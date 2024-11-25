@@ -35,8 +35,11 @@ run: image
 gdb: image
 	$(MAKE) -C $(NPC_HOME) IMG=$(IMAGE).bin soc-gdb 
 
-trace: image
-	$(MAKE) -C $(NPC_HOME) IMG=$(IMAGE).bin soc-trace 
+btrace: image
+	$(MAKE) -C $(NPC_HOME) IMG=$(IMAGE).bin soc-btrace 
+
+itrace: image
+	$(MAKE) -C $(NPC_HOME) IMG=$(IMAGE).bin soc-itrace 
 
 wave:
 	$(MAKE) -C $(NPC_HOME) wave

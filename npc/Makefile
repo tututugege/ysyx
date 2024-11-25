@@ -100,9 +100,14 @@ soc-gdb: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	make -C $(OBJ_DIR) -f V$(SOC_TOP).mk V$(SOC_TOP)
 	gdb --args ./obj_dir/V$(SOC_TOP) $(IMG) --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
-soc-trace: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
+soc-itrace: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
 	make -C $(OBJ_DIR) -f V$(SOC_TOP).mk V$(SOC_TOP)
-	 ./obj_dir/V$(SOC_TOP) $(IMG) --trace=$(NEMU_HOME)/build/cache_itrace.txt --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so 
+	 ./obj_dir/V$(SOC_TOP) $(IMG) --itrace=$(NEMU_HOME)/build/cache_itrace.txt --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so 
+
+soc-btrace: $(SOC_VSRC) $(SOC_CSRC) $(NVBOARD_ARCHIVE)
+	make -C $(OBJ_DIR) -f V$(SOC_TOP).mk V$(SOC_TOP)
+	 ./obj_dir/V$(SOC_TOP) $(IMG) --btrace=$(NEMU_HOME)/build/cache_itrace.txt --diff=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so 
+
 
 wave:
 	gtkwave ./wave.vcd
